@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Agava.IdleGame
 {
+#if UNITY_EDITOR
     public class ReadOnlyAttribute : PropertyAttribute { }
 
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
@@ -20,4 +21,5 @@ namespace Agava.IdleGame
             GUI.enabled = true;
         }
     }
+#endif
 }

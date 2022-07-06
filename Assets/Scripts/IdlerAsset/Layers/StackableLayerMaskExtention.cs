@@ -3,6 +3,7 @@ using UnityEditor;
 
 namespace Agava.IdleGame
 {
+#if UNITY_EDITOR
 	public static class StackableLayerMaskExtention
 	{
 		public static int LayerMaskField(string label, int layermask)
@@ -59,4 +60,5 @@ namespace Agava.IdleGame
 			return field;
 		}
 	}
+#endif
 }

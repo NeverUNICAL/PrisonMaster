@@ -33,9 +33,11 @@ namespace Agava.IdleGame
             return -1;
         }
 
+#if UNITY_EDITOR
         public static StackableLayers GetAsset()
         {
             return AssetDatabase.LoadAssetAtPath<StackableLayers>(AssetPath);
         }
+#endif
     }
 }
