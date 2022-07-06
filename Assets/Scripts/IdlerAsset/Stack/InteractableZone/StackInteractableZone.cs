@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Agava.IdleGame.Model;
+using System;
+using System.Linq;
 
 namespace Agava.IdleGame
 {
@@ -11,11 +13,13 @@ namespace Agava.IdleGame
         [SerializeField] private Trigger<StackPresenter> _trigger;
 
         private Timer _timer = new Timer();
-        private StackPresenter _enteredStack;
+        //private StackPresenter _enteredStack;
+        private StackPresenter[] _enteredStackList;
         private Coroutine _waitCoroutine;
 
         public ITimer Timer => _timer;
         protected virtual float InteracionTime => _interactionTime;
+        protected bool InTrigger = false;
 
         private void OnValidate()
         {
@@ -45,10 +49,11 @@ namespace Agava.IdleGame
 
         private void OnEnter(StackPresenter enteredStack)
         {
-            if (_enteredStack != null)
+            if (_enteredStackList != null)
                 return;
 
-            _enteredStack = enteredStack;
+            InTrigger = true;
+            _enteredStackList = enteredStack.GetComponents<StackPresenter>();
 
             if (CanInteract(enteredStack))
                 _timer.Start(InteracionTime);
@@ -58,32 +63,47 @@ namespace Agava.IdleGame
 
         private void OnStay(StackPresenter enteredStack)
         {
-            if (_enteredStack == null)
+            if (_enteredStackList == null)
                 OnEnter(enteredStack);
         }
 
         private void OnExit(StackPresenter otherStack)
         {
-            if (otherStack == _enteredStack)
+            if (_enteredStackList.Contains(otherStack))
             {
+                InTrigger = false;
+
                 if (_waitCoroutine != null)
                     StopCoroutine(_waitCoroutine);
 
                 _timer.Stop();
-                _enteredStack = null;
+                Array.Clear(_enteredStackList, 0, _enteredStackList.Length);
+                _enteredStackList = null;
             }
         }
 
         private void OnTimeOver()
         {
-            InteractAction(_enteredStack);
+            foreach (var stackPresenter in _enteredStackList)
+                if (CanInteract(stackPresenter))
+                    InteractAction(stackPresenter);
+
             _waitCoroutine = StartCoroutine(WaitUntilCanInteract(() => _timer.Start(InteracionTime)));
         }
 
         private IEnumerator WaitUntilCanInteract(UnityAction finalAction)
         {
             yield return null;
-            yield return new WaitUntil(() => CanInteract(_enteredStack));
+
+            yield return new WaitUntil(() =>
+            {
+                foreach (var stackPresenter in _enteredStackList)
+                    if (CanInteract(stackPresenter))
+                        return true;
+
+                return false;
+            });
+
             finalAction?.Invoke();
         }
 
