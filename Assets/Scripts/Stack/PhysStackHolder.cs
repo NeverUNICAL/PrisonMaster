@@ -3,8 +3,6 @@ using Agava.IdleGame;
 using Agava.IdleGame.Model;
 using UnityEngine;
 
-namespace Assets.Source.Stack
-{
     public class PhysStackHolder : MonoBehaviour
     {
         [SerializeField] private StackView _stackView;
@@ -54,8 +52,6 @@ namespace Assets.Source.Stack
                 Quaternion targetRotation = _viewPoint.rotation;
                 Vector3 targetPosition =
                     new Vector3(previousPosition.x, previousPosition.y+ Offset, previousPosition.z);
-
-                Debug.Log(currentPosition + "***" + targetPosition + "***" + targetRotation.eulerAngles + "***" +stack[i].View.transform.rotation.eulerAngles);
                 stack[i].View.SetPositionAndRotation(Vector3.Lerp(currentPosition, targetPosition, moveLerp),
                     targetRotation);
             }
@@ -79,4 +75,3 @@ namespace Assets.Source.Stack
                 _lerpSpeed = LerpSpeedSolid;
         }
     }
-}
