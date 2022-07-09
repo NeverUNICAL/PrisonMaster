@@ -18,9 +18,14 @@ namespace Agava.IdleGame.Examples
         private void Update()
         {
             var rawDirection = new Vector3(_input.Direction.x, 0, _input.Direction.y);
-            _body.velocity = rawDirection * _speed + Vector3.up * _body.velocity.y;
+            _body.velocity = (rawDirection.magnitude*transform.forward * _speed + Vector3.up * _body.velocity.y)*Time.deltaTime;
 
-            transform.LookAt(transform.position + rawDirection);
+            if( rawDirection.magnitude > 0)
+            {
+            transform.rotation = Quaternion.LookRotation(rawDirection, Vector3.up) * Quaternion.Euler(0, 45, 0);
+            }
+            
+
         }
     }
 }
