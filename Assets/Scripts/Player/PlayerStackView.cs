@@ -24,20 +24,21 @@ namespace Agava.IdleGame
         {
             if (this is PlayerStackView == false)
                 return;
-
+            
             stackable.View.parent = null;
             _stackablesDelayed.Add(stackable);
         }
 
         protected override void Sort(IEnumerable<StackableObject> unsortedStackables, float animationDuration)
         {
+            
             var sortedList = unsortedStackables.OrderBy(stackable => stackable.View.localPosition.x);
 
             var iteration = 0;
             foreach (var item in sortedList)
             {
                 var position = Vector3.right * iteration * (item.View.lossyScale.x + _space);
-
+                
                 item.View.DOComplete(true);
                 iteration++;
             }

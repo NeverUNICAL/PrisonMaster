@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 5291975129504660091}
   - component: {fileID: 5291975129504660093}
   m_Layer: 0
-  m_Name: Mall 1
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,8 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7ec3d7424ba2042b9b45786b8a76c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionTime: 0.1
   _trigger: {fileID: 5291975129952365919}
+  _interactionTime: 0.1
   _selfStack: {fileID: 5291975129504660090}
 --- !u!114 &5291975129504660089
 MonoBehaviour:
@@ -279,8 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41015cfb8be1a0d4690725778ba0f6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionTime: 0.1
   _trigger: {fileID: 5291975130102063660}
+  _interactionTime: 0.1
   _selfStack: {fileID: 5291975129504660090}
 --- !u!114 &5291975129504660090
 MonoBehaviour:
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MALL
+  m_text: OUT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

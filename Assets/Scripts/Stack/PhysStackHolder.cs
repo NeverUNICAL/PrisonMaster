@@ -8,6 +8,7 @@ using UnityEngine;
         [SerializeField] private StackView _stackView;
         [SerializeField] private Transform _viewPoint;
         [SerializeField] private Transform _parentRotation;
+        [SerializeField] private float _offset;
 
         private IReadOnlyList<StackableObject> _stack => _stackView.Stackables;
         private float _lerpSpeed;
@@ -51,7 +52,7 @@ using UnityEngine;
 
                 Quaternion targetRotation = _viewPoint.rotation;
                 Vector3 targetPosition =
-                    new Vector3(previousPosition.x, previousPosition.y+ Offset, previousPosition.z);
+                    new Vector3(previousPosition.x, previousPosition.y+ _offset, previousPosition.z);
                 stack[i].View.SetPositionAndRotation(Vector3.Lerp(currentPosition, targetPosition, moveLerp),
                     targetRotation);
             }
