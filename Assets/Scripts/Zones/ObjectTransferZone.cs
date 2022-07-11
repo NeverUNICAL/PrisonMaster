@@ -1,4 +1,5 @@
 using System;
+using Agava.IdleGame.Model;
 using UnityEngine;
 
 namespace Agava.IdleGame
@@ -36,7 +37,7 @@ namespace Agava.IdleGame
             if (index >= _selfStack.Count)
                 throw new InvalidOperationException();
 
-            var stackable = _selfStack.RemoveAt(index);
+            StackableObject stackable = _selfStack.RemoveAt(index);
             enteredStack.AddToStack(stackable);
             Transfered?.Invoke();
         }

@@ -53,7 +53,7 @@ namespace Agava.IdleGame
                 var position = Vector3.Scale(PositionByIndex(index), _distanceBetweenObjects);
 
                 stackable.View.DOComplete(true);
-                stackable.View.DOMove(position, animationDuration);
+                stackable.View.DOLocalMove(position, animationDuration);
 
                 index++;
             }

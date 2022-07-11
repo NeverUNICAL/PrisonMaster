@@ -9,8 +9,8 @@ namespace Agava.IdleGame
 {
     public abstract class StackInteractableZone : MonoBehaviour
     {
-        [SerializeField] private float _interactionTime = 0.1f;
         [SerializeField] private Trigger<StackPresenter> _trigger;
+        [SerializeField] private float _interactionTime = 0.2f;
 
         private Timer _timer = new Timer();
         //private StackPresenter _enteredStack;
@@ -20,6 +20,8 @@ namespace Agava.IdleGame
         public ITimer Timer => _timer;
         protected virtual float InteracionTime => _interactionTime;
         protected bool InTrigger = false;
+
+        public event Action Produced;
 
         private void OnValidate()
         {
@@ -47,6 +49,21 @@ namespace Agava.IdleGame
             _timer.Tick(Time.deltaTime);
         }
 
+        public void OnExit(StackPresenter otherStack = null)
+        {
+            if (_enteredStackList.Contains(otherStack))
+            {
+                InTrigger = false;
+
+                if (_waitCoroutine != null)
+                    StopCoroutine(_waitCoroutine);
+
+                _timer.Stop();
+                Array.Clear(_enteredStackList, 0, _enteredStackList.Length);
+                _enteredStackList = null;
+            }
+        }
+
         private void OnEnter(StackPresenter enteredStack)
         {
             if (_enteredStackList != null)
@@ -65,21 +82,6 @@ namespace Agava.IdleGame
         {
             if (_enteredStackList == null)
                 OnEnter(enteredStack);
-        }
-
-        private void OnExit(StackPresenter otherStack)
-        {
-            if (_enteredStackList.Contains(otherStack))
-            {
-                InTrigger = false;
-
-                if (_waitCoroutine != null)
-                    StopCoroutine(_waitCoroutine);
-
-                _timer.Stop();
-                Array.Clear(_enteredStackList, 0, _enteredStackList.Length);
-                _enteredStackList = null;
-            }
         }
 
         private void OnTimeOver()
