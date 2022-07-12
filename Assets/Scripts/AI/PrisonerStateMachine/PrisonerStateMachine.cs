@@ -9,7 +9,7 @@ public class PrisonerStateMachine : MonoBehaviour
     [SerializeField] private PrisonerState _firstState;
 
     private PrisonerState _currentState;
-    private ObjectConsumerZone _consumerTarget;
+    private StackView _consumerTarget;
 
     public PrisonerState CurrentState => _currentState;
 

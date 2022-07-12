@@ -71,7 +71,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717448223038092227}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e582a818e877db49b532b0b29474bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _view: {fileID: 717448224361354954}
+  _view: {fileID: 840514885}
   _capacity: 3
   _stackableTypes:
     _value: -1
@@ -503,7 +503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717448224361354955}
-  - component: {fileID: 717448224361354954}
+  - component: {fileID: 840514885}
   m_Layer: 0
   m_Name: StackView
   m_TagString: Untagged
@@ -518,14 +518,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717448224361354952}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 717448223038092228}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &717448224361354954
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &840514885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 717448224361354952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf484281ace51ec4ab384300d9ee2285, type: 3}
+  m_Script: {fileID: 11500000, guid: e9fc881b58790fc4b8c2392eb1814f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 717448224361354955}
@@ -545,7 +545,9 @@ MonoBehaviour:
   _jumpPower:
     _enabled: 0
     _value: 0
-  _space: 0.05
+  _size: {x: 1, y: 1, z: 1}
+  _distanceBetweenObjects: {x: 1, y: 0.11, z: 1}
+  _drawGizmos: 0
 --- !u!1 &717448224488510836
 GameObject:
   m_ObjectHideFlags: 0

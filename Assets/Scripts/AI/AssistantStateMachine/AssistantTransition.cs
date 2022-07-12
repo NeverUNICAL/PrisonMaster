@@ -8,13 +8,13 @@ public abstract class AssistantTransition : MonoBehaviour
     [SerializeField] private AssistantState _targetState;
 
     protected int Capacity { get; private set; }
-    protected HorizontalStackView StackViewTarget { get; private set; }
-    protected ObjectProducerZone ProducerTarget { get; private set; }
-    protected ObjectConsumerZone ConsumerTarget { get; private set; }
+    protected StackView StackViewTarget { get; private set; }
+    protected StackView ProducerTarget { get; private set; }
+    protected StackView ConsumerTarget { get; private set; }
     public AssistantState TargetState => _targetState;
     public bool NeedTransit { get; protected set; }
 
-    public void Init(ObjectProducerZone producerTarget, HorizontalStackView stackView, int capacity, ObjectConsumerZone consumerTarget)
+    public void Init(StackView producerTarget, StackView stackView, int capacity, StackView consumerTarget)
     {
         ProducerTarget = producerTarget;
         ConsumerTarget = consumerTarget;

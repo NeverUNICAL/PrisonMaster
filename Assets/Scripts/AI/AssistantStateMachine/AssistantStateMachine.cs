@@ -10,9 +10,9 @@ public class AssistantStateMachine : MonoBehaviour
 
     private int _capacity;
     private AssistantState _currentState;
-    private ObjectProducerZone _producerTarget;
-    private HorizontalStackView _stackView;
-    private ObjectConsumerZone _consumerTarget;
+    private StackView _producerTarget;
+    private StackView _stackView;
+    private StackView _consumerTarget;
 
     public AssistantState CurrentState => _currentState;
 
@@ -21,7 +21,7 @@ public class AssistantStateMachine : MonoBehaviour
         _producerTarget = GetComponent<Assistant>().ProducerTarget;
         _consumerTarget = GetComponent<Assistant>().ConsumerTarget;
         _capacity = GetComponent<Assistant>().Capacity;
-        _stackView = GetComponentInChildren<HorizontalStackView>();
+        _stackView = GetComponentInChildren<StackView>();
         Reset(_firstState);
     }
 

@@ -24,7 +24,7 @@ namespace Agava.IdleGame
         {
             if (this is PlayerStackView == false)
                 return;
-            
+
             stackable.View.parent = null;
             _stackablesDelayed.Add(stackable);
         }

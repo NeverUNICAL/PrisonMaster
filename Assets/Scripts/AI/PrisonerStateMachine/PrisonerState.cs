@@ -7,9 +7,9 @@ public abstract class PrisonerState : MonoBehaviour
 {
     [SerializeField] private List<PrisonerTransition> _transitions;
 
-    protected ObjectConsumerZone ConsumerTarget { get; set; }
+    protected StackView ConsumerTarget { get; set; }
 
-    public void Enter(ObjectConsumerZone consumerTarget)
+    public void Enter(StackView consumerTarget)
     {
         if (enabled == false)
         {

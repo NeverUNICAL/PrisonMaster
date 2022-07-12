@@ -6,14 +6,14 @@ using Agava.IdleGame;
 [RequireComponent(typeof(PlayerStackPresenter))]
 public class Assistant : MonoBehaviour
 {
-    [SerializeField] private ObjectProducerZone _producerTarget;
-    [SerializeField] private ObjectConsumerZone _consumerTarget;
+    [SerializeField] private StackView _producerTarget;
+    [SerializeField] private StackView _consumerTarget;
 
     private int _capacity;
 
     public int Capacity => _capacity;
-    public ObjectProducerZone ProducerTarget => _producerTarget;
-    public ObjectConsumerZone ConsumerTarget => _consumerTarget;
+    public StackView ProducerTarget => _producerTarget;
+    public StackView ConsumerTarget => _consumerTarget;
 
     private void Awake()
     {

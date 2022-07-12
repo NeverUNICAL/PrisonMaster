@@ -8,11 +8,11 @@ public abstract class AssistantState : MonoBehaviour
     [SerializeField] private List<AssistantTransition> _transitions;
 
     protected int Capacity { get; set; }
-    protected HorizontalStackView StackViewTarget { get; set; }
-    protected ObjectProducerZone ProducerTarget { get; set; }
-    protected ObjectConsumerZone ConsumerTarget { get; set; }
+    protected StackView StackViewTarget { get; set; }
+    protected StackView ProducerTarget { get; set; }
+    protected StackView ConsumerTarget { get; set; }
 
-    public void Enter(ObjectProducerZone producerTarget, HorizontalStackView stackView, int capacity, ObjectConsumerZone consumerTarget)
+    public void Enter(StackView producerTarget, StackView stackView, int capacity, StackView consumerTarget)
     {
         if (enabled == false)
         {
