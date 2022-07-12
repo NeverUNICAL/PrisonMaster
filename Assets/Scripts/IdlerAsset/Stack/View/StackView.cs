@@ -35,10 +35,17 @@ namespace Agava.IdleGame
 
             if (this is PlayerStackView == false)
             {
+                if(stackable.View.localScale != Vector3.one)
+                    stackable.View.localScale = Vector3.one;
+                
                 stackable.View.DOLocalMove(endPosition, _animationDuration).OnComplete(() => onComplete?.Invoke());
 
                 if (_jumpPower.Enabled)
                     stackable.View.DOLocalJump(endPosition, _jumpPower.Value, 1, _animationDuration);
+            }
+            else
+            {
+                stackable.View.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.2f);
             }
 
             stackable.View.DOLocalRotate(endRotation, _animationDuration).OnComplete(() => AddToDelayedList(stackable));

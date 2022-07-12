@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick _joystick;
-    
+
     private NavMeshAgent _navMeshAgent;
     //private Animator _animator;
     private bool _canMove;

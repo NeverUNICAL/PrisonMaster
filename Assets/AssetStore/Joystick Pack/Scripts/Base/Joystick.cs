@@ -37,8 +37,13 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Canvas canvas;
     private Camera cam;
-
+    private float _magnitude;
+    private bool _dragged;
+    
     private Vector2 input = Vector2.zero;
+
+    public float Magnitude => _magnitude;
+    public bool Dragged => _dragged;
 
     protected virtual void Start()
     {
@@ -60,6 +65,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
+        _dragged = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -78,6 +84,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
+        _magnitude = magnitude;
         if (magnitude > deadZone)
         {
             if (magnitude > 1)
@@ -133,6 +140,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+        _dragged = false;
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
