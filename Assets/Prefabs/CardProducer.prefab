@@ -521,15 +521,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -624,5 +624,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f4fee203833164bb976a30a35932f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _yOnEnablePosition: 1
+  _doScaleAfterEnable: {x: 1.1, y: 1.1, z: 1.1}
+  _scaleDuration: 1
+  _backToGroundDuration: 0.2
   _itemCreator: {fileID: 4627601754640322198}
   _meshRenderer: {fileID: 7593174043518051787}
