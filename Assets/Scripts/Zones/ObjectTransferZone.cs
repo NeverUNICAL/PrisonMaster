@@ -1,14 +1,19 @@
 using System;
 using Agava.IdleGame.Model;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Agava.IdleGame
 {
     public class ObjectTransferZone : StackInteractableZone
     {
         [SerializeField] private StackPresenter _selfStack;
+        [SerializeField] private PositionHandler _positionHandler;
 
         public event Action Transfered;
+        public event UnityAction<ObjectTransferZone> ClearenceComplete;
+
+        public int Count => _selfStack.Count;
 
         protected override bool CanInteract(StackPresenter enteredStack)
         {
@@ -40,6 +45,12 @@ namespace Agava.IdleGame
             StackableObject stackable = _selfStack.RemoveAt(index);
             enteredStack.AddToStack(stackable);
             Transfered?.Invoke();
+        }
+
+        private void Update()
+        {
+            if (_positionHandler.IsPrisonerReached && _selfStack.Count != 0)
+                ClearenceComplete?.Invoke(this);
         }
     }
 }

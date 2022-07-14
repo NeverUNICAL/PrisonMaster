@@ -7,21 +7,26 @@ public abstract class PrisonerState : MonoBehaviour
 {
     [SerializeField] private List<PrisonerTransition> _transitions;
 
-    protected StackView ConsumerTarget { get; set; }
+    protected StackView[] ConsumerTargets { get; set; }
+    protected PositionHandler[] TargetPositions { get; set; }
+    protected ObjectTransferZone[] TransferZones { get; set; }
+    protected Prisoner Prisoner { get; set; }
 
-    public void Enter(StackView consumerTarget)
+    public void Enter(StackView[] consumerTargets, PositionHandler[] positionHandlers, ObjectTransferZone[] transferZone, Prisoner prisoner)
     {
         if (enabled == false)
         {
-            ConsumerTarget = consumerTarget;
+            ConsumerTargets = consumerTargets;
+            TargetPositions = positionHandlers;
+            TransferZones = transferZone;
+            Prisoner = prisoner;
             enabled = true;
 
             foreach (var transition in _transitions)
             {
                 transition.enabled = true;
-                transition.Init(ConsumerTarget);
+                transition.Init(ConsumerTargets, TargetPositions, TransferZones, Prisoner);
             }
-
         }
     }
 
@@ -42,6 +47,8 @@ public abstract class PrisonerState : MonoBehaviour
         {
             if (transition.NeedTransit)
                 return transition.TargetState;
+            else if (transition.NeedAlternativeTransit)
+                return transition.AlternativeTargetState;
         }
 
         return null;

@@ -8,6 +8,7 @@ public class AssistantStateMachine : MonoBehaviour
 {
     [SerializeField] private AssistantState _firstState;
 
+    private float _speed;
     private int _capacity;
     private AssistantState _currentState;
     private StackView _producerTarget;
@@ -21,6 +22,7 @@ public class AssistantStateMachine : MonoBehaviour
         _producerTarget = GetComponent<Assistant>().ProducerTarget;
         _consumerTarget = GetComponent<Assistant>().ConsumerTarget;
         _capacity = GetComponent<Assistant>().Capacity;
+        _speed = GetComponent<Assistant>().Speed;
         _stackView = GetComponentInChildren<StackView>();
         Reset(_firstState);
     }

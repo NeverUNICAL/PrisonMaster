@@ -5,12 +5,19 @@ using UnityEngine;
 public class PrisonerDistanceConumerTransition : PrisonerTransition
 {
     [SerializeField] private float _transitionRange;
+    [SerializeField] private int _stepNumber;
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, ConsumerTarget.transform.position) < _transitionRange)
+        if (_stepNumber == 0)
         {
-            NeedTransit = true;
+            for (int i = 0; i < Prisoner.QueuePrisoners1.Length; i++)
+            {
+                if (Prisoner == Prisoner.QueuePrisoners1[i].GetFirstInQueue() && Prisoner.TransferZones1[i].Count > 0)
+                {
+                    NeedTransit = true;
+                }
+            }
         }
     }
 }

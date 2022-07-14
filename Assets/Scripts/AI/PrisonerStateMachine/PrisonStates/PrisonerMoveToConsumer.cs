@@ -6,18 +6,13 @@ using UnityEngine.AI;
 
 public class PrisonerMoveToConsumer : PrisonerState
 {
-    [SerializeField] private float _speed;
-    private NavMeshAgent _navMeshAgent;
-
-    private void Start()
+    private void OnEnable()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-    }
+        Prisoner.ChangeWorkNavMesh(true);
 
-    private void Update()
-    {
-        // transform.position = Vector3.MoveTowards(transform.position, ConsumerTarget.transform.position, _speed * Time.deltaTime);
-        _navMeshAgent.SetDestination(ConsumerTarget.transform.position);
-       // transform.LookAt(ConsumerTarget.transform.position);
+        for (int i = 0; i < Prisoner.CurrentQueuePrisoners.WayPoints.Length; i++)
+        {
+                Prisoner.NavMeshAgent.SetDestination(Prisoner.CurrentQueuePrisoners.WayPoints[Prisoner.CurrentQueuePrisoners.Count - 1].position);
+        }
     }
 }
