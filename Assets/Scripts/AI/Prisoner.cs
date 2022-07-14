@@ -31,7 +31,9 @@ public class Prisoner : MonoBehaviour
     private ObjectTransferZone[] _transferZone3;
     private QueuePrisoners _currentQueuePrisoners;
     private bool _isQueueState = false;
+    private PositionHandler _positionHandler;
 
+    public PositionHandler PositionHandler => _positionHandler;
     public bool IsQueueState => _isQueueState;
     public QueuePrisoners StartQueue => _startQueue;
     public QueuePrisoners[] QueuePrisoners1 => _queuePrisoners1;
@@ -95,8 +97,9 @@ public class Prisoner : MonoBehaviour
         _navMesh.enabled = value;
     }
 
-    public void SetCurrentQueue(bool value)
+    public void SetCurrentQueue(bool value, PositionHandler positionHandler)
     {
         _isQueueState = value;
+        _positionHandler = positionHandler;
     }
 }

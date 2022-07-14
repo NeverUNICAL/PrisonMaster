@@ -19,11 +19,11 @@ public class PrisonerIdleState : PrisonerState
     private void Update()
     {
         if (!_isStarted)
-        {
-            transform.DORotateQuaternion(TargetPositions[0].transform.rotation, _duration);
-        }
+            transform.DORotateQuaternion(Prisoner.PositionHandler.transform.rotation, _duration);
 
-        //Prisoner.ChangeWorkNavMesh(false);
+        if (Prisoner.NavMeshAgent.enabled == true)
+            Prisoner.ChangeWorkNavMesh(false);
+
         _animator.Play("Idle");
     }
 }

@@ -55,24 +55,24 @@ public class PrisonerStateMachine : MonoBehaviour
 
         if (_currentState != null)
         {
-            if (_isZone1Complete == false)
-            {
+            //if (_isZone1Complete == false)
+            //{
                 _currentState.Enter(_prisoner.ConsumerTargetsZone1, _prisoner.PositionHandlersZone1, _prisoner.TransferZones1, _prisoner);
-                if (_isFirstState == false)
-                    _isZone1Complete = true;
-                else
-                    _isFirstState = false;
-            }
-            else if (_isZone2Complete == false)
-            {
-                _currentState.Enter(_prisoner.ConsumerTargetsZone2, _prisoner.PositionHandlersZone2, _prisoner.TransferZones2, _prisoner);
-                _isZone2Complete = true;
-            }
-            else if (_isZone3Complete == false)
-            {
-                _currentState.Enter(_prisoner.ConsumerTargetsZone3, _prisoner.PositionHandlersZone3, _prisoner.TransferZones3, _prisoner);
-                _isZone3Complete = true;
-            }
+            //    if (_isFirstState == false)
+            //        _isZone1Complete = true;
+            //    else
+            //        _isFirstState = false;
+            //}
+            //else if (_isZone2Complete == false)
+            //{
+            //    _currentState.Enter(_prisoner.ConsumerTargetsZone2, _prisoner.PositionHandlersZone2, _prisoner.TransferZones2, _prisoner);
+            //    _isZone2Complete = true;
+            //}
+            //else if (_isZone3Complete == false)
+            //{
+            //    _currentState.Enter(_prisoner.ConsumerTargetsZone3, _prisoner.PositionHandlersZone3, _prisoner.TransferZones3, _prisoner);
+            //    _isZone3Complete = true;
+            //}
         }
     }
 }

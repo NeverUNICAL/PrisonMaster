@@ -5,25 +5,16 @@ using UnityEngine.AI;
 
 public class PrisonerMoveToStandByZone : PrisonerState
 {
-    [SerializeField] private Transform _target;
-    private NavMeshAgent _navMesh;
-
-    private void Awake()
-    {
-        _navMesh = GetComponent<NavMeshAgent>();
-    }
+    [SerializeField] private PositionHandler _target;
 
     private void OnEnable()
     {
-        _navMesh.SetDestination(_target.position);
-        //for (int i = 0; i < PositionHandlers.Length; i++)
-        //{
-        //    if (PositionHandlers[i].IsEmpty == true)
-        //    {
-        //        _navMesh.SetDestination(PositionHandlers[i].transform.position);
-        //        PositionHandlers[i].SetEmpty(false);
-        //        return;
-        //    }
-        //}
+        Prisoner.SetCurrentQueue(false, _target);
+        _target.SetEmpty(false);
+
+        if (Prisoner.NavMeshAgent.enabled == false)
+            Prisoner.ChangeWorkNavMesh(true);
+
+        Prisoner.NavMeshAgent.SetDestination(_target.transform.position);
     }
 }

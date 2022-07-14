@@ -5,6 +5,8 @@ using UnityEngine;
 public class PrisonerFindEmptyQueueTransition : PrisonerTransition
 {
     [SerializeField] private int _stepNumber;
+    [SerializeField] private PositionHandler _positionAlternative;
+
     private void Update()
     {
         if (_stepNumber == 0 && Prisoner.IsQueueState == false)
@@ -16,10 +18,13 @@ public class PrisonerFindEmptyQueueTransition : PrisonerTransition
         {
             for (int i = 0; i < Prisoner.QueuePrisoners1.Length; i++)
             {
-                if (Prisoner.QueuePrisoners1[i].gameObject.activeInHierarchy == true && Prisoner.QueuePrisoners1[i].CanEnqueue(Prisoner))
+                if (Prisoner.QueuePrisoners1[i].gameObject.activeInHierarchy == true && Prisoner.QueuePrisoners1[i].CanEnqueue(Prisoner) == true)
                 {
+                    if (Prisoner.PositionHandler != null)
+                    {
                     NeedTransit = true;
                     return;
+                    }
                 }
             }
         }
@@ -27,11 +32,17 @@ public class PrisonerFindEmptyQueueTransition : PrisonerTransition
         {
             for (int i = 0; i < Prisoner.QueuePrisoners2.Length; i++)
             {
-                if (Prisoner.QueuePrisoners1[i].gameObject.activeInHierarchy == true && Prisoner.QueuePrisoners1[i].CanEnqueue(Prisoner))
+                if (Prisoner.QueuePrisoners2[i].gameObject.activeInHierarchy == true && Prisoner.QueuePrisoners2[i].CanEnqueue(Prisoner))
                 {
                     NeedTransit = true;
                     return;
                 }
+            }
+
+            if (_positionAlternative.IsEmpty == true)
+            {
+            NeedAlternativeTransit = true;
+            return;
             }
         }
     }
