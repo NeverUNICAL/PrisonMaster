@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Joystick _joystick;
     [SerializeField] private Animator _animator;
+    
     private const string Speed = "Speed";
 
 

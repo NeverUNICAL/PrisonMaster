@@ -16,13 +16,13 @@ public abstract class Construction : MonoBehaviour
         Appereance();
     }
 
-    public void Appereance()
+    private void Appereance()
     {
         transform.localScale = Vector3.zero;
         transform.position = new Vector3(transform.position.x, _yOnEnablePosition, transform.position.z);
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOScale(_doScaleAfterEnable, _scaleDuration));
-        sequence.Append(transform.DOMoveY(0f, _backToGroundDuration));
-        sequence.Join(transform.DOScale(Vector3.one, _backToGroundDuration));
+        sequence.Append(transform.DOScale(_doScaleAfterEnable, _scaleDuration).SetEase(Ease.InOutFlash));
+        sequence.Append(transform.DOMoveY(0f, _backToGroundDuration).SetEase(Ease.InOutFlash));
+        sequence.Join(transform.DOScale(Vector3.one, _backToGroundDuration).SetEase(Ease.InOutFlash));
     }
 }
