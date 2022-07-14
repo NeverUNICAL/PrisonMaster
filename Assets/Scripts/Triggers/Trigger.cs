@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Trigger : MonoBehaviour
+namespace Agava.IdleGame
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(Collider))]
+    public class Trigger : MonoBehaviour 
     {
-        
-    }
+        public event UnityAction Enter;
+        public event UnityAction Stay;
+        public event UnityAction Exit;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private Collider _collider;
+
+        private void Awake()
+        {
+            _collider = GetComponent<Collider>();
+            _collider.isTrigger = true;
+        }
         
+        private void OnTriggerEnter(Collider collider)
+        {
+            if (collider.TryGetComponent(out PlayerCollision playerCollision))
+            {
+                Enter?.Invoke();
+            }
+        }
+
+        private void OnTriggerStay(Collider collider)
+        {
+            if (collider.TryGetComponent(out PlayerCollision playerCollision))
+            {
+                Stay?.Invoke();
+            }
+        }
+
+        private void OnTriggerExit(Collider collider)
+        {
+            if (collider.TryGetComponent(out PlayerCollision playerCollision))
+            {
+                Exit?.Invoke();
+            }
+        }
     }
 }
