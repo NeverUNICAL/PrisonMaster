@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 717448223038092238}
   - component: {fileID: 717448223038092240}
   - component: {fileID: 717448223038092241}
+  - component: {fileID: 2063899887}
   m_Layer: 0
   m_Name: Assistant
   m_TagString: Untagged
@@ -272,6 +273,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092235}
+--- !u!114 &2063899887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717448223038092227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5342925d5da304c8c922740e52e129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7263528383324768787}
 --- !u!1 &717448223498082281
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +422,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 928769163119205878, guid: ad39ad4a334f30b4c9356983020287a3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1ebe37b4c32a9664b8895b1566678d94, type: 2}
     - target: {fileID: 928769163119205879, guid: ad39ad4a334f30b4c9356983020287a3, type: 3}
       propertyPath: m_Name
       value: Police
@@ -417,5 +435,10 @@ PrefabInstance:
 --- !u!4 &8036370311068389544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 551820759350036301, guid: ad39ad4a334f30b4c9356983020287a3, type: 3}
+  m_PrefabInstance: {fileID: 7507107188780095461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7263528383324768787 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 928769163119205878, guid: ad39ad4a334f30b4c9356983020287a3, type: 3}
   m_PrefabInstance: {fileID: 7507107188780095461}
   m_PrefabAsset: {fileID: 0}

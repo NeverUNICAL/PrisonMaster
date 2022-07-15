@@ -205,7 +205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4627601754640322201
 Transform:
   m_ObjectHideFlags: 0
@@ -238,11 +238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StackPresenter: {fileID: 4627601754640322200}
   Template: {fileID: 4261728598974037479, guid: 48082aeb725432047868509f6c215955, type: 3}
-  CreatingItemCount: 1
+  CreatingItemCount: 24
   _spawnObjectPosition: {fileID: 4627601755285655807}
   _timerView: {fileID: 3905245027366391720}
   _objectTransferZone: {fileID: 4627601754640322199}
-  _timeBetweenSpawnItem: 2
+  _timeBetweenSpawnItem: 1
 --- !u!114 &4627601754640322199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +258,7 @@ MonoBehaviour:
   _trigger: {fileID: 4627601754866950684}
   _interactionTime: 0.1
   _selfStack: {fileID: 4627601754640322200}
+  _positionHandler: {fileID: 0}
 --- !u!114 &4627601754640322200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce2a007e3d8711d4b8f6342e63884a57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.060000017
+      value: 0.044
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce2a007e3d8711d4b8f6342e63884a57, type: 3}
       propertyPath: m_LocalPosition.z
@@ -537,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17999998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
       propertyPath: m_LocalPosition.z
