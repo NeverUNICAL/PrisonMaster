@@ -8,7 +8,7 @@ namespace Agava.IdleGame
     public class ObjectTransferZone : StackInteractableZone
     {
         [SerializeField] private StackPresenter _selfStack;
-        [SerializeField] private PositionHandler _positionHandler;
+       // [SerializeField] private PositionHandler _positionHandler;
 
         public event Action Transfered;
         public event UnityAction<ObjectTransferZone> ClearenceComplete;
@@ -45,12 +45,6 @@ namespace Agava.IdleGame
             StackableObject stackable = _selfStack.RemoveAt(index);
             enteredStack.AddToStack(stackable);
             Transfered?.Invoke();
-        }
-
-        private void Update()
-        {
-           // if (_positionHandler != null && _positionHandler.IsPrisonerReached && _selfStack.Count != 0)
-            //    ClearenceComplete?.Invoke(this);
         }
     }
 }
