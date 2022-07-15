@@ -49,8 +49,8 @@ namespace Agava.IdleGame
 
         private void Update()
         {
-            if (_positionHandler.IsPrisonerReached && _selfStack.Count != 0)
-                ClearenceComplete?.Invoke(this);
+           // if (_positionHandler != null && _positionHandler.IsPrisonerReached && _selfStack.Count != 0)
+            //    ClearenceComplete?.Invoke(this);
         }
     }
 }
