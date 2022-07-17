@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Agava.IdleGame.Model;
+using UnityEngine.UI;
 
 namespace Agava.IdleGame
 {
@@ -12,6 +13,7 @@ namespace Agava.IdleGame
         [SerializeField] private Trigger<SoftCurrencyHolder> _trigger;
         [SerializeField] private BuyZoneView _view;
         [SerializeField] private UnlockableObject _unlockable;
+        [SerializeField] private Image _image;
 
         private BuyZone _buyZone;
         private Coroutine _tryBuy;
@@ -108,6 +110,8 @@ namespace Agava.IdleGame
         private void UpdateCost()
         {
             _view.RenderCost(_buyZone.CurrentCost);
+            if (_image != null)
+                _image.fillAmount = _buyZone.CurrentPercent;
         }
 
         protected virtual void OnBuyZoneLoaded(BuyZone buyZone) { }

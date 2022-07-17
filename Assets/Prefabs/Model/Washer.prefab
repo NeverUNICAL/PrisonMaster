@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 3118647839009724885}
   - component: {fileID: 2083040425013794416}
   - component: {fileID: 4254922476987425466}
+  - component: {fileID: 1644803456}
   m_Layer: 0
   m_Name: Washer
   m_TagString: Untagged
@@ -166,3 +167,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1644803456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309353763615703919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1c1402ed97a6b47ab3b5b46e53ef9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yOnEnablePosition: 1
+  _doScaleAfterEnable: {x: 1.1, y: 1.1, z: 1.1}
+  _scaleDuration: 1
+  _backToGroundDuration: 0.2
+  _suitsTransform: {fileID: 3752312049130475021}
+  _vector3Rotate: {x: 0, y: 0, z: 0.8}

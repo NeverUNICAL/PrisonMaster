@@ -19,10 +19,11 @@ namespace Agava.IdleGame.Model
 
         public int TotalCost => _dynamicCost.TotalCost;
         public int CurrentCost => _dynamicCost.CurrentCost;
+        public float CurrentPercent => _dynamicCost.CurrentPercent;
 
-        public void ReduceCost(int value)
+        public void ReduceCost(int value,int totalCost = 0)
         {
-            _dynamicCost.Subtract(value);
+            _dynamicCost.Subtract(value,totalCost);
             CostUpdated?.Invoke();
 
             if (_dynamicCost.CurrentCost == 0)
