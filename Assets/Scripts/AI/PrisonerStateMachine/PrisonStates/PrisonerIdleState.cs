@@ -18,11 +18,14 @@ public class PrisonerIdleState : PrisonerState
 
     private void Update()
     {
-        if (!_isStarted)
-            transform.DORotateQuaternion(Prisoner.PositionHandler.transform.rotation, _duration);
+        if (Prisoner.StepNumberTransition > 0)
+            _isStarted = false;
 
-        if (Prisoner.NavMeshAgent.enabled == true)
-            Prisoner.ChangeWorkNavMesh(false);
+        if (!_isStarted)
+            transform.DORotateQuaternion(Prisoner.CurrentPositionHandler.transform.rotation, _duration);
+
+        //if (Prisoner.NavMeshAgent.enabled == true)
+        //    Prisoner.ChangeWorkNavMesh(false);
 
         _animator.Play("Idle");
     }

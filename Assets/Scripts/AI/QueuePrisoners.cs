@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Agava.IdleGame;
 
 public class QueuePrisoners : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class QueuePrisoners : MonoBehaviour
     [SerializeField] private float _duration;
     [SerializeField] private float _delay;
     [SerializeField] private float _transitionRange = 0.2f;
+    [SerializeField] private float _speed = 6;
 
+    private ObjectTransferZone _targetTransferZone;
     private int _maxCount;
     private Transform[] _wayPoints;
     private PositionHandler[] _positionHandlers;
@@ -35,9 +38,9 @@ public class QueuePrisoners : MonoBehaviour
 
     private void Update()
     {
-        if (_positionHandlers[0].IsPrisonerReached)
+        if (_prisoners.Count > 0 && _positionHandlers[0].IsPrisonerReached == false)
         {
-            _isLock = false;
+            RelocateAllGuests();
         }
     }
 
@@ -54,15 +57,14 @@ public class QueuePrisoners : MonoBehaviour
 
     private void AddPrisonerToQueue(Prisoner prisoner)
     {
+        _targetTransferZone = GetComponentInParent<ObjectTransferZone>();
         _prisoners.Add(prisoner);
         for (int i = 0; i < _positionHandlers.Length; i++)
         {
             if (_positionHandlers[i].IsEmpty == true)
             {
-                prisoner.SetCurrentQueue(true, _positionHandlers[i]);
+                prisoner.SetCurrentQueue(true, _positionHandlers[i], _targetTransferZone);
                 _positionHandlers[i].SetEmpty(false);
-                prisoner.NavMeshAgent.enabled = true;
-                prisoner.NavMeshAgent.SetDestination(_positionHandlers[i].transform.position);
                 return;
             }
         }
@@ -79,7 +81,7 @@ public class QueuePrisoners : MonoBehaviour
             Prisoner prisoner = _prisoners[0];
             if (Vector3.Distance(prisoner.transform.position, _positionHandlers[0].transform.position) < _transitionRange)
             {
-                _prisoners[0].SetCurrentQueue(false, null);
+                _prisoners[0].SetCurrentQueue(false, prisoner.CurrentPositionHandler, _targetTransferZone);
                 _prisoners.RemoveAt(0);
                 RelocateAllGuests();
                 return prisoner;
@@ -91,11 +93,15 @@ public class QueuePrisoners : MonoBehaviour
 
     private void RelocateAllGuests()
     {
+
         for (int i = 0; i < _prisoners.Count; i++)
         {
-            _positionHandlers[i].SetEmpty(true);
-            _prisoners[i].ChangeWorkNavMesh(true);
-            _prisoners[i].transform.DOMove(_positionHandlers[i].transform.position, _duration);
+            if (_positionHandlers[i].IsEmpty == true)
+            {
+                _prisoners[i].Move(_positionHandlers[i]);
+                //_prisoners[i].ChangeWorkNavMesh(true);
+                //_prisoners[i].NavMeshAgent.SetDestination(_positionHandlers[i].transform.position);
+            }
         }
     }
 

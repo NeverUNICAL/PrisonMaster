@@ -9,12 +9,13 @@ public class PrisonerMoveToStandByZone : PrisonerState
 
     private void OnEnable()
     {
-        Prisoner.SetCurrentQueue(false, _target);
-        _target.SetEmpty(false);
+        //Prisoner.SetCurrentQueue(false, _target);
+        //_target.SetEmpty(false);
 
-        if (Prisoner.NavMeshAgent.enabled == false)
-            Prisoner.ChangeWorkNavMesh(true);
+        //if (Prisoner.NavMeshAgent.enabled == false)
+        //    Prisoner.ChangeWorkNavMesh(true);
 
-        Prisoner.NavMeshAgent.SetDestination(_target.transform.position);
+        Prisoner.Move(Prisoner.CurrentPositionHandler);
+        //Prisoner.NavMeshAgent.SetDestination(Prisoner.CurrentPositionHandler.transform.position);
     }
 }
