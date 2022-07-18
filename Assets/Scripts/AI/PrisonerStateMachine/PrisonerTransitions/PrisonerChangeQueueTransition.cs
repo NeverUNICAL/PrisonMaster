@@ -6,6 +6,7 @@ using Agava.IdleGame;
 public class PrisonerChangeQueueTransition : PrisonerTransition
 {
     [SerializeField] private float _targetTimer = 30f;
+    [SerializeField] private float _delay = 3f;
 
     private float _currentTimer = 0f;
     private bool _isFirst = false;
@@ -73,7 +74,7 @@ public class PrisonerChangeQueueTransition : PrisonerTransition
                         {
                             witingAreaTarget.CanEnqueue(Prisoner);
                             Prisoner.SetStepNumber(targetStep);
-                            NeedTransit = true;
+                            StartCoroutine(DelayTransit(_delay));
                             return;
                         }
                     }
@@ -81,7 +82,7 @@ public class PrisonerChangeQueueTransition : PrisonerTransition
                     {
                         witingAreaTarget.CanEnqueue(Prisoner);
                         Prisoner.SetStepNumber(alternativeTargetStep);
-                        NeedAlternativeTransit = true;
+                        StartCoroutine(DelayAlternativeTransit(_delay));
                         return;
                     }
                 }
@@ -99,7 +100,7 @@ public class PrisonerChangeQueueTransition : PrisonerTransition
                 {
                     targetQueue[i].CanEnqueue(Prisoner);
                     Prisoner.SetStepNumber(teargetNumberStep);
-                    NeedTransit = true;
+                    StartCoroutine(DelayTransit(_delay));
                     return;
                 }
             }
@@ -109,10 +110,24 @@ public class PrisonerChangeQueueTransition : PrisonerTransition
                 {
                     Prisoner.WaitingArea3.CanEnqueue(Prisoner);
                     Prisoner.SetStepNumber(alterntiveNumberStep);
-                    NeedAlternativeTransit = true;
+                    StartCoroutine(DelayAlternativeTransit(_delay));
                     return;
                 }
             }
         }
+    }
+
+    private IEnumerator DelayTransit(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        NeedTransit = true;
+    }
+
+    private IEnumerator DelayAlternativeTransit(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        NeedAlternativeTransit = true;
     }
 }
