@@ -38,10 +38,10 @@ public class QueuePrisoners : MonoBehaviour
 
     private void Update()
     {
-        if (_prisoners.Count > 0 && _positionHandlers[0].IsPrisonerReached == false)
-        {
-            RelocateAllGuests();
-        }
+        //if (_prisoners.Count > 0 && _positionHandlers[0].IsPrisonerReached == false)
+        //{
+        //    RelocateAllGuests();
+        //}
     }
 
     public bool CanEnqueue(Prisoner prisoner)
@@ -95,11 +95,15 @@ public class QueuePrisoners : MonoBehaviour
 
     private void RelocateAllGuests()
     {
-
         for (int i = 0; i < _prisoners.Count; i++)
         {
-                _prisoners[i].Move(_positionHandlers[i], 0.5f);
+            _prisoners[i].Move(_positionHandlers[i], 0);
         }
+    }
+
+    private void ReloadQueue()
+    {
+
     }
 
     public bool CheckEmptyQueue()
