@@ -90,6 +90,7 @@ namespace Agava.IdleGame
             _trigger.Disable();
             _view.Hide();
             _unlockable.Unlock(transform, onLoad, GUID);
+            OnBuyedAction();
 
             Unlocked?.Invoke(this);
         }
@@ -120,5 +121,6 @@ namespace Agava.IdleGame
         protected virtual void OnEnter() { }
         protected virtual void OnExit() { }
         protected abstract void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder);
+        protected virtual void OnBuyedAction() { }
     }
 }

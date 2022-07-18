@@ -1,13 +1,16 @@
+using System.Configuration;
 using UnityEngine;
 using Agava.IdleGame.Model;
-using UnityEngine.UI;
+using UnityEngine.AI;
 
 namespace Agava.IdleGame
 {
-    public class NormalBuyZonePresenter : BuyZonePresenter
+    public class LevelBuyZone : BuyZonePresenter
     {
+        [SerializeField] private NavMeshAgent _playerNavMeshAgent;
+        [SerializeField] private NavMeshAgent _targetNavMeshAgent;
+
         private int _reduceValue = 1;
-        
 
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
         {
@@ -23,6 +26,11 @@ namespace Agava.IdleGame
 
             buyZone.ReduceCost(_reduceValue,TotalCost);
             moneyHolder.Spend(_reduceValue);
+        }
+
+        protected override void OnBuyedAction()
+        {
+            _playerNavMeshAgent.areaMask = _targetNavMeshAgent.areaMask;
         }
     }
 }
