@@ -7,7 +7,7 @@ namespace Agava.IdleGame.Model
     public class StackStorage
     {
         private readonly List<StackableObject> _data = new List<StackableObject>();
-        private readonly int _capacity;
+        private int _capacity;
         private readonly StackableLayerMask _stackableTypes;
 
         public int Count => _data.Count;
@@ -65,6 +65,11 @@ namespace Agava.IdleGame.Model
         public bool Contains(StackableObject stackableObject)
         {
             return _data.Contains(stackableObject);
+        }
+
+        public void ChangeCapacity(int capacity)
+        {
+            _capacity = capacity;
         }
 
         public bool Contains(int layer)
