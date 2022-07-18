@@ -6,13 +6,13 @@ using Agava.IdleGame;
 
 public class QueuePrisoners : MonoBehaviour
 {
-    [SerializeField] private Transform _startQueue;
+    [SerializeField] private Shop _targetShop;
     [SerializeField] private float _duration;
     [SerializeField] private float _delay;
     [SerializeField] private float _transitionRange = 0.2f;
     [SerializeField] private float _speed = 6;
 
-    private ObjectTransferZone _targetTransferZone;
+    private StackPresenter _targetTransferZone;
     private int _maxCount;
     private Transform[] _wayPoints;
     private PositionHandler[] _positionHandlers;
@@ -25,13 +25,13 @@ public class QueuePrisoners : MonoBehaviour
 
     private void Awake()
     {
-        _wayPoints = new Transform[_startQueue.childCount];
-        _positionHandlers = new PositionHandler[_startQueue.childCount];
+        _wayPoints = new Transform[transform.childCount];
+        _positionHandlers = new PositionHandler[transform.childCount];
         _maxCount = _wayPoints.Length;
 
         for (int i = 0; i < _wayPoints.Length; i++)
         {
-            _wayPoints[i] = _startQueue.GetChild(i);
+            _wayPoints[i] = transform.GetChild(i);
             _positionHandlers[i] = _wayPoints[i].GetComponent<PositionHandler>();
         }
     }
@@ -57,7 +57,9 @@ public class QueuePrisoners : MonoBehaviour
 
     private void AddPrisonerToQueue(Prisoner prisoner)
     {
-        _targetTransferZone = GetComponentInParent<ObjectTransferZone>();
+        if (_targetShop != null)
+            _targetTransferZone = _targetShop.GetStackPresenter();
+
         _prisoners.Add(prisoner);
         for (int i = 0; i < _positionHandlers.Length; i++)
         {
@@ -96,12 +98,7 @@ public class QueuePrisoners : MonoBehaviour
 
         for (int i = 0; i < _prisoners.Count; i++)
         {
-            if (_positionHandlers[i].IsEmpty == true)
-            {
-                _prisoners[i].Move(_positionHandlers[i]);
-                //_prisoners[i].ChangeWorkNavMesh(true);
-                //_prisoners[i].NavMeshAgent.SetDestination(_positionHandlers[i].transform.position);
-            }
+                _prisoners[i].Move(_positionHandlers[i], 0.5f);
         }
     }
 

@@ -5,17 +5,13 @@ using UnityEngine.AI;
 
 public class PrisonerMoveToStandByZone : PrisonerState
 {
-    [SerializeField] private PositionHandler _target;
+    [SerializeField] private float _delay = 5f;
 
     private void OnEnable()
     {
-        //Prisoner.SetCurrentQueue(false, _target);
-        //_target.SetEmpty(false);
-
-        //if (Prisoner.NavMeshAgent.enabled == false)
-        //    Prisoner.ChangeWorkNavMesh(true);
-
-        Prisoner.Move(Prisoner.CurrentPositionHandler);
-        //Prisoner.NavMeshAgent.SetDestination(Prisoner.CurrentPositionHandler.transform.position);
+        if (Prisoner.StepNumberTransition == 1 || Prisoner.StepNumberTransition == 3 || Prisoner.StepNumberTransition == 5)
+            Prisoner.Move(Prisoner.CurrentPositionHandler, _delay);
+        else
+            Prisoner.Move(Prisoner.CurrentPositionHandler, 0);
     }
 }

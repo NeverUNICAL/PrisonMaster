@@ -6,14 +6,13 @@ using DG.Tweening;
 
 public class MoveInQueueState : PrisonerState
 {
-    [SerializeField] private int _stepState;
+    [SerializeField] private float _delay;
 
     private void Update()
     {
-        //if (Prisoner.NavMeshAgent.enabled == false)
-        //    Prisoner.ChangeWorkNavMesh(true);
-
-        //Prisoner.NavMeshAgent.SetDestination(Prisoner.CurrentPositionHandler.transform.position);
-        Prisoner.Move(Prisoner.CurrentPositionHandler);
+        if (Prisoner.StepNumberTransition == 1 || Prisoner.StepNumberTransition == 3 || Prisoner.StepNumberTransition == 5)
+            Prisoner.Move(Prisoner.CurrentPositionHandler, _delay);
+        else
+            Prisoner.Move(Prisoner.CurrentPositionHandler, 0.5f);
     }
 }
