@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4552239754464926673}
   - component: {fileID: 1996065207786081836}
+  - component: {fileID: 307913753302478757}
   m_Layer: 0
   m_Name: WayPoint (3)
   m_TagString: Untagged
@@ -43,6 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc460a26fed394bb149961ffecaf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &307913753302478757
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336520485632601394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4703033610549215553
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8257449477133845149}
   - component: {fileID: 208440310673229645}
+  - component: {fileID: 4775388828066127918}
   m_Layer: 0
   m_Name: WayPoint (4)
   m_TagString: Untagged
@@ -86,6 +101,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc460a26fed394bb149961ffecaf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &4775388828066127918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4703033610549215553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6986295831616329587
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4174205303983095452}
   - component: {fileID: 6093333415573822995}
+  - component: {fileID: 7381695841672539107}
   m_Layer: 0
   m_Name: WayPoint
   m_TagString: Untagged
@@ -129,6 +158,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc460a26fed394bb149961ffecaf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7381695841672539107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986295831616329587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7617892570977587621
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4720401200734732051}
   - component: {fileID: 8409806797983863193}
+  - component: {fileID: 5667856175620380945}
   m_Layer: 0
   m_Name: WayPoint (1)
   m_TagString: Untagged
@@ -172,6 +215,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc460a26fed394bb149961ffecaf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5667856175620380945
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7617892570977587621}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7944547118293289925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1661181480149397588}
   - component: {fileID: 3487010710670618106}
+  - component: {fileID: 8011428153354907840}
   m_Layer: 0
   m_Name: WayPoint (2)
   m_TagString: Untagged
@@ -1184,6 +1241,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc460a26fed394bb149961ffecaf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8011428153354907840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577557796680156643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &176002887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1376,14 +1446,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 669a61b9412826943bb8f175a7dcd82d, type: 3}
---- !u!4 &4490518329461777706 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7106523605210860284, guid: 669a61b9412826943bb8f175a7dcd82d, type: 3}
-  m_PrefabInstance: {fileID: 6687554290148880342}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3826465444659953552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7625897355601367110, guid: 669a61b9412826943bb8f175a7dcd82d, type: 3}
+  m_PrefabInstance: {fileID: 6687554290148880342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4490518329461777706 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7106523605210860284, guid: 669a61b9412826943bb8f175a7dcd82d, type: 3}
   m_PrefabInstance: {fileID: 6687554290148880342}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6658549361617911160
@@ -1402,3 +1472,5 @@ MonoBehaviour:
   _doScaleAfterEnable: {x: 1.1, y: 1.1, z: 1.1}
   _scaleDuration: 1
   _backToGroundDuration: 0.2
+  _timeToVFXSpawn: 1.1
+  _particleSystem: {fileID: 2323067394012328687, guid: 07f4b2a80c64ba94b95eee615dff0cba, type: 3}

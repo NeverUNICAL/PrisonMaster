@@ -10,6 +10,10 @@ public abstract class Construction : MonoBehaviour
     [SerializeField] private Vector3 _doScaleAfterEnable = new Vector3(1.1f, 1.1f, 1.1f);
     [SerializeField] private float _scaleDuration = 1f;
     [SerializeField] private float _backToGroundDuration = 0.2f;
+    [SerializeField] private float _timeToVFXSpawn = 1.1f;
+    [SerializeField] private ParticleSystem _particleSystem;
+
+    private ParticleSystem _instantiatedParticleSystem;
 
     private void OnEnable()
     {
@@ -24,5 +28,12 @@ public abstract class Construction : MonoBehaviour
         sequence.Append(transform.DOScale(_doScaleAfterEnable, _scaleDuration).SetEase(Ease.InOutFlash));
         sequence.Append(transform.DOMoveY(0f, _backToGroundDuration).SetEase(Ease.InOutFlash));
         sequence.Join(transform.DOScale(Vector3.one, _backToGroundDuration).SetEase(Ease.InOutFlash));
+        Invoke(nameof(CreateParticleSystem),_timeToVFXSpawn);
+    }
+
+    private void CreateParticleSystem()
+    { 
+        _instantiatedParticleSystem = Instantiate(_particleSystem, transform);
+        Destroy(_instantiatedParticleSystem.gameObject,2f);
     }
 }
