@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using Agava.IdleGame;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Upgrades : MonoBehaviour
 {
     [Header("Stack Settings")]
+    [SerializeField] private Button _capacityButton;
     [SerializeField] private StackPresenter _stackPresenter;
     [SerializeField] private int _secondLevelCapacity;
     [SerializeField] private int _thirdLevelCapacity;
-    [SerializeField] private Button _capacityButton;
+    
     
     [Header("Speed Settings")]
     [SerializeField] private Button _speedButton;
@@ -20,6 +22,9 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private float _secondLevelSpeed;
     [SerializeField] private float _thirdLevelSpeed;
     
+    public event UnityAction<float> SpeedUpgraded;
+    public event UnityAction<int> CapacityUpgraded;
+
     private void OnEnable()
     {
         _capacityButton.onClick.AddListener(OnCapacityButtonClick);
@@ -42,6 +47,8 @@ public class Upgrades : MonoBehaviour
         {
             _stackPresenter.ChangeCapacity(_thirdLevelCapacity);
         }
+        
+        CapacityUpgraded?.Invoke(_stackPresenter.Capacity);
     }
     
     private void OnSpeedButtonClick()
@@ -54,5 +61,7 @@ public class Upgrades : MonoBehaviour
         {
             _navMeshAgent.speed = _thirdLevelSpeed;
         }
+        
+        SpeedUpgraded?.Invoke(_navMeshAgent.speed);
     }
 }

@@ -2,15 +2,18 @@ using System.Configuration;
 using UnityEngine;
 using Agava.IdleGame.Model;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 namespace Agava.IdleGame
 {
     public class LevelBuyZone : BuyZonePresenter
     {
-        [SerializeField] private NavMeshAgent _playerNavMeshAgent;
         [SerializeField] private NavMeshAgent _targetNavMeshAgent;
+        [SerializeField] private int _buyZoneLevelLocated;
 
         private int _reduceValue = 1;
+        
+        public event UnityAction<NavMeshAgent,int> LevelUnlocked;
 
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
         {
@@ -30,7 +33,7 @@ namespace Agava.IdleGame
 
         protected override void OnBuyedAction()
         {
-            _playerNavMeshAgent.areaMask = _targetNavMeshAgent.areaMask;
+            LevelUnlocked?.Invoke(_targetNavMeshAgent,_buyZoneLevelLocated);
         }
     }
 }
