@@ -9,7 +9,7 @@ namespace Agava.IdleGame.Model
     {
         [SerializeField] private float _speed;
         [SerializeField] private int _capacity;
-        [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private int _areaMask;
         [SerializeField] private int _currentLevel;
 
         public Stats()
@@ -19,7 +19,7 @@ namespace Agava.IdleGame.Model
 
         public float Speed => _speed;
         public int Capacity => _capacity;
-        public NavMeshAgent NavMeshAgent => _navMeshAgent;
+        public int AreaMask => _areaMask;
         public int CurrentLevel => _currentLevel;
         
         public void SetSpeed(float value)
@@ -37,9 +37,9 @@ namespace Agava.IdleGame.Model
             _capacity = value;
         }
         
-        public void SetNavMeshAgent(NavMeshAgent agent)
+        public void SetAreaMask(int value)
         {
-            _navMeshAgent = agent;
+            _areaMask = value;
         }
     }
 }
