@@ -8,7 +8,6 @@ namespace Agava.IdleGame
     {
         private int _reduceValue = 1;
         
-
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
         {
             if (moneyHolder.HasMoney == false)
@@ -22,6 +21,8 @@ namespace Agava.IdleGame
             _reduceValue = Mathf.Clamp(_reduceValue, 1, moneyHolder.Value);
 
             buyZone.ReduceCost(_reduceValue,TotalCost);
+            MoneyShooter shooter = FindObjectOfType<MoneyShooter>();
+            shooter.Shoot(this.transform);
             moneyHolder.Spend(_reduceValue);
         }
     }
