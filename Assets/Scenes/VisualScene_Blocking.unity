@@ -6455,8 +6455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _queueSize: 5
-  _recyclingTimeOut: 1
+  _firstPoint: {fileID: 812000740}
+  _startPoolSize: 5
+  _spawnTimeOut: 1
+  _sendTimeOut: 1
 --- !u!1 &818826538
 GameObject:
   m_ObjectHideFlags: 0
@@ -7589,8 +7591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _queueSize: 5
-  _recyclingTimeOut: 1
+  _firstPoint: {fileID: 974294162}
+  _startPoolSize: 5
+  _spawnTimeOut: 1
+  _sendTimeOut: 1
 --- !u!114 &979310399 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
@@ -10569,6 +10573,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 6670639831674371783, guid: 4beb51cdb5095ca499ad0a2bf3235ff0, type: 3}
+      propertyPath: m_text
+      value: Send
+      objectReference: {fileID: 0}
     - target: {fileID: 6670639832725788131, guid: 4beb51cdb5095ca499ad0a2bf3235ff0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11970,8 +11978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _queueSize: 5
-  _recyclingTimeOut: 1
+  _firstPoint: {fileID: 1615976160}
+  _startPoolSize: 5
+  _spawnTimeOut: 1
+  _sendTimeOut: 1
 --- !u!4 &1620053252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6964897122084053481, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
@@ -13266,8 +13276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _queueSize: 5
-  _recyclingTimeOut: 1
+  _firstPoint: {fileID: 1789150566}
+  _startPoolSize: 5
+  _spawnTimeOut: 1
+  _sendTimeOut: 1
 --- !u!1001 &1814437475
 PrefabInstance:
   m_ObjectHideFlags: 0

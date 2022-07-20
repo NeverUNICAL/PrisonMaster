@@ -18,6 +18,7 @@ public class StartPool : QueueHandler
     {
         GenerateList();
         StartCoroutine(Spawn());
+        StartCoroutine(Send());
     }
 
     public void ListUpdate()
@@ -61,10 +62,14 @@ public class StartPool : QueueHandler
             
             yield return new WaitForSeconds(_sendTimeOut);
 
-            //_queues.Min(i =>i.Count)
-            ExtractFirst();
+            var container = _queues[_queues.Min(i =>i.Count)];
 
-           
+            if(container.Count<container.PoolSize)
+            {
+                Debug.Log("IsFree");
+                //container.PrisonerQueueList.Add(_prisonerList[0]);
+            }
+            //ExtractFirst();
         }
     }
     

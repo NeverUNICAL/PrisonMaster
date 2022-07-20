@@ -7,10 +7,11 @@ public abstract class QueueHandler : MonoBehaviour
 {
     protected List<GameObject> _prisonerList;
     public int Count => _prisonerList.Count;
-    protected GameObject _firstPoint;
+    [SerializeField]protected GameObject _firstPoint;
     [SerializeField]protected int _startPoolSize = 5;
     [SerializeField]protected float _spawnTimeOut =1f;
     [SerializeField]protected float _sendTimeOut =1f;
+    public int PoolSize => _startPoolSize;
     protected void ListSort()
     {
         for (int i = 0; i <_prisonerList.Count; i++)
@@ -37,11 +38,6 @@ public abstract class QueueHandler : MonoBehaviour
     protected void GenerateList()
     {
         _prisonerList= new List<GameObject>();
-    }
-
-    protected void Add(GameObject prisoner)
-    {
-        _prisonerList.Add(prisoner);
     }
 
 }
