@@ -47,7 +47,7 @@ public class StartPool : QueueHandler
             {
             _prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
             ListSort();
-            _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint);
+            _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint,Vector3.zero);
             }
            
         }
@@ -55,24 +55,23 @@ public class StartPool : QueueHandler
 
 
     
-    private IEnumerator Send()
+private IEnumerator Send()
     {
         while (true)
         {
-            
             yield return new WaitForSeconds(_sendTimeOut);
 
-            var container = _queues[_queues.Min(i =>i.Count)];
+            List<QueueContainer> sortedList = _queues.OrderBy(queue => queue.Count).ToList();
 
-            if(container.Count<container.PoolSize)
+            if(sortedList[0].Count<sortedList[0].PoolSize)
             {
-                Debug.Log("IsFree");
-                //container.PrisonerQueueList.Add(_prisonerList[0]);
+                if (_prisonerList.Count > 0)
+                {
+                    sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
+                    sortedList[0].ListSort();
+                    ExtractFirst();
+                }
             }
-            //ExtractFirst();
         }
     }
-    
-
-
 }
