@@ -439,8 +439,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.3501587, y: -378.00003}
-  m_SizeDelta: {x: -105.90027, y: -1267.2}
+  m_AnchoredPosition: {x: 5.3501587, y: 189.49496}
+  m_SizeDelta: {x: -105.90027, y: -1057.8102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4618923783700790083
 CanvasRenderer:
@@ -815,7 +815,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Speed
 --- !u!1 &4618923784105137745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 4618923784260129197}
   - component: {fileID: 4618923784260129194}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: SpeedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1205,7 +1205,7 @@ GameObject:
   - component: {fileID: 4618923784342817513}
   - component: {fileID: 4618923784342817510}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CapacityButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,6 +1736,7 @@ GameObject:
   - component: {fileID: 4618923784875131482}
   - component: {fileID: 4618923784875131484}
   - component: {fileID: 4618923784875131485}
+  - component: {fileID: 979310399}
   m_Layer: 5
   m_Name: UpgradesPanel
   m_TagString: Untagged
@@ -1764,8 +1765,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.3501587, y: -378.00003}
-  m_SizeDelta: {x: -105.90027, y: -1267.2}
+  m_AnchoredPosition: {x: 5.3501587, y: 189.49496}
+  m_SizeDelta: {x: -105.90027, y: -1057.8102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4618923784875131484
 CanvasRenderer:
@@ -1805,6 +1806,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &979310399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618923784875131483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8c4df9c74da7844a209171a5a838f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _capacityButton: {fileID: 4618923784342817510}
+  _stackPresenter: {fileID: 0}
+  _secondLevelCapacity: 10
+  _thirdLevelCapacity: 15
+  _speedButton: {fileID: 4618923784260129194}
+  _navMeshAgent: {fileID: 0}
+  _secondLevelSpeed: 8
+  _thirdLevelSpeed: 9
 --- !u!1 &4618923785071702303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Capacity
 --- !u!1 &4618923785300644099
 GameObject:
   m_ObjectHideFlags: 0
