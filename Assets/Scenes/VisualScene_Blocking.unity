@@ -14863,6 +14863,10 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1713695036}
+    - target: {fileID: 1366549459244250760, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+      propertyPath: _angleInDegrees
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 4574266190011947064, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -14923,7 +14927,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 755005283106551657, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+    - {fileID: 499653010252877276, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+    - {fileID: 7999452228072358707, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
 --- !u!114 &2982638055767729956
 MonoBehaviour:
