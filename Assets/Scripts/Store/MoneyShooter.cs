@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,8 @@ public class MoneyShooter : MonoBehaviour
     [SerializeField] private float _delayDestroy = 1f;
 
     private float g = Physics.gravity.y;
-
-    private void Update()
+    
+    private void Start()
     {
         _spawnTransform.localEulerAngles = new Vector3(-_angleInDegrees, 0f, 0f);
     }
