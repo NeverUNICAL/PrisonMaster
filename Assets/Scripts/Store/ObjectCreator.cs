@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Agava.IdleGame
 {
     public class ObjectCreator : ItemCreator
     {
         [SerializeField] private Transform _spawnObjectPosition;
-        [SerializeField] private TimerView _timerView;
         [SerializeField] private ObjectTransferZone _objectTransferZone;
         [SerializeField] private float _timeBetweenSpawnItem;
+        [SerializeField] private TextMeshProUGUI _text;
 
         private void Start()
         {
-            _timerView.Init(ITimer);
             Timer.Start(_timeBetweenSpawnItem);
         }
 
@@ -41,9 +42,14 @@ namespace Agava.IdleGame
             }
 
             if (ItemsCount == StackPresenter.Capacity)
+            {
                 StackIsFull = true;
+                _text.gameObject.SetActive(true);
+            }
             else
+            {
                 Timer.Start(_timeBetweenSpawnItem);
+            }
 
         }
 
@@ -55,6 +61,7 @@ namespace Agava.IdleGame
             {
                 StackIsFull = false;
                 Timer.Start(_timeBetweenSpawnItem);
+                _text.gameObject.SetActive(false);
             }
         }
 

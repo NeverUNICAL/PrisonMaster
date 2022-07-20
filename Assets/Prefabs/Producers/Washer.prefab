@@ -138,7 +138,7 @@ MonoBehaviour:
   _spawnObjectPosition: {fileID: 3876018081661649093}
   _timerView: {fileID: 4882145017610723218}
   _objectTransferZone: {fileID: 3876018081031921325}
-  _timeBetweenSpawnItem: 1
+  _timeBetweenSpawnItem: 2
 --- !u!114 &3876018081031921325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +523,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 2323067394012328687, guid: 07f4b2a80c64ba94b95eee615dff0cba, type: 3}
+    - target: {fileID: 1644803456, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
+      propertyPath: _vector3Rotate.z
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2309353763615703919, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
       propertyPath: m_Name
       value: Washer
