@@ -2,22 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
-public class StartPool : MonoBehaviour
+public class StartPool : QueueHandler
 {
-    private List<GameObject> _prisonerList;
+
     private Prisoner[] _prisoners;
+    [SerializeField]private List<QueueContainer> _queues;
     [SerializeField]private GameObject _prisoner;
-    [SerializeField]private GameObject _firstPoint;
     [SerializeField]private Transform _spawnPoint;
     [SerializeField]private Transform _parentPrisoners;
 
-    [SerializeField]private int _startPoolSize = 5;
-    [SerializeField]private float _spawnTimeOut =1f;
-    [SerializeField]private float _sendTimeOut =1f;
+
     void Start()
     {
-        _prisonerList= new List<GameObject>();
+        GenerateList();
         StartCoroutine(Spawn());
     }
 
@@ -34,17 +33,7 @@ public class StartPool : MonoBehaviour
 
     }
 
-    public void ListSort()
-    {
-        for (int i = 0; i <_prisonerList.Count; i++)
-        {
-            _prisonerList[i].GetComponent<NavMeshAgent>().avoidancePriority = i+1;
-            if((i+1)<_prisonerList.Count){
-                _prisonerList[i+1].GetComponent<PrisonMover>().SetTarget(_prisonerList[i]);
-            }
-            _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
-        }
-    }
+
 
     private  IEnumerator Spawn()
     {
@@ -62,6 +51,8 @@ public class StartPool : MonoBehaviour
            
         }
     }
+
+
     
     private IEnumerator Send()
     {
@@ -69,17 +60,14 @@ public class StartPool : MonoBehaviour
         {
             
             yield return new WaitForSeconds(_sendTimeOut);
-            
+
+            //_queues.Min(i =>i.Count)
+            ExtractFirst();
 
            
         }
     }
     
-    public  void Destroy()
-    {
-        Destroy(_prisonerList[0]);
-        _prisonerList.RemoveAt(0);
-        ListSort();
-        _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint);
-    }
+
+
 }
