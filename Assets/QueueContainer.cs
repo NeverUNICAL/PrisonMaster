@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class QueueContainer : QueueHandler
 {
-    public List<GameObject> PrisonerQueueList => _prisonerList;
     void Start()
     {
         GenerateList();
     }
-
-
 }

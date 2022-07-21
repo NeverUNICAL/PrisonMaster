@@ -6,72 +6,63 @@ using System.Linq;
 
 public class StartPool : QueueHandler
 {
-
-    private Prisoner[] _prisoners;
     [SerializeField]private List<QueueContainer> _queues;
     [SerializeField]private GameObject _prisoner;
     [SerializeField]private Transform _spawnPoint;
     [SerializeField]private Transform _parentPrisoners;
-
-
-    void Start()
+    
+    private Prisoner[] _prisoners;
+   
+    private void Start()
     {
         GenerateList();
         StartCoroutine(Spawn());
         StartCoroutine(Send());
     }
 
-    public void ListUpdate()
+    private void ListUpdate()
     {
         _prisonerList.Clear();
-        _prisoners = GameObject.FindObjectsOfType<Prisoner>();
-        Debug.Log(_prisoners[0]);
-
-        foreach(Prisoner Prisoner in _prisoners)
+        _prisoners = FindObjectsOfType<Prisoner>();
+        
+        foreach(Prisoner prisoner in _prisoners)
         {
-            _prisonerList.Add(Prisoner.gameObject);
+            _prisonerList.Add(prisoner.gameObject);
         }
-
     }
-
-
-
-    private  IEnumerator Spawn()
+    
+    private IEnumerator Spawn()
     {
         while (true)
         {
-            
-            yield return new WaitForSeconds(_spawnTimeOut);
+            yield return _waitForSpawnTimeOut;
             
             if(_prisonerList.Count<_startPoolSize)
             {
-            _prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
+             _prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
             ListSort();
             _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint,Vector3.zero);
             }
-           
         }
     }
-
-
     
-private IEnumerator Send()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(_sendTimeOut);
+     private IEnumerator Send()
+    { 
+        while (true) 
+        { 
+            yield return _waitForSendTimeOut;
 
-            List<QueueContainer> sortedList = _queues.OrderBy(queue => queue.Count).ToList();
+            List<QueueContainer> sortedList = _queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
 
-            if(sortedList[0].Count<sortedList[0].PoolSize)
-            {
-                if (_prisonerList.Count > 0)
+            if(sortedList[0].PrisonerQueueList.Count<sortedList[0].PoolSize)
+            { 
+                if (_prisonerList.Count > 0) 
                 {
                     sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
                     sortedList[0].ListSort();
-                    ExtractFirst();
-                }
-            }
-        }
+                    ExtractFirst(); 
+                } 
+            } 
+        } 
     }
 }

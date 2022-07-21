@@ -6,18 +6,27 @@ public class PrisonMover : MonoBehaviour
     private GameObject _nextPoint;
     private NavMeshAgent _agent;
     private Animator _animator;
-    public GameObject NextPoint =>_nextPoint;
     private Vector3 _targetPoint;
-    void Start()
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private NavMeshPath _agentPath;
+    
+    public GameObject NextPoint =>_nextPoint;
+    
+    private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        _agent.destination = _targetPoint;
-        _animator.SetFloat("Speed", _agent.velocity.magnitude/_agent.speed);
+       if (_agentPath != _agent.path)
+       {
+           _agent.destination = _targetPoint;
+           _agentPath = _agent.path;
+       }
+        
+       _animator.SetFloat(Speed, _agent.velocity.magnitude/_agent.speed);
     }
 
     public void SetTarget(GameObject target, Vector3 offset)
