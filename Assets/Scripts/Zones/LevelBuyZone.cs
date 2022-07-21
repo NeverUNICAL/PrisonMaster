@@ -8,6 +8,9 @@ namespace Agava.IdleGame
     {
         [SerializeField] private int _navMeshMaskId;
         [SerializeField] private int _buyZoneLevelLocated;
+        [SerializeField] private MeshRenderer[] _meshRendererUnlockables;
+        [SerializeField] private Material _unlockedMaterial;
+        [SerializeField] private GameObject _objectToTurnOff;
 
         private int _reduceValue = 1;
         
@@ -26,12 +29,21 @@ namespace Agava.IdleGame
             _reduceValue = Mathf.Clamp(_reduceValue, 1, moneyHolder.Value);
 
             buyZone.ReduceCost(_reduceValue,TotalCost);
+            MoneyShooter shooter = FindObjectOfType<MoneyShooter>();
+            shooter.Shoot(transform);
             moneyHolder.Spend(_reduceValue);
         }
 
         protected override void OnBuyedAction()
         {
             LevelUnlocked?.Invoke(_navMeshMaskId,_buyZoneLevelLocated);
+            
+            foreach (MeshRenderer meshRenderer in _meshRendererUnlockables)
+            {
+                meshRenderer.material = _unlockedMaterial;
+            }
+            
+            _objectToTurnOff.SetActive(false);
         }
     }
 }

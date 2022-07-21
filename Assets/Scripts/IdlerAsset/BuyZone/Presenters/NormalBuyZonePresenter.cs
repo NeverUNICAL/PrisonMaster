@@ -22,7 +22,7 @@ namespace Agava.IdleGame
 
             buyZone.ReduceCost(_reduceValue,TotalCost);
             MoneyShooter shooter = FindObjectOfType<MoneyShooter>();
-            shooter.Shoot(this.transform);
+            shooter.Shoot(transform);
             moneyHolder.Spend(_reduceValue);
         }
     }

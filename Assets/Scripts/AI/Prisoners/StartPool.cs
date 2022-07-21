@@ -52,15 +52,15 @@ public class StartPool : QueueHandler
         { 
             yield return _waitForSendTimeOut;
 
-            List<QueueContainer> sortedList = _queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
-            sortedList = sortedList.SkipWhile(queue => queue.PoolSize < 1).ToList();
+            _sortedList = _queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
+            _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1).ToList();
 
-            if(sortedList[0].PrisonerQueueList.Count<sortedList[0].PoolSize)
+            if(_sortedList[0].PrisonerQueueList.Count<_sortedList[0].PoolSize)
             { 
                 if (_prisonerList.Count > 0) 
                 {
-                    sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
-                    sortedList[0].ListSort();
+                    _sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
+                    _sortedList[0].ListSort();
                     ExtractFirst(); 
                 } 
             } 

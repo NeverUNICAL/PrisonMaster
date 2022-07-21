@@ -16,6 +16,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
     protected List<PrisonMover> _prisonerList;
+    protected List<QueueContainer> _sortedList;
     
     public int PoolSize => _startPoolSize;
     public List<PrisonMover> PrisonerQueueList => _prisonerList;

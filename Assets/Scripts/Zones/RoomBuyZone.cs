@@ -27,6 +27,8 @@ namespace Agava.IdleGame
             _reduceValue = Mathf.Clamp(_reduceValue, 1, moneyHolder.Value);
 
             buyZone.ReduceCost(_reduceValue,TotalCost);
+            MoneyShooter shooter = FindObjectOfType<MoneyShooter>();
+            shooter.Shoot(transform);
             moneyHolder.Spend(_reduceValue);
         }
 
