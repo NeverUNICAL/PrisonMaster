@@ -14,11 +14,11 @@ namespace Agava.IdleGame
         [Header("Add Settings")]
         [SerializeField] private FloatSetting _scalePunch = new FloatSetting(true, 1.1f);
         [SerializeField] private FloatSetting _jumpPower = new FloatSetting(false, 0f);
-        [SerializeField] private Vector3 _scaleForPlayerObjects = new Vector3(0.7f,0.7f,0.7f);
+        [SerializeField] private Vector3 _scaleForPlayerObjects = new Vector3(0.7f,1.2f,0.7f);
+        [SerializeField] private Vector3 _scaleForObjects = new Vector3(1f,1.5f,1f);
 
         private List<StackableObject> _stackables = new List<StackableObject>();
-       
-
+        
         protected List<StackableObject> _stackablesDelayed = new List<StackableObject>();
 
         public IReadOnlyList<StackableObject> Stackables => _stackablesDelayed;
@@ -37,8 +37,8 @@ namespace Agava.IdleGame
 
             if (this is PlayerStackView == false)
             {
-                if(stackable.View.localScale != Vector3.one)
-                    stackable.View.localScale = Vector3.one;
+                if(stackable.View.localScale != _scaleForObjects)
+                    stackable.View.localScale = _scaleForObjects;
                 
                 stackable.View.DOLocalMove(endPosition, _animationDuration).OnComplete(() => onComplete?.Invoke());
 

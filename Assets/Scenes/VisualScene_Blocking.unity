@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.200012, y: -270.8}
+  m_AnchoredPosition: {x: -12.199951, y: -270.80005}
   m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &8467752
@@ -8853,6 +8853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardProducer
       objectReference: {fileID: 0}
+    - target: {fileID: 4627601755285655806, guid: 06742ed8bc831594e94a2e5959e2ed62, type: 3}
+      propertyPath: _distanceBetweenObjects.y
+      value: 0.19
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06742ed8bc831594e94a2e5959e2ed62, type: 3}
 --- !u!4 &1156015691 stripped
@@ -16009,6 +16013,14 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1713695036}
+    - target: {fileID: 4574266189265541328, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.934
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574266189265541343, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+      propertyPath: _scaleForPlayerObjects.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4574266190011947064, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -16060,6 +16072,10 @@ PrefabInstance:
     - target: {fileID: 4574266190011947079, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574266190011947087, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+      propertyPath: _offset
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
