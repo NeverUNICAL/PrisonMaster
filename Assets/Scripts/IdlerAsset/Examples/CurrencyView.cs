@@ -25,7 +25,7 @@ namespace Agava.IdleGame.Examples
 
         private void OnBalanceChanged(int balance)
         {
-            _currencyText.text = balance.ToString();
+            _currencyText.text = "$" + balance.ToString();
         }
     }
 }
