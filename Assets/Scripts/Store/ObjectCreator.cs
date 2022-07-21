@@ -44,7 +44,7 @@ namespace Agava.IdleGame
             if (ItemsCount == StackPresenter.Capacity)
             {
                 StackIsFull = true;
-                _text.gameObject.SetActive(true);
+               // _text.gameObject.SetActive(true);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace Agava.IdleGame
             {
                 StackIsFull = false;
                 Timer.Start(_timeBetweenSpawnItem);
-                _text.gameObject.SetActive(false);
+                //_text.gameObject.SetActive(false);
             }
         }
 

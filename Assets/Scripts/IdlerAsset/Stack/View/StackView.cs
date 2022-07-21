@@ -14,8 +14,10 @@ namespace Agava.IdleGame
         [Header("Add Settings")]
         [SerializeField] private FloatSetting _scalePunch = new FloatSetting(true, 1.1f);
         [SerializeField] private FloatSetting _jumpPower = new FloatSetting(false, 0f);
+        [SerializeField] private Vector3 _scaleForPlayerObjects = new Vector3(0.7f,0.7f,0.7f);
 
         private List<StackableObject> _stackables = new List<StackableObject>();
+       
 
         protected List<StackableObject> _stackablesDelayed = new List<StackableObject>();
 
@@ -45,7 +47,9 @@ namespace Agava.IdleGame
             }
             else
             {
-                stackable.View.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.2f);
+             //   stackable.View.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.05f);
+                stackable.View.localScale = _scaleForPlayerObjects;
+                
             }
 
             stackable.View.DOLocalRotate(endRotation, _animationDuration).OnComplete(() => AddToDelayedList(stackable));
