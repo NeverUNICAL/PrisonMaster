@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 717448223038092226}
   - component: {fileID: 717448223038092237}
   - component: {fileID: 1488785760}
+  - component: {fileID: 2063899887}
   - component: {fileID: 717448223038092231}
   - component: {fileID: 717448223038092230}
   - component: {fileID: 717448223038092234}
@@ -24,7 +25,6 @@ GameObject:
   - component: {fileID: 717448223038092238}
   - component: {fileID: 717448223038092240}
   - component: {fileID: 717448223038092241}
-  - component: {fileID: 2063899887}
   m_Layer: 0
   m_Name: Assistant
   m_TagString: Untagged
@@ -119,6 +119,19 @@ NavMeshAgent:
   m_BaseOffset: -0.03
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2063899887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717448223038092227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5342925d5da304c8c922740e52e129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7263528383324768787}
 --- !u!114 &717448223038092231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8798402948edb147950bf17e7693028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _producerTarget: {fileID: 0}
-  _consumerTarget: {fileID: 0}
+  _producersConteiner: {fileID: 0}
+  _consumersConteiner: {fileID: 0}
   _speed: 0
 --- !u!114 &717448223038092234
 MonoBehaviour:
@@ -245,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092240}
-  _transitionRange: 1.5
+  _transitionRange: 3
 --- !u!114 &717448223038092240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,19 +286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092235}
---- !u!114 &2063899887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717448223038092227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5342925d5da304c8c922740e52e129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 7263528383324768787}
 --- !u!1 &717448223498082281
 GameObject:
   m_ObjectHideFlags: 0

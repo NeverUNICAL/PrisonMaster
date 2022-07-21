@@ -11,19 +11,15 @@ public class AssistantStateMachine : MonoBehaviour
     private float _speed;
     private int _capacity;
     private AssistantState _currentState;
-    private StackView _producerTarget;
-    private StackView _stackView;
-    private StackView _consumerTarget;
+    private Assistant _assistant;
 
     public AssistantState CurrentState => _currentState;
 
     private void Start()
     {
-        _producerTarget = GetComponent<Assistant>().ProducerTarget;
-        _consumerTarget = GetComponent<Assistant>().ConsumerTarget;
+        _assistant = GetComponent<Assistant>();
         _capacity = GetComponent<Assistant>().Capacity;
         _speed = GetComponent<Assistant>().Speed;
-        _stackView = GetComponentInChildren<StackView>();
         Reset(_firstState);
     }
 
@@ -42,7 +38,7 @@ public class AssistantStateMachine : MonoBehaviour
         _currentState = startState;
 
         if (_currentState != null)
-            _currentState.Enter(_producerTarget, _stackView, _capacity, _consumerTarget);
+            _currentState.Enter(_assistant);
     }
 
     private void Transit(AssistantState nextState)
@@ -53,6 +49,6 @@ public class AssistantStateMachine : MonoBehaviour
         _currentState = nextState;
 
         if (_currentState != null)
-            _currentState.Enter(_producerTarget, _stackView, _capacity, _consumerTarget);
+            _currentState.Enter(_assistant);
     }
 }

@@ -8,7 +8,7 @@ public class DistanceProducerTransition : AssistantTransition
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, ProducerTarget.transform.position) < _transitionRange)
+        if (Vector3.Distance(transform.position, Assistant.TargetTransform.transform.position) < _transitionRange)
         {
             NeedTransit = true;
         }

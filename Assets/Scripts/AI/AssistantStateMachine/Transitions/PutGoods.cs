@@ -6,7 +6,7 @@ public class PutGoods : AssistantTransition
 {
     private void Update()
     {
-        int capacityTarget = StackViewTarget.GetComponentsInChildren<Transform>().Length - 1;
+        int capacityTarget = Assistant.AssistantStack.GetComponentsInChildren<Transform>().Length - 1;
         if (capacityTarget == 0)
         {
             NeedTransit = true;

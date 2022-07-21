@@ -6,8 +6,8 @@ public class AcceptGoodsTransition : AssistantTransition
 {
     private void Update()
     {
-        int capacityTarget = StackViewTarget.GetComponentsInChildren<Transform>().Length - 1;
-        if (capacityTarget == Capacity)
+        int capacityTarget = Assistant.AssistantStack.GetComponentsInChildren<Transform>().Length - 1;
+        if (capacityTarget == Assistant.Capacity)
         {
             NeedTransit = true;
         }

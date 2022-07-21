@@ -18,6 +18,7 @@ namespace Agava.IdleGame
         
         public ITimer ITimer => Timer;
         public bool IStackIsFull => StackIsFull;
+        public int ItemsCountView => ItemsCount;
 
         private void Update()
         {

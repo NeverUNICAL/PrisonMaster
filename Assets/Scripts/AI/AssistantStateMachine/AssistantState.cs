@@ -8,24 +8,19 @@ public abstract class AssistantState : MonoBehaviour
     [SerializeField] private List<AssistantTransition> _transitions;
 
     protected int Capacity { get; set; }
-    protected StackView StackViewTarget { get; set; }
-    protected StackView ProducerTarget { get; set; }
-    protected StackView ConsumerTarget { get; set; }
+    protected Assistant Assistant { get; set; }
 
-    public void Enter(StackView producerTarget, StackView stackView, int capacity, StackView consumerTarget)
+    public void Enter(Assistant assistant)
     {
         if (enabled == false)
         {
-            ProducerTarget = producerTarget;
-            StackViewTarget = stackView;
-            Capacity = capacity;
-            ConsumerTarget = consumerTarget;
+            Assistant = assistant;
             enabled = true;
 
             foreach (var transition in _transitions)
             {
                 transition.enabled = true;
-                transition.Init(ProducerTarget, StackViewTarget, Capacity, ConsumerTarget);
+                transition.Init(Assistant);
             }
 
         }
