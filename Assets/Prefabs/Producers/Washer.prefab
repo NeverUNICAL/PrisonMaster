@@ -109,7 +109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3876018081031921312}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 34.692, y: 0, z: 43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -519,6 +519,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3876018082010853774}
     m_Modifications:
+    - target: {fileID: 1644803456, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
+      propertyPath: _rotateSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2309353763615703919, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
       propertyPath: m_Name
       value: Washer
