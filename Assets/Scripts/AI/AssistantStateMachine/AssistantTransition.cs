@@ -6,6 +6,7 @@ using Agava.IdleGame;
 public abstract class AssistantTransition : MonoBehaviour
 {
     [SerializeField] private AssistantState _targetState;
+    [SerializeField] private AssistantState _targetAlternativeState;
 
     protected Assistant Assistant { get; private set; }
     protected int Capacity { get; private set; }
@@ -13,7 +14,10 @@ public abstract class AssistantTransition : MonoBehaviour
     protected StackView ProducerTarget { get; private set; }
     protected StackView ConsumerTarget { get; private set; }
     public AssistantState TargetState => _targetState;
+    public AssistantState TargetAlternativeState => _targetAlternativeState;
     public bool NeedTransit { get; protected set; }
+    public bool NeedAlternativeTransit { get; protected set; }
+
 
     public void Init(Assistant assistant)
     {
@@ -23,5 +27,6 @@ public abstract class AssistantTransition : MonoBehaviour
     private void OnEnable()
     {
         NeedTransit = false;
+        NeedAlternativeTransit = false;
     }
 }

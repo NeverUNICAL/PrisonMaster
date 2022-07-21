@@ -11,5 +11,9 @@ public class PutGoods : AssistantTransition
         {
             NeedTransit = true;
         }
+        else
+        {
+            NeedAlternativeTransit = true;
+        }
     }
 }

@@ -28,8 +28,20 @@ public class MoveToConsumerState : AssistantState
         for (int i = 0; i < tempArray.Length; i++)
         {
             if (Assistant.ConsumersItemCreators[i].gameObject.activeInHierarchy == true)
-                if (tempArray[i] < minValue)
-                    minValue = tempArray[i];
+            {
+                if (Assistant.ConsumersItemCreators[i].Count != Assistant.ConsumersItemCreators[i].Capacity)
+                {
+                    if (tempArray[i] < minValue)
+                        minValue = tempArray[i];
+                }
+                else
+                {
+                    if (i + 1 > tempArray.Length)
+                        minValue = tempArray[0];
+                    else
+                        minValue = tempArray[i + 1];
+                }
+            }
         }
 
         for (int i = 0; i < Assistant.ConsumersItemCreators.Length; i++)

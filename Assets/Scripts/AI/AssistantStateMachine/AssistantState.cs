@@ -43,6 +43,8 @@ public abstract class AssistantState : MonoBehaviour
         {
             if (transition.NeedTransit)
                 return transition.TargetState;
+            if (transition.NeedAlternativeTransit)
+                return transition.TargetAlternativeState;
         }
 
         return null;

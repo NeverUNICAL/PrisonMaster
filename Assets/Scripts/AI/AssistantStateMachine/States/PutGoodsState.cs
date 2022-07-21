@@ -12,6 +12,11 @@ public class PutGoodsState : AssistantState
         _animator = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        Assistant.Move(Assistant.transform.position);
+    }
+
     private void Update()
     {
         PutGoods();

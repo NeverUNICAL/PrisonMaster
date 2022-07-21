@@ -7,8 +7,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(PlayerStackPresenter))]
 public class Assistant : MonoBehaviour
 {
-    [SerializeField] private Transform _producersConteiner;
-    [SerializeField] private Transform _consumersConteiner;
+    [SerializeField] private ProdusersConteiner _producersConteiner;
+    [SerializeField] private ConsumersConteiner _consumersConteiner;
 
     [Header("OptionsForUpgrade")]
     [SerializeField] private float _speed;
@@ -36,22 +36,22 @@ public class Assistant : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _capacity = GetComponent<PlayerStackPresenter>().Capacity;
-        _producers = new StackView[_producersConteiner.childCount];
-        _consumers = new StackView[_consumersConteiner.childCount];
-        _producerItemCreators = new ItemCreator[_producersConteiner.childCount];
-        _consumersItemCreators = new StackPresenter[_consumersConteiner.childCount];
+        _producers = new StackView[_producersConteiner.transform.childCount];
+        _consumers = new StackView[_consumersConteiner.transform.childCount];
+        _producerItemCreators = new ItemCreator[_producersConteiner.transform.childCount];
+        _consumersItemCreators = new StackPresenter[_consumersConteiner.transform.childCount];
         _assistantStack = GetComponentInChildren<BoxStackView>();
 
         for (int i = 0; i < _producers.Length; i++)
         {
-            _producers[i] = _producersConteiner.GetChild(i).GetComponentInChildren<StackView>();
-            _producerItemCreators[i] = _producersConteiner.GetChild(i).GetComponent<ItemCreator>();
+            _producers[i] = _producersConteiner.transform.GetChild(i).GetComponentInChildren<StackView>();
+            _producerItemCreators[i] = _producersConteiner.transform.GetChild(i).GetComponent<ItemCreator>();
         }
 
         for (int i = 0; i < _consumers.Length; i++)
         {
-            _consumers[i] = _consumersConteiner.GetChild(i).GetComponentInChildren<StackView>();
-            _consumersItemCreators[i] = _consumersConteiner.GetChild(i).GetComponent<StackPresenter>();
+            _consumers[i] = _consumersConteiner.transform.GetChild(i).GetComponentInChildren<StackView>();
+            _consumersItemCreators[i] = _consumersConteiner.transform.GetChild(i).GetComponent<StackPresenter>();
         }
     }
 
