@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338821, g: 0.2167395, b: 0.2988085, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338794, g: 0.21673918, b: 0.29880756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1569,6 +1569,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 475446, guid: 8babe578a7f87754c94f7ad783c9c5e8, type: 3}
   m_PrefabInstance: {fileID: 164895411}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &166463885 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3289640409297774838, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+  m_PrefabInstance: {fileID: 351172688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &180812950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2877,16 +2882,76 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1232819261}
     - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _fillSpeedImage
+      value: 
+      objectReference: {fileID: 166463885}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: _stackPresenter
       value: 
       objectReference: {fileID: 1232819270}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _fillCapacityImage
+      value: 
+      objectReference: {fileID: 781108967}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _imageFillWidthStep
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _playerSavePresenter
+      value: 
+      objectReference: {fileID: 1033482721}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _speedUpgrades.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _capacityUpgrades.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _speedUpgrades.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e3780a72c232f543b6cdbc385ee988d, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _speedUpgrades.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 69f51f991866c224d9b44c8c1c109150, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _speedUpgrades.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e0dd80105bf0d7342aed471df2543041, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _speedUpgrades.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cc402d55106bba4996eefba5362252e, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _capacityUpgrades.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b7d112c5b87d38b4e88f388df9996686, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _capacityUpgrades.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: aff74c5a0e5411043bb493a1db2071c0, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _capacityUpgrades.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 843cb6b8df759114ab8383f60db25e37, type: 2}
+    - target: {fileID: 979310399, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _capacityUpgrades.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f5db71549bc3ef94d889421f552a5072, type: 2}
+    - target: {fileID: 3289640409297774838, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4618923783700790081, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 189.495
       objectReference: {fileID: 0}
     - target: {fileID: 4618923784875131483, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4618923785213480763, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_Name
@@ -2986,6 +3051,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618923785213480767, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396493686636845636, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6398,6 +6467,11 @@ Transform:
   m_Father: {fileID: 595019214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &781108967 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6396493686636845636, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+  m_PrefabInstance: {fileID: 351172688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &784523290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8015,9 +8089,10 @@ MonoBehaviour:
   _speed: 0
   _stackPresenter: {fileID: 1232819270}
   _navMeshAgent: {fileID: 1232819261}
-  _upgrades: {fileID: 979310399}
+  upgradesShop: {fileID: 979310399}
   _secondLevelBuyZone: {fileID: 1375368889}
   _thirdLevelBuyZone: {fileID: 2106397622}
+  _softCurrencyHolder: {fileID: 2142675168}
 --- !u!4 &1033482722
 Transform:
   m_ObjectHideFlags: 0
