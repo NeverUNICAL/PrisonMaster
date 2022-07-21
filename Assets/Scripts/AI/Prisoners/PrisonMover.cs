@@ -12,7 +12,7 @@ public class PrisonMover : MonoBehaviour
     
     public GameObject NextPoint =>_nextPoint;
     
-    private void Start()
+    private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -22,7 +22,7 @@ public class PrisonMover : MonoBehaviour
     {
        if (_agentPath != _agent.path)
        {
-           _agent.destination = _targetPoint;
+           _agent.destination = _nextPoint.transform.position + _targetPoint;
            _agentPath = _agent.path;
        }
         
@@ -32,6 +32,11 @@ public class PrisonMover : MonoBehaviour
     public void SetTarget(GameObject target, Vector3 offset)
     {
         _nextPoint = target;
-        _targetPoint = _nextPoint.transform.position+offset;
+        _targetPoint = offset;
+    }
+
+    public void ChangePriority(int value)
+    {
+        _agent.avoidancePriority = value;
     }
 }

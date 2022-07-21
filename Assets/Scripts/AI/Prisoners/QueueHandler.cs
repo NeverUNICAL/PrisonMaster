@@ -15,30 +15,31 @@ public abstract class QueueHandler : MonoBehaviour
 
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
-    protected List<GameObject> _prisonerList;
+    protected List<PrisonMover> _prisonerList;
     
     public int PoolSize => _startPoolSize;
-    public List<GameObject> PrisonerQueueList => _prisonerList;
+    public List<PrisonMover> PrisonerQueueList => _prisonerList;
 
     private void Awake()
     {
         _waitForSpawnTimeOut = new WaitForSeconds(_spawnTimeOut);
         _waitForSendTimeOut = new WaitForSeconds(_sendTimeOut);
     }
-
+    
     public void ListSort()
     {
         if(_prisonerList.Count == 1)
         {
-            _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint,Vector3.zero);
+            _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
         }
         
         for (int i = 0; i <_prisonerList.Count; i++)
         {
-            _prisonerList[i].GetComponent<NavMeshAgent>().avoidancePriority = i+1;
+            _prisonerList[i].ChangePriority(i+1);
             
-            if((i+1)<_prisonerList.Count){
-                _prisonerList[i+1].GetComponent<PrisonMover>().SetTarget(_prisonerList[i],_offsetPos);
+            if((i+1)<_prisonerList.Count)
+            {
+                _prisonerList[i+1].SetTarget(_prisonerList[i].gameObject,_offsetPos);
             }
             
             _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
@@ -55,16 +56,15 @@ public abstract class QueueHandler : MonoBehaviour
     {
         _prisonerList.RemoveAt(0);
         ListSort();
+        
         if(_prisonerList.Count>0)
         {
-            _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint,Vector3.zero);
+            _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
         }
-
     }
     
     protected void GenerateList()
     {
-        _prisonerList= new List<GameObject>();
+        _prisonerList= new List<PrisonMover>();
     }
-
 }

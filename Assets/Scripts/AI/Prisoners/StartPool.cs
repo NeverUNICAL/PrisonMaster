@@ -7,11 +7,11 @@ using System.Linq;
 public class StartPool : QueueHandler
 {
     [SerializeField]private List<QueueContainer> _queues;
-    [SerializeField]private GameObject _prisoner;
+    [SerializeField]private PrisonMover _prisoner;
     [SerializeField]private Transform _spawnPoint;
     [SerializeField]private Transform _parentPrisoners;
-    
-    private Prisoner[] _prisoners;
+
+    private PrisonMover[] _prisoners;
    
     private void Start()
     {
@@ -23,11 +23,11 @@ public class StartPool : QueueHandler
     private void ListUpdate()
     {
         _prisonerList.Clear();
-        _prisoners = FindObjectsOfType<Prisoner>();
+        _prisoners = FindObjectsOfType<PrisonMover>();
         
-        foreach(Prisoner prisoner in _prisoners)
+        foreach(PrisonMover prisoner in _prisoners)
         {
-            _prisonerList.Add(prisoner.gameObject);
+            _prisonerList.Add(prisoner);
         }
     }
     
@@ -38,10 +38,10 @@ public class StartPool : QueueHandler
             yield return _waitForSpawnTimeOut;
             
             if(_prisonerList.Count<_startPoolSize)
-            {
-             _prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
-            ListSort();
-            _prisonerList[0].GetComponent<PrisonMover>().SetTarget(_firstPoint,Vector3.zero);
+            { 
+                _prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
+             ListSort();
+            _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
             }
         }
     }
@@ -53,6 +53,7 @@ public class StartPool : QueueHandler
             yield return _waitForSendTimeOut;
 
             List<QueueContainer> sortedList = _queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
+            sortedList = sortedList.SkipWhile(queue => queue.PoolSize < 1).ToList();
 
             if(sortedList[0].PrisonerQueueList.Count<sortedList[0].PoolSize)
             { 

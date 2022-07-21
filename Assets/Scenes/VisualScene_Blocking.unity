@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338821, g: 0.2167395, b: 0.2988085, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338794, g: 0.21673918, b: 0.29880756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6455,10 +6455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstPoint: {fileID: 812000740}
-  _startPoolSize: 5
   _spawnTimeOut: 1
   _sendTimeOut: 1
+  _firstPoint: {fileID: 812000740}
+  _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
 --- !u!1 &818826538
 GameObject:
@@ -7592,10 +7592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstPoint: {fileID: 974294162}
-  _startPoolSize: 5
   _spawnTimeOut: 1
   _sendTimeOut: 1
+  _firstPoint: {fileID: 974294162}
+  _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
 --- !u!114 &979310399 stripped
 MonoBehaviour:
@@ -11980,10 +11980,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstPoint: {fileID: 1615976160}
-  _startPoolSize: 5
   _spawnTimeOut: 1
   _sendTimeOut: 1
+  _firstPoint: {fileID: 1615976160}
+  _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
 --- !u!4 &1620053252 stripped
 Transform:
@@ -12816,9 +12816,17 @@ PrefabInstance:
       value: StartPool
       objectReference: {fileID: 0}
     - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
+      propertyPath: _prisoner
+      value: 
+      objectReference: {fileID: 966140974247819660, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
+    - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
       propertyPath: _nextPoint
       value: 
       objectReference: {fileID: 1721285929}
+    - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
+      propertyPath: _prisonerTemplate
+      value: 
+      objectReference: {fileID: 1131484534194217502, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
     - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
       propertyPath: _queues.Array.size
       value: 4
@@ -13279,10 +13287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f558dcaef8b4341abb852f97c670d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstPoint: {fileID: 1789150566}
-  _startPoolSize: 5
   _spawnTimeOut: 1
   _sendTimeOut: 1
+  _firstPoint: {fileID: 1789150566}
+  _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
 --- !u!1001 &1814437475
 PrefabInstance:
