@@ -14,11 +14,18 @@ namespace Agava.IdleGame
         [SerializeField] private float _speed;
         [SerializeField] private StackPresenter _stackPresenter;
         [SerializeField] private NavMeshAgent _navMeshAgent;
-        [SerializeField] private Upgrades _upgrades;
+        [SerializeField] private UpgradesShop upgradesShop;
         [SerializeField] private LevelBuyZone _secondLevelBuyZone;
         [SerializeField] private LevelBuyZone _thirdLevelBuyZone;
+        [SerializeField] private SoftCurrencyHolder _softCurrencyHolder;
         
         private PlayerSaves _playerSaves;
+
+        public int Money => _softCurrencyHolder.Value;
+        public int SpeedLevel => _playerSaves.SpeedLevel;
+        public int CapacityLevel => _playerSaves.CapacityLevel;
+        
+        public event UnityAction Loaded;
         
         private void Awake()
         {
@@ -27,19 +34,18 @@ namespace Agava.IdleGame
 
         private void OnEnable()
         {
-            _upgrades.SpeedUpgraded += OnSpeedChanged;
-            _upgrades.CapacityUpgraded += OnCapacityChanged;
+            upgradesShop.SpeedUpgraded += OnSpeedChanged;
+            upgradesShop.CapacityUpgraded += OnCapacityChanged;
             _secondLevelBuyZone.LevelUnlocked += OnLevelUnlocked;
             _thirdLevelBuyZone.LevelUnlocked += OnLevelUnlocked;
         }
 
         private void OnDisable()
         {
-            _upgrades.SpeedUpgraded -= OnSpeedChanged;
-            _upgrades.CapacityUpgraded -= OnCapacityChanged;
+            upgradesShop.SpeedUpgraded -= OnSpeedChanged;
+            upgradesShop.CapacityUpgraded -= OnCapacityChanged;
             _secondLevelBuyZone.LevelUnlocked -= OnLevelUnlocked;
             _thirdLevelBuyZone.LevelUnlocked -= OnLevelUnlocked;
-            
         }
 
         private void Start()
@@ -54,15 +60,21 @@ namespace Agava.IdleGame
             _playerSaves.Save();
         }
 
-        private void OnSpeedChanged(float value)
+        private void OnSpeedChanged(int level,float value,int price)
         {
+            _playerSaves.SetSpeedLevel(level);
             _playerSaves.SetSpeed(value);
+            _navMeshAgent.speed = value;
+            _softCurrencyHolder.Spend(price);
             _playerSaves.Save();
         }
         
-        private void OnCapacityChanged(int value)
+        private void OnCapacityChanged(int level,int value,int price)
         {
+            _playerSaves.SetCapacityLevel(level);
             _playerSaves.SetCapacity(value);
+            _stackPresenter.ChangeCapacity(value);
+            _softCurrencyHolder.Spend(price);
             _playerSaves.Save();
         }
 
@@ -75,7 +87,7 @@ namespace Agava.IdleGame
                 ChangeNavMeshAgent(_navMeshAgent.areaMask);
             }
         }
-
+        
         private void OnLoad()
         {
             {
@@ -96,8 +108,9 @@ namespace Agava.IdleGame
 
                 if(_playerSaves.CurrentLevel == 0)
                     _playerSaves.SetCurrentLevel(1);
+                
+                Loaded?.Invoke();
             }
         }
-        
     }
 }

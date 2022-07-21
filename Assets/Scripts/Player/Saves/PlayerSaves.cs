@@ -22,6 +22,8 @@ namespace Agava.IdleGame.Model
         public int StackCapacity => _stats.Capacity;
         public int AreaMask => _stats.AreaMask;
         public int CurrentLevel => _stats.CurrentLevel;
+        public int CapacityLevel => _stats.CapacityLevel;
+        public int SpeedLevel => _stats.SpeedLevel;
 
         public void SetSpeed(float value)
         {
@@ -41,6 +43,16 @@ namespace Agava.IdleGame.Model
         public void SetCurrentLevel(int value)
         {
             _stats.SetCurrentLevel(value);
+        }
+
+        public void SetCapacityLevel(int value)
+        {
+            _stats.SetCapacityLevel(value);
+        }
+        
+        public void SetSpeedLevel(int value)
+        {
+            _stats.SetSpeedLevel(value);
         }
 
         protected override void OnLoad(PlayerSaves loadedObject)

@@ -11,6 +11,8 @@ namespace Agava.IdleGame.Model
         [SerializeField] private int _capacity;
         [SerializeField] private int _areaMask;
         [SerializeField] private int _currentLevel;
+        [SerializeField] private int _capacityLevel;
+        [SerializeField] private int _speedLevel;
 
         public Stats()
         {
@@ -21,6 +23,8 @@ namespace Agava.IdleGame.Model
         public int Capacity => _capacity;
         public int AreaMask => _areaMask;
         public int CurrentLevel => _currentLevel;
+        public int CapacityLevel => _capacityLevel;
+        public int SpeedLevel => _speedLevel;
         
         public void SetSpeed(float value)
         {
@@ -40,6 +44,16 @@ namespace Agava.IdleGame.Model
         public void SetAreaMask(int value)
         {
             _areaMask = value;
+        }
+
+        public void SetCapacityLevel(int value)
+        {
+            _capacityLevel = value;
+        }
+        
+        public void SetSpeedLevel(int value)
+        {
+            _speedLevel = value;
         }
     }
 }
