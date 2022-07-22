@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Agava.IdleGame;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
@@ -14,17 +15,18 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private float _duration;
     [SerializeField] private float _durationForOutlines;
     [SerializeField] private Vector3 _scaleTarget;
+    [SerializeField] private Image _background;
 
     private void OnEnable()
     {
         _producerZone.Unlocked += OnUnlock;
-        _consumerZone.Unlocked += OnStartGame;
+        _consumerZone.Unlocked += DoFade;
     }
 
     private void OnDisable()
     {
         _producerZone.Unlocked -= OnUnlock; 
-        _consumerZone.Unlocked += OnStartGame;
+        _consumerZone.Unlocked -= DoFade;
     }
 
     private void Start()
@@ -42,13 +44,19 @@ public class Tutorial : MonoBehaviour
         _arrows[1].transform.DOMove(new Vector3(_arrows[1].transform.position.x, _arrows[1].transform.position.y - 0.5f, _arrows[1].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
     }
 
-    private void OnStartGame(BuyZonePresenter normalBuyZonePresenter)
+    private void OnStartGame()
     {
         for (int i = 0; i < _openObjects.Length; i++)
         {
             _openObjects[i].gameObject.SetActive(true);
         }
 
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
+
+    private void DoFade(BuyZonePresenter buyZonePresenter)
+    {
+        _background.DOFade(0, _duration);
+        Invoke(nameof(OnStartGame),_duration);
     }
 }
