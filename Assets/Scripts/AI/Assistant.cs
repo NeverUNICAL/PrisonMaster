@@ -14,7 +14,7 @@ public class Assistant : MonoBehaviour
     [SerializeField] private float _speed;
 
     private NavMeshAgent _navMeshAgent;
-    private int _capacity;
+    private PlayerStackPresenter _stackPresenter;
     private StackView[] _producers;
     private StackView[] _consumers;
     private StackView _assistantStack;
@@ -24,7 +24,7 @@ public class Assistant : MonoBehaviour
     private Transform _targetTransform;
 
     public float Speed => _speed;
-    public int Capacity => _capacity;
+    public int Capacity => _stackPresenter.Capacity;
     public StackView[] Producers => _producers;
     public StackView[] Consumers => _consumers;
     public StackView AssistantStack => _assistantStack;
@@ -35,7 +35,7 @@ public class Assistant : MonoBehaviour
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _capacity = GetComponent<PlayerStackPresenter>().Capacity;
+        _stackPresenter = GetComponent<PlayerStackPresenter>();
         _producers = new StackView[_producersConteiner.transform.childCount];
         _consumers = new StackView[_consumersConteiner.transform.childCount];
         _producerItemCreators = new ItemCreator[_producersConteiner.transform.childCount];
@@ -58,6 +58,11 @@ public class Assistant : MonoBehaviour
     private void ChangeSpeed(float targetSpeed)
     {
         _speed = targetSpeed;
+    }
+
+    public void ChangeCapacity(int target)
+    {
+        _stackPresenter.ChangeCapacity(target);
     }
 
     public void ChangeTargetTransform(Transform target)

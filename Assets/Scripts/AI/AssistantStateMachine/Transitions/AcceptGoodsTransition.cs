@@ -9,6 +9,7 @@ public class AcceptGoodsTransition : AssistantTransition
         int capacityTarget = Assistant.AssistantStack.GetComponentsInChildren<Transform>().Length - 1;
         if (capacityTarget == Assistant.Capacity)
         {
+            Debug.Log(Assistant.Capacity);
             NeedTransit = true;
         }
     }
