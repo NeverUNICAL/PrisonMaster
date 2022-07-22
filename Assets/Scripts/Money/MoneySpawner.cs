@@ -1,38 +1,45 @@
 using System.Collections;
 using UnityEngine;
 
-    public class MoneySpawner : MonoBehaviour
+public class MoneySpawner : MonoBehaviour
+{
+    [SerializeField] private Store _store;
+    [SerializeField] private Money _moneyTemplate;
+    [SerializeField] private Transform[] _points;
+
+    private int _counter = 0;
+    private const float Delay = 0.1f;
+
+    private void OnEnable()
     {
-        [SerializeField] private Store _store;
-        [SerializeField] private Money _moneyTemplate;
-        [SerializeField] private Transform _point;
+        _store.Sold += Spawn;
+    }
 
-        private const float Delay = 0.3f;
+    private void OnDisable()
+    {
+        _store.Sold -= Spawn;
+    }
 
-        private void OnEnable()
+    private void Spawn(int count)
+    {
+        StartCoroutine(MoneyGenerator(count));
+    }
+
+    private IEnumerator MoneyGenerator(int count)
+    {
+        var delay = new WaitForSeconds(Delay);
+
+        for (int i = 0; i < count * 2; i++)
         {
-            _store.Sold += Spawn;
-        }
+            yield return delay;
+            if (_counter > _points.Length - 1)
+                _counter = 0;
+            
+            Money money = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, transform);
+            _counter++;
 
-        private void OnDisable()
-        {
-            _store.Sold -= Spawn;            
-        }
-
-        private void Spawn(int count)
-        {
-            StartCoroutine(MoneyGenerator(count));   
-        }
-
-        private IEnumerator MoneyGenerator(int count)
-        {
-            var delay = new WaitForSeconds(Delay);
-
-            for (int i = 0; i < count; i++)
-            {
-                yield return delay;
-                Money money = Instantiate(_moneyTemplate, _point.position, transform.rotation, transform);
-            }
+            money.StopMove();
         }
     }
+}
 
