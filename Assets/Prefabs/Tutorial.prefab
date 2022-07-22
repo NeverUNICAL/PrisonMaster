@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.68235296}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -841,7 +841,7 @@ MonoBehaviour:
   _outlines:
   - {fileID: 0}
   - {fileID: 0}
-  _duration: 1
+  _duration: 1.2
   _durationForOutlines: 0.5
   _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
 --- !u!1 &1494436826996425696
@@ -2409,6 +2409,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 166924017090398981, guid: b30712370d9989647912be799d9743ec, type: 3}
       propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897763570339237823, guid: b30712370d9989647912be799d9743ec, type: 3}
+      propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7302191634718068465, guid: b30712370d9989647912be799d9743ec, type: 3}
