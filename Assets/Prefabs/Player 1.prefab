@@ -99,6 +99,8 @@ MonoBehaviour:
   _jumpPower:
     _enabled: 0
     _value: 0
+  _scaleForPlayerObjects: {x: 0.7, y: 1.2, z: 0.7}
+  _scaleForObjects: {x: 1, y: 1.5, z: 1}
   _space: 0.05
 --- !u!1 &4574266190011947064
 GameObject:
@@ -157,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 4574266189265541343}
-  _capacity: 5
+  _capacity: 10
   _stackableTypes:
     _value: -1
 --- !u!54 &4574266190011947077
@@ -212,7 +214,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 5
   m_Acceleration: 300
   avoidancePriority: 0
   m_AngularSpeed: 3000

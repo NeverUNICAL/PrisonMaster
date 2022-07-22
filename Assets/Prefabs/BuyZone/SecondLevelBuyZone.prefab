@@ -422,7 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8229992734905556817}
-  - component: {fileID: 1341659058867148690}
+  - component: {fileID: 9118019018386713582}
   m_Layer: 0
   m_Name: SecondLevelBuyZone
   m_TagString: Untagged
@@ -437,7 +437,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8229992734905556815}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.3, y: 0, z: -11.89}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
@@ -446,7 +446,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1341659058867148690
+--- !u!114 &9118019018386713582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,14 +458,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b140563702eeb4cb37990514b8bfca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guid: 1ee75ae4-4032-4fe4-807e-53f199b5b431
-  _totalCost: 50
+  _guid: 
+  _totalCost: 1000
   _trigger: {fileID: 8229992734068638272}
   _view: {fileID: 8229992734834083692}
   _unlockable: {fileID: 0}
   _image: {fileID: 7090670084574917850}
-  _playerNavMeshAgent: {fileID: 0}
-  _targetNavMeshAgent: {fileID: 0}
+  _navMeshMaskId: 2147483647
+  _buyZoneLevelLocated: 2
+  _meshRendererUnlockables:
+  - {fileID: 0}
+  _unlockedMaterial: {fileID: 2100000, guid: 3b33bc907b89dc64db1790d26783db07, type: 2}
+  _objectToTurnOff: {fileID: 0}
 --- !u!1 &8229992735721507378
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 1000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -558,7 +562,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
+  m_fontSize: 0.6
   m_fontSizeBase: 0.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
