@@ -9,7 +9,7 @@ public class MoveToProducerState : AssistantState
     [SerializeField] private Vector3 _offset = new Vector3(-2.5f, 0, 0);
     private Transform _target;
 
-    private void OnEnable()
+    private void Start()
     {
         int[] tempArray = new int[Assistant.ProducerItemCreators.Length];
 

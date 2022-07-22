@@ -87,7 +87,7 @@ public class UpgradesShop : MonoBehaviour
 
     private void ResetPriceView(List<Upgrade> upgrades, int playerLevel,TextMeshProUGUI text)
     {
-        if (playerLevel == 4)
+        if (playerLevel == _upgradesMaxLevel)
         {
             text.text = "FULL";
         }

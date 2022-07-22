@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,18 +9,19 @@ public class AssistantStateMachine : MonoBehaviour
 {
     [SerializeField] private AssistantState _firstState;
 
-    private float _speed;
-    private int _capacity;
+   
     private AssistantState _currentState;
     private Assistant _assistant;
 
     public AssistantState CurrentState => _currentState;
 
-    private void Start()
+    private void Awake()
     {
         _assistant = GetComponent<Assistant>();
-        _capacity = GetComponent<Assistant>().Capacity;
-        _speed = GetComponent<Assistant>().Speed;
+    }
+
+    private void Start()
+    {
         Reset(_firstState);
     }
 

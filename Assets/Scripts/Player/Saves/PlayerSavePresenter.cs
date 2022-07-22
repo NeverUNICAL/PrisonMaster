@@ -14,7 +14,7 @@ namespace Agava.IdleGame
         [SerializeField] private float _speed;
         [SerializeField] private StackPresenter _stackPresenter;
         [SerializeField] private NavMeshAgent _navMeshAgent;
-        [SerializeField] private UpgradesShop upgradesShop;
+        [SerializeField] private UpgradesShop _upgradesShop;
         [SerializeField] private LevelBuyZone _secondLevelBuyZone;
         [SerializeField] private LevelBuyZone _thirdLevelBuyZone;
         [SerializeField] private SoftCurrencyHolder _softCurrencyHolder;
@@ -34,16 +34,16 @@ namespace Agava.IdleGame
 
         private void OnEnable()
         {
-            upgradesShop.SpeedUpgraded += OnSpeedChanged;
-            upgradesShop.CapacityUpgraded += OnCapacityChanged;
+            _upgradesShop.SpeedUpgraded += OnSpeedChanged;
+            _upgradesShop.CapacityUpgraded += OnCapacityChanged;
             _secondLevelBuyZone.LevelUnlocked += OnLevelUnlocked;
             _thirdLevelBuyZone.LevelUnlocked += OnLevelUnlocked;
         }
 
         private void OnDisable()
         {
-            upgradesShop.SpeedUpgraded -= OnSpeedChanged;
-            upgradesShop.CapacityUpgraded -= OnCapacityChanged;
+            _upgradesShop.SpeedUpgraded -= OnSpeedChanged;
+            _upgradesShop.CapacityUpgraded -= OnCapacityChanged;
             _secondLevelBuyZone.LevelUnlocked -= OnLevelUnlocked;
             _thirdLevelBuyZone.LevelUnlocked -= OnLevelUnlocked;
         }

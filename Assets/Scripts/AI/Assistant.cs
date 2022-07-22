@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class Assistant : MonoBehaviour
 {
     [SerializeField] private ProdusersConteiner _producersConteiner;
     [SerializeField] private ConsumersConteiner _consumersConteiner;
-
+    
     [Header("OptionsForUpgrade")]
     [SerializeField] private float _speed;
 
@@ -18,6 +19,7 @@ public class Assistant : MonoBehaviour
     private StackView[] _producers;
     private StackView[] _consumers;
     private StackView _assistantStack;
+    private AssistantStateMachine _stateMachine;
 
     private ItemCreator[] _producerItemCreators;
     private StackPresenter[] _consumersItemCreators;
@@ -36,6 +38,11 @@ public class Assistant : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _stackPresenter = GetComponent<PlayerStackPresenter>();
+        _stateMachine = GetComponent<AssistantStateMachine>();
+    }
+
+    private void Start()
+    {
         _producers = new StackView[_producersConteiner.transform.childCount];
         _consumers = new StackView[_consumersConteiner.transform.childCount];
         _producerItemCreators = new ItemCreator[_producersConteiner.transform.childCount];
@@ -53,11 +60,14 @@ public class Assistant : MonoBehaviour
             _consumers[i] = _consumersConteiner.transform.GetChild(i).GetComponentInChildren<StackView>();
             _consumersItemCreators[i] = _consumersConteiner.transform.GetChild(i).GetComponent<StackPresenter>();
         }
+
+        _stateMachine.enabled = true;
     }
 
-    private void ChangeSpeed(float targetSpeed)
+    public void ChangeSpeed(float targetSpeed)
     {
         _speed = targetSpeed;
+        _navMeshAgent.speed = targetSpeed;
     }
 
     public void ChangeCapacity(int target)
