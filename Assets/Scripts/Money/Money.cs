@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Money : MonoBehaviour
 {
+    [SerializeField] private int _reward;
     private Collider _collider;
     private Rigidbody _rigidbody;
 
@@ -15,6 +16,7 @@ public class Money : MonoBehaviour
 
     private Coroutine _coroutineInJob;
 
+    public int Reward => _reward;
     private void OnEnable()
     {
         _collider = GetComponent<Collider>();

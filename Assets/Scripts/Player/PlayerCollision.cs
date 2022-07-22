@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Agava.IdleGame
 {
@@ -39,6 +40,8 @@ namespace Agava.IdleGame
         private void OnMoneyCollided(Money money)
         {
             money.OnCollected(transform);
+            SoftCurrencyHolder playerBalance = GetComponent<SoftCurrencyHolder>();
+            playerBalance.Add(money.Reward);
             MoneyCollected?.Invoke();
         }
     }
