@@ -21,7 +21,7 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private Button _capacityButton;
     [SerializeField] private RectTransform _fillCapacityImage;
     [SerializeField] private TextMeshProUGUI _capacityPriceText;
-    [SerializeField] private List<CapacityUpgrade> _capacityUpgrades;
+    [SerializeField] private List<Upgrade> _capacityUpgrades;
 
     [Header("Speed Settings")]
     [SerializeField] private Button _speedButton;
@@ -66,6 +66,9 @@ public class AssistantsShop : MonoBehaviour
                 {
                     CapacityUpgraded?.Invoke(upgrade.Level, (int)upgrade.Value, upgrade.Price);
                     ResetAssistants();
+                    _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + _imageFillWidthStep, _fillCapacityImage.rect.height);
+                    ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText);
+                    return;
                 }
 
             }
@@ -82,6 +85,9 @@ public class AssistantsShop : MonoBehaviour
                 {
                     SpeedUpgraded?.Invoke(upgrade.Level, upgrade.Value, upgrade.Price);
                     ResetAssistants();
+                    _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + _imageFillWidthStep, _fillSpeedImage.rect.height);
+                    ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText);
+                    return;
                 }
             }
         }
@@ -97,6 +103,8 @@ public class AssistantsShop : MonoBehaviour
                 {
                     CountUpgraded?.Invoke(upgrade.Level,upgrade.Price);
                     ResetAssistants();
+                    _fillCountImage.sizeDelta = new Vector2(_fillCountImage.rect.width + _imageFillWidthStep, _fillCountImage.rect.height);
+                    ResetPriceView(_countUpgrades,_saves.Count,_countPriceText);
                     return;
                 }
             }
@@ -105,7 +113,21 @@ public class AssistantsShop : MonoBehaviour
 
     private void ResetPriceView(List<Upgrade> upgrades, int playerLevel,TextMeshProUGUI text)
     {
-       
+        if (playerLevel == _upgradesMaxLevel)
+        {
+            text.text = "MAX";
+        }
+        else
+        {
+            foreach (Upgrade upgrade in upgrades)
+            {
+                if (upgrade.Level == playerLevel + 1)
+                {
+                    text.text = "$"+upgrade.Price;
+                    return;
+                }
+            }
+        }
     }
 
     private void ResetAssistants()
@@ -128,5 +150,11 @@ public class AssistantsShop : MonoBehaviour
     private void OnLoaded()
     {
         ResetAssistants();
+        ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText);
+        ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText);
+        ResetPriceView(_countUpgrades,_saves.Count,_countPriceText);
+        _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep*_saves.CapacityLevel), _fillCapacityImage.rect.height);
+        _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep*_saves.SpeedLevel), _fillSpeedImage.rect.height);
+        _fillCountImage.sizeDelta = new Vector2(_fillCountImage.rect.width + (_imageFillWidthStep*_saves.Count), _fillCountImage.rect.height);
     }
 }

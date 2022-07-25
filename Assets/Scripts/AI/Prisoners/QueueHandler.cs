@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,7 +17,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
     protected List<PrisonMover> _prisonerList;
-    protected List<QueueContainer> _sortedList;
+    protected List<QueueHandler> _sortedList;
     
     public int PoolSize => _startPoolSize;
     public List<PrisonMover> PrisonerQueueList => _prisonerList;
@@ -25,8 +26,9 @@ public abstract class QueueHandler : MonoBehaviour
     {
         _waitForSpawnTimeOut = new WaitForSeconds(_spawnTimeOut);
         _waitForSendTimeOut = new WaitForSeconds(_sendTimeOut);
+        _prisonerList = new List<PrisonMover>();
     }
-    
+
     public void ListSort()
     {
         if(_prisonerList.Count == 1)
@@ -63,9 +65,46 @@ public abstract class QueueHandler : MonoBehaviour
             _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
         }
     }
-    
+
     protected void GenerateList()
     {
         _prisonerList= new List<PrisonMover>();
+    }
+
+    protected IEnumerator SendToQueue(List<QueueHandler> queues)
+    {
+        while (true)
+        {
+            yield return _waitForSendTimeOut;
+
+            _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
+            _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1).ToList();
+
+            if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize)
+            {
+                if (_prisonerList.Count > 0)
+                {
+                    _sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
+                    _sortedList[0].ListSort();
+                    ExtractFirst();
+                }
+            }
+        }
+    }
+
+    protected bool SendToPool(QueueHandler targetQueue)
+    {
+        if (targetQueue.PrisonerQueueList.Count < targetQueue.PoolSize)
+        {
+                if (_prisonerList.Count > 0)
+                {
+                    targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
+                    targetQueue.ListSort();
+                    ExtractFirst();
+                    return true;
+                }
+        }
+
+        return false;
     }
 }
