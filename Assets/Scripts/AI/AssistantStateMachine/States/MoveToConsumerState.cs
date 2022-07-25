@@ -50,9 +50,11 @@ public class MoveToConsumerState : AssistantState
             {
                 if (minValue == Assistant.ConsumersItemCreators[i].Count)
                 {
-                    _offset = new Vector3(i, 0, i);
-                    _target = Assistant.ConsumersItemCreators[i].transform;
-                    Assistant.ChangeTargetTransform(Assistant.Consumers[i].transform);
+                    Transform transform = Assistant.ConsumersItemCreators[i].GetComponentInChildren<StackPresenterTrigger>().transform;
+                    Debug.Log(transform.name);
+                    //_offset = new Vector3(i, 0, i);
+                    //_target = Assistant.ConsumersItemCreators[i].transform;
+                    Assistant.ChangeTargetTransform(transform);
                 }
             }
         }
