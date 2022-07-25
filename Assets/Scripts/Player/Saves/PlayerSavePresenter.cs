@@ -11,7 +11,6 @@ namespace Agava.IdleGame
     public class PlayerSavePresenter : GUIDMonoBehaviour
     {
         [Space(10)]
-        [SerializeField] private float _speed;
         [SerializeField] private StackPresenter _stackPresenter;
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private UpgradesShop _upgradesShop;

@@ -4612,7 +4612,6 @@ GameObject:
   - component: {fileID: 8262307762876253530}
   - component: {fileID: 8262307762876253534}
   - component: {fileID: 2007783058}
-  - component: {fileID: 8116598271482751627}
   m_Layer: 5
   m_Name: UpgradesAndHRCanvas
   m_TagString: Untagged
@@ -4730,25 +4729,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab21793687230446804f9c1d1ae821d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countButton: {fileID: 0}
-  _fillCountImage: {fileID: 0}
-  _countPriceText: {fileID: 0}
+  _countButton: {fileID: 8794490741795439855}
+  _fillCountImage: {fileID: 3234198952249262811}
+  _countPriceText: {fileID: 9074279210035154482}
   _countUpgrades:
   - {fileID: 11400000, guid: 93794e994f8b1d04d824fb8c27deb287, type: 2}
   - {fileID: 11400000, guid: 208eae2f7ffde4c40ae71d0488e86377, type: 2}
   - {fileID: 11400000, guid: 3830b39217d26004e95ded00be5dc196, type: 2}
   - {fileID: 11400000, guid: ea5dfbe1d9c56324f9382cea84cffec1, type: 2}
-  _capacityButton: {fileID: 0}
-  _fillCapacityImage: {fileID: 0}
-  _capacityPriceText: {fileID: 0}
+  _capacityButton: {fileID: 2694743161534903419}
+  _fillCapacityImage: {fileID: 8818841898786232599}
+  _capacityPriceText: {fileID: 1730186131793037259}
   _capacityUpgrades:
   - {fileID: 11400000, guid: 5f6007280c0595747aa70823c81eea5c, type: 2}
   - {fileID: 11400000, guid: c19e86ef2401d0743a6f12e6bf7b2564, type: 2}
   - {fileID: 11400000, guid: ed0d2f45bda50924fa4c957d9a31c654, type: 2}
   - {fileID: 11400000, guid: 5111fef41bc877343a7b091e48188486, type: 2}
-  _speedButton: {fileID: 0}
-  _fillSpeedImage: {fileID: 0}
-  _speedPriceText: {fileID: 0}
+  _speedButton: {fileID: 6959746529356562884}
+  _fillSpeedImage: {fileID: 1269969360331533710}
+  _speedPriceText: {fileID: 4673431146100852181}
   _speedUpgrades:
   - {fileID: 11400000, guid: 71ce1180509b5c6499ecb30d849cabd9, type: 2}
   - {fileID: 11400000, guid: 81ec1f75b7eb90243afa9f7d2698d68a, type: 2}
@@ -4761,52 +4760,7 @@ MonoBehaviour:
   - {fileID: 0}
   _saves: {fileID: 0}
   _playerSaves: {fileID: 0}
-  _imageFillWidthStep: 0
-  _upgradesMaxLevel: 4
---- !u!114 &8116598271482751627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8262307762876253531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab21793687230446804f9c1d1ae821d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _countButton: {fileID: 0}
-  _fillCountImage: {fileID: 0}
-  _countPriceText: {fileID: 0}
-  _countUpgrades:
-  - {fileID: 11400000, guid: 93794e994f8b1d04d824fb8c27deb287, type: 2}
-  - {fileID: 11400000, guid: 208eae2f7ffde4c40ae71d0488e86377, type: 2}
-  - {fileID: 11400000, guid: 3830b39217d26004e95ded00be5dc196, type: 2}
-  - {fileID: 11400000, guid: ea5dfbe1d9c56324f9382cea84cffec1, type: 2}
-  _capacityButton: {fileID: 0}
-  _fillCapacityImage: {fileID: 0}
-  _capacityPriceText: {fileID: 0}
-  _capacityUpgrades:
-  - {fileID: 11400000, guid: 5f6007280c0595747aa70823c81eea5c, type: 2}
-  - {fileID: 11400000, guid: c19e86ef2401d0743a6f12e6bf7b2564, type: 2}
-  - {fileID: 11400000, guid: ed0d2f45bda50924fa4c957d9a31c654, type: 2}
-  - {fileID: 11400000, guid: 5111fef41bc877343a7b091e48188486, type: 2}
-  _speedButton: {fileID: 0}
-  _fillSpeedImage: {fileID: 0}
-  _speedPriceText: {fileID: 0}
-  _speedUpgrades:
-  - {fileID: 11400000, guid: 71ce1180509b5c6499ecb30d849cabd9, type: 2}
-  - {fileID: 11400000, guid: 81ec1f75b7eb90243afa9f7d2698d68a, type: 2}
-  - {fileID: 11400000, guid: c379ee89177c22840ba77d584a7826b3, type: 2}
-  - {fileID: 11400000, guid: 0a3a8708c1431a04a9944f8e56485155, type: 2}
-  _assistants:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _saves: {fileID: 0}
-  _playerSaves: {fileID: 0}
-  _imageFillWidthStep: 0
+  _imageFillWidthStep: 40
   _upgradesMaxLevel: 4
 --- !u!1 &8394324747243688304
 GameObject:
