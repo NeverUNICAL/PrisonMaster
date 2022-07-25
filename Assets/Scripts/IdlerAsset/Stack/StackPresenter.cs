@@ -13,6 +13,8 @@ namespace Agava.IdleGame
         [SerializeField] public StackableLayerMask _stackableTypes;
 
         private StackStorage _stack;
+        
+        protected int CurrentItemsCount;
 
         public event UnityAction<StackableObject> Added;
         public event UnityAction<StackableObject> Removed;
@@ -62,12 +64,16 @@ namespace Agava.IdleGame
 
             _stack.Add(stackable);
             _view.Add(stackable, () => Added?.Invoke(stackable));
+            CurrentItemsCount++;
+            Debug.Log(CurrentItemsCount);
         }
 
         public StackableObject RemoveAt(int index)
         {
             var stackable = _stack.RemoveAt(index);
             _view.Remove(stackable);
+            CurrentItemsCount--;
+            Debug.Log(CurrentItemsCount);
 
             Removed?.Invoke(stackable);
             return stackable;
