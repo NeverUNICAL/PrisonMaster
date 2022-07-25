@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Agava.IdleGame;
-using DG.Tweening;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private Transform[] _openObjects;
+    [SerializeField] private NormalBuyZonePresenter[] _openObjects;
     [SerializeField] private NormalBuyZonePresenter _producerZone;
     [SerializeField] private NormalBuyZonePresenter _consumerZone;
+    [SerializeField] private TrashZone _trashZone;
+    [SerializeField] private Transform _prisonersMeneger;
     [SerializeField] private Transform[] _arrows;
     [SerializeField] private Transform[] _outlines;
     [SerializeField] private float _duration;
@@ -25,7 +27,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnDisable()
     {
-        _producerZone.Unlocked -= OnUnlock; 
+        _producerZone.Unlocked -= OnUnlock;
         _consumerZone.Unlocked -= DoFade;
     }
 
@@ -37,7 +39,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
     {
-        _consumerZone.gameObject.SetActive(true);
+        AnimationScale(_consumerZone.transform);
         _outlines[1].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         _arrows[0].gameObject.SetActive(false);
         _arrows[1].gameObject.SetActive(true);
@@ -46,8 +48,12 @@ public class Tutorial : MonoBehaviour
 
     private void OnStartGame()
     {
+        _prisonersMeneger.gameObject.SetActive(true);
+        AnimationScale(_trashZone.transform);
+
         for (int i = 0; i < _openObjects.Length; i++)
         {
+            AnimationScale(_openObjects[i].transform);
             _openObjects[i].gameObject.SetActive(true);
         }
 
@@ -56,7 +62,16 @@ public class Tutorial : MonoBehaviour
 
     private void DoFade(BuyZonePresenter buyZonePresenter)
     {
-        _background.DOFade(0, _duration);
-        Invoke(nameof(OnStartGame),_duration);
+        _background.DOFade(0,_duration);
+        Invoke(nameof(OnStartGame), _duration);
+    }
+
+    private void AnimationScale(Transform buyZone)
+    {
+        Sequence sequence = DOTween.Sequence();
+        buyZone.gameObject.SetActive(true);
+        buyZone.transform.localScale = new Vector3(0, 0, 0);
+        sequence.Append(buyZone.transform.DOScale(_scaleTarget, _durationForOutlines));
+        sequence.Append(buyZone.transform.DOScale(new Vector3(1, 1, 1), _durationForOutlines));
     }
 }
