@@ -6,7 +6,7 @@ using System.Linq;
 
 public class StartPool : QueueHandler
 {
-    [SerializeField]private List<QueueHandler> _queues;
+    [SerializeField]private List<QueueContainer> _queues;
     [SerializeField]private PrisonMover _prisoner;
     [SerializeField]private Transform _spawnPoint;
     [SerializeField]private Transform _parentPrisoners;

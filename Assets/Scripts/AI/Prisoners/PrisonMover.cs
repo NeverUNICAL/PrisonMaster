@@ -27,6 +27,8 @@ public class PrisonMover : MonoBehaviour
            _agent.destination = _nextPoint.transform.position + _targetPoint;
            _agentPath = _agent.path;
        }
+
+       transform.LookAt(_nextPoint.transform);
         
        _animator.SetFloat(Speed, _agent.velocity.magnitude/_agent.speed);
     }
@@ -35,7 +37,7 @@ public class PrisonMover : MonoBehaviour
     {
         _pathEnded = false;
         
-        if (_agent.remainingDistance <= _agent.stoppingDistance)
+        if(_agent.remainingDistance <= _agent.stoppingDistance)
             _pathEnded = true;
         
         return _pathEnded;

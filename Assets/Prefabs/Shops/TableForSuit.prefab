@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2157974346197468050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0, z: -1.66}
+  m_LocalPosition: {x: -0.09, y: 0, z: -1.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2157974347568229419}
@@ -51,8 +51,10 @@ MonoBehaviour:
   _jumpPower:
     _enabled: 1
     _value: 0.7
+  _scaleForPlayerObjects: {x: 0.7, y: 1.2, z: 0.7}
+  _scaleForObjects: {x: 1, y: 1.5, z: 1}
   _size: {x: 1, y: 5, z: 1}
-  _distanceBetweenObjects: {x: 0.5, y: 0.11, z: 0.5}
+  _distanceBetweenObjects: {x: 0.5, y: 0.195, z: 0.5}
   _drawGizmos: 1
 --- !u!1 &2157974347243979762
 GameObject:
@@ -258,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _store: {fileID: 2157974347568229422}
   _moneyTemplate: {fileID: 274858491677357457, guid: b30712370d9989647912be799d9743ec, type: 3}
-  _point: {fileID: 2157974347691328697}
+  _points: []
 --- !u!114 &8752026499266878040
 MonoBehaviour:
   m_ObjectHideFlags: 0

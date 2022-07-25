@@ -17,7 +17,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
     protected List<PrisonMover> _prisonerList;
-    protected List<QueueHandler> _sortedList;
+    protected List<QueueContainer> _sortedList;
     
     public int PoolSize => _startPoolSize;
     public List<PrisonMover> PrisonerQueueList => _prisonerList;
@@ -71,16 +71,16 @@ public abstract class QueueHandler : MonoBehaviour
         _prisonerList= new List<PrisonMover>();
     }
 
-    protected IEnumerator SendToQueue(List<QueueHandler> queues)
+    protected IEnumerator SendToQueue(List<QueueContainer> queues)
     {
         while (true)
         {
             yield return _waitForSendTimeOut;
 
             _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
-            _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1).ToList();
+            _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false).ToList();
 
-            if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize)
+            if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize && _sortedList[0].CheckForShopBuyed())
             {
                 if (_prisonerList.Count > 0)
                 {

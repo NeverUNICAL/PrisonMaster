@@ -380,8 +380,10 @@ MonoBehaviour:
   _jumpPower:
     _enabled: 0
     _value: 0
+  _scaleForPlayerObjects: {x: 0.7, y: 0.7, z: 0.7}
+  _scaleForObjects: {x: 1, y: 1.5, z: 1}
   _size: {x: 1, y: 5, z: 1}
-  _distanceBetweenObjects: {x: 0.6, y: 0.11, z: 0.6}
+  _distanceBetweenObjects: {x: 0.6, y: 0.195, z: 0.6}
   _drawGizmos: 0
 --- !u!1 &4627601755735515573
 GameObject:
