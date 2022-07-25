@@ -89,7 +89,7 @@ public class UpgradesShop : MonoBehaviour
     {
         if (playerLevel == _upgradesMaxLevel)
         {
-            text.text = "FULL";
+            text.text = "MAX";
         }
         else
         {

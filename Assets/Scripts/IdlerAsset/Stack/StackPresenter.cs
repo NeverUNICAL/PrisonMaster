@@ -65,7 +65,6 @@ namespace Agava.IdleGame
             _stack.Add(stackable);
             _view.Add(stackable, () => Added?.Invoke(stackable));
             CurrentItemsCount++;
-            Debug.Log(CurrentItemsCount);
         }
 
         public StackableObject RemoveAt(int index)
@@ -73,7 +72,6 @@ namespace Agava.IdleGame
             var stackable = _stack.RemoveAt(index);
             _view.Remove(stackable);
             CurrentItemsCount--;
-            Debug.Log(CurrentItemsCount);
 
             Removed?.Invoke(stackable);
             return stackable;

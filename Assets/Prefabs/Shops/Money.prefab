@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5782776309992854110}
   - component: {fileID: 166924017090398981}
   - component: {fileID: 274858491677357457}
-  - component: {fileID: 1897763570339237823}
+  - component: {fileID: 8661128421348412235}
   m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!114 &274858491677357457
 MonoBehaviour:
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reward: 5
---- !u!135 &1897763570339237823
-SphereCollider:
+--- !u!136 &8661128421348412235
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,6 +138,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.8
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Height: 30
+  m_Direction: 1
+  m_Center: {x: 0, y: -5.7, z: 0}
