@@ -9,6 +9,8 @@ public class PrisonMover : MonoBehaviour
     private Vector3 _targetPoint;
     private static readonly int Speed = Animator.StringToHash("Speed");
     private NavMeshPath _agentPath;
+
+    private bool _pathEnded;
     
     public GameObject NextPoint =>_nextPoint;
     
@@ -27,6 +29,16 @@ public class PrisonMover : MonoBehaviour
        }
         
        _animator.SetFloat(Speed, _agent.velocity.magnitude/_agent.speed);
+    }
+
+    public bool PathEnded()
+    {
+        _pathEnded = false;
+        
+        if (_agent.remainingDistance <= _agent.stoppingDistance)
+            _pathEnded = true;
+        
+        return _pathEnded;
     }
 
     public void SetTarget(GameObject target, Vector3 offset)
