@@ -8,11 +8,7 @@ public class DistanceConsumerTransition : AssistantTransition
 
     private void Update()
     {
-        if (Assistant.TargetTransform == null)
-        {
-            Debug.Log("TargetNull");
-        }
-        else
+        if (Assistant.TargetTransform != null)
         {
             if (Vector3.Distance(transform.position, Assistant.TargetTransform.position) < _transitionRange)
             {

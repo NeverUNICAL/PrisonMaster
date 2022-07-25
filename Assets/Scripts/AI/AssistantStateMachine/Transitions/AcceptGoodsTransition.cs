@@ -10,7 +10,6 @@ public class AcceptGoodsTransition : AssistantTransition
         
         if (capacityTarget == Assistant.Capacity)
         {
-            Debug.Log(Assistant.Capacity);
             NeedTransit = true;
         }
     }
