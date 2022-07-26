@@ -21,8 +21,7 @@ public class Shop : Store
     {
         _collisionHandler.Triggered -= OnBuyerBougth;
     }
-
-
+    
     public void Sale()
     {
         if (_stackPresenter.Count > 2)

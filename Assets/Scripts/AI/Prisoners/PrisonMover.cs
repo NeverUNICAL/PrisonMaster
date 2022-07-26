@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.AI;
 public class PrisonMover : MonoBehaviour
 {
+    [SerializeField] private GameObject _stickmanModel;
+    [SerializeField] private GameObject _prisonerModel;
+    
     private GameObject _nextPoint;
     private NavMeshAgent _agent;
     private Animator _animator;
