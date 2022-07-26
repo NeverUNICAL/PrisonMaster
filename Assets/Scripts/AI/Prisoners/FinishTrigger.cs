@@ -12,6 +12,7 @@ public class FinishTrigger : MonoBehaviour
         if (other.TryGetComponent(out PrisonMover prisonMover))
         {
             Reached?.Invoke();
+            Destroy(prisonMover.gameObject);
         }
     }
 }

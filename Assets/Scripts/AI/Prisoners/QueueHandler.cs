@@ -15,20 +15,25 @@ public abstract class QueueHandler : MonoBehaviour
     [SerializeField]protected int _startPoolSize = 5;
     [SerializeField]protected Vector3 _offsetPos;
     
-    [Header("Queue Container Setting")]
+    [Header("Pools Settings")]
+    [SerializeField]protected List<QueueContainer> _queues;
+    
+    [Header("Queue Container Settings")]
     [SerializeField] protected Shop _shop;
     
-
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
     protected List<PrisonMover> _prisonerList;
     protected List<QueueContainer> _sortedList;
     
+    private bool _isShopNotNull;
+
     public int PoolSize => _startPoolSize;
     public List<PrisonMover> PrisonerQueueList => _prisonerList;
 
     private void Awake()
     {
+        _isShopNotNull = _shop != null;
         _waitForSpawnTimeOut = new WaitForSeconds(_spawnTimeOut);
         _waitForSendTimeOut = new WaitForSeconds(_sendTimeOut);
         _prisonerList = new List<PrisonMover>();
@@ -38,7 +43,7 @@ public abstract class QueueHandler : MonoBehaviour
     {
         if(_prisonerList.Count == 1)
         {
-            if(_shop != null)
+            if(_isShopNotNull)
              _prisonerList[0].SetTarget(_firstPoint,Vector3.zero,_shop.gameObject.transform);
             else
                 _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
@@ -71,7 +76,7 @@ public abstract class QueueHandler : MonoBehaviour
         
         if(_prisonerList.Count>0)
         {
-            if(_shop != null)
+            if(_isShopNotNull)
                 _prisonerList[0].SetTarget(_firstPoint,Vector3.zero,_shop.gameObject.transform);
             else
                 _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
@@ -89,16 +94,21 @@ public abstract class QueueHandler : MonoBehaviour
         {
             yield return _waitForSendTimeOut;
 
-            _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
-            _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false).ToList();
-
-            if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize && _sortedList[0].CheckForShopBuyed())
+            if (_queues[0].CheckForShopBuyed())
             {
-                if (_prisonerList.Count > 0)
+                _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
+                _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false)
+                    .ToList();
+
+                if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize &&
+                    _sortedList[0].CheckForShopBuyed())
                 {
-                    _sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
-                    _sortedList[0].ListSort();
-                    ExtractFirst();
+                    if (_prisonerList.Count > 0)
+                    {
+                        _sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
+                        _sortedList[0].ListSort();
+                        ExtractFirst();
+                    }
                 }
             }
         }
