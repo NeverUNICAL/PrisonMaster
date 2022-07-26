@@ -61,7 +61,11 @@ namespace Agava.IdleGame
                         AnimationScale(_buyZones[i].transform);
 
                         if (_nextLevel != null && _nextLevel.gameObject.activeInHierarchy == false)
+                        {
+                            OutlineZone outline = _nextLevel.GetComponentInChildren<OutlineZone>();
                             AnimationScale(_nextLevel.transform);
+                            outline.transform.DOScale(_scaleTarget, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+                        }
 
                         if (_room && _room.gameObject.activeInHierarchy == false)
                             AnimationScale(_room.transform);
