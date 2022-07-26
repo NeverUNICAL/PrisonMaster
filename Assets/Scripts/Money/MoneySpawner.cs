@@ -11,6 +11,7 @@ public class MoneySpawner : MonoBehaviour
     private int _currentCount;
     private int _counter = 0;
     private const float Delay = 0.2f;
+    private float _delayForStopMoney = 2f;
 
     private void OnEnable()
     {
@@ -42,6 +43,7 @@ public class MoneySpawner : MonoBehaviour
                 Money money = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, transform);
                 _currentCount++;
                 _counter++;
+                money.DisableRigidbody(_delayForStopMoney);
             }
         }
     }

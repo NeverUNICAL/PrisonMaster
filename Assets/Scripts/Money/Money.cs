@@ -42,5 +42,17 @@ public class Money : MonoBehaviour
         transform.DOScale(TargetScale, randomTime / 1.5f);
         transform.DOLocalMove(Vector3.zero, randomTime).OnComplete(() => Destroy(gameObject));
     }
+
+    public void DisableRigidbody(float delay)
+    {
+        StartCoroutine(Disable(delay));
+    }
+
+    private IEnumerator Disable(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        _rigidbody.isKinematic = true;
+    }
 }
 
