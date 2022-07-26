@@ -7,6 +7,7 @@ using System.Linq;
 
 public class MoveToConsumerState : AssistantState
 {
+    private Vector3 _offset = new Vector3(1, 0, 0);
     private Transform _target;
 
     private void Update()
@@ -56,6 +57,6 @@ public class MoveToConsumerState : AssistantState
             }
         }
 
-        Assistant.Move(_target.transform.position);
+        Assistant.Move(_target.transform.position + _offset);
     }
 }

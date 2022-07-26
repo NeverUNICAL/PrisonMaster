@@ -7,6 +7,7 @@ using Agava.IdleGame;
 
 public class MoveToProducerState : AssistantState
 {
+    private Vector3 _offset = new Vector3(-0.5f, 0, 0);
     private Transform _target;
 
     private void Update()
@@ -49,6 +50,6 @@ public class MoveToProducerState : AssistantState
             }
         }
 
-        Assistant.Move(_target.transform.position);
+        Assistant.Move(_target.transform.position + _offset);
     }
 }
