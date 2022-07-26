@@ -8,7 +8,7 @@ public class MoneySpawner : MonoBehaviour
     [SerializeField] private Transform[] _points;
 
     private int _counter = 0;
-    private const float Delay = 0.1f;
+    private const float Delay = 0.2f;
 
     private void OnEnable()
     {
@@ -37,8 +37,6 @@ public class MoneySpawner : MonoBehaviour
             
             Money money = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, transform);
             _counter++;
-
-            money.StopMove();
         }
     }
 }
