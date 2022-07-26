@@ -6,9 +6,12 @@ public class MoneySpawner : MonoBehaviour
     [SerializeField] private Store _store;
     [SerializeField] private Money _moneyTemplate;
     [SerializeField] private Transform[] _points;
+    [SerializeField] private int _maxCount;
 
+    private int _currentCount;
     private int _counter = 0;
     private const float Delay = 0.2f;
+    private float _delayForStopMoney = 2f;
 
     private void OnEnable()
     {
@@ -34,9 +37,14 @@ public class MoneySpawner : MonoBehaviour
             yield return delay;
             if (_counter > _points.Length - 1)
                 _counter = 0;
-            
-            Money money = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, transform);
-            _counter++;
+
+            if (_currentCount < _maxCount)
+            {
+                Money money = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, transform);
+                _currentCount++;
+                _counter++;
+                money.DisableRigidbody(_delayForStopMoney);
+            }
         }
     }
 }
