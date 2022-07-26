@@ -9,7 +9,7 @@ public class MoveToProducerState : AssistantState
 {
     private Transform _target;
 
-    private void OnEnable()
+    private void Update()
     {
         int[] tempArray = new int[Assistant.ProducerItemCreators.Length];
 

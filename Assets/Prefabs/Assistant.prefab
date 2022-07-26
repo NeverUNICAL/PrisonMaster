@@ -160,9 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8798402948edb147950bf17e7693028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _producersConteiner: {fileID: 0}
-  _consumersConteiner: {fileID: 0}
-  _speed: 0
+  producersContainer: {fileID: 0}
+  consumersContainer: {fileID: 0}
+  _speed: 2
 --- !u!114 &717448223038092234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitions:
   - {fileID: 717448223038092232}
-  _offset: {x: -2.5, y: 0, z: 0}
 --- !u!114 &717448223038092232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092239}
   _targetAlternativeState: {fileID: 0}
+  _delay: 1
 --- !u!114 &717448223038092239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092240}
   _targetAlternativeState: {fileID: 0}
-  _transitionRange: 2
+  _transitionRange: 1.5
 --- !u!114 &717448223038092240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092235}
   _targetAlternativeState: {fileID: 717448223038092239}
+  _delay: 1
 --- !u!1 &717448223498082281
 GameObject:
   m_ObjectHideFlags: 0

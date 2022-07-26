@@ -12,6 +12,7 @@ public class DistanceConsumerTransition : AssistantTransition
         {
             if (Vector3.Distance(transform.position, Assistant.TargetTransform.position) < _transitionRange)
             {
+                Assistant.ChangeTargetTransform(null);
                 NeedTransit = true;
             }
         }

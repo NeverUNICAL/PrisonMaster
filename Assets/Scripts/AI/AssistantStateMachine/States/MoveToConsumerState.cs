@@ -7,10 +7,9 @@ using System.Linq;
 
 public class MoveToConsumerState : AssistantState
 {
-    private Vector3 _offset;
     private Transform _target;
 
-    private void OnEnable()
+    private void Update()
     {
         int[] tempArray = new int[Assistant.ConsumersItemCreators.Length];
 
@@ -53,7 +52,6 @@ public class MoveToConsumerState : AssistantState
                     Transform transform = Assistant.ConsumersItemCreators[i].GetComponentInChildren<StackPresenterTrigger>().transform;
                     _target = transform;
                     Assistant.ChangeTargetTransform(transform);
-
                 }
             }
         }
