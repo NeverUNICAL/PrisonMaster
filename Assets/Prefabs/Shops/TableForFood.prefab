@@ -351,6 +351,7 @@ MonoBehaviour:
   - {fileID: 4975510570552890477}
   - {fileID: 8661647598032064698}
   - {fileID: 2766695465859894445}
+  _maxCount: 120
 --- !u!114 &3231853557730337966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,3 +1202,21 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.53300005, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7012954154201264260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444019787060998757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d875cc48750214e9e74e0ab58cb15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yOnEnablePosition: 1
+  _doScaleAfterEnable: {x: 1.1, y: 1.1, z: 1.1}
+  _scaleDuration: 1
+  _backToGroundDuration: 0.2
+  _timeToVFXSpawn: 1.1
+  _particleSystem: {fileID: 2323067394012328687, guid: 07f4b2a80c64ba94b95eee615dff0cba, type: 3}
