@@ -3,8 +3,7 @@ using System.Collections;
 using UnityEngine.AI;
 public class PrisonMover : MonoBehaviour
 {
-    [SerializeField] private GameObject _stickmanModel;
-    [SerializeField] private GameObject _prisonerModel;
+    [SerializeField] private GameObject _suit;
     
     private GameObject _nextPoint;
     private NavMeshAgent _agent;
@@ -46,6 +45,11 @@ public class PrisonMover : MonoBehaviour
         return _pathEnded;
     }
 
+    public void EnableSuit()
+    {
+        _suit.SetActive(true);
+    }
+
     public void SetTarget(GameObject target, Vector3 offset,Transform lookTarget = null)
     {
         _nextPoint = target;
@@ -55,8 +59,6 @@ public class PrisonMover : MonoBehaviour
             _lookTarget = _nextPoint.transform;
         else
             _lookTarget = lookTarget;
-
-
     }
 
     public void ChangePriority(int value)

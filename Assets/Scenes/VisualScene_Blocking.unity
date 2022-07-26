@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338747, g: 0.21673937, b: 0.29880846, a: 1}
+  m_IndirectSpecularColor: {r: 0.1733872, g: 0.21673907, b: 0.29880777, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1336,6 +1336,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 1277826511}
+  _isSuitQueue: 1
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -2223,6 +2224,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 2018583392}
+  _isSuitQueue: 1
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -3084,6 +3086,7 @@ MonoBehaviour:
   - {fileID: 284609116}
   - {fileID: 167760873}
   _shop: {fileID: 0}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
 --- !u!1 &367326220
@@ -6188,6 +6191,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 344035966}
+  _isSuitQueue: 1
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -7162,6 +7166,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 876799661}
+  _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -7812,6 +7817,7 @@ MonoBehaviour:
   _offsetPos: {x: 0, y: 0, z: 0}
   _queues: []
   _shop: {fileID: 0}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
 --- !u!4 &931808067
@@ -8426,6 +8432,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 545406749}
+  _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -9290,6 +9297,7 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1180378060}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -12041,6 +12049,7 @@ MonoBehaviour:
   - {fileID: 1572516891}
   - {fileID: 1799200037}
   _shop: {fileID: 0}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
 --- !u!114 &1448508073 stripped
@@ -13086,6 +13095,7 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1555987321}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -13508,6 +13518,7 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1149279059}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -13561,6 +13572,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 966813239}
+  _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -14929,6 +14941,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 2015269039}
+  _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -14982,6 +14995,7 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1087835456}
+  _isSuitQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -16449,6 +16463,7 @@ MonoBehaviour:
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 2035109683}
+  _isSuitQueue: 1
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -17581,7 +17596,8 @@ PrefabInstance:
       propertyPath: _offset
       value: 0.15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1411427246, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
 --- !u!4 &2157974347508190490 stripped
 Transform:

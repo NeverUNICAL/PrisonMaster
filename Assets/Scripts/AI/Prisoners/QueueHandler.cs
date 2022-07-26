@@ -20,6 +20,8 @@ public abstract class QueueHandler : MonoBehaviour
     
     [Header("Queue Container Settings")]
     [SerializeField] protected Shop _shop;
+
+    [SerializeField] protected bool _isSuitQueue;
     
     [Header("Distributor Settings")]
     [SerializeField] protected GameObject _exit;
@@ -65,7 +67,7 @@ public abstract class QueueHandler : MonoBehaviour
                 _prisonerList[i+1].SetTarget(_prisonerList[i].gameObject,_offsetPos);
             }
             
-           // _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
+            // _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
         }
     }
     
@@ -126,6 +128,9 @@ public abstract class QueueHandler : MonoBehaviour
         {
             if (_prisonerList.Count > 0 && targetQueue._queues.Count > 0)
             {
+                if(_isSuitQueue)
+                    _prisonerList[0].EnableSuit();
+                        
                 targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
                 targetQueue.ListSort();
                 ExtractFirst();
