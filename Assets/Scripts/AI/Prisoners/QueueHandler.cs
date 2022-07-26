@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,10 @@ public abstract class QueueHandler : MonoBehaviour
     [SerializeField]protected GameObject _firstPoint;
     [SerializeField]protected int _startPoolSize = 5;
     [SerializeField]protected Vector3 _offsetPos;
+    
+    [Header("Queue Container Setting")]
+    [SerializeField] protected Shop _shop;
+    
 
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
@@ -33,7 +38,11 @@ public abstract class QueueHandler : MonoBehaviour
     {
         if(_prisonerList.Count == 1)
         {
-            _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
+            if(_shop != null)
+             _prisonerList[0].SetTarget(_firstPoint,Vector3.zero,_shop.gameObject.transform);
+            else
+                _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
+                
         }
         
         for (int i = 0; i <_prisonerList.Count; i++)
@@ -62,7 +71,10 @@ public abstract class QueueHandler : MonoBehaviour
         
         if(_prisonerList.Count>0)
         {
-            _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
+            if(_shop != null)
+                _prisonerList[0].SetTarget(_firstPoint,Vector3.zero,_shop.gameObject.transform);
+            else
+                _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
         }
     }
 

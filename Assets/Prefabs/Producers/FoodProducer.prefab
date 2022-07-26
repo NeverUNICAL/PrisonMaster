@@ -237,6 +237,8 @@ MonoBehaviour:
   _jumpPower:
     _enabled: 0
     _value: 0
+  _scaleForPlayerObjects: {x: 0.7, y: 1.2, z: 0.7}
+  _scaleForObjects: {x: 1, y: 1.5, z: 1}
   _size: {x: 1, y: 5, z: 1}
   _distanceBetweenObjects: {x: 0.6, y: 0.11, z: 0.6}
   _drawGizmos: 1
@@ -325,9 +327,9 @@ MonoBehaviour:
   Template: {fileID: 4010891655269824800, guid: ccdec3c77e64c2e4db066b7d867d68cb, type: 3}
   CreatingItemCount: 1
   _spawnObjectPosition: {fileID: 5806572628675962762}
-  _timerView: {fileID: 2783132093003266269}
   _objectTransferZone: {fileID: 5806572629841525218}
   _timeBetweenSpawnItem: 2
+  _text: {fileID: 0}
 --- !u!114 &5806572629841525218
 MonoBehaviour:
   m_ObjectHideFlags: 0

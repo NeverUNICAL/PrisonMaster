@@ -716,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Printer
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4272ecd101447f74e931f53e89d5369b, type: 3}
 --- !u!23 &7593174043518051787 stripped
@@ -754,3 +758,19 @@ MonoBehaviour:
   _itemCreator: {fileID: 4627601754640322198}
   _meshRenderer: {fileID: 7593174043518051787}
   _conveerSpeed: 0.005
+--- !u!208 &288158987198232982
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241767637377582110}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.143, y: 1.3740001, z: 1.6330001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.018000001, y: 1.3740001, z: 0.508}
+  m_TimeToStationary: 0.5

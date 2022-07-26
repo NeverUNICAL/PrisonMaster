@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338821, g: 0.2167395, b: 0.2988085, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338794, g: 0.21673918, b: 0.29880756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2907,6 +2907,7 @@ MonoBehaviour:
   _firstPoint: {fileID: 364880984}
   _startPoolSize: 5
   _offsetPos: {x: 0, y: 0, z: 0}
+  _shop: {fileID: 0}
 --- !u!1 &367326220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,6 +3418,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: consumersContainer
+      value: 
+      objectReference: {fileID: 2060974188}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: producersContainer
+      value: 
+      objectReference: {fileID: 1886732267}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
       propertyPath: _consumersConteiner
       value: 
       objectReference: {fileID: 522431287}
@@ -3625,6 +3634,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: consumersContainer
+      value: 
+      objectReference: {fileID: 2060974188}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: producersContainer
+      value: 
+      objectReference: {fileID: 1886732267}
     - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
       propertyPath: _consumersConteiner
       value: 
@@ -6890,8 +6907,8 @@ MonoBehaviour:
   _firstPoint: {fileID: 812000740}
   _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
-  _distributor: {fileID: 364880986}
   _shop: {fileID: 876799661}
+  _distributor: {fileID: 364880986}
 --- !u!1 &818826538
 GameObject:
   m_ObjectHideFlags: 0
@@ -7112,6 +7129,11 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.018183798, y: 0.68645024, z: -0.11573583}
     m_Extent: {x: 0.64672613, y: 1.2695258, z: 0.7180071}
   m_DirtyAABB: 0
+--- !u!1 &833479268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8262307761101418814, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+  m_PrefabInstance: {fileID: 3652467227713598000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &835789794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8094,8 +8116,8 @@ MonoBehaviour:
   _firstPoint: {fileID: 974294162}
   _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
-  _distributor: {fileID: 364880986}
   _shop: {fileID: 545406749}
+  _distributor: {fileID: 364880986}
 --- !u!1001 &988875396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8677,6 +8699,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: consumersContainer
+      value: 
+      objectReference: {fileID: 522431287}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: producersContainer
+      value: 
+      objectReference: {fileID: 1850231726}
     - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
       propertyPath: _consumersConteiner
       value: 
@@ -11331,6 +11361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DebugUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6670639832970917264, guid: 4beb51cdb5095ca499ad0a2bf3235ff0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6670639832970917268, guid: 4beb51cdb5095ca499ad0a2bf3235ff0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -12981,8 +13015,8 @@ MonoBehaviour:
   _firstPoint: {fileID: 1615976160}
   _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
-  _distributor: {fileID: 364880986}
   _shop: {fileID: 966813239}
+  _distributor: {fileID: 364880986}
 --- !u!4 &1620053252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6964897122084053481, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
@@ -13121,6 +13155,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: consumersContainer
+      value: 
+      objectReference: {fileID: 522431287}
+    - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: producersContainer
+      value: 
+      objectReference: {fileID: 1850231726}
     - target: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
       propertyPath: _consumersConteiner
       value: 
@@ -14292,8 +14334,8 @@ MonoBehaviour:
   _firstPoint: {fileID: 1789150566}
   _startPoolSize: 5
   _offsetPos: {x: -1, y: 0, z: 1}
-  _distributor: {fileID: 364880986}
   _shop: {fileID: 2015269039}
+  _distributor: {fileID: 364880986}
 --- !u!1001 &1814437475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14622,6 +14664,11 @@ Transform:
   m_Father: {fileID: 1559373849}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1849552453 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2480613164569583989, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+  m_PrefabInstance: {fileID: 3652467227713598000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1850231724
 GameObject:
   m_ObjectHideFlags: 0
@@ -15037,6 +15084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1886732266}
+  - component: {fileID: 1886732267}
   m_Layer: 0
   m_Name: Washers
   m_TagString: Untagged
@@ -15063,6 +15111,18 @@ Transform:
   m_Father: {fileID: 399424273}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886732267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886732265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4039ad54ebbcff4481d31bee8fbe9b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1891657615
 GameObject:
   m_ObjectHideFlags: 0
@@ -16118,6 +16178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060974187}
+  - component: {fileID: 2060974188}
   m_Layer: 0
   m_Name: TablesForSuit
   m_TagString: Untagged
@@ -16143,6 +16204,18 @@ Transform:
   m_Father: {fileID: 399424273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060974188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060974186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c216b57257a23684992d4c196428c44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2077579169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16793,6 +16866,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1033482721}
     - target: {fileID: 2007783058, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: _fillSpeedImage
+      value: 
+      objectReference: {fileID: 1849552453}
+    - target: {fileID: 2007783058, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: _assistants.Array.data[0]
       value: 
       objectReference: {fileID: 1332195070}
@@ -16820,6 +16897,18 @@ PrefabInstance:
       propertyPath: _playerSavePresenter
       value: 
       objectReference: {fileID: 1033482721}
+    - target: {fileID: 7748447960165909298, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 833479268}
+    - target: {fileID: 7748447960165909298, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262307761101418814, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262307762876253531, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_Name
       value: UpgradesAndHRCanvas

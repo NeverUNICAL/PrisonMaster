@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsumersConteiner : MonoBehaviour
+public class ProdusersContainer : MonoBehaviour
 {
     
 }

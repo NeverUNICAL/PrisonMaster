@@ -6,8 +6,7 @@ using UnityEngine;
 public class QueueContainer : QueueHandler
 {
     [SerializeField] private Distributor _distributor;
-    [SerializeField] private Shop _shop;
-        
+
     private void Start()
     {
         GenerateList();

@@ -9,8 +9,8 @@ public class PrisonMover : MonoBehaviour
     private Vector3 _targetPoint;
     private static readonly int Speed = Animator.StringToHash("Speed");
     private NavMeshPath _agentPath;
-
     private bool _pathEnded;
+    private Transform _lookTarget;
     
     public GameObject NextPoint =>_nextPoint;
     
@@ -28,7 +28,7 @@ public class PrisonMover : MonoBehaviour
            _agentPath = _agent.path;
        }
 
-       transform.LookAt(_nextPoint.transform);
+       transform.LookAt(_lookTarget);
         
        _animator.SetFloat(Speed, _agent.velocity.magnitude/_agent.speed);
     }
@@ -43,10 +43,17 @@ public class PrisonMover : MonoBehaviour
         return _pathEnded;
     }
 
-    public void SetTarget(GameObject target, Vector3 offset)
+    public void SetTarget(GameObject target, Vector3 offset,Transform lookTarget = null)
     {
         _nextPoint = target;
         _targetPoint = offset;
+        
+        if (lookTarget == null)
+            _lookTarget = _nextPoint.transform;
+        else
+            _lookTarget = lookTarget;
+
+
     }
 
     public void ChangePriority(int value)

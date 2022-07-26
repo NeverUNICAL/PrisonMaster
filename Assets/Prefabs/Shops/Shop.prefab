@@ -851,7 +851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8118829637420721635
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1317,6 +1317,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7625897355601367110, guid: 669a61b9412826943bb8f175a7dcd82d, type: 3}
   m_PrefabInstance: {fileID: 6687554290148880342}
   m_PrefabAsset: {fileID: 0}
+--- !u!208 &8714464557840661378
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826465444659953552}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.65000004, y: 1.4300001, z: 0.65000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.4300001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &6658549361617911160
 MonoBehaviour:
   m_ObjectHideFlags: 0

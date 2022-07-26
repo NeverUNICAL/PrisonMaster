@@ -8,8 +8,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(PlayerStackPresenter))]
 public class Assistant : MonoBehaviour
 {
-    [SerializeField] private ProdusersConteiner _producersConteiner;
-    [SerializeField] private ConsumersConteiner _consumersConteiner;
+    [SerializeField] private ProdusersContainer producersContainer;
+    [SerializeField] private ConsumersContainer consumersContainer;
     
     [Header("OptionsForUpgrade")]
     [SerializeField] private float _speed;
@@ -43,25 +43,25 @@ public class Assistant : MonoBehaviour
 
     private void Start()
     {
-        _producers = new StackView[_producersConteiner.transform.childCount];
-        _consumers = new StackView[_consumersConteiner.transform.childCount];
-        _producerItemCreators = new ItemCreator[_producersConteiner.transform.childCount];
-        _consumersItemCreators = new StackPresenter[_consumersConteiner.transform.childCount];
+        _producers = new StackView[producersContainer.transform.childCount];
+        _consumers = new StackView[consumersContainer.transform.childCount];
+        _producerItemCreators = new ItemCreator[producersContainer.transform.childCount];
+        _consumersItemCreators = new StackPresenter[consumersContainer.transform.childCount];
         _assistantStack = GetComponentInChildren<BoxStackView>();
 
         for (int i = 0; i < _producers.Length; i++)
         {
-            _producers[i] = _producersConteiner.transform.GetChild(i).GetComponentInChildren<StackView>();
-            _producerItemCreators[i] = _producersConteiner.transform.GetChild(i).GetComponent<ItemCreator>();
+            _producers[i] = producersContainer.transform.GetChild(i).GetComponentInChildren<StackView>();
+            _producerItemCreators[i] = producersContainer.transform.GetChild(i).GetComponent<ItemCreator>();
         }
 
         for (int i = 0; i < _consumers.Length; i++)
         {
-            _consumers[i] = _consumersConteiner.transform.GetChild(i).GetComponentInChildren<StackView>();
-            _consumersItemCreators[i] = _consumersConteiner.transform.GetChild(i).GetComponent<StackPresenter>();
+            _consumers[i] = consumersContainer.transform.GetChild(i).GetComponentInChildren<StackView>();
+            _consumersItemCreators[i] = consumersContainer.transform.GetChild(i).GetComponent<StackPresenter>();
         }
-
-        _stateMachine.enabled = true;
+        
+        Invoke(nameof(StartStateMachine),3f);
     }
 
     public void ChangeSpeed(float targetSpeed)
@@ -83,5 +83,10 @@ public class Assistant : MonoBehaviour
     public void Move(Vector3 target)
     {
         _navMeshAgent.SetDestination(target);
+    }
+
+    private void StartStateMachine()
+    {
+        _stateMachine.enabled = true;
     }
 }
