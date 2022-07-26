@@ -6,20 +6,13 @@ using UnityEngine;
 
 public class Distributor : QueueHandler
 {
-    [Header("Distributor Settings")]
-    [SerializeField] private GameObject _exit;
-    [SerializeField] private float _tryToSendToExitCooldown;
-
-    private WaitForSeconds _waitToTrySendToExit;
-
     private void Start()
     {
-        _waitToTrySendToExit = new WaitForSeconds(_tryToSendToExitCooldown);
-        
-        StartCoroutine(TrySendToExit());
-        
-        if(_queues.Count > 0)
-         StartCoroutine(SendToQueue(_queues));
+        if (_queues.Count > 0)
+        {
+            StartCoroutine(TrySendToExit());
+            StartCoroutine(SendToQueue(_queues));
+        }
     }
     
     private IEnumerator TrySendToExit()
@@ -33,11 +26,5 @@ public class Distributor : QueueHandler
 
             yield return _waitToTrySendToExit;
         }
-    }
-
-    private void SendToExit()
-    {
-        _prisonerList[0].SetTarget(_exit,Vector3.zero);
-        ExtractFirst();
     }
 }

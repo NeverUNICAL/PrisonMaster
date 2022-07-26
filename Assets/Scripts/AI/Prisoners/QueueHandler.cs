@@ -21,6 +21,11 @@ public abstract class QueueHandler : MonoBehaviour
     [Header("Queue Container Settings")]
     [SerializeField] protected Shop _shop;
     
+    [Header("Distributor Settings")]
+    [SerializeField] protected GameObject _exit;
+    [SerializeField] protected float _tryToSendToExitCooldown;
+
+    protected WaitForSeconds _waitToTrySendToExit;
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
     protected List<PrisonMover> _prisonerList;
@@ -33,6 +38,7 @@ public abstract class QueueHandler : MonoBehaviour
 
     private void Awake()
     {
+        _waitToTrySendToExit = new WaitForSeconds(_tryToSendToExitCooldown);
         _isShopNotNull = _shop != null;
         _waitForSpawnTimeOut = new WaitForSeconds(_spawnTimeOut);
         _waitForSendTimeOut = new WaitForSeconds(_sendTimeOut);
@@ -59,7 +65,7 @@ public abstract class QueueHandler : MonoBehaviour
                 _prisonerList[i+1].SetTarget(_prisonerList[i].gameObject,_offsetPos);
             }
             
-            _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
+           // _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
         }
     }
     
@@ -118,15 +124,29 @@ public abstract class QueueHandler : MonoBehaviour
     {
         if (targetQueue.PrisonerQueueList.Count < targetQueue.PoolSize)
         {
-                if (_prisonerList.Count > 0)
-                {
-                    targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
-                    targetQueue.ListSort();
-                    ExtractFirst();
-                    return true;
-                }
+            if (_prisonerList.Count > 0 && targetQueue._queues.Count > 0)
+            {
+                targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
+                targetQueue.ListSort();
+                ExtractFirst();
+                return true;
+            }
+
+            if (_prisonerList.Count > 0)
+            {
+                SendToExit();
+            }
         }
 
         return false;
+    }
+    
+    protected void SendToExit()
+    {
+        _prisonerList[0].SetTarget(_exit,Vector3.zero);
+        ExtractFirst();
+        
+        if(_shop != null)
+         _shop.Sale();
     }
 }

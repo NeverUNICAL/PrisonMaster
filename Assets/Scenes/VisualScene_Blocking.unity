@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338821, g: 0.2167395, b: 0.2988085, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338794, g: 0.21673918, b: 0.29880756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1320,6 +1320,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1277826511}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
 --- !u!1001 &180812950
 PrefabInstance:
@@ -2205,6 +2207,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 2018583392}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
 --- !u!1 &291931200
 GameObject:
@@ -4369,34 +4373,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600074, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600074, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600075, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600075, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600076, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600077, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8118829636950600077, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
-      propertyPath: m_Center.z
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
 --- !u!4 &502893548 stripped
@@ -6184,6 +6160,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 344035966}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
 --- !u!1001 &688814987
 PrefabInstance:
@@ -7135,6 +7113,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 876799661}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
 --- !u!1 &818826538
 GameObject:
@@ -8397,6 +8377,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 545406749}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
 --- !u!1001 &988875396
 PrefabInstance:
@@ -9251,6 +9233,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1180378060}
+  _exit: {fileID: 469540570}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
 --- !u!114 &1123936535 stripped
 MonoBehaviour:
@@ -13106,6 +13090,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1555987321}
+  _exit: {fileID: 469540570}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
 --- !u!1001 &1579715288
 PrefabInstance:
@@ -13522,6 +13508,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1149279059}
+  _exit: {fileID: 469540570}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
 --- !u!1 &1615976160
 GameObject:
@@ -13573,6 +13561,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 966813239}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
 --- !u!4 &1620053252 stripped
 Transform:
@@ -14927,6 +14917,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 2015269039}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
 --- !u!1 &1799200035
 GameObject:
@@ -14978,6 +14970,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 1087835456}
+  _exit: {fileID: 469540570}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
 --- !u!1001 &1814437475
 PrefabInstance:
@@ -16433,6 +16427,8 @@ MonoBehaviour:
   _offsetPos: {x: -1, y: 0, z: 1}
   _queues: []
   _shop: {fileID: 2035109683}
+  _exit: {fileID: 0}
+  _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
 --- !u!1 &1989641320
 GameObject:
