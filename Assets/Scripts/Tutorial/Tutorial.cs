@@ -88,7 +88,7 @@ public class Tutorial : MonoBehaviour
     {
         if (_playerSavePresenter.IsTutorialCompleted)
         {
-            OnStartGame();
+            OnTutorialCompletedOnStart();
         }
         else
         {
@@ -118,7 +118,7 @@ public class Tutorial : MonoBehaviour
     {
         _prisonersManager.gameObject.SetActive(true);
         _trashZone.gameObject.SetActive(true);
-            
+
         for (int i = 0; i < _openObjects.Length; i++)
         {
             _openObjects[i].gameObject.SetActive(true);
