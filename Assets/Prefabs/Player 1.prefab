@@ -95,7 +95,7 @@ MonoBehaviour:
   _animationDuration: 0.15
   _scalePunch:
     _enabled: 1
-    _value: 1.1
+    _value: 1.15
   _jumpPower:
     _enabled: 0
     _value: 0
@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 4574266190011947073}
   - component: {fileID: 4574266190011947072}
   - component: {fileID: 4574266190011947087}
-  - component: {fileID: 1411427247}
   - component: {fileID: 1411427244}
   - component: {fileID: 1411427245}
   - component: {fileID: 1411427246}
@@ -214,7 +213,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 100
   avoidancePriority: 0
   m_AngularSpeed: 180
@@ -256,25 +255,6 @@ MonoBehaviour:
   _viewPoint: {fileID: 4574266189265541328}
   _parentRotation: {fileID: 4574266190011947079}
   _offset: 0.08
---- !u!95 &1411427247
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4574266190011947064}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1411427244
 MonoBehaviour:
   m_ObjectHideFlags: 0

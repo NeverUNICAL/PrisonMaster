@@ -31,9 +31,10 @@ public class MoneyShooter : MonoBehaviour
 
         float v2 = (g * x * x) / (2 * (y - Mathf.Tan(AngleInRadians) * x) * Mathf.Pow(Mathf.Cos(AngleInRadians), 2));
         float v = Mathf.Sqrt(Mathf.Abs(v2));
+        float v3 = v/2;
 
         GameObject newPrefab = Instantiate(_prefab, _spawnTransform.position, Quaternion.identity);
-        newPrefab.GetComponent<Rigidbody>().velocity = _spawnTransform.forward * v;
+        newPrefab.GetComponent<Rigidbody>().velocity = _spawnTransform.forward * v3;
 
         StartCoroutine(DestroyObject(newPrefab, _delayDestroy));
     }

@@ -12,9 +12,9 @@ public class Money : MonoBehaviour
     private Collider _collider;
     private Rigidbody _rigidbody;
 
-    private const float MinDelay = 0.1f;
-    private const float MaxDelay = 0.2f;
-    private const float TargetScale = 0.7f;
+    private const float MinDelay = 0.3f;
+    private const float MaxDelay = 0.55f;
+    private const float TargetScale = 0.5f;
 
     private Coroutine _coroutineInJob;
 
