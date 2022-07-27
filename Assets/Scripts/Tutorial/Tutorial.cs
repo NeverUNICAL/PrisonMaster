@@ -71,7 +71,6 @@ public class Tutorial : MonoBehaviour
 
     private void OnStartGame()
     {
-        _playerSavePresenter.SetTutorialComplete();
         _prisonersManager.gameObject.SetActive(true);
         AnimationScale(_trashZone.transform);
 
@@ -80,7 +79,8 @@ public class Tutorial : MonoBehaviour
             AnimationScale(_openObjects[i].transform);
             _openObjects[i].gameObject.SetActive(true);
         }
-
+        
+        _playerSavePresenter.SetTutorialComplete();
         gameObject.SetActive(false);
     }
 

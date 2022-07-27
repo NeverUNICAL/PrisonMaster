@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338747, g: 0.21673937, b: 0.29880846, a: 1}
+  m_IndirectSpecularColor: {r: 0.1733872, g: 0.21673907, b: 0.29880777, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1205,7 +1205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178651095482068248, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6560429298639720794, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3176,7 +3176,7 @@ MonoBehaviour:
   _spawnTimeOut: 1
   _sendTimeOut: 2
   _firstPoint: {fileID: 364880984}
-  _startPoolSize: 5
+  _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
   _queues:
   - {fileID: 685340014}
@@ -4246,7 +4246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &472778667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8341,7 +8341,7 @@ Camera:
   far clip plane: 1000
   field of view: 10
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9410,7 +9410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178651095482068248, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6560429298639720794, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -9505,7 +9505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 5
+  _sendTimeOut: 6
   _firstPoint: {fileID: 1120001471}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
@@ -12275,7 +12275,7 @@ MonoBehaviour:
   _spawnTimeOut: 1
   _sendTimeOut: 2
   _firstPoint: {fileID: 1442995391}
-  _startPoolSize: 5
+  _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
   _queues:
   - {fileID: 1120001473}
@@ -13323,7 +13323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 5
+  _sendTimeOut: 6
   _firstPoint: {fileID: 1572516889}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
@@ -13746,7 +13746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 5
+  _sendTimeOut: 6
   _firstPoint: {fileID: 1608014183}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
@@ -15080,7 +15080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1787044505
 Transform:
   m_ObjectHideFlags: 0
@@ -15224,7 +15224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 5
+  _sendTimeOut: 6
   _firstPoint: {fileID: 1799200035}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
@@ -17706,10 +17706,6 @@ PrefabInstance:
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 928946382}
-    - target: {fileID: 7230713671463026720, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
-      propertyPath: m_text
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 7230713672278201669, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: m_RootOrder
       value: 2
