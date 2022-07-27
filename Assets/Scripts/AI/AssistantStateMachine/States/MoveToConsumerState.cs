@@ -37,9 +37,14 @@ public class MoveToConsumerState : AssistantState
                 else
                 {
                     if (i + 1 > tempArray.Length)
+                    {
                         minValue = tempArray[0];
+                    }
                     else
-                        minValue = tempArray[i + 1];
+                    {
+                        minValue = tempArray[i];
+                        minValue++;
+                    }
                 }
             }
         }
