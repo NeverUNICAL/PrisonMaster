@@ -37,18 +37,15 @@ public class Shop : Store
 
     public void Sale()
     {
-        if(_stackPresenter.Count >=_countForSale)
+        for (int i = 0; i < _countForSale; i++)
         {
-            for (int i = 0; i < _countForSale; i++)
-            {
-                StackableObject objectForSale = _stackPresenter.RemoveAt(0);
-                objectForSale.View.DOMove(_point.position, _duration).OnComplete(() => Destroy(objectForSale.View.gameObject));
-                _duration += _durationDelay;
-            }
-            
-            _duration = _defaultDuration;
-            OnSold(_count);
+            StackableObject objectForSale = _stackPresenter.RemoveAt(0);
+            objectForSale.View.DOMove(_point.position, _duration).OnComplete(() => Destroy(objectForSale.View.gameObject));
+            _duration += _durationDelay;
         }
+            
+        _duration = _defaultDuration;
+        OnSold(_count);
     }
 
     private void OnBuyerBougth(Buyer buyer)
