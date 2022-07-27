@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private float _rotateSpeed;
 
     private NavMeshAgent _navMeshAgent;
     //private Animator _animator;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         EnableMovement();
+        _navMeshAgent.updateRotation = false;
     }
 
 
@@ -44,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
         newJoystick.x = _joystick.Horizontal * Mathf.Cos(angle_rad) - _joystick.Vertical * Mathf.Sin(angle_rad);
         newJoystick.y = _joystick.Horizontal * Mathf.Sin(angle_rad) + _joystick.Vertical * Mathf.Cos(angle_rad);
         Vector3 targetPos = transform.position + new Vector3(newJoystick.x, 0, newJoystick.y);
+
+        //gameObject.transform.rotation =  Vector3.RotateTowards(transform.forward, targetPos, _rotateSpeed, 0.0f);
+
+        transform.LookAt(targetPos);
         
         _navMeshAgent.SetDestination(targetPos);
         
