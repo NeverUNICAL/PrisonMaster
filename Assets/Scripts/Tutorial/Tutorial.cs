@@ -36,15 +36,17 @@ public class Tutorial : MonoBehaviour
     {
         if (_playerSavePresenter.IsTutorialCompleted)
         {
-            _duration = 0;
-            _durationForOutlines = 0;
+           OnTutorialCompletedOnStart();
         }
-        _arrows[0].transform
+        else
+        {
+            _arrows[0].transform
                 .DOMove(
                     new Vector3(_arrows[0].transform.position.x, _arrows[0].transform.position.y - 0.5f,
                         _arrows[0].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
             _outlines[0].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear)
                 .SetLoops(-1, LoopType.Yoyo);
+        }
     }
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
@@ -98,10 +100,30 @@ public class Tutorial : MonoBehaviour
 
     private void AnimationScale(Transform buyZone)
     {
-        Sequence sequence = DOTween.Sequence();
-        buyZone.gameObject.SetActive(true);
-        buyZone.transform.localScale = new Vector3(0, 0, 0);
-        sequence.Append(buyZone.transform.DOScale(_scaleTarget, _durationForOutlines));
-        sequence.Append(buyZone.transform.DOScale(new Vector3(1, 1, 1), _durationForOutlines));
+        if (_playerSavePresenter.IsTutorialCompleted)
+        {
+            
+        }
+        else
+        {
+            Sequence sequence = DOTween.Sequence();
+            buyZone.gameObject.SetActive(true);
+            buyZone.transform.localScale = new Vector3(0, 0, 0);
+            sequence.Append(buyZone.transform.DOScale(_scaleTarget, _durationForOutlines));
+            sequence.Append(buyZone.transform.DOScale(new Vector3(1, 1, 1), _durationForOutlines));
+        }
+    }
+
+    private void OnTutorialCompletedOnStart()
+    {
+        _prisonersManager.gameObject.SetActive(true);
+        _trashZone.gameObject.SetActive(true);
+            
+        for (int i = 0; i < _openObjects.Length; i++)
+        {
+            _openObjects[i].gameObject.SetActive(true);
+        }
+        
+        gameObject.SetActive(false);
     }
 }

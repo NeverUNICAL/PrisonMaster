@@ -18,7 +18,7 @@ public class Shop : Store
     private float _defaultDuration;
 
     public int Count => _stackPresenter.Count;
-
+    public int CountForSale => _countForSale;
     
     private void OnEnable()
     {

@@ -27,7 +27,7 @@ public class QueueContainer : QueueHandler
         {
             if (_prisonerList.Count > 0 && _shop.gameObject.activeInHierarchy) 
             {
-                   if (_shop.Count > 2 && _prisonerList[0].PathEnded()) 
+                   if (_shop.Count > _shop.CountForSale && _prisonerList[0].PathEnded()) 
                    {
                        if(SendToPool(_distributor))
                          _shop.Sale();
