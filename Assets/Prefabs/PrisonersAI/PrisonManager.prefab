@@ -78,12 +78,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 3
+  _sendTimeOut: 3.1
   _firstPoint: {fileID: 5912464837049412060}
   _startPoolSize: 7
   _offsetPos: {x: 0, y: 0, z: 0}
   _queues: []
   _shop: {fileID: 0}
+  _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _prisoner: {fileID: 1131484534194217502, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
