@@ -4,7 +4,7 @@ namespace Agava.IdleGame.Examples
 {
     public class CameraFollower : MonoBehaviour
     {
-        private const float SmoothingPower = 0.3f;
+        [SerializeField]private float SmoothingPower = 0.3f;
 
         [SerializeField] private Transform _target;
 
