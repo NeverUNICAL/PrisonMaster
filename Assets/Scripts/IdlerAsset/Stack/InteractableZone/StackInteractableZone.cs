@@ -66,6 +66,20 @@ namespace Agava.IdleGame
 
         private void OnEnter(StackPresenter enteredStack)
         {
+            if (_enteredStackList != null && enteredStack.TryGetComponent(out PlayerMovement player))
+            {
+                OnExit(_enteredStackList[0]);
+                InTrigger = true;
+                _enteredStackList = enteredStack.GetComponents<StackPresenter>();
+
+                if (CanInteract(enteredStack))
+                    _timer.Start(InteracionTime);
+                else
+                    _waitCoroutine = StartCoroutine(WaitUntilCanInteract(() => _timer.Start(InteracionTime)));
+                
+                return;
+            }
+
             if (_enteredStackList != null)
                 return;
 
@@ -83,7 +97,7 @@ namespace Agava.IdleGame
             if (_enteredStackList == null)
                 OnEnter(enteredStack);
         }
-
+        
         private void OnTimeOver()
         {
             foreach (var stackPresenter in _enteredStackList)
