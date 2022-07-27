@@ -7,6 +7,7 @@ public class QueueContainer : QueueHandler
 {
     [SerializeField] private Distributor _distributor;
 
+    private bool _isAngryPrisoner;
     private void Start()
     {
         GenerateList();
@@ -17,7 +18,7 @@ public class QueueContainer : QueueHandler
     {
         if (_shop.gameObject.activeInHierarchy)
             return true;
-        
+
         return false;
     }
 
@@ -25,16 +26,32 @@ public class QueueContainer : QueueHandler
     {
         while (true)
         {
-            if (_prisonerList.Count > 0 && _shop.gameObject.activeInHierarchy) 
+            if (_prisonerList.Count > 0 && _shop.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
             {
-                   if (_shop.Count >= _shop.CountForSale && _prisonerList[0].PathEnded()) 
-                   {
-                       if(SendToPool(_distributor))
-                         _shop.Sale();
-                   }
+                if (_shop.Count >= _shop.CountForSale)
+                {
+                    if (SendToPool(_distributor))
+                        _shop.Sale();
+
+                    ChangeAnimationPrisoners(false);
+                }
+                else
+                {
+                    ChangeAnimationPrisoners(true);
+                }
+
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return _waitForSendTimeOut;
+        }
+    }
+
+    private void ChangeAnimationPrisoners(bool value)
+    {
+        foreach (var prisoner in _prisonerList)
+        {
+            if (prisoner.PathEnded())
+                prisoner.ChangeAngryAnimation(value);
         }
     }
 }

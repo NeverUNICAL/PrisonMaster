@@ -4,7 +4,8 @@ using UnityEngine.AI;
 public class PrisonMover : MonoBehaviour
 {
     [SerializeField] private GameObject _suit;
-    
+    [SerializeField] private ParticleSystem _angryEffect;
+
     private GameObject _nextPoint;
     private NavMeshAgent _agent;
     private Animator _animator;
@@ -13,9 +14,10 @@ public class PrisonMover : MonoBehaviour
     private NavMeshPath _agentPath;
     private bool _pathEnded;
     private Transform _lookTarget;
-    
-    public GameObject NextPoint =>_nextPoint;
-    
+    private const string _isAngryAnimation = "IsAngry";
+
+    public GameObject NextPoint => _nextPoint;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -24,24 +26,24 @@ public class PrisonMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-       if (_agentPath != _agent.path)
-       {
-           _agent.destination = _nextPoint.transform.position + _targetPoint;
-           _agentPath = _agent.path;
-       }
+        if (_agentPath != _agent.path)
+        {
+            _agent.destination = _nextPoint.transform.position + _targetPoint;
+            _agentPath = _agent.path;
+        }
 
-       transform.LookAt(_lookTarget);
-        
-       _animator.SetFloat(Speed, _agent.velocity.magnitude/_agent.speed);
+        transform.LookAt(_lookTarget);
+
+        _animator.SetFloat(Speed, _agent.velocity.magnitude / _agent.speed);
     }
 
     public bool PathEnded()
     {
         _pathEnded = false;
-        
-        if(_agent.remainingDistance <= _agent.stoppingDistance)
+
+        if (_agent.remainingDistance <= _agent.stoppingDistance)
             _pathEnded = true;
-        
+
         return _pathEnded;
     }
 
@@ -50,11 +52,11 @@ public class PrisonMover : MonoBehaviour
         _suit.SetActive(true);
     }
 
-    public void SetTarget(GameObject target, Vector3 offset,Transform lookTarget = null)
+    public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
     {
         _nextPoint = target;
         _targetPoint = offset;
-        
+
         if (lookTarget == null)
             _lookTarget = _nextPoint.transform;
         else
@@ -64,5 +66,11 @@ public class PrisonMover : MonoBehaviour
     public void ChangePriority(int value)
     {
         _agent.avoidancePriority = value;
+    }
+
+    public void ChangeAngryAnimation(bool value)
+    {
+        _animator.SetBool(_isAngryAnimation, value);
+        _angryEffect.gameObject.SetActive(value);
     }
 }
