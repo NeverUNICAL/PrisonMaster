@@ -7,61 +7,39 @@ using System.Linq;
 
 public class MoveToConsumerState : AssistantState
 {
-    private Vector3 _offset = new Vector3(1, 0, 0);
+    [SerializeField] private float _delay = 1f;
+    [SerializeField] private Vector3 _offset;
     private Transform _target;
+    private Coroutine _coroutineInJob;
+    private List<StackPresenter> _stackPresenters = new List<StackPresenter>();
 
-    private void Update()
+    private void OnEnable()
     {
-        int[] tempArray = new int[Assistant.ConsumersItemCreators.Length];
+        //_offset = new Vector3(Random.Range(0.5f, 1.3f), 0, Random.Range(-1.3f, 1.3f));
+        _coroutineInJob = StartCoroutine(FindMinStack());
+    }
 
-        for (int i = 0; i < tempArray.Length; i++)
+    private IEnumerator FindMinStack()
+    {
+        while (true)
         {
-            if (Assistant.ConsumersItemCreators[i].gameObject.activeInHierarchy == true)
+            for (int i = 0; i < Assistant.ConsumersItemCreators.Count; i++)
             {
-                tempArray[i] = Assistant.ConsumersItemCreators[i].Count;
-
+                if (Assistant.ConsumersItemCreators[i].gameObject.activeInHierarchy)
+                    _stackPresenters.Add(Assistant.ConsumersItemCreators[i]);
             }
+
+            _stackPresenters = _stackPresenters.OrderBy(consumer => consumer.Count).ToList();
+            _target = _stackPresenters[0].GetComponentInChildren<StackPresenterTrigger>().transform;
+            Assistant.ChangeTargetTransform(_target);
+            Assistant.Move(_target.transform.position + _offset);
+
+            yield return new WaitForSeconds(_delay);
         }
+    }
 
-        int minValue = tempArray[0];
-
-        for (int i = 0; i < tempArray.Length; i++)
-        {
-            if (Assistant.ConsumersItemCreators[i].gameObject.activeInHierarchy == true)
-            {
-                if (Assistant.ConsumersItemCreators[i].Count != Assistant.ConsumersItemCreators[i].Capacity)
-                {
-                    if (tempArray[i] < minValue)
-                        minValue = tempArray[i];
-                }
-                else
-                {
-                    if (i + 1 > tempArray.Length)
-                    {
-                        minValue = tempArray[0];
-                    }
-                    else
-                    {
-                        minValue = tempArray[i];
-                        minValue++;
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < Assistant.ConsumersItemCreators.Length; i++)
-        {
-            if (Assistant.ConsumersItemCreators[i].gameObject.activeInHierarchy == true)
-            {
-                if (minValue == Assistant.ConsumersItemCreators[i].Count)
-                {
-                    Transform transform = Assistant.ConsumersItemCreators[i].GetComponentInChildren<StackPresenterTrigger>().transform;
-                    _target = transform;
-                    Assistant.ChangeTargetTransform(transform);
-                }
-            }
-        }
-
-        Assistant.Move(_target.transform.position + _offset);
+    public void StopCoroutine()
+    {
+        StopCoroutine(_coroutineInJob);
     }
 }

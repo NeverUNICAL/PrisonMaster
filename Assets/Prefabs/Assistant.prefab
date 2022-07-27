@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitions:
   - {fileID: 717448223038092232}
+  _delay: 1
 --- !u!114 &717448223038092232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092233}
   _targetAlternativeState: {fileID: 0}
-  _transitionRange: 1.5
+  _transitionRange: 2
+  _currentState: {fileID: 717448223038092235}
 --- !u!114 &717448223038092233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitions:
   - {fileID: 717448223038092238}
+  _delay: 1
 --- !u!114 &717448223038092238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092240}
   _targetAlternativeState: {fileID: 0}
-  _transitionRange: 1.5
+  _transitionRange: 2
+  _currentState: {fileID: 717448223038092239}
 --- !u!114 &717448223038092240
 MonoBehaviour:
   m_ObjectHideFlags: 0

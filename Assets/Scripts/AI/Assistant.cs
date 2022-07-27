@@ -21,8 +21,8 @@ public class Assistant : MonoBehaviour
     private StackView _assistantStack;
     private AssistantStateMachine _stateMachine;
 
-    private ItemCreator[] _producerItemCreators;
-    private StackPresenter[] _consumersItemCreators;
+    private List<StackPresenter> _producerItemCreators = new List<StackPresenter>();
+    private List<StackPresenter> _consumersItemCreators = new List<StackPresenter>();
     private Transform _targetTransform;
 
     public float Speed => _speed;
@@ -30,8 +30,8 @@ public class Assistant : MonoBehaviour
     public StackView[] Producers => _producers;
     public StackView[] Consumers => _consumers;
     public StackView AssistantStack => _assistantStack;
-    public ItemCreator[] ProducerItemCreators => _producerItemCreators;
-    public StackPresenter[] ConsumersItemCreators => _consumersItemCreators;
+    public List<StackPresenter> ProducerItemCreators => _producerItemCreators;
+    public List<StackPresenter> ConsumersItemCreators => _consumersItemCreators;
     public Transform TargetTransform => _targetTransform;
 
     private void Awake()
@@ -45,20 +45,22 @@ public class Assistant : MonoBehaviour
     {
         _producers = new StackView[producersContainer.transform.childCount];
         _consumers = new StackView[consumersContainer.transform.childCount];
-        _producerItemCreators = new ItemCreator[producersContainer.transform.childCount];
-        _consumersItemCreators = new StackPresenter[consumersContainer.transform.childCount];
+        //_producerItemCreators = new StackPresenter[producersContainer.transform.childCount];
+        //_consumersItemCreators = new StackPresenter[consumersContainer.transform.childCount];
         _assistantStack = GetComponentInChildren<BoxStackView>();
 
         for (int i = 0; i < _producers.Length; i++)
         {
             _producers[i] = producersContainer.transform.GetChild(i).GetComponentInChildren<StackView>();
-            _producerItemCreators[i] = producersContainer.transform.GetChild(i).GetComponent<ItemCreator>();
+            _producerItemCreators.Add(producersContainer.transform.GetChild(i).GetComponent<StackPresenter>());
+            //_producerItemCreators[i] = producersContainer.transform.GetChild(i).GetComponent<StackPresenter>();
         }
 
         for (int i = 0; i < _consumers.Length; i++)
         {
             _consumers[i] = consumersContainer.transform.GetChild(i).GetComponentInChildren<StackView>();
-            _consumersItemCreators[i] = consumersContainer.transform.GetChild(i).GetComponent<StackPresenter>();
+            _consumersItemCreators.Add(consumersContainer.transform.GetChild(i).GetComponent<StackPresenter>());
+            //_consumersItemCreators[i] = consumersContainer.transform.GetChild(i).GetComponent<StackPresenter>();
         }
         
         Invoke(nameof(StartStateMachine),3f);

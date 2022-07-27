@@ -5,6 +5,7 @@ using UnityEngine;
 public class DistanceConsumerTransition : AssistantTransition
 {
     [SerializeField] private float _transitionRange;
+    [SerializeField] private MoveToConsumerState _currentState;
 
     private void Update()
     {
@@ -12,8 +13,9 @@ public class DistanceConsumerTransition : AssistantTransition
         {
             if (Vector3.Distance(transform.position, Assistant.TargetTransform.position) < _transitionRange)
             {
-                Assistant.ChangeTargetTransform(null);
+                _currentState.StopCoroutine();
                 NeedTransit = true;
+                Assistant.ChangeTargetTransform(null);
             }
         }
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.1733872, g: 0.21673907, b: 0.29880777, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338747, g: 0.21673937, b: 0.29880846, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3736,9 +3736,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 717448223038092238, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
-      propertyPath: _transitionRange
-      value: 1.5
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
@@ -3961,9 +3973,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 717448223038092238, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
-      propertyPath: _transitionRange
-      value: 1.5
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
@@ -9283,9 +9307,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 717448223038092238, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
-      propertyPath: _transitionRange
-      value: 1.5
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
@@ -14204,9 +14240,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 717448223038092238, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
-      propertyPath: _transitionRange
-      value: 1.5
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092235, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 717448223038092239, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _offset.z
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
