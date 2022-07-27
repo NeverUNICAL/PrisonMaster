@@ -226,7 +226,7 @@ MonoBehaviour:
   _scaleForPlayerObjects: {x: 0.7, y: 1.2, z: 0.7}
   _scaleForObjects: {x: 1, y: 1.5, z: 1}
   _size: {x: 1, y: 5, z: 1}
-  _distanceBetweenObjects: {x: 0.5, y: 0.11, z: 0.5}
+  _distanceBetweenObjects: {x: 0.5, y: 0.195, z: 0.5}
   _drawGizmos: 1
 --- !u!1 &5214607854966100700
 GameObject:
@@ -332,6 +332,10 @@ MonoBehaviour:
   _collisionHandler: {fileID: 5214607855424604809}
   _stackPresenter: {fileID: 5214607854966100697}
   _point: {fileID: 5214607855424604814}
+  _count: 5
+  _countForSale: 1
+  _duration: 1
+  _durationDelay: 1
 --- !u!114 &5214607854966100702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +355,7 @@ MonoBehaviour:
   - {fileID: 4975510570552890477}
   - {fileID: 8661647598032064698}
   - {fileID: 2766695465859894445}
-  _maxCount: 0
+  _maxCount: 80
 --- !u!114 &3231853557730337966
 MonoBehaviour:
   m_ObjectHideFlags: 0

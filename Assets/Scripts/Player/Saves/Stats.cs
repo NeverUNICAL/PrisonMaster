@@ -13,6 +13,7 @@ namespace Agava.IdleGame.Model
         [SerializeField] private int _currentLevel;
         [SerializeField] private int _capacityLevel;
         [SerializeField] private int _speedLevel;
+        [SerializeField] private bool _isTutorialCompleted;
 
         public Stats()
         {
@@ -25,10 +26,16 @@ namespace Agava.IdleGame.Model
         public int CurrentLevel => _currentLevel;
         public int CapacityLevel => _capacityLevel;
         public int SpeedLevel => _speedLevel;
+        public bool IsTutorialCompleted => _isTutorialCompleted;
         
         public void SetSpeed(float value)
         {
             _speed = value;
+        }
+
+        public void SetTutorialComplete()
+        {
+            _isTutorialCompleted = true;
         }
 
         public void SetCurrentLevel(int value)

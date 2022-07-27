@@ -11,13 +11,14 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private NormalBuyZonePresenter _producerZone;
     [SerializeField] private NormalBuyZonePresenter _consumerZone;
     [SerializeField] private TrashZone _trashZone;
-    [SerializeField] private Transform _prisonersMeneger;
+    [SerializeField] private Transform _prisonersManager;
     [SerializeField] private Transform[] _arrows;
     [SerializeField] private Transform[] _outlines;
     [SerializeField] private float _duration;
     [SerializeField] private float _durationForOutlines;
     [SerializeField] private Vector3 _scaleTarget;
     [SerializeField] private Image _background;
+    [SerializeField] private PlayerSavePresenter _playerSavePresenter;
 
     private void OnEnable()
     {
@@ -33,22 +34,43 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        _arrows[0].transform.DOMove(new Vector3(_arrows[0].transform.position.x, _arrows[0].transform.position.y - 0.5f, _arrows[0].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-        _outlines[0].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        if (_playerSavePresenter.IsTutorialCompleted)
+        {
+            _duration = 0;
+            _durationForOutlines = 0;
+        }
+        _arrows[0].transform
+                .DOMove(
+                    new Vector3(_arrows[0].transform.position.x, _arrows[0].transform.position.y - 0.5f,
+                        _arrows[0].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+            _outlines[0].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Yoyo);
     }
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
     {
-        AnimationScale(_consumerZone.transform);
-        _outlines[1].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-        _arrows[0].gameObject.SetActive(false);
-        _arrows[1].gameObject.SetActive(true);
-        _arrows[1].transform.DOMove(new Vector3(_arrows[1].transform.position.x, _arrows[1].transform.position.y - 0.5f, _arrows[1].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        if (_playerSavePresenter.IsTutorialCompleted)
+        {
+            
+        }
+        else
+        {
+            AnimationScale(_consumerZone.transform);
+            _outlines[1].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Yoyo);
+            _arrows[0].gameObject.SetActive(false);
+            _arrows[1].gameObject.SetActive(true);
+            _arrows[1].transform
+                .DOMove(
+                    new Vector3(_arrows[1].transform.position.x, _arrows[1].transform.position.y - 0.5f,
+                        _arrows[1].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        }
     }
 
     private void OnStartGame()
     {
-        _prisonersMeneger.gameObject.SetActive(true);
+        _playerSavePresenter.SetTutorialComplete();
+        _prisonersManager.gameObject.SetActive(true);
         AnimationScale(_trashZone.transform);
 
         for (int i = 0; i < _openObjects.Length; i++)
@@ -62,8 +84,16 @@ public class Tutorial : MonoBehaviour
 
     private void DoFade(BuyZonePresenter buyZonePresenter)
     {
-        _background.DOFade(0,_duration);
-        Invoke(nameof(OnStartGame), _duration);
+        if (_playerSavePresenter.IsTutorialCompleted)
+        {
+            OnStartGame();
+        }
+        else
+        {
+            _background.DOFade(0,_duration);
+            Invoke(nameof(OnStartGame), _duration);
+        }
+        
     }
 
     private void AnimationScale(Transform buyZone)

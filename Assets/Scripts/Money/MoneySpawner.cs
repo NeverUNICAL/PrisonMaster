@@ -37,7 +37,7 @@ public class MoneySpawner : MonoBehaviour
     {
         var delay = new WaitForSeconds(Delay);
 
-        for (int i = 0; i < count * 2; i++)
+        for (int i = 0; i < count; i++)
         {
             yield return delay;
             if (_counter > _points.Length - 1)

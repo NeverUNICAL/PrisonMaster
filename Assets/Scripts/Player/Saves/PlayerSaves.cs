@@ -23,10 +23,16 @@ namespace Agava.IdleGame.Model
         public int CurrentLevel => _stats.CurrentLevel;
         public int CapacityLevel => _stats.CapacityLevel;
         public int SpeedLevel => _stats.SpeedLevel;
+        public bool IsTutorialCompleted => _stats.IsTutorialCompleted;
 
         public void SetSpeed(float value)
         {
            _stats.SetSpeed(value);
+        }
+
+        public void SetTutorialComplete()
+        {
+            _stats.SetTutorialComplete();
         }
         
         public void SetCapacity(int value)

@@ -1,6 +1,8 @@
+using System;
 using Agava.IdleGame;
 using DG.Tweening;
 using System.Collections;
+using Agava.IdleGame.Model;
 using UnityEngine;
 
 public class Shop : Store
@@ -8,10 +10,16 @@ public class Shop : Store
     [SerializeField] private StoreCollisionHandler _collisionHandler;
     [SerializeField] private StackPresenter _stackPresenter;
     [SerializeField] private Transform _point;
+    [SerializeField] private int _count;
+    [SerializeField] private int _countForSale;
+    [SerializeField] float _duration = 1f;
+    [SerializeField] private float _durationDelay;
+
+    private float _defaultDuration;
 
     public int Count => _stackPresenter.Count;
 
-    private float _duration = 1f;
+    
     private void OnEnable()
     {
         _collisionHandler.Triggered += OnBuyerBougth;
@@ -21,23 +29,25 @@ public class Shop : Store
     {
         _collisionHandler.Triggered -= OnBuyerBougth;
     }
-    
+
+    private void Start()
+    {
+        _defaultDuration = _duration;
+    }
+
     public void Sale()
     {
-        if (_stackPresenter.Count > 2)
+        if(_stackPresenter.Count >=_countForSale)
         {
-            for (int i = 0; i < _stackPresenter.Count; i++)
+            for (int i = 0; i < _countForSale; i++)
             {
-                if (i < 3)
-                {
-                    var soldObject = _stackPresenter.RemoveAt(_stackPresenter.Count - 1);
-                    soldObject.View.DOMove(_point.position, _duration).OnComplete(() => Destroy(soldObject.View.gameObject));
-                    _duration ++;
-                }
+                StackableObject objectForSale = _stackPresenter.RemoveAt(0);
+                objectForSale.View.DOMove(_point.position, _duration).OnComplete(() => Destroy(objectForSale.View.gameObject));
+                _duration += _durationDelay;
             }
             
-            _duration = 1f;
-            OnSold(3);
+            _duration = _defaultDuration;
+            OnSold(_count);
         }
     }
 

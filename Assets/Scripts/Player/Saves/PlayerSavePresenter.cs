@@ -23,6 +23,7 @@ namespace Agava.IdleGame
         public int Money => _softCurrencyHolder.Value;
         public int SpeedLevel => _playerSaves.SpeedLevel;
         public int CapacityLevel => _playerSaves.CapacityLevel;
+        public bool IsTutorialCompleted => _playerSaves.IsTutorialCompleted;
         
         public event UnityAction Loaded;
         
@@ -51,6 +52,12 @@ namespace Agava.IdleGame
         {
             _playerSaves.Load();
             OnLoad();
+        }
+
+        public void SetTutorialComplete()
+        {
+            _playerSaves.SetTutorialComplete();
+            _playerSaves.Save();
         }
         
         private void ChangeNavMeshAgent(int value)
