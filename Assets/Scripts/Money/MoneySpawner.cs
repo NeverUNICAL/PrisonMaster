@@ -23,6 +23,11 @@ public class MoneySpawner : MonoBehaviour
         _store.Sold -= Spawn;
     }
 
+    public void ReduceCount()
+    {
+        _currentCount--;
+    }
+
     private void Spawn(int count)
     {
         StartCoroutine(MoneyGenerator(count));
@@ -41,6 +46,7 @@ public class MoneySpawner : MonoBehaviour
             if (_currentCount < _maxCount)
             {
                 Money money = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, transform);
+                money.SetMoneySpawner(this);
                 _currentCount++;
                 _counter++;
                 money.DisableRigidbody(_delayForStopMoney);
