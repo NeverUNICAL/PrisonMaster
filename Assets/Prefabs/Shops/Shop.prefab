@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8118829636618356311
 Transform:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 8118829637988592108}
-  _capacity: 20
+  _capacity: 10
   _stackableTypes:
     _value: 8
 --- !u!114 &8118829636618356306
@@ -134,8 +134,8 @@ MonoBehaviour:
   _collisionHandler: {fileID: 8118829637199584771}
   _stackPresenter: {fileID: 8118829636618356307}
   _point: {fileID: 8118829637199584772}
-  _count: 3
-  _countForSale: 3
+  _count: 1
+  _countForSale: 1
   _duration: 1
   _durationDelay: 1
 --- !u!114 &8118829636618356308
