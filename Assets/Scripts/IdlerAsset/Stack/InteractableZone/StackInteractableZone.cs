@@ -51,7 +51,7 @@ namespace Agava.IdleGame
 
         public void OnExit(StackPresenter otherStack = null)
         {
-            if (_enteredStackList.Contains(otherStack))
+            if (_enteredStackList != null && _enteredStackList.Contains(otherStack))
             {
                 InTrigger = false;
 
