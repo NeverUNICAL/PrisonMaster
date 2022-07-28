@@ -150,6 +150,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected void SendToExit()
     {
         _prisonerList[0].SetTarget(_exit,Vector3.zero);
+        _prisonerList[0].ChangeAngryAnimation(false);
         ExtractFirst();
         
         if(_shop != null)
