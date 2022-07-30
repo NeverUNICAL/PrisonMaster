@@ -44,6 +44,7 @@ namespace Agava.IdleGame
             }
             
             _objectToTurnOff.SetActive(false);
+            transform.gameObject.SetActive(false);
         }
     }
 }

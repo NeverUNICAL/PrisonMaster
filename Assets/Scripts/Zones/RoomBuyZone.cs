@@ -8,7 +8,7 @@ namespace Agava.IdleGame
     public class RoomBuyZone : BuyZonePresenter
     {
         [SerializeField] private Door _door;
-        [SerializeField] private GameObject _lock;
+        [SerializeField] private GameObject[] _locks;
         
         private int _reduceValue = 1;
         
@@ -35,7 +35,10 @@ namespace Agava.IdleGame
         protected override void OnBuyedAction()
         {
             _door.enabled = true;
-            _lock.SetActive(false);
+            for (int i = 0; i < _locks.Length; i++)
+            {
+            _locks[i].SetActive(false);
+            }
         }
     }
 }

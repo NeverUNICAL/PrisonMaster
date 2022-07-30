@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Agava.IdleGame;
+using Agava.IdleGame.Model;
 using UnityEngine.UI;
 using DG.Tweening;
 
 public class Tutorial : MonoBehaviour
 {
+    [SerializeField] private PlayerStackPresenter _player;
     [SerializeField] private NormalBuyZonePresenter[] _openObjects;
     [SerializeField] private NormalBuyZonePresenter _producerZone;
     [SerializeField] private NormalBuyZonePresenter _consumerZone;
@@ -22,6 +24,8 @@ public class Tutorial : MonoBehaviour
 
     private void OnEnable()
     {
+        _player.AddedForTutorial += OnAdded;
+        _player.Removed += OnRemoved;
         _producerZone.Unlocked += OnUnlock;
         _consumerZone.Unlocked += DoFade;
     }
@@ -40,32 +44,17 @@ public class Tutorial : MonoBehaviour
         }
         else
         {
-            _arrows[0].transform
-                .DOMove(
-                    new Vector3(_arrows[0].transform.position.x, _arrows[0].transform.position.y - 0.5f,
-                        _arrows[0].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-            _outlines[0].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear)
-                .SetLoops(-1, LoopType.Yoyo);
+            AnimationOutline(_outlines[0]);
         }
     }
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
     {
-        if (_playerSavePresenter.IsTutorialCompleted)
-        {
-            
-        }
-        else
+        if (_playerSavePresenter.IsTutorialCompleted == false)
         {
             AnimationScale(_consumerZone.transform);
-            _outlines[1].transform.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear)
-                .SetLoops(-1, LoopType.Yoyo);
-            _arrows[0].gameObject.SetActive(false);
-            _arrows[1].gameObject.SetActive(true);
-            _arrows[1].transform
-                .DOMove(
-                    new Vector3(_arrows[1].transform.position.x, _arrows[1].transform.position.y - 0.5f,
-                        _arrows[1].transform.position.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+            AnimationOutline(_outlines[1]);
+            ChangeActiveArrow();
         }
     }
 
@@ -92,19 +81,15 @@ public class Tutorial : MonoBehaviour
         }
         else
         {
-            _background.DOFade(0,_duration);
-            Invoke(nameof(OnStartGame), _duration);
+            _arrows[1].gameObject.SetActive(false);
+            _arrows[0].gameObject.SetActive(true);
         }
         
     }
 
     private void AnimationScale(Transform buyZone)
     {
-        if (_playerSavePresenter.IsTutorialCompleted)
-        {
-            
-        }
-        else
+        if (_playerSavePresenter.IsTutorialCompleted == false)
         {
             Sequence sequence = DOTween.Sequence();
             buyZone.gameObject.SetActive(true);
@@ -125,5 +110,35 @@ public class Tutorial : MonoBehaviour
         }
         
         gameObject.SetActive(false);
+    }
+
+    private void OnAdded()
+    {
+        ChangeActiveArrow();
+        _player.AddedForTutorial -= OnAdded;
+    }
+
+    private void OnRemoved(StackableObject stackable)
+    {
+        _arrows[1].gameObject.SetActive(false);
+        _background.DOFade(0, _duration);
+        Invoke(nameof(OnStartGame), _duration);
+        _player.Removed -= OnRemoved;
+    }
+
+    private void AnimationOutline(Transform outline)
+    {
+        outline.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void ChangeActiveArrow()
+    {
+        for (int i = 0; i < _arrows.Length; i++)
+        {
+            if (_arrows[i].gameObject.activeInHierarchy == false)
+                _arrows[i].gameObject.SetActive(true);
+            else
+                _arrows[i].gameObject.SetActive(false);
+        }
     }
 }
