@@ -22,6 +22,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Image _background;
     [SerializeField] private PlayerSavePresenter _playerSavePresenter;
 
+    private bool _isProducerLock = true;
+
     private void OnEnable()
     {
         _player.AddedForTutorial += OnAdded;
@@ -83,6 +85,7 @@ public class Tutorial : MonoBehaviour
         {
             _arrows[1].gameObject.SetActive(false);
             _arrows[0].gameObject.SetActive(true);
+            _isProducerLock = false;
         }
         
     }
@@ -114,8 +117,11 @@ public class Tutorial : MonoBehaviour
 
     private void OnAdded()
     {
+        if (_isProducerLock == false)
+        {
         ChangeActiveArrow();
         _player.AddedForTutorial -= OnAdded;
+        }
     }
 
     private void OnRemoved(StackableObject stackable)
