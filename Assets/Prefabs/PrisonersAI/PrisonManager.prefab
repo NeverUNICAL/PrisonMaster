@@ -81,13 +81,17 @@ MonoBehaviour:
   _sendTimeOut: 1.1
   _firstPoint: {fileID: 5912464837049412060}
   _startPoolSize: 7
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _queues: []
+  _offsetPos: {x: -0.25, y: 0, z: 0}
+  _queues:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _shop: {fileID: 0}
   _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
-  _prisoner: {fileID: 1131484534194217502, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
+  _prisoner: {fileID: 966140974247819660, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
   _spawnPoint: {fileID: 4362247150413804256}
   _parentPrisoners: {fileID: 4362247150503878060}
 --- !u!1 &4362247150413804263
@@ -102,7 +106,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -114,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4362247150413804263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.24, y: 1, z: 16.66}
+  m_LocalPosition: {x: -3.34, y: 1, z: -17.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4362247150069504160}
@@ -174,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5912464837049412060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 1}
+  m_LocalPosition: {x: -3.37, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4362247150069504160}
