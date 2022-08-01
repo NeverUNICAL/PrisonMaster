@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using DG.Tweening;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class PlayersGUI : MonoBehaviour
     [SerializeField] private GUIRotator _gUIRotator;
     [SerializeField] private LevelBuyZone _level;
     [SerializeField] private RoomBuyZone _room;
+    [SerializeField] private Transform _objectForFollow;
+    [SerializeField] private Vector3 _followOffset = new Vector3(0,0.7f,0);
 
     private const float ScaleSize = 1.1f;
     private const float FadeDuration = 0.1f;
@@ -19,6 +22,11 @@ public class PlayersGUI : MonoBehaviour
     {
         _level.Unlocked += EnableArrow;
         _room.Unlocked += DisableArrow;
+    }
+
+    private void Update()
+    {
+        transform.position = _objectForFollow.position + _followOffset;
     }
 
     private void EnableArrow(BuyZonePresenter buyZone)
