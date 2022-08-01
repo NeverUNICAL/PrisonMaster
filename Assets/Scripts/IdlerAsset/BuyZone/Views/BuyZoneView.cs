@@ -7,7 +7,7 @@ public class BuyZoneView : MonoBehaviour
 
     public void RenderCost(int value)
     {
-        _currentCost.text = value.ToString();
+        _currentCost.text = "$"+value.ToString();
     }
 
     public void Hide()
