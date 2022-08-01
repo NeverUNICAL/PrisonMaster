@@ -19,6 +19,7 @@ namespace Agava.IdleGame
 
         private bool _isUnlockRoom = false;
         private int _counter = 0;
+        private Vector3 _defaultBuyZoneScale;
 
         private void OnEnable()
         {
@@ -135,11 +136,16 @@ namespace Agava.IdleGame
 
         private void AnimationScale(Transform buyZone)
         {
+            _defaultBuyZoneScale = buyZone.localScale;
             Sequence sequence = DOTween.Sequence();
             buyZone.gameObject.SetActive(true);
             buyZone.localScale = new Vector3(0, 0, 0);
             sequence.Append(buyZone.DOScale(_scaleTarget, _durationAnimation));
-            sequence.Append(buyZone.DOScale(new Vector3(1, 1, 1), _durationAnimation));
+            
+            if(_defaultBuyZoneScale != Vector3.zero)
+             sequence.Append(buyZone.DOScale(_defaultBuyZoneScale, _durationAnimation));
+            else
+                sequence.Append(buyZone.DOScale(Vector3.one, _durationAnimation));
         }
 
         private void UnlockRoom(BuyZonePresenter buyZone)

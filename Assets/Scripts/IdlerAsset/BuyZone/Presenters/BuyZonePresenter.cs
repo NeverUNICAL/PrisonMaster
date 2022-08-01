@@ -73,7 +73,7 @@ namespace Agava.IdleGame
         {
             if (_tryBuy != null)
                 StopCoroutine(_tryBuy);
-
+            
             _tryBuy = StartCoroutine(TryBuy(moneyHolder));
             OnEnter();
         }
@@ -83,6 +83,7 @@ namespace Agava.IdleGame
             StopCoroutine(_tryBuy);
             _buyZone.Save();
             OnExit();
+            moneyHolder.SetVFXEnabled(false);
         }
 
         private void OnBuyZoneUnlocked(bool onLoad)
