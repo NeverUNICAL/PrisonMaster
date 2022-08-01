@@ -36,6 +36,27 @@ ModelImporter:
   - first:
       74: -818280804927865824
     second: Walk
+  - first:
+      74: 4837199890138850706
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Idle
+  - first:
+      74: -4927637965477552762
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Angry
+  - first:
+      74: 3057999742263533454
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Walk
+  - first:
+      74: -750889717251803411
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Run
+  - first:
+      74: -3895101284417589359
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Carrying
+  - first:
+      74: 8463096293293040932
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Run (1)
+  - first:
+      74: -3026108914122476921
+    second: Stickman_RIG|Stickman_RIG|Stickman_RIG|Walk (1)
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -65,8 +86,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
-      takeName: Stickman_RIG|Idle
+      name: Stickman_RIG|Stickman_RIG|Stickman_RIG|Idle
+      takeName: Stickman_RIG|Stickman_RIG|Stickman_RIG|Idle
       internalID: 0
       firstFrame: 0
       lastFrame: 45
@@ -94,8 +115,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Angry
-      takeName: Stickman_RIG|Angry
+      name: Stickman_RIG|Stickman_RIG|Stickman_RIG|Angry
+      takeName: Stickman_RIG|Stickman_RIG|Stickman_RIG|Angry
       internalID: 0
       firstFrame: 0
       lastFrame: 119
@@ -123,8 +144,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk
-      takeName: Stickman_RIG|Walk
+      name: Stickman_RIG|Stickman_RIG|Stickman_RIG|Walk
+      takeName: Stickman_RIG|Stickman_RIG|Stickman_RIG|Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 18
@@ -152,98 +173,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Run
-      takeName: Stickman_RIG|Run
+      name: Stickman_RIG|Stickman_RIG|Stickman_RIG|Run
+      takeName: Stickman_RIG|Stickman_RIG|Stickman_RIG|Run
       internalID: 0
       firstFrame: 0
       lastFrame: 18
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Carrying
-      takeName: Stickman_RIG|Carrying
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 115
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Carrying Run
-      takeName: Stickman_RIG|Carrying_Run
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 25
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Carrying Walk
-      takeName: Stickman_RIG|Carrying_Walk
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
