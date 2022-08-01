@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.5, y: 2.5}
+  m_SizeDelta: {x: 2.6, y: 2.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6338754125670612804
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 532e5cbd3edddfd428385bb80d18061d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da876e50e0673d24ab2e89f12ae51a70, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -213,7 +213,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6964897121847196920
 MonoBehaviour:
@@ -333,7 +333,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5768469262064381769, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1.5
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 5768469262064381769, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_SizeDelta.y
@@ -345,16 +345,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_fontSize
-      value: 0.7
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f2c43d39909f2aa4fb4cbe763a53cf2e, type: 2}
+    - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
+      propertyPath: m_fontStyle
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_fontSizeMax
-      value: 0.7
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_fontSizeMin
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5868025769016687094, guid: f2c43d39909f2aa4fb4cbe763a53cf2e, type: 2}
     - target: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
@@ -435,18 +447,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 5768469262689063861, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768469262689063861, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768469262689063861, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7521534765630825137, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -466,6 +466,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5768469262689063861, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
   m_PrefabInstance: {fileID: 3505473127482137538}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &8427620972663635095 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4922748454087649109, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
+  m_PrefabInstance: {fileID: 3505473127482137538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6964897121268626572 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5768469262064381774, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
@@ -477,8 +482,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8427620972663635095 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4922748454087649109, guid: 3eb119f8f6c57ed439de5b03cc4a7e14, type: 3}
-  m_PrefabInstance: {fileID: 3505473127482137538}
-  m_PrefabAsset: {fileID: 0}
