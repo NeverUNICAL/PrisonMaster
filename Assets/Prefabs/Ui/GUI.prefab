@@ -115,10 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f374f115323a1c1409cda249e816edda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrow: {fileID: 5510706048381656262}
-  _textFullStack: {fileID: 6543285857711798490}
+  _arrow: {fileID: 0}
+  _arrowAlt: {fileID: 0}
   _gUIRotator: {fileID: 6543285857198707172}
-  _stackHolder: {fileID: 0}
+  _level: {fileID: 0}
+  _room: {fileID: 0}
+  _objectForFollow: {fileID: 0}
+  _followOffset: {x: 0, y: 0.7, z: 0}
 --- !u!114 &6543285857198707172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,9 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetFinish: {fileID: 0}
-  _targetLookCount: {fileID: 0}
   _arrow: {fileID: 1010226519223331347}
-  _counter: {fileID: 6543285858041847971}
 --- !u!1 &6543285857711798488
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +357,7 @@ GameObject:
   - component: {fileID: 7682200152748935008}
   - component: {fileID: 472118740703919434}
   - component: {fileID: 6572569324089140115}
+  - component: {fileID: 6220078627772664330}
   m_Layer: 7
   m_Name: Icon
   m_TagString: Untagged
@@ -420,6 +422,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6220078627772664330
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7023724807818012136}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8238180268619755542
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +445,6 @@ GameObject:
   - component: {fileID: 1010226519223331347}
   - component: {fileID: 5366346025288373750}
   - component: {fileID: 1606401279529202803}
-  - component: {fileID: 5510706048381656262}
   m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
@@ -497,15 +510,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &5510706048381656262
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238180268619755542}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
