@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.AI;
 public class PrisonMover : MonoBehaviour
 {
-    [SerializeField] private GameObject _suit;
+    [SerializeField] private GameObject[] _suits;
     [SerializeField] private ParticleSystem _angryEffect;
 
     private GameObject _nextPoint;
@@ -49,7 +49,8 @@ public class PrisonMover : MonoBehaviour
 
     public void EnableSuit()
     {
-        _suit.SetActive(true);
+        _suits[0].SetActive(false);
+        _suits[1].SetActive(true);
     }
 
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
