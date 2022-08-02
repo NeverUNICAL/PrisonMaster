@@ -39,7 +39,6 @@ public class QueueContainer : QueueHandler
                 {
                     ChangeAnimationPrisoners(true);
                 }
-
             }
 
             yield return _waitForSendTimeOut;
