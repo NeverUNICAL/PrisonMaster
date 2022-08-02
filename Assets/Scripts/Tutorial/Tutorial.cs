@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Vector3 _scaleTarget;
     [SerializeField] private Image _background;
     [SerializeField] private PlayerSavePresenter _playerSavePresenter;
+    [SerializeField] private TutorialMoney _tutorialMoney;
 
     private bool _isProducerLock = true;
 
@@ -30,12 +31,14 @@ public class Tutorial : MonoBehaviour
         _player.Removed += OnRemoved;
         _producerZone.Unlocked += OnUnlock;
         _consumerZone.Unlocked += DoFade;
+        _tutorialMoney.MoneyPullEmpty += OnMoneyPullEmpty;
     }
 
     private void OnDisable()
     {
         _producerZone.Unlocked -= OnUnlock;
         _consumerZone.Unlocked -= DoFade;
+        _tutorialMoney.MoneyPullEmpty -= OnMoneyPullEmpty;
     }
 
     private void Start()
@@ -83,8 +86,7 @@ public class Tutorial : MonoBehaviour
         }
         else
         {
-            _arrows[1].gameObject.SetActive(false);
-            _arrows[0].gameObject.SetActive(true);
+            ChangeActiveArrow();
             _isProducerLock = false;
         }
         
@@ -135,6 +137,19 @@ public class Tutorial : MonoBehaviour
     private void AnimationOutline(Transform outline)
     {
         outline.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void OnMoneyPullEmpty()
+    {
+        if (_playerSavePresenter.IsTutorialCompleted)
+        {
+            OnTutorialCompletedOnStart();
+        }
+        else
+        {
+            AnimationScale(_producerZone.transform);
+            ChangeActiveArrow();
+        }
     }
 
     private void ChangeActiveArrow()
