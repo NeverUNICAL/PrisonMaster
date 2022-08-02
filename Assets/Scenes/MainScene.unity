@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.1733872, g: 0.21673907, b: 0.29880777, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338747, g: 0.21673937, b: 0.29880846, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1385,7 +1385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178651095482068248, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6560429298639720794, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2216,15 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapRoot: {fileID: 235132877}
-  _nextZones: []
-  _buyZones: []
-  _levelId: 0
-  _room: {fileID: 0}
-  _nextLevel: {fileID: 0}
-  _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
-  _scaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
-  _durationAnimation: 0.5
+  MapRoot: {fileID: 0}
 --- !u!1 &235845842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,6 +2512,17 @@ MonoBehaviour:
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
+--- !u!114 &291318271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6178651095482068246, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
+  m_PrefabInstance: {fileID: 141843012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b39a89b4e05b74eadf5410312b4679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &291931200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4570,45 +4573,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472778668}
-  - component: {fileID: 472778667}
+  - component: {fileID: 472778669}
   m_Layer: 0
   m_Name: ObjectsToUnlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &472778667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472778666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mapRoot: {fileID: 472778666}
-  _nextZones:
-  - {fileID: 963574784}
-  - {fileID: 2029331852}
-  _buyZones:
-  - {fileID: 319141500}
-  - {fileID: 636261635}
-  - {fileID: 1645498622}
-  - {fileID: 23064391}
-  - {fileID: 1171086870}
-  - {fileID: 2119075314}
-  - {fileID: 577965931}
-  - {fileID: 1543074819}
-  _levelId: 1
-  _room: {fileID: 673747423}
-  _nextLevel: {fileID: 187907886}
-  _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
-  _scaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
-  _durationAnimation: 0.5
+  m_IsActive: 0
 --- !u!4 &472778668
 Transform:
   m_ObjectHideFlags: 0
@@ -4627,6 +4599,39 @@ Transform:
   m_Father: {fileID: 1360711168}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &472778669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472778666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51875a5c768f034aab04583817e11cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapRoot: {fileID: 472778666}
+  NextZones:
+  - {fileID: 963574784}
+  - {fileID: 2029331852}
+  BuyZones:
+  - {fileID: 319141500}
+  - {fileID: 636261635}
+  - {fileID: 1645498622}
+  - {fileID: 23064391}
+  - {fileID: 1171086870}
+  - {fileID: 2119075314}
+  - {fileID: 577965931}
+  - {fileID: 1543074819}
+  LevelId: 0
+  Room: {fileID: 673747423}
+  NextLevel: {fileID: 187907886}
+  ScaleTarget: {x: 1.2, y: 1.2, z: 1.2}
+  ScaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
+  DurationAnimation: 0.5
+  _trashZone: {fileID: 788642178}
+  _counterForNextLevel: 0
 --- !u!1 &475921750
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,7 +5297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 541562830}
-  - component: {fileID: 541562831}
+  - component: {fileID: 541562832}
   m_Layer: 0
   m_Name: ObjectToUnlock
   m_TagString: Untagged
@@ -5319,7 +5324,7 @@ Transform:
   m_Father: {fileID: 1767458745}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &541562831
+--- !u!114 &541562832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5328,26 +5333,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 541562829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
+  m_Script: {fileID: 11500000, guid: 9012d3cfaed86e349a488ab91b36c524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapRoot: {fileID: 541562829}
-  _nextZones:
+  MapRoot: {fileID: 541562829}
+  NextZones:
   - {fileID: 319141500}
   - {fileID: 636261635}
-  _buyZones:
+  BuyZones:
   - {fileID: 801875460}
   - {fileID: 1919054053}
   - {fileID: 1862287933}
   - {fileID: 1039786112}
   - {fileID: 410292198}
   - {fileID: 197078778}
-  _levelId: 0
-  _room: {fileID: 1686658732}
-  _nextLevel: {fileID: 1146432327}
-  _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
-  _scaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
-  _durationAnimation: 0.5
+  LevelId: 0
+  Room: {fileID: 1686658732}
+  NextLevel: {fileID: 1146432327}
+  ScaleTarget: {x: 1.2, y: 1.2, z: 1.2}
+  ScaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
+  DurationAnimation: 0.5
+  _trashZone: {fileID: 291318271}
 --- !u!114 &545406749 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8118829636618356306, guid: b4fccde5bc72a3c43ace1d8b78715ee3, type: 3}
@@ -7518,6 +7524,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6800068167401185683, guid: 8c2bca2b8bc5ef342b74bae6e43bfc0d, type: 3}
   m_PrefabInstance: {fileID: 784523290}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &788642178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6178651095482068246, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
+  m_PrefabInstance: {fileID: 1113003846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b39a89b4e05b74eadf5410312b4679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &796049906 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8897478284695241952, guid: 06742ed8bc831594e94a2e5959e2ed62, type: 3}
@@ -8560,15 +8577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapRoot: {fileID: 928946380}
-  _nextZones: []
-  _buyZones: []
-  _levelId: 0
-  _room: {fileID: 0}
-  _nextLevel: {fileID: 0}
-  _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
-  _scaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
-  _durationAnimation: 0.5
+  MapRoot: {fileID: 0}
 --- !u!1 &931808065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8636,7 +8645,7 @@ PrefabInstance:
     - target: {fileID: 1341659058867148690, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 1787044506}
+      objectReference: {fileID: 0}
     - target: {fileID: 1341659058867148690, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _navMeshMaskId
       value: 2147483647
@@ -8752,7 +8761,7 @@ PrefabInstance:
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 1787044506}
+      objectReference: {fileID: 1787044507}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _objectToTurnOff
       value: 
@@ -17052,7 +17061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787044505}
-  - component: {fileID: 1787044506}
+  - component: {fileID: 1787044507}
   m_Layer: 0
   m_Name: ObjectToUnlock
   m_TagString: Untagged
@@ -17078,7 +17087,7 @@ Transform:
   m_Father: {fileID: 259069444}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1787044506
+--- !u!114 &1787044507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17087,12 +17096,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1787044504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
+  m_Script: {fileID: 11500000, guid: e6e1e2b86f8ed1e4c8e3035c41d02524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapRoot: {fileID: 1787044504}
-  _nextZones: []
-  _buyZones:
+  MapRoot: {fileID: 1787044504}
+  NextZones: []
+  BuyZones:
   - {fileID: 963574784}
   - {fileID: 2029331852}
   - {fileID: 504352908}
@@ -17101,12 +17110,12 @@ MonoBehaviour:
   - {fileID: 1583638042}
   - {fileID: 390385069}
   - {fileID: 599830246}
-  _levelId: 2
-  _room: {fileID: 0}
-  _nextLevel: {fileID: 0}
-  _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
-  _scaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
-  _durationAnimation: 0.5
+  LevelId: 0
+  Room: {fileID: 0}
+  NextLevel: {fileID: 0}
+  ScaleTarget: {x: 1.2, y: 1.2, z: 1.2}
+  ScaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
+  DurationAnimation: 0.5
 --- !u!1 &1789150566
 GameObject:
   m_ObjectHideFlags: 0
@@ -19840,7 +19849,7 @@ PrefabInstance:
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 472778667}
+      objectReference: {fileID: 472778669}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _navMeshMaskId
       value: 15
