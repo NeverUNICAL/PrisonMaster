@@ -16,7 +16,6 @@ public class Level2 : UnlockableMapZone
         {
             int tempCounter = 0;
             int target = 2;
-            int targetConutForNextLevel = 2;
             Counter++;
             _counterForNextLevel++;
 
@@ -26,8 +25,12 @@ public class Level2 : UnlockableMapZone
                 {
                     if (tempCounter < target)
                     {
+                        if (_counterForNextLevel <= target)
+                        {
+                            AnimationScale(BuyZones[i].transform);
+                        }
 
-                        if (_counterForNextLevel <= targetConutForNextLevel || _isNextLevelUnlock)
+                        if(_isNextLevelUnlock && _counterForNextLevel > target)
                         {
                             AnimationScale(BuyZones[i].transform);
                         }
@@ -39,7 +42,7 @@ public class Level2 : UnlockableMapZone
                         Counter = 0;
                     }
 
-                    if (_counterForNextLevel == targetConutForNextLevel && NextLevel.gameObject.activeInHierarchy == false)
+                    if (_counterForNextLevel == target && NextLevel.gameObject.activeInHierarchy == false)
                     {
                         UnlockNextLevelZone();
                         AnimationScale(Room.transform);
@@ -69,8 +72,15 @@ public class Level2 : UnlockableMapZone
                     AnimationScale(NextZones[i].transform);
                     tempCounter++;
                     _isNextLevelUnlock = true;
+
+                    if (_counterForNextLevel >= 4)
+                    {
+                        Unlock(buyZone);
+                    }
                 }
             }
         }
+
+
     }
 }
