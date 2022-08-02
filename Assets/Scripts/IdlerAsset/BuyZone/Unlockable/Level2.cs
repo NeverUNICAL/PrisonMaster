@@ -48,6 +48,10 @@ public class Level2 : UnlockableMapZone
                 }
             }
         }
+        else
+        {
+            Counter--;
+        }
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
@@ -64,7 +68,6 @@ public class Level2 : UnlockableMapZone
                 {
                     AnimationScale(_trashZone.transform);
                     AnimationScale(NextZones[i].transform);
-                    Unlock(buyZone);
                     tempCounter++;
                     _isNextLevelUnlock = true;
                 }
