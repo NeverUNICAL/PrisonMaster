@@ -12,35 +12,39 @@ public class Level2 : UnlockableMapZone
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        int tempCounter = 0;
-        int target = 2;
-        int targetConutForNextLevel = 2;
-        Counter++;
-        _counterForNextLevel++;
-
-        for (int i = 0; i < BuyZones.Length; i++)
+        if (buyZone.TryGetComponent(out RoomBuyZone roomBuyZone) == false)
         {
-            if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
+            int tempCounter = 0;
+            int target = 2;
+            int targetConutForNextLevel = 2;
+            Counter++;
+            _counterForNextLevel++;
+
+            for (int i = 0; i < BuyZones.Length; i++)
             {
-                if (tempCounter < target)
+                if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
                 {
-                    if (_counterForNextLevel <= targetConutForNextLevel || _isNextLevelUnlock)
+                    if (tempCounter < target)
                     {
-                        AnimationScale(BuyZones[i].transform);
+
+                        if (_counterForNextLevel <= targetConutForNextLevel || _isNextLevelUnlock)
+                        {
+                            AnimationScale(BuyZones[i].transform);
+                        }
+
+                        tempCounter++;
+                    }
+                    else
+                    {
+                        Counter = 0;
                     }
 
-                    tempCounter++;
-                }
-                else
-                {
-                    Counter = 0;
-                }
-
-                if (_counterForNextLevel == targetConutForNextLevel && NextLevel.gameObject.activeInHierarchy == false)
-                {
-                    UnlockNextLevelZone();
-                    AnimationScale(Room.transform);
-                    AnimationOutlineRoomZone();
+                    if (_counterForNextLevel == targetConutForNextLevel && NextLevel.gameObject.activeInHierarchy == false)
+                    {
+                        UnlockNextLevelZone();
+                        AnimationScale(Room.transform);
+                        AnimationOutlineRoomZone();
+                    }
                 }
             }
         }
@@ -50,6 +54,7 @@ public class Level2 : UnlockableMapZone
     {
         int tempCounter = 0;
         int target = 2;
+        Debug.Log(true);
 
         for (int i = 0; i < NextZones.Length; i++)
         {
