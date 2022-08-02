@@ -83,6 +83,7 @@ namespace Agava.IdleGame
             IsUnlockRoom = true;
             Counter = 1;
             Unlock(buyZone);
+            AnimationScale(RoomEnvirnoment);
         }
 
         protected void UnlockNextLevelZone()

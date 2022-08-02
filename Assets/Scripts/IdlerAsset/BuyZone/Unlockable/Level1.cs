@@ -48,7 +48,6 @@ public class Level1 : UnlockableMapZone
                 {
                     AnimationScale(Room.transform);
                     AnimationScale(_trashZone.transform);
-                    AnimationScale(RoomEnvirnoment);
                     AnimationOutlineRoomZone();
                     AnimationScale(NextZones[i].transform);
                     tempCounter++;

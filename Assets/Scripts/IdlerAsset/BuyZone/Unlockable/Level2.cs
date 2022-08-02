@@ -40,7 +40,6 @@ public class Level2 : UnlockableMapZone
                 {
                     UnlockNextLevelZone();
                     AnimationScale(Room.transform);
-                    AnimationScale(RoomEnvirnoment);
                     AnimationOutlineRoomZone();
                 }
             }
