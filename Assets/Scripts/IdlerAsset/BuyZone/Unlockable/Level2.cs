@@ -58,7 +58,6 @@ public class Level2 : UnlockableMapZone
     {
         int tempCounter = 0;
         int target = 2;
-        Debug.Log(true);
 
         for (int i = 0; i < NextZones.Length; i++)
         {
