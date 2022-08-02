@@ -1385,7 +1385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178651095482068248, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6560429298639720794, guid: 87a6072d276e43c43974f69a3116ad3f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2216,7 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapRoot: {fileID: 0}
+  _mapRoot: {fileID: 0}
 --- !u!1 &235845842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,7 +2993,7 @@ PrefabInstance:
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 235132879}
+      objectReference: {fileID: 472778669}
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _locks.Array.size
       value: 1
@@ -4580,7 +4580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &472778668
 Transform:
   m_ObjectHideFlags: 0
@@ -4626,6 +4626,7 @@ MonoBehaviour:
   - {fileID: 1543074819}
   LevelId: 0
   Room: {fileID: 673747423}
+  RoomEnvirnoment: {fileID: 235132878}
   NextLevel: {fileID: 187907886}
   ScaleTarget: {x: 1.2, y: 1.2, z: 1.2}
   ScaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
@@ -5349,6 +5350,7 @@ MonoBehaviour:
   - {fileID: 197078778}
   LevelId: 0
   Room: {fileID: 1686658732}
+  RoomEnvirnoment: {fileID: 928946381}
   NextLevel: {fileID: 1146432327}
   ScaleTarget: {x: 1.2, y: 1.2, z: 1.2}
   ScaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
@@ -8577,7 +8579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be3090c7fe625e40a717459ca00c406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapRoot: {fileID: 0}
+  _mapRoot: {fileID: 0}
 --- !u!1 &931808065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8761,7 +8763,7 @@ PrefabInstance:
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 1787044507}
+      objectReference: {fileID: 472778669}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _objectToTurnOff
       value: 
@@ -17112,6 +17114,7 @@ MonoBehaviour:
   - {fileID: 599830246}
   LevelId: 0
   Room: {fileID: 0}
+  RoomEnvirnoment: {fileID: 0}
   NextLevel: {fileID: 0}
   ScaleTarget: {x: 1.2, y: 1.2, z: 1.2}
   ScaleTargetForRoomZone: {x: 1.1, y: 1.1, z: 1.1}
@@ -19849,7 +19852,7 @@ PrefabInstance:
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 472778669}
+      objectReference: {fileID: 541562832}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _navMeshMaskId
       value: 15
@@ -19890,7 +19893,7 @@ PrefabInstance:
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _unlockable
       value: 
-      objectReference: {fileID: 928946382}
+      objectReference: {fileID: 541562832}
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _locks.Array.size
       value: 2

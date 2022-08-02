@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level2 : UnlockableLevels
+public class Level2 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
     [SerializeField] private int _counterForNextLevel = 0;
@@ -40,6 +40,7 @@ public class Level2 : UnlockableLevels
                 {
                     UnlockNextLevelZone();
                     AnimationScale(Room.transform);
+                    AnimationScale(RoomEnvirnoment);
                     AnimationOutlineRoomZone();
                 }
             }
