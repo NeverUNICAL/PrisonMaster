@@ -128,7 +128,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnRemoved(StackableObject stackable)
     {
-        _arrows[1].gameObject.SetActive(false);
+        _arrows[0].gameObject.SetActive(false);
         _background.DOFade(0, _duration);
         Invoke(nameof(OnStartGame), _duration);
         _player.Removed -= OnRemoved;
