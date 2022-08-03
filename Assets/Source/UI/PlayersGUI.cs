@@ -106,13 +106,12 @@ public class PlayersGUI : MonoBehaviour
     private void DiasableArrows()
     {
         DisableArrow();
-        _nextPointNumber++;
 
         for (int i = 0; i < _targetPoints.Length; i++)
         {
             _targetPoints[i].gameObject.SetActive(false);
 
-            if (i == _nextPointNumber && _nextPointNumber != 3)
+            if (i == _nextPointNumber && _nextPointNumber + 1 != 3)
             {
                 _targetPoints[i].gameObject.SetActive(true);
                 _gUIRotator.ChangeTarget(_targetPoints[i]);
