@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using DG.Tweening;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class PlayersGUI : MonoBehaviour
     private const float FadeDuration = 0.1f;
     private const float ScaleDuration = 0.2f;
     private int _nextPointNumber = 0;
+    private float _delayStart = 0.05f;
 
     private void OnEnable()
     {
@@ -27,10 +29,10 @@ public class PlayersGUI : MonoBehaviour
         _level2.RoomZoneOpened += EnableArrow;
 
         for (int i = 0; i < _rooms.Length; i++)
-            _rooms[i].Unlocked += ChangeTargetForArrow;
+            _rooms[i].Unlocked += UnlockRoom;
 
         for (int i = 0; i < _roomZoneTriggers.Length; i++)
-            _roomZoneTriggers[i].Enter += DisableArrow;
+            _roomZoneTriggers[i].Enter += OnEnter;
     }
 
     private void OnDisable()
@@ -39,7 +41,12 @@ public class PlayersGUI : MonoBehaviour
         _level2.RoomZoneOpened -= EnableArrow;
 
         for (int i = 0; i < _roomZoneTriggers.Length; i++)
-            _roomZoneTriggers[i].Enter -= DisableArrow;
+            _roomZoneTriggers[i].Enter -= OnEnter;
+    }
+
+    private void Start()
+    {
+        Invoke(nameof(DiasableArrows), _delayStart);
     }
 
     private void Update()
@@ -66,11 +73,21 @@ public class PlayersGUI : MonoBehaviour
         sequence.Play();
 
         _gUIRotator.enabled = false;
-
-        ChangeTargetForArrow(null);
     }
 
-    private void ChangeTargetForArrow(BuyZonePresenter buyZone)
+    private void OnEnter()
+    {
+        DisableArrow();
+        ChangeTargetForArrow();
+    }
+
+    private void UnlockRoom(BuyZonePresenter buyZone)
+    {
+        ChangeTargetForArrow();
+        buyZone.Unlocked -= UnlockRoom;
+    }
+
+    private void ChangeTargetForArrow()
     {
         _nextPointNumber++;
 
@@ -84,8 +101,22 @@ public class PlayersGUI : MonoBehaviour
                 _gUIRotator.ChangeTarget(_targetPoints[i]);
             }
         }
+    }
 
-        if (buyZone != null)
-            buyZone.Unlocked -= ChangeTargetForArrow;
+    private void DiasableArrows()
+    {
+        DisableArrow();
+        _nextPointNumber++;
+
+        for (int i = 0; i < _targetPoints.Length; i++)
+        {
+            _targetPoints[i].gameObject.SetActive(false);
+
+            if (i == _nextPointNumber && _nextPointNumber != 3)
+            {
+                _targetPoints[i].gameObject.SetActive(true);
+                _gUIRotator.ChangeTarget(_targetPoints[i]);
+            }
+        }
     }
 }
