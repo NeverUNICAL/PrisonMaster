@@ -117,19 +117,27 @@ public class AssistantsShop : MonoBehaviour
         {
             text.text = "MAX";
         }
+       
         else
         {
             foreach (Upgrade upgrade in upgrades)
             {
                 if (upgrade.Level == playerLevel + 1)
                 {
-                    if(upgrade.Price < 10000)
-                     text.text = "$"+upgrade.Price;
-                    else
+                    if (upgrade.Price == 0)
+                    {
+                        text.text = "FREE";
+                        return;
+                    }
+                    
+                    if(upgrade.Price >= 10000)
                     {
                         var price = upgrade.Price / 1000;
                         text.text = "$" + price + "K";
+                        return;
                     }
+                    
+                    text.text = "$" + upgrade.Price;
                     return;
                 }
             }

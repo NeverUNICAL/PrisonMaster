@@ -27,6 +27,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnEnable()
     {
+        _playerSavePresenter.Loaded += OnSavesLoaded;
         _player.AddedForTutorial += OnAdded;
         _player.Removed += OnRemoved;
         _producerZone.Unlocked += OnUnlock;
@@ -37,15 +38,16 @@ public class Tutorial : MonoBehaviour
     private void OnDisable()
     {
         _producerZone.Unlocked -= OnUnlock;
+        _playerSavePresenter.Loaded -= OnSavesLoaded;
         _consumerZone.Unlocked -= DoFade;
         _tutorialMoney.MoneyPullEmpty -= OnMoneyPullEmpty;
     }
 
-    private void Start()
+    private void OnSavesLoaded()
     {
         if (_playerSavePresenter.IsTutorialCompleted)
         {
-           OnTutorialCompletedOnStart();
+            OnTutorialCompletedOnStart();
         }
         else
         {
@@ -80,16 +82,11 @@ public class Tutorial : MonoBehaviour
 
     private void DoFade(BuyZonePresenter buyZonePresenter)
     {
-        if (_playerSavePresenter.IsTutorialCompleted)
-        {
-            OnTutorialCompletedOnStart();
-        }
-        else
+        if(_playerSavePresenter.IsTutorialCompleted == false)
         {
             ChangeActiveArrow();
             _isProducerLock = false;
         }
-        
     }
 
     private void AnimationScale(Transform buyZone)
@@ -121,7 +118,7 @@ public class Tutorial : MonoBehaviour
     {
         if (_isProducerLock == false)
         {
-        ChangeActiveArrow();
+         ChangeActiveArrow();
         _player.AddedForTutorial -= OnAdded;
         }
     }
@@ -141,15 +138,8 @@ public class Tutorial : MonoBehaviour
 
     private void OnMoneyPullEmpty()
     {
-        if (_playerSavePresenter.IsTutorialCompleted)
-        {
-            OnTutorialCompletedOnStart();
-        }
-        else
-        {
-            AnimationScale(_producerZone.transform);
-            ChangeActiveArrow();
-        }
+        AnimationScale(_producerZone.transform);
+        ChangeActiveArrow();
     }
 
     private void ChangeActiveArrow()

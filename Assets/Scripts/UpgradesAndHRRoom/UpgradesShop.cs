@@ -97,8 +97,21 @@ public class UpgradesShop : MonoBehaviour
             {
                 if (upgrade.Level == playerLevel + 1)
                 {
-                    text.text = "$"+upgrade.Price;
-                   return;
+                    if (upgrade.Price == 0)
+                    {
+                        text.text = "FREE";
+                        return;
+                    }
+                    
+                    if(upgrade.Price >= 10000)
+                    {
+                        var price = upgrade.Price / 1000;
+                        text.text = "$" + price + "K";
+                        return;
+                    }
+                    
+                    text.text = "$" + upgrade.Price;
+                        return;
                 }
             }
         }

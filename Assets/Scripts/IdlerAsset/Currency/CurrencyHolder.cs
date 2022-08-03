@@ -35,7 +35,8 @@ namespace Agava.IdleGame
 
         public void Spend(int value)
         {
-            _currency.Spend(value);
+            if(value>0)
+             _currency.Spend(value);
         }
 
         private void OnBalanceChanged()

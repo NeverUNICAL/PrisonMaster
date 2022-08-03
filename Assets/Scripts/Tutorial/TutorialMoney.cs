@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,16 @@ using UnityEngine.Events;
 
 public class TutorialMoney : MonoBehaviour
 {
-    private float _checkCooldawn = 0.5f;
+    private float _checkCooldown = 0.5f;
     private Coroutine _coroutineInJob;
+    private WaitForSeconds _waitForCheckCooldown;
 
     public event UnityAction MoneyPullEmpty;
+
+    private void Awake()
+    {
+        _waitForCheckCooldown = new WaitForSeconds(_checkCooldown);
+    }
 
     private void Start()
     {
@@ -19,14 +26,13 @@ public class TutorialMoney : MonoBehaviour
     {
         while(true)
         {
-        yield return new WaitForSeconds(_checkCooldawn);
+         yield return _waitForCheckCooldown;
 
             if (transform.childCount == 0)
             {
                 MoneyPullEmpty?.Invoke();
                 StopCoroutine(_coroutineInJob);
             }
-
         }
     }
 }
