@@ -2,10 +2,13 @@ using Agava.IdleGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Level1 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
+
+    public event UnityAction RoomZoneOpened;
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
@@ -47,6 +50,7 @@ public class Level1 : UnlockableMapZone
                 if (tempCounter < target)
                 {
                     AnimationScale(Room.transform);
+                    RoomZoneOpened?.Invoke();
                     AnimationScale(_trashZone.transform);
                     AnimationOutlineRoomZone();
                     AnimationScale(NextZones[i].transform);

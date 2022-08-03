@@ -10,4 +10,9 @@ public class GUIRotator : MonoBehaviour
     {
         _arrow.LookAt(_targetFinish);
     }
+
+    public void ChangeTarget(Transform target)
+    {
+        _targetFinish = target;
+    }
 }

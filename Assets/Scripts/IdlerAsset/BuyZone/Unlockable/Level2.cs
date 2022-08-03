@@ -2,6 +2,7 @@ using Agava.IdleGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Level2 : UnlockableMapZone
 {
@@ -9,6 +10,8 @@ public class Level2 : UnlockableMapZone
     [SerializeField] private int _counterForNextLevel = 0;
 
     private bool _isNextLevelUnlock = false;
+
+    public event UnityAction RoomZoneOpened;
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
@@ -46,6 +49,7 @@ public class Level2 : UnlockableMapZone
                     {
                         UnlockNextLevelZone();
                         AnimationScale(Room.transform);
+                        RoomZoneOpened?.Invoke();
                         AnimationOutlineRoomZone();
                     }
                 }
