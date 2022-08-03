@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338747, g: 0.21673937, b: 0.29880846, a: 1}
+  m_IndirectSpecularColor: {r: 0.1733872, g: 0.21673907, b: 0.29880777, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11780,7 +11780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HR
+  m_text: Assitance
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bcb33a1da5ef74d4484a919fbbb8b337, type: 2}
   m_sharedMaterial: {fileID: -3937214524903338822, guid: bcb33a1da5ef74d4484a919fbbb8b337, type: 2}
@@ -11807,8 +11807,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.4
-  m_fontSizeBase: 0.4
+  m_fontSize: 0.36
+  m_fontSizeBase: 0.36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11843,7 +11843,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.29769933, y: 0, z: 0.30244446, w: -0.0004813373}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -21615,6 +21615,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1440245197298647679, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_Name
+      value: NumberButton
+      objectReference: {fileID: 0}
     - target: {fileID: 1807070234013984640, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 363
@@ -21631,6 +21635,14 @@ PrefabInstance:
       propertyPath: _playerSavePresenter
       value: 
       objectReference: {fileID: 1033482721}
+    - target: {fileID: 4673431146100852181, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_margin.x
+      value: 64.37688
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695699108450289966, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_text
+      value: NUMBER
+      objectReference: {fileID: 0}
     - target: {fileID: 6383147144859142937, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_text
       value: assistants
@@ -21644,8 +21656,20 @@ PrefabInstance:
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 8262307761101418785, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262307761101418785, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262307761101418785, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 980
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262307761101418785, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 237
       objectReference: {fileID: 0}
     - target: {fileID: 8262307761101418814, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_IsActive

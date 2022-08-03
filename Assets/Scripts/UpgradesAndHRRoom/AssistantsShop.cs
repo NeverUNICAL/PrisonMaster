@@ -123,7 +123,13 @@ public class AssistantsShop : MonoBehaviour
             {
                 if (upgrade.Level == playerLevel + 1)
                 {
-                    text.text = "$"+upgrade.Price;
+                    if(upgrade.Price < 10000)
+                     text.text = "$"+upgrade.Price;
+                    else
+                    {
+                        var price = upgrade.Price / 1000;
+                        text.text = "$" + price + "K";
+                    }
                     return;
                 }
             }
