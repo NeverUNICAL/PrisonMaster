@@ -26,7 +26,7 @@ namespace Agava.IdleGame
         {
             for (int i = 0; i < BuyZones.Length; i++)
             {
-                BuyZones[i].Unlocked += Unlock;
+                 BuyZones[i].Unlocked += Unlock;
             }
 
             if (NextLevel != null)
