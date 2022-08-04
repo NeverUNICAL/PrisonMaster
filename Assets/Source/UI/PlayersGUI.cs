@@ -28,6 +28,11 @@ public class PlayersGUI : MonoBehaviour
     private int _arrowRoomHRBuyZone = 2;
     private int _arrowRoomHRShop = 3;
 
+    private bool _isUPRoomComplete = false;
+    private bool _isLevel2Unlock = false;
+    private bool _isHRBuyZoneUnlock = false;
+    private bool _isHRRoomComlited = false;
+
     private void OnEnable()
     {
         _level1.RoomZoneOpened += UnlockLevel1;
@@ -59,8 +64,12 @@ public class PlayersGUI : MonoBehaviour
 
     private void UnlockLevel2()
     {
-        EnableArrow();
-        ChangeTargetForArrow(_arrowRoomHRBuyZone);
+        _isLevel2Unlock = true;
+        if (_isUPRoomComplete)
+        {
+            EnableArrow();
+            ChangeTargetForArrow(_arrowRoomHRBuyZone);
+        }
         _level2.RoomZoneOpened -= UnlockLevel2;
     }
 
@@ -76,26 +85,59 @@ public class PlayersGUI : MonoBehaviour
 
     private void OnHREntered()
     {
-        DisableArrow();
-        ChangeTargetForArrow(4);
+        _isHRRoomComlited = true;
+        if (_isUPRoomComplete)
+        {
+            DisableArrow();
+            ChangeTargetForArrow(4);
+        }
         _hrTrigger.Enter -= OnHREntered;
     }
 
     private void OnUPEntered()
     {
+        _isUPRoomComplete = true;
+
+        if (_isHRRoomComlited)
+        {
+            DisableArrow();
+            ChangeTargetForArrow(4);
+            _upgradesTrigger.Enter -= OnUPEntered;
+            return;
+        }
+
+        if (_isHRBuyZoneUnlock)
+        {
+            ChangeTargetForArrow(_arrowRoomHRShop);
+            _upgradesTrigger.Enter -= OnUPEntered;
+            return;
+        }
+
+        if (_isLevel2Unlock)
+        {
+            ChangeTargetForArrow(_arrowRoomHRBuyZone);
+            _upgradesTrigger.Enter -= OnUPEntered;
+            return;
+        }
+
         DisableArrow();
         _upgradesTrigger.Enter -= OnUPEntered;
     }
 
     private void UnlockRoom(BuyZonePresenter buyZone)
     {
+        buyZone.Unlocked -= UnlockRoom;
+
         if (buyZone == _rooms[0])
             ChangeTargetForArrow(_arrowRoomUPShop);
 
         if (buyZone == _rooms[1])
-            ChangeTargetForArrow(_arrowRoomHRShop);
+        {
+            _isHRBuyZoneUnlock = true;
 
-        buyZone.Unlocked -= UnlockRoom;
+            if (_isUPRoomComplete)
+                ChangeTargetForArrow(_arrowRoomHRShop);
+        }
     }
 
     private void ChangeTargetForArrow(int targetNumber)
@@ -105,8 +147,8 @@ public class PlayersGUI : MonoBehaviour
 
         if (targetNumber < _targetPoints.Length)
         {
-        _targetPoints[targetNumber].gameObject.SetActive(true);
-        _gUIRotator.ChangeTarget(_targetPoints[targetNumber]);
+            _targetPoints[targetNumber].gameObject.SetActive(true);
+            _gUIRotator.ChangeTarget(_targetPoints[targetNumber]);
         }
     }
 
