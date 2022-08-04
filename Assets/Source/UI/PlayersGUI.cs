@@ -11,11 +11,11 @@ public class PlayersGUI : MonoBehaviour
     [SerializeField] private Level1 _level1;
     [SerializeField] private Level2 _level2;
     [SerializeField] private RoomBuyZone[] _rooms;
-    [SerializeField] private Trigger[] _roomZoneTriggers;
+    [SerializeField] private Trigger _hrTrigger;
+    [SerializeField] private Trigger _upgradesTrigger;
     [SerializeField] private Transform _objectForFollow;
     [SerializeField] private Transform[] _targetPoints;
     [SerializeField] private Vector3 _followOffset = new Vector3(0, 0.7f, 0);
-    [SerializeField] private PlayerSavePresenter _playerSavePresenter;
 
     private const float ScaleSize = 2.2f;
     private const float FadeDuration = 0.1f;
@@ -23,25 +23,21 @@ public class PlayersGUI : MonoBehaviour
     private int _nextPointNumber = 0;
     private float _delayStart = 0.05f;
 
+    private int _arrowRoomUPBuyZone = 0;
+    private int _arrowRoomUPShop = 1;
+    private int _arrowRoomHRBuyZone = 2;
+    private int _arrowRoomHRShop = 3;
+
     private void OnEnable()
     {
-        _level1.RoomZoneOpened += EnableArrow;
-        _level2.RoomZoneOpened += EnableArrow;
+        _level1.RoomZoneOpened += UnlockLevel1;
+        _level2.RoomZoneOpened += UnlockLevel2;
 
         for (int i = 0; i < _rooms.Length; i++)
             _rooms[i].Unlocked += UnlockRoom;
 
-        for (int i = 0; i < _roomZoneTriggers.Length; i++)
-            _roomZoneTriggers[i].Enter += OnEnter;
-    }
-
-    private void OnDisable()
-    {
-        _level1.RoomZoneOpened -= EnableArrow;
-        _level2.RoomZoneOpened -= EnableArrow;
-
-        for (int i = 0; i < _roomZoneTriggers.Length; i++)
-            _roomZoneTriggers[i].Enter -= OnEnter;
+        _hrTrigger.Enter += OnHREntered;
+        _upgradesTrigger.Enter += OnUPEntered;
     }
 
     private void Start()
@@ -54,15 +50,18 @@ public class PlayersGUI : MonoBehaviour
         transform.position = _objectForFollow.position + _followOffset;
     }
 
-    private void EnableArrow()
+    private void UnlockLevel1()
     {
-        _gUIRotator.enabled = true;
+        EnableArrow();
+        ChangeTargetForArrow(_arrowRoomUPBuyZone);
+        _level1.RoomZoneOpened -= UnlockLevel1;
+    }
 
-        var sequence = DOTween.Sequence();
-        sequence.Append(_arrow.DOFade(1, FadeDuration));
-        sequence.Append(_arrow.transform.DOScale(ScaleSize, ScaleDuration));
-        sequence.Append(_arrow.transform.DOScale(2, ScaleDuration));
-        sequence.Play();
+    private void UnlockLevel2()
+    {
+        EnableArrow();
+        ChangeTargetForArrow(_arrowRoomHRBuyZone);
+        _level2.RoomZoneOpened -= UnlockLevel2;
     }
 
     private void DisableArrow()
@@ -75,31 +74,39 @@ public class PlayersGUI : MonoBehaviour
         _gUIRotator.enabled = false;
     }
 
-    private void OnEnter()
+    private void OnHREntered()
     {
         DisableArrow();
-        ChangeTargetForArrow();
+        ChangeTargetForArrow(4);
+        _hrTrigger.Enter -= OnHREntered;
+    }
+
+    private void OnUPEntered()
+    {
+        DisableArrow();
+        _upgradesTrigger.Enter -= OnUPEntered;
     }
 
     private void UnlockRoom(BuyZonePresenter buyZone)
     {
-        ChangeTargetForArrow();
+        if (buyZone == _rooms[0])
+            ChangeTargetForArrow(_arrowRoomUPShop);
+
+        if (buyZone == _rooms[1])
+            ChangeTargetForArrow(_arrowRoomHRShop);
+
         buyZone.Unlocked -= UnlockRoom;
     }
 
-    private void ChangeTargetForArrow()
+    private void ChangeTargetForArrow(int targetNumber)
     {
-        _nextPointNumber++;
-
         for (int i = 0; i < _targetPoints.Length; i++)
-        {
             _targetPoints[i].gameObject.SetActive(false);
 
-            if (i == _nextPointNumber)
-            {
-                _targetPoints[i].gameObject.SetActive(true);
-                _gUIRotator.ChangeTarget(_targetPoints[i]);
-            }
+        if (targetNumber < _targetPoints.Length)
+        {
+        _targetPoints[targetNumber].gameObject.SetActive(true);
+        _gUIRotator.ChangeTarget(_targetPoints[targetNumber]);
         }
     }
 
@@ -108,14 +115,17 @@ public class PlayersGUI : MonoBehaviour
         DisableArrow();
 
         for (int i = 0; i < _targetPoints.Length; i++)
-        {
             _targetPoints[i].gameObject.SetActive(false);
+    }
 
-            if (i == _nextPointNumber && _nextPointNumber + 1 != 3)
-            {
-                _targetPoints[i].gameObject.SetActive(true);
-                _gUIRotator.ChangeTarget(_targetPoints[i]);
-            }
-        }
+    private void EnableArrow()
+    {
+        _gUIRotator.enabled = true;
+
+        var sequence = DOTween.Sequence();
+        sequence.Append(_arrow.DOFade(1, FadeDuration));
+        sequence.Append(_arrow.transform.DOScale(ScaleSize, ScaleDuration));
+        sequence.Append(_arrow.transform.DOScale(2, ScaleDuration));
+        sequence.Play();
     }
 }
