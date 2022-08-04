@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3876018081031921315
 Transform:
   m_ObjectHideFlags: 0
@@ -644,6 +644,14 @@ PrefabInstance:
       propertyPath: _rotateSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 63688992805800330, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 325921a31baffc94987c1d3f8cbb3693, type: 2}
+    - target: {fileID: 63688992805800330, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 23a2634695f955c4a97c268a89a87752, type: 2}
     - target: {fileID: 2309353763615703919, guid: 76b7a262a98b703439951d1692dbadbf, type: 3}
       propertyPath: m_Name
       value: Washer
