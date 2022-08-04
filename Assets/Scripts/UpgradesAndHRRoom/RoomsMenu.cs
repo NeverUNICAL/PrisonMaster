@@ -9,10 +9,16 @@ public class RoomsMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _hrPanel;
     [SerializeField] private GameObject _upgradesPanel;
-    [SerializeField] private GameObject _background;
     
     [SerializeField] private Trigger _hrTrigger;
     [SerializeField] private Trigger _upgradesTrigger;
+
+    private AssistantsShop _assistantsShop;
+
+    private void Awake()
+    {
+        _assistantsShop = GetComponent<AssistantsShop>();
+    }
 
     private void OnEnable()
     {
@@ -33,24 +39,21 @@ public class RoomsMenu : MonoBehaviour
     private void OnHREnter()
     {
         _hrPanel.SetActive(true);
-        _background.SetActive(true);
+        _assistantsShop.ChangeStateTutorial(false, true);
     }
     
     private void OnUpgradesEnter()
     {
         _upgradesPanel.SetActive(true);
-        _background.SetActive(true);
     }
     
     private void OnHRExit()
     {
         _hrPanel.SetActive(false);
-        _background.SetActive(false);
     }
     
     private void OnUpgradesExit()
     {
         _upgradesPanel.SetActive(false);
-        _background.SetActive(false);
     }
 }

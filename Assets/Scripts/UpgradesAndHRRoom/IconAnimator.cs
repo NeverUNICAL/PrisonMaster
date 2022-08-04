@@ -15,6 +15,8 @@ public class IconAnimator : MonoBehaviour
     [SerializeField] private RectTransform[] _icons;
     [SerializeField] private Trigger _hrTrigger;
     [SerializeField] private Trigger _upgradesTrigger;
+    [SerializeField] private AssistantsShop _assistantsShop;
+    [SerializeField] private UpgradesShop _upgradesShop;
 
     private Tween _tween;
     private int _speedIconNumber = 0;
@@ -26,10 +28,13 @@ public class IconAnimator : MonoBehaviour
             _hrTrigger.Enter += OnEnterHRRoom;
 
         if (_upgradesTrigger != null)
-        {
             _upgradesTrigger.Enter += OnEnterUPRoom;
-            Debug.Log("подписался");
-        }
+
+        if (_assistantsShop != null)
+            _assistantsShop.CountUpgraded += OnCountUpgrade;
+
+        if (_upgradesShop != null)
+            _upgradesShop.SpeedUpgraded += OnSpeedUpgrade;
     }
 
     private void OnDisable()
@@ -40,7 +45,11 @@ public class IconAnimator : MonoBehaviour
         if (_upgradesTrigger != null)
             _upgradesTrigger.Enter -= OnEnterUPRoom;
 
-        _tween.Kill();
+        if (_assistantsShop != null)
+            _assistantsShop.CountUpgraded -= OnCountUpgrade;
+
+        if (_upgradesShop != null)
+            _upgradesShop.SpeedUpgraded -= OnSpeedUpgrade;
     }
 
     private void OnEnterHRRoom()
@@ -51,8 +60,22 @@ public class IconAnimator : MonoBehaviour
 
     private void OnEnterUPRoom()
     {
-        Debug.Log("enter");
         if (_playerSavePresenter.SpeedLevel == 0)
             _tween = _icons[_speedIconNumber].transform.DOScale(new Vector3(transform.localScale.x + _targetScale, transform.localScale.y + _targetScale, transform.localScale.z), _duration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void OnCountUpgrade(int value, int value1)
+    {
+        KillTween();
+    }
+
+    private void OnSpeedUpgrade(int value, float valu1, int value2)
+    {
+        KillTween();
+    }
+
+    private void KillTween()
+    {
+        _tween.Kill();
     }
 }

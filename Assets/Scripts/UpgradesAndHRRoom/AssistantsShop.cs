@@ -29,7 +29,9 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speedPriceText;
     [SerializeField] private List<Upgrade> _speedUpgrades;
 
-    [Header("Settings")] 
+    [Header("Settings")]
+    [SerializeField] private Image _background;
+    [SerializeField] private Button _exitButton;
     [SerializeField] private List<Assistant> _assistants;
     [SerializeField] private AssistantsSavePresenter _saves;
     [SerializeField] private PlayerSavePresenter _playerSaves;
@@ -55,7 +57,7 @@ public class AssistantsShop : MonoBehaviour
         _speedButton.onClick.RemoveListener(OnSpeedButtonClick);
         _saves.Loaded -= OnLoaded;
     }
-    
+
     private void OnCapacityButtonClick()
     {
         if (_saves.Count > 0)
@@ -101,6 +103,7 @@ public class AssistantsShop : MonoBehaviour
             {
                 if (upgrade.Level == _saves.Count + 1 && upgrade.Price <= _saves.Money)
                 {
+                    ChangeStateTutorial(true, false);
                     CountUpgraded?.Invoke(upgrade.Level,upgrade.Price);
                     ResetAssistants();
                     _fillCountImage.sizeDelta = new Vector2(_fillCountImage.rect.width + _imageFillWidthStep, _fillCountImage.rect.height);
@@ -170,5 +173,16 @@ public class AssistantsShop : MonoBehaviour
         _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep*_saves.CapacityLevel), _fillCapacityImage.rect.height);
         _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep*_saves.SpeedLevel), _fillSpeedImage.rect.height);
         _fillCountImage.sizeDelta = new Vector2(_fillCountImage.rect.width + (_imageFillWidthStep*_saves.Count), _fillCountImage.rect.height);
+    }
+
+    public void ChangeStateTutorial(bool interactableValue, bool value)
+    {
+        if (_saves.Count == 0)
+        {
+        _exitButton.interactable = interactableValue;
+        _capacityButton.interactable = interactableValue;
+        _speedButton.interactable = interactableValue;
+        _background.gameObject.SetActive(value);
+        }
     }
 }

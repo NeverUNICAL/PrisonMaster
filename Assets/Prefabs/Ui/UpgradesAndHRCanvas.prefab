@@ -2615,7 +2615,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4208,7 +4208,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4618,6 +4618,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69f51f991866c224d9b44c8c1c109150, type: 2}
   - {fileID: 11400000, guid: e0dd80105bf0d7342aed471df2543041, type: 2}
   - {fileID: 11400000, guid: 7cc402d55106bba4996eefba5362252e, type: 2}
+  _exitButton: {fileID: 8262307761166680747}
+  _background: {fileID: 8884322232940165145}
   _playerSavePresenter: {fileID: 0}
   _imageFillWidthStep: 40
   _upgradesMaxLevel: 4
@@ -4816,7 +4818,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hrPanel: {fileID: 8262307761101418814}
   _upgradesPanel: {fileID: 8262307762007197755}
-  _background: {fileID: 0}
   _hrTrigger: {fileID: 0}
   _upgradesTrigger: {fileID: 0}
 --- !u!114 &2007783058
@@ -4855,6 +4856,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 81ec1f75b7eb90243afa9f7d2698d68a, type: 2}
   - {fileID: 11400000, guid: c379ee89177c22840ba77d584a7826b3, type: 2}
   - {fileID: 11400000, guid: 0a3a8708c1431a04a9944f8e56485155, type: 2}
+  _background: {fileID: 8884322232940165145}
+  _exitButton: {fileID: 7748447960165909298}
   _assistants:
   - {fileID: 0}
   - {fileID: 0}

@@ -24,15 +24,17 @@ public class UpgradesShop : MonoBehaviour
     [SerializeField] private RectTransform _fillSpeedImage;
     [SerializeField] private TextMeshProUGUI _speedPriceText;
     [SerializeField] private List<Upgrade> _speedUpgrades;
-    
-    [Header("Settings")] 
+
+    [Header("Settings")]
+    [SerializeField] private Button _exitButton;
+    [SerializeField] private Image _background;
     [SerializeField] private PlayerSavePresenter _playerSavePresenter;
     [SerializeField] private float _imageFillWidthStep;
     [SerializeField] private int _upgradesMaxLevel = 4;
-    
-    public event UnityAction<int,float,int> SpeedUpgraded;
-    public event UnityAction<int,int,int> CapacityUpgraded;
-    
+
+    public event UnityAction<int, float, int> SpeedUpgraded;
+    public event UnityAction<int, int, int> CapacityUpgraded;
+
 
     private void OnEnable()
     {
@@ -51,6 +53,9 @@ public class UpgradesShop : MonoBehaviour
     private void Start()
     {
         OnLoaded();
+
+        if (_playerSavePresenter.SpeedLevel == 0)
+            ChangeStateTutorial(false, true);
     }
 
     private void OnCapacityButtonClick()
@@ -61,14 +66,14 @@ public class UpgradesShop : MonoBehaviour
                 && _stackPresenter.Capacity < upgrade.Value
                 && _playerSavePresenter.Money >= upgrade.Price)
             {
-                CapacityUpgraded?.Invoke(upgrade.Level,(int)upgrade.Value,upgrade.Price);
+                CapacityUpgraded?.Invoke(upgrade.Level, (int)upgrade.Value, upgrade.Price);
                 _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + _imageFillWidthStep, _fillCapacityImage.rect.height);
-                ResetPriceView(_capacityUpgrades,_playerSavePresenter.CapacityLevel,_capacityPriceText);
+                ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText);
                 return;
             }
         }
     }
-    
+
     private void OnSpeedButtonClick()
     {
         foreach (Upgrade upgrade in _speedUpgrades)
@@ -77,15 +82,16 @@ public class UpgradesShop : MonoBehaviour
                 && _navMeshAgent.speed < upgrade.Value
                 && _playerSavePresenter.Money >= upgrade.Price)
             {
-                SpeedUpgraded?.Invoke(upgrade.Level,upgrade.Value,upgrade.Price);
+                SpeedUpgraded?.Invoke(upgrade.Level, upgrade.Value, upgrade.Price);
                 _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + _imageFillWidthStep, _fillSpeedImage.rect.height);
-                ResetPriceView(_speedUpgrades,_playerSavePresenter.SpeedLevel,_speedPriceText);
+                ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText);
+                ChangeStateTutorial(true, false);
                 return;
             }
         }
     }
 
-    private void ResetPriceView(List<Upgrade> upgrades, int playerLevel,TextMeshProUGUI text)
+    private void ResetPriceView(List<Upgrade> upgrades, int playerLevel, TextMeshProUGUI text)
     {
         if (playerLevel == _upgradesMaxLevel)
         {
@@ -102,16 +108,16 @@ public class UpgradesShop : MonoBehaviour
                         text.text = "FREE";
                         return;
                     }
-                    
-                    if(upgrade.Price >= 10000)
+
+                    if (upgrade.Price >= 10000)
                     {
                         var price = upgrade.Price / 1000;
                         text.text = "$" + price + "K";
                         return;
                     }
-                    
+
                     text.text = "$" + upgrade.Price;
-                        return;
+                    return;
                 }
             }
         }
@@ -119,9 +125,16 @@ public class UpgradesShop : MonoBehaviour
 
     private void OnLoaded()
     {
-        ResetPriceView(_capacityUpgrades,_playerSavePresenter.CapacityLevel,_capacityPriceText);
-        ResetPriceView(_speedUpgrades,_playerSavePresenter.SpeedLevel,_speedPriceText);
-        _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep*_playerSavePresenter.CapacityLevel), _fillCapacityImage.rect.height);
-        _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep*_playerSavePresenter.SpeedLevel), _fillSpeedImage.rect.height);
+        ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText);
+        ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText);
+        _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep * _playerSavePresenter.CapacityLevel), _fillCapacityImage.rect.height);
+        _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep * _playerSavePresenter.SpeedLevel), _fillSpeedImage.rect.height);
+    }
+
+    private void ChangeStateTutorial(bool interactableValue, bool value)
+    {
+        _exitButton.interactable = interactableValue;
+        _capacityButton.interactable = interactableValue;
+        _background.gameObject.SetActive(value);
     }
 }
