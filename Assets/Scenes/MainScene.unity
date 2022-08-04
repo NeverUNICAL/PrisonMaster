@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+  m_AmbientSkyColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   m_AmbientEquatorColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_AmbientGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientIntensity: 1
@@ -1810,7 +1810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167760871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 6.63}
+  m_LocalPosition: {x: -0.2, y: 0, z: 6.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675376436}
@@ -2781,7 +2781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284609114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 1.3599999}
+  m_LocalPosition: {x: -0.20000076, y: 0, z: 1.3599999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675376436}
@@ -3816,7 +3816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364880984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 27}
+  m_LocalPosition: {x: -2.6, y: 0, z: 22.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 53228056}
@@ -3837,8 +3837,8 @@ MonoBehaviour:
   _spawnTimeOut: 1
   _sendTimeOut: 1
   _firstPoint: {fileID: 364880984}
-  _startPoolSize: 10
-  _offsetPos: {x: 0, y: 0, z: 0}
+  _startPoolSize: 15
+  _offsetPos: {x: -0.6, y: 0, z: 0.7}
   _queues:
   - {fileID: 685340014}
   - {fileID: 1986544812}
@@ -7341,7 +7341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685340012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: -8.54}
+  m_LocalPosition: {x: -0.20000076, y: 0, z: -8.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675376436}
@@ -7363,7 +7363,7 @@ MonoBehaviour:
   _sendTimeOut: 2
   _firstPoint: {fileID: 685340012}
   _startPoolSize: 3
-  _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _offsetPos: {x: -0.4, y: 0, z: 0.6}
   _queues: []
   _shop: {fileID: 344035966}
   _isSuitQueue: 1
@@ -9296,10 +9296,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 2
+  _sendTimeOut: 1
   _firstPoint: {fileID: 931808065}
-  _startPoolSize: 10
-  _offsetPos: {x: 0, y: 0, z: 0}
+  _startPoolSize: 15
+  _offsetPos: {x: -0.6, y: 0, z: 0.8}
   _queues: []
   _shop: {fileID: 0}
   _isSuitQueue: 0
@@ -13496,7 +13496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1494436826349711795, guid: 0efdd9a768e1f9d4bb0384aa38a59d46, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.5
+      value: -6.45
       objectReference: {fileID: 0}
     - target: {fileID: 1494436826349711795, guid: 0efdd9a768e1f9d4bb0384aa38a59d46, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -14841,7 +14841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442995391}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 39.98}
+  m_LocalPosition: {x: -1.92, y: 0, z: 38.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 53228056}
@@ -14860,10 +14860,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTimeOut: 1
-  _sendTimeOut: 2
+  _sendTimeOut: 1
   _firstPoint: {fileID: 1442995391}
-  _startPoolSize: 10
-  _offsetPos: {x: 0, y: 0, z: 0}
+  _startPoolSize: 15
+  _offsetPos: {x: -0.6, y: 0, z: 0.8}
   _queues:
   - {fileID: 1120001473}
   - {fileID: 1608014185}
@@ -14872,7 +14872,7 @@ MonoBehaviour:
   _shop: {fileID: 0}
   _isSuitQueue: 0
   _exit: {fileID: 469540570}
-  _tryToSendToExitCooldown: 3
+  _tryToSendToExitCooldown: 0
 --- !u!114 &1448508073 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 717448223038092230, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
@@ -20702,7 +20702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986544810}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: -3.59}
+  m_LocalPosition: {x: -0.20000076, y: 0, z: -3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675376436}
