@@ -21,6 +21,12 @@ public class IconAnimator : MonoBehaviour
     private Tween _tween;
     private int _speedIconNumber = 0;
     private int _countIconNumber = 1;
+    private Vector3 _defaultScale;
+
+    private void Awake()
+    {
+        _defaultScale = transform.localScale;
+    }
 
     private void OnEnable()
     {
@@ -67,11 +73,13 @@ public class IconAnimator : MonoBehaviour
     private void OnCountUpgrade(int value, int value1)
     {
         KillTween();
+        _icons[_countIconNumber].transform.DOScale(_defaultScale, _duration);
     }
 
     private void OnSpeedUpgrade(int value, float valu1, int value2)
     {
         KillTween();
+        _icons[_speedIconNumber].transform.DOScale(_defaultScale, _duration);
     }
 
     private void KillTween()
