@@ -53,6 +53,12 @@ public class PrisonMover : MonoBehaviour
         _suits[1].SetActive(true);
     }
 
+    public void EnableSuitAfterShower()
+    {
+        _suits[2].SetActive(false);
+        _suits[0].SetActive(true);
+    }
+
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
     {
         _nextPoint = target;

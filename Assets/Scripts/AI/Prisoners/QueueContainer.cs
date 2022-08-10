@@ -161,9 +161,11 @@ public class QueueContainer : QueueHandler
     {
         _outCoverAnimator.SetBool("IsOpened",true);
         _inCoverAnimator.SetBool("IsOpened",true);
+        _prisonerList[0].EnableSuitAfterShower();
+        
         if (SendToPool(_distributor))
             _shop.Sale();
-
+        
         _isShowerBusy = false;
         Invoke(nameof(CloseOutCover),0.5f);
     }
