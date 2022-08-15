@@ -132,7 +132,7 @@ public abstract class QueueHandler : MonoBehaviour
                     _prisonerList[0].EnableSuit();
                         
                 targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
-                _prisonerList[0].ChangeAngryAnimation(false);
+                //_prisonerList[0].ChangeAngryAnimation(false);
                 targetQueue.ListSort();
                 ExtractFirst();
                 return true;
@@ -150,7 +150,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected void SendToExit()
     {
         _prisonerList[0].SetTarget(_exit,Vector3.zero);
-        _prisonerList[0].ChangeAngryAnimation(false);
+        //_prisonerList[0].ChangeAngryAnimation(false);
         ExtractFirst();
         
         if(_shop != null)

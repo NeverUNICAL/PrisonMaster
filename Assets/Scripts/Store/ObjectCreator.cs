@@ -11,7 +11,7 @@ namespace Agava.IdleGame
         [SerializeField] private Transform _spawnObjectPosition;
         [SerializeField] private ObjectTransferZone _objectTransferZone;
         [SerializeField] private float _timeBetweenSpawnItem;
-        [SerializeField] private TextMeshProUGUI _text;
+        //[SerializeField] private TextMeshProUGUI _text;
 
         private void Start()
         {
@@ -44,7 +44,7 @@ namespace Agava.IdleGame
             if (ItemsCount == StackPresenter.Capacity)
             {
                 StackIsFull = true;
-                _text.gameObject.SetActive(true);
+                //_text.gameObject.SetActive(true);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace Agava.IdleGame
             {
                 StackIsFull = false;
                 Timer.Start(_timeBetweenSpawnItem);
-                _text.gameObject.SetActive(false);
+                //_text.gameObject.SetActive(false);
             }
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 using Agava.IdleGame.Model;
+using System.Collections;
 
 namespace Agava.IdleGame
 {
@@ -16,6 +17,9 @@ namespace Agava.IdleGame
         [SerializeField] private FloatSetting _jumpPower = new FloatSetting(false, 0f);
         [SerializeField] private Vector3 _scaleForPlayerObjects = new Vector3(0.7f,1.2f,0.7f);
         [SerializeField] private Vector3 _scaleForObjects = new Vector3(1f,1.5f,1f);
+        [SerializeField] private bool _isShop = false;
+
+        public bool IsShop => _isShop;
 
         private List<StackableObject> _stackables = new List<StackableObject>();
         
@@ -59,8 +63,20 @@ namespace Agava.IdleGame
 
             _stackables.Add(stackable);
 
-            if(_stackables.Count == 1)
+            if (_stackables.Count == 1)
                 Fill?.Invoke();
+        }
+
+        public void SortStack()
+        {
+            StartCoroutine(Delay());
+        }
+
+        private IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            Sort(_stackables, _animationDuration);
         }
 
         public void Remove(StackableObject stackable)
@@ -70,6 +86,9 @@ namespace Agava.IdleGame
 
             _stackablesDelayed.Remove(stackable);
             _stackables.Remove(stackable);
+
+            if (_isShop && stackable.View != null)
+                stackable.View.gameObject.SetActive(false);
             Sort(_stackables, _animationDuration);
 
             if (_stackables.Count <= 0)

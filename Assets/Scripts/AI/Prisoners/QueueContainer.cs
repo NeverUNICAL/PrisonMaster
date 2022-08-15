@@ -132,8 +132,8 @@ public class QueueContainer : QueueHandler
     {
         foreach (var prisoner in _prisonerList)
         {
-            if (prisoner.PathEnded())
-                prisoner.ChangeAngryAnimation(value);
+            //if (prisoner.PathEnded())
+            //    prisoner.ChangeAngryAnimation(value);
         }
     }
 

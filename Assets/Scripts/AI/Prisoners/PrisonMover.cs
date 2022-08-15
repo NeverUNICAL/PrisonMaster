@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using Agava.IdleGame;
+
 public class PrisonMover : MonoBehaviour
 {
     [SerializeField] private GameObject[] _suits;
     [SerializeField] private ParticleSystem _angryEffect;
+    [SerializeField] private BoxStackView _stackView;
+    [SerializeField] private float _maxDelay;
 
     private GameObject _nextPoint;
     private NavMeshAgent _agent;
@@ -24,17 +28,33 @@ public class PrisonMover : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        _stackView.SuitReached += OnReached;
+    }
+
+    private void OnDisable()
+    {
+        _stackView.SuitReached -= OnReached;
+    }
+
+    private void OnReached()
+    {
+        _maxDelay = Random.Range(0, _maxDelay);
+        StartCoroutine(ChangeAngryAnimation(true, _maxDelay));
+    }
+
     private void FixedUpdate()
     {
-        if (_agentPath != _agent.path)
-        {
-            _agent.destination = _nextPoint.transform.position + _targetPoint;
-            _agentPath = _agent.path;
-        }
+        //if (_agentPath != _agent.path)
+        //{
+        //    _agent.destination = _nextPoint.transform.position + _targetPoint;
+        //    _agentPath = _agent.path;
+        //}
 
-        transform.LookAt(_lookTarget);
+        //transform.LookAt(_lookTarget);
 
-        _animator.SetFloat(Speed, _agent.velocity.magnitude / _agent.speed);
+        //_animator.SetFloat(Speed, _agent.velocity.magnitude / _agent.speed);
     }
 
     public bool PathEnded()
@@ -49,34 +69,36 @@ public class PrisonMover : MonoBehaviour
 
     public void EnableSuit()
     {
-        _suits[0].SetActive(false);
-        _suits[1].SetActive(true);
+        //_suits[0].SetActive(false);
+        //_suits[1].SetActive(true);
     }
 
     public void EnableSuitAfterShower()
     {
-        _suits[2].SetActive(false);
-        _suits[0].SetActive(true);
+        //_suits[2].SetActive(false);
+        //_suits[0].SetActive(true);
     }
 
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
     {
-        _nextPoint = target;
-        _targetPoint = offset;
+        //_nextPoint = target;
+        //_targetPoint = offset;
 
-        if (lookTarget == null)
-            _lookTarget = _nextPoint.transform;
-        else
-            _lookTarget = lookTarget;
+        //if (lookTarget == null)
+        //    _lookTarget = _nextPoint.transform;
+        //else
+        //    _lookTarget = lookTarget;
     }
 
     public void ChangePriority(int value)
     {
-        _agent.avoidancePriority = value;
+        //_agent.avoidancePriority = value;
     }
 
-    public void ChangeAngryAnimation(bool value)
+    public IEnumerator ChangeAngryAnimation(bool value, float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         _animator.SetBool(_isAngryAnimation, value);
         _angryEffect.gameObject.SetActive(value);
     }
