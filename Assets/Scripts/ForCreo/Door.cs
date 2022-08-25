@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 namespace ForCreo
 {
@@ -13,6 +14,11 @@ namespace ForCreo
         [SerializeField] private Vector3 _defaultRotation;
 
         private bool _isOpened = false;
+
+        public bool IsOpened => _isOpened;
+
+        public event UnityAction Opened;
+        public event UnityAction Closed;
 
         private void OnEnable()
         {
@@ -36,19 +42,19 @@ namespace ForCreo
 
         private void Open()
         {
-            Rotate(_targetRotation, _duration);
+            Rotate(_targetRotation, _duration, Opened);
             _isOpened = true;
         }
 
         private void Close()
         {
-            Rotate(_defaultRotation, _duration);
+            Rotate(_defaultRotation, _duration, Closed);
             _isOpened = false;
         }
 
-        private void Rotate(Vector3 target, float duration)
+        private void Rotate(Vector3 target, float duration, UnityAction action)
         {
-            transform.DORotate(target, duration);
+            transform.DORotate(target, duration).OnComplete(() => action?.Invoke());
         }
     }
 }
