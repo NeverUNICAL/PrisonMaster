@@ -8,10 +8,10 @@ namespace ForCreo
     {
         [SerializeField] private CellsConteiner _cellsConteiner;
 
-        private Queue<Prisoner> _prisoners = new Queue<Prisoner>();
+        private Queue<PrisonerForCreo> _prisoners = new Queue<PrisonerForCreo>();
         private bool _isFull = false;
 
-        public Queue<Prisoner> Prisoners => _prisoners;
+        public Queue<PrisonerForCreo> Prisoners => _prisoners;
         public bool IsFull => _isFull;
 
         private void Awake()
@@ -53,12 +53,12 @@ namespace ForCreo
                 _isFull = true;
         }
 
-        private void OntriggerIn(Prisoner targetPrisoner)
+        private void OntriggerIn(PrisonerForCreo targetPrisoner)
         {
             RotatePrisoner(targetPrisoner);
         }
 
-        protected override void AddQueue(Prisoner targetPrisoner)
+        protected override void AddQueue(PrisonerForCreo targetPrisoner)
         {
             targetPrisoner.NavMeshAgent.SetDestination(QueuePosition[Index].transform.position);
             _prisoners.Enqueue(targetPrisoner);

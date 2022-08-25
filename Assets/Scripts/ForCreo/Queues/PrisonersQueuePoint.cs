@@ -13,8 +13,8 @@ namespace ForCreo
 
         public bool IsEmpty => _isEmpty;
 
-        public event UnityAction<Prisoner> TriggerIn;
-        public event UnityAction<Prisoner> TriggerOut;
+        public event UnityAction<PrisonerForCreo> TriggerIn;
+        public event UnityAction<PrisonerForCreo> TriggerOut;
 
         private void Awake()
         {
@@ -24,7 +24,7 @@ namespace ForCreo
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Prisoner prisoner))
+            if (other.TryGetComponent(out PrisonerForCreo prisoner))
             {
                 _isEmpty = false;
                 TriggerIn?.Invoke(prisoner);
@@ -33,7 +33,7 @@ namespace ForCreo
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out Prisoner prisoner))
+            if (other.TryGetComponent(out PrisonerForCreo prisoner))
             {
                 _isEmpty = true;
             }

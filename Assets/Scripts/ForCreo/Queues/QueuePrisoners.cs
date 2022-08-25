@@ -12,7 +12,7 @@ namespace ForCreo
         protected PrisonersQueuePoint[] QueuePosition;
         protected int Index = 0;
 
-        protected void Sort(Queue<Prisoner> prisoners)
+        protected void Sort(Queue<PrisonerForCreo> prisoners)
         {
             int newIndex = 0;
             int first = 0;
@@ -31,18 +31,18 @@ namespace ForCreo
             }
         }
 
-        protected void RotatePrisoner(Prisoner targetPrisoner)
+        protected void RotatePrisoner(PrisonerForCreo targetPrisoner)
         {
             targetPrisoner.Rotate(LookPoint);
         }
 
-        private IEnumerator DelaySort(Prisoner prisoner, int index)
+        private IEnumerator DelaySort(PrisonerForCreo prisoner, int index)
         {
             yield return new WaitForSeconds(0.5f);
 
             prisoner.NavMeshAgent.SetDestination(QueuePosition[index].transform.position);
         }
 
-        protected abstract void AddQueue(Prisoner targetPrisoner);
+        protected abstract void AddQueue(PrisonerForCreo targetPrisoner);
     }
 }

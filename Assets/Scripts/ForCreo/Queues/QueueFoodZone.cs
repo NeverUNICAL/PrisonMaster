@@ -11,7 +11,7 @@ namespace ForCreo
         [SerializeField] private TableFood[] _tableFoods;
         [SerializeField] private float _duration = 1f;
 
-        private Queue<Prisoner> _prisoners = new Queue<Prisoner>();
+        private Queue<PrisonerForCreo> _prisoners = new Queue<PrisonerForCreo>();
 
         private void Awake()
         {
@@ -72,7 +72,7 @@ namespace ForCreo
         //    targetPrisoner.Eating();
         //}
 
-        private void OnTriggerIn(Prisoner targetPrisoner)
+        private void OnTriggerIn(PrisonerForCreo targetPrisoner)
         {
             RotatePrisoner(targetPrisoner);
         }
@@ -89,14 +89,14 @@ namespace ForCreo
                 Sort(_prisoners);
         }
 
-        protected override void AddQueue(Prisoner targetPrisoner)
+        protected override void AddQueue(PrisonerForCreo targetPrisoner)
         {
             targetPrisoner.NavMeshAgent.SetDestination(QueuePosition[Index].transform.position);
             _prisoners.Enqueue(targetPrisoner);
             Index++;
         }
 
-        private IEnumerator PathEnded(Prisoner prisoner, float duration)
+        private IEnumerator PathEnded(PrisonerForCreo prisoner, float duration)
         {
             yield return new WaitForSeconds(duration);
 

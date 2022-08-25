@@ -10,9 +10,9 @@ namespace ForCreo
         [SerializeField] private Transform _prisonersConteiner;
 
         private Door _door;
-        private Prisoner[] _prisoners;
+        private PrisonerForCreo[] _prisoners;
 
-        public Prisoner[] Prisoners => _prisoners;
+        public PrisonerForCreo[] Prisoners => _prisoners;
 
         public event UnityAction<Cell> DoorOpened;
 
@@ -23,9 +23,9 @@ namespace ForCreo
             if (_prisonersConteiner.childCount <= 0)
                 return;
 
-            _prisoners = new Prisoner[_prisonersConteiner.childCount];
+            _prisoners = new PrisonerForCreo[_prisonersConteiner.childCount];
             for (int i = 0; i < _prisoners.Length; i++)
-                _prisoners[i] = _prisonersConteiner.GetChild(i).GetComponent<Prisoner>();
+                _prisoners[i] = _prisonersConteiner.GetChild(i).GetComponent<PrisonerForCreo>();
         }
 
         private void OnEnable()
