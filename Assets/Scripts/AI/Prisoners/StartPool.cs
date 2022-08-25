@@ -11,12 +11,21 @@ public class StartPool : QueueHandler
     [SerializeField]private Transform _parentPrisoners;
 
     private PrisonMover[] _prisoners;
+    private bool _isWorking;
    
     private void Start()
     {
+        _isWorking = true;
         GenerateList();
-        StartCoroutine(Spawn());
+        //StartCoroutine(Spawn());
         StartCoroutine(SendToQueue(_queues));
+    }
+
+    public void ChangeSpawningState(bool value)
+    {
+        _isWorking = value;
+        if (value)
+            StartCoroutine(Spawn());
     }
 
     private void ListUpdate()
@@ -32,7 +41,7 @@ public class StartPool : QueueHandler
     
     private IEnumerator Spawn()
     {
-        while (true)
+        while (_isWorking)
         {
             yield return _waitForSpawnTimeOut;
             
