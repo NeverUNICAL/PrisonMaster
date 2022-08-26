@@ -45,10 +45,10 @@ namespace Agava.IdleGame
             return Vector3.Scale(PositionByIndex(index), _distanceBetweenObjects);
         }
 
-        protected override Vector3 CalculateEndRotation(Transform container, Transform stackable)
-        {
-            return new Vector3(0, 90, 0);
-        }
+        //protected override Vector3 CalculateEndRotation(Transform container, Transform stackable)
+        //{
+        //    return new Vector3(0, 90, 0);
+        //}
 
         protected override void Sort(IEnumerable<StackableObject> unsortedStackables, float animationDuration)
         {

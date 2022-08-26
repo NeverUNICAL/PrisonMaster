@@ -21,6 +21,8 @@ public class QueueContainer : QueueHandler
     [SerializeField] private Transform _button;
     [SerializeField] private Animator _inCoverAnimator;
     [SerializeField] private Animator _outCoverAnimator;
+    [SerializeField] private float _delayCloseInCover;
+    [SerializeField] private float _delayCloseOutCover;
 
     private bool _onShowerTriggerStayed;
     private bool _isShowerBusy;
@@ -67,7 +69,7 @@ public class QueueContainer : QueueHandler
         if (_isBeforeShower && _listForShower[0]._prisonerList.Count > 0 && _listForShower[0]._prisonerList[0].PathEnded())
         {
             if(_inCoverAnimator.GetBool("IsOpened"))
-             Invoke(nameof(CloseInCover),1f);
+             Invoke(nameof(CloseInCover), _delayCloseInCover);
         }
     }
 
@@ -87,7 +89,7 @@ public class QueueContainer : QueueHandler
             {
                 if (_shop.Count >= _shop.CountForSale)
                 {
-                    if (_isShower && _onShowerTriggerStayed && _isShowerBusy == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded() 
+                    if (_isShower && _onShowerTriggerStayed && _isShowerBusy == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded()
                         && _inCoverAnimator.GetBool("IsOpened") == false)
                     {
                        _timer.Start(_timeForWashing);
@@ -167,7 +169,7 @@ public class QueueContainer : QueueHandler
             _shop.Sale();
         
         _isShowerBusy = false;
-        Invoke(nameof(CloseOutCover),0.5f);
+        Invoke(nameof(CloseOutCover), _delayCloseOutCover);
     }
 
     private void CloseOutCover()

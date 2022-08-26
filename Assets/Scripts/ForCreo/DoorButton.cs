@@ -8,6 +8,8 @@ namespace ForCreo
     [RequireComponent(typeof(BoxCollider))]
     public class DoorButton : MonoBehaviour
     {
+        [SerializeField] private Transform _button;
+
         private BoxCollider _boxCollider;
 
         public event UnityAction Reached;
@@ -20,8 +22,14 @@ namespace ForCreo
 
         private void OnTriggerEnter(Collider other)
         {
+            _button.localPosition = Vector3.zero;
             if (other.TryGetComponent(out PlayerMovement player))
                 Reached?.Invoke();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            _button.localPosition += new Vector3(0, 0.1f, 0);
         }
     }
 }
