@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Distributor : QueueHandler
 {
+    [SerializeField] private bool _isLastPool = false;
+
     private void Start()
     {
         if (_queues.Count > 0)
@@ -14,14 +16,17 @@ public class Distributor : QueueHandler
             StartCoroutine(SendToQueue(_queues));
         }
     }
-    
+
     private IEnumerator TrySendToExit()
     {
         while (true)
         {
-            if (_prisonerList.Count == _startPoolSize)
+            if (_isLastPool)
             {
-                SendToExit();
+                if (_prisonerList.Count == _startPoolSize)
+                {
+                    SendToExit();
+                }
             }
 
             yield return _waitToTrySendToExit;
