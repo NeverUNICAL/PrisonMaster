@@ -26,7 +26,7 @@ public class Bus : MonoBehaviour
     private bool _brakePressed;
     private bool _doorOpened;
     private float _startSpeed;
-    private bool _isFirst = true;
+    //private bool _isFirst = true;
 
     private void OnEnable()
     {
@@ -73,17 +73,17 @@ public class Bus : MonoBehaviour
 
     private void OpenDoor()
     {
-        if (_isFirst)
-        {
+        //if (_isFirst)
+        //{
         _startPool.ChangeSpawningState(true);
         _brakePressed = false;
         Invoke(nameof(CloseDoor), _timeToCloseDoor);
-        }
+        //}
     }
 
     private void CloseDoor()
     {
-        _isFirst = false;
+        //_isFirst = false;
         _startPool.ChangeSpawningState(false);
         _doorOpened = false;
         ChangeSmokeActive(false);

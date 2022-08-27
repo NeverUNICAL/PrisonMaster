@@ -11,6 +11,7 @@ namespace ForCreo
         private Animator _animator;
         private NavMeshAgent _navMeshAgent;
         private static readonly int Speed = Animator.StringToHash("Speed");
+        private const string EatAnimation = "Eat";
         private bool _pathEnded;
 
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -43,7 +44,8 @@ namespace ForCreo
 
         public void Eating()
         {
-            _animator.SetTrigger("IsAngry");
+            transform.DORotate(new Vector3(0, 0, 0), 0.5f);
+            _animator.SetTrigger(EatAnimation);
         }
     }
 }
