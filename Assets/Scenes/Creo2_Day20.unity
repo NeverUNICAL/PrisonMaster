@@ -7426,7 +7426,7 @@ MonoBehaviour:
   _shop: {fileID: 0}
   _isSuitQueue: 0
   _exit: {fileID: 469540570}
-  _tryToSendToExitCooldown: 1
+  _tryToSendToExitCooldown: 10000
   _isLastPool: 0
 --- !u!1 &367326220
 GameObject:
@@ -20418,6 +20418,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8314865961249638415, guid: fcb551465632bec4f8d0f40a672ec7e9, type: 3}
+      propertyPath: _startPool
+      value: 
+      objectReference: {fileID: 1758341081}
+    - target: {fileID: 8314865961249638415, guid: fcb551465632bec4f8d0f40a672ec7e9, type: 3}
+      propertyPath: _timeToCloseDoor
+      value: 5000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb551465632bec4f8d0f40a672ec7e9, type: 3}
 --- !u!1 &1021699250
@@ -28455,7 +28463,7 @@ MonoBehaviour:
   _shop: {fileID: 0}
   _isSuitQueue: 0
   _exit: {fileID: 469540570}
-  _tryToSendToExitCooldown: 3
+  _tryToSendToExitCooldown: 10000
   _isLastPool: 0
 --- !u!1 &1444111962
 GameObject:
@@ -42357,6 +42365,10 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1713695036}
+    - target: {fileID: 4574266190011947073, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+      propertyPath: m_Speed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4574266190011947073, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_WalkableMask
       value: 15
