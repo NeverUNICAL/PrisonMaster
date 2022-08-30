@@ -9,10 +9,12 @@ namespace ForCreo
     public class DoorButton : MonoBehaviour
     {
         [SerializeField] private Transform _button;
+        [SerializeField] private bool _cellsButton = false;
 
         private BoxCollider _boxCollider;
 
         public event UnityAction Reached;
+        public event UnityAction Exit;
 
         private void Awake()
         {
@@ -24,12 +26,18 @@ namespace ForCreo
         {
             _button.localPosition = Vector3.zero;
             if (other.TryGetComponent(out PlayerMovement player))
+            {
                 Reached?.Invoke();
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
             _button.localPosition += new Vector3(0, 0.1f, 0);
+            if (other.TryGetComponent(out PlayerMovement player) && _cellsButton)
+            {
+                Exit?.Invoke();
+            }
         }
     }
 }

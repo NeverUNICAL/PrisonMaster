@@ -23,13 +23,19 @@ namespace ForCreo
         private void OnEnable()
         {
             for (int i = 0; i < _doorButtons.Length; i++)
+            {
                 _doorButtons[i].Reached += OnReached;
+                _doorButtons[i].Exit += OnExit;
+            }
         }
 
         private void OnDisable()
         {
             for (int i = 0; i < _doorButtons.Length; i++)
+            {
                 _doorButtons[i].Reached -= OnReached;
+                _doorButtons[i].Exit -= OnExit;
+            }
         }
 
         private void OnReached()
@@ -38,6 +44,11 @@ namespace ForCreo
                 Open();
             else
                 Close();
+        }
+
+        private void OnExit()
+        {
+            Close();
         }
 
         private void Open()
