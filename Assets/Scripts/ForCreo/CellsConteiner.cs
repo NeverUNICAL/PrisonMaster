@@ -13,8 +13,10 @@ namespace ForCreo
         private void Awake()
         {
             _cells = new Cell[transform.childCount];
+
             for (int i = 0; i < _cells.Length; i++)
                 _cells[i] = transform.GetChild(i).GetComponent<Cell>();
+
         }
     }
 }

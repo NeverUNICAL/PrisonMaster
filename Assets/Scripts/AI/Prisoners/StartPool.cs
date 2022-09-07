@@ -40,7 +40,7 @@ public class StartPool : QueueHandler
 
     private IEnumerator Spawn()
     {
-        while (_isWorking)
+        while (true)
         {
             yield return _waitForSpawnTimeOut;
 

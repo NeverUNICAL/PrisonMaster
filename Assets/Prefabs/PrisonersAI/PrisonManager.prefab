@@ -77,11 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4501b73e2a83bcd4fa2a3c44ef1ef784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnTimeOut: 2
+  _spawnTimeOut: 1
   _sendTimeOut: 1.1
   _firstPoint: {fileID: 5912464837049412060}
-  _startPoolSize: 10
-  _offsetPos: {x: -0.25, y: 0, z: 0}
+  _startPoolSize: 7
+  _offsetPos: {x: 0, y: 0, z: -1}
   _queues:
   - {fileID: 0}
   - {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   _isSuitQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
-  _prisoner: {fileID: 966140974247819660, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
+  _prisoner: {fileID: 9019414665624291851, guid: 04c0042c9bc54e9428ba6108ebe901f2, type: 3}
   _spawnPoint: {fileID: 4362247150413804256}
   _parentPrisoners: {fileID: 4362247150503878060}
 --- !u!1 &4362247150413804263
