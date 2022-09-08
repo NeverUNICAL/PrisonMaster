@@ -10,7 +10,6 @@ namespace Agava.IdleGame
         [SerializeField] protected NormalBuyZonePresenter[] NextZones;
         [SerializeField] protected NormalBuyZonePresenter[] BuyZones;
 
-        [SerializeField] protected int LevelId;
         [SerializeField] protected RoomBuyZone Room;
         [SerializeField] protected Transform RoomEnvirnoment;
         [SerializeField] protected LevelBuyZone NextLevel;
