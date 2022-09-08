@@ -9,7 +9,7 @@ using DG.Tweening;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private PlayerStackPresenter _player;
-    [SerializeField] private NormalBuyZonePresenter[] _openObjects;
+    [SerializeField] private RoomBuyZone _openObject;
     [SerializeField] private NormalBuyZonePresenter _producerZone;
     [SerializeField] private NormalBuyZonePresenter _consumerZone;
     [SerializeField] private TrashZone _trashZone;
@@ -70,12 +70,15 @@ public class Tutorial : MonoBehaviour
         _prisonersManager.gameObject.SetActive(true);
         AnimationScale(_trashZone.transform);
 
-        for (int i = 0; i < _openObjects.Length; i++)
-        {
-            AnimationScale(_openObjects[i].transform);
-            _openObjects[i].gameObject.SetActive(true);
-        }
-        
+        //for (int i = 0; i < _openObjects.Length; i++)
+        //{
+        //    AnimationScale(_openObjects[i].transform);
+        //    _openObjects[i].gameObject.SetActive(true);
+        //}
+
+            AnimationScale(_openObject.transform);
+            _openObject.gameObject.SetActive(true);
+
         _playerSavePresenter.SetTutorialComplete();
         gameObject.SetActive(false);
     }
@@ -105,11 +108,11 @@ public class Tutorial : MonoBehaviour
     {
         _prisonersManager.gameObject.SetActive(true);
         _trashZone.gameObject.SetActive(true);
-
-        for (int i = 0; i < _openObjects.Length; i++)
-        {
-            _openObjects[i].gameObject.SetActive(true);
-        }
+        _openObject.gameObject.SetActive(true);
+        //for (int i = 0; i < _openObject.Length; i++)
+        //{
+        //    _openObject[i].gameObject.SetActive(true);
+        //}
         
         gameObject.SetActive(false);
     }

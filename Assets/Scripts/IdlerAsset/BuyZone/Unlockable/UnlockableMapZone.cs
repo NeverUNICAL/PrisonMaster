@@ -24,9 +24,7 @@ namespace Agava.IdleGame
         private void OnEnable()
         {
             for (int i = 0; i < BuyZones.Length; i++)
-            {
                 BuyZones[i].Unlocked += Unlock;
-            }
 
             if (NextLevel != null)
                 NextLevel.Unlocked += UnlockNextLevel;
@@ -38,9 +36,7 @@ namespace Agava.IdleGame
         private void OnDisable()
         {
             for (int i = 0; i < BuyZones.Length; i++)
-            {
                 BuyZones[i].Unlocked -= Unlock;
-            }
 
             if (NextLevel != null)
                 NextLevel.Unlocked -= UnlockNextLevel;
@@ -61,8 +57,6 @@ namespace Agava.IdleGame
 
         public abstract void UnlockNextLevel(BuyZonePresenter buyZone);
 
-
-
         protected void AnimationScale(Transform buyZone)
         {
             DefaultBuyZoneScale = buyZone.localScale;
@@ -79,6 +73,7 @@ namespace Agava.IdleGame
 
         protected void UnlockRoom(BuyZonePresenter buyZone)
         {
+            Debug.Log("unlock");
             IsUnlockRoom = true;
             Counter = 1;
             Unlock(buyZone);
@@ -87,12 +82,9 @@ namespace Agava.IdleGame
 
         protected void UnlockNextLevelZone()
         {
-            if (IsUnlockRoom == false)
-            {
-                OutlineZone outline = NextLevel.GetComponentInChildren<OutlineZone>();
-                AnimationScale(NextLevel.transform);
-                outline.transform.DOScale(ScaleTarget, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-            }
+            OutlineZone outline = NextLevel.GetComponentInChildren<OutlineZone>();
+            AnimationScale(NextLevel.transform);
+            outline.transform.DOScale(ScaleTarget, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         }
 
         protected void AnimationOutlineRoomZone()

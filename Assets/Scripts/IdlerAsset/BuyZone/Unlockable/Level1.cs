@@ -16,26 +16,34 @@ public class Level1 : UnlockableMapZone
         int target = 2;
         Counter++;
 
+        if (IsUnlockRoom == false)
+        {
+            AnimationScale(Room.transform);
+            AnimationOutlineRoomZone();
+            RoomZoneOpened?.Invoke();
+        }
+
         for (int i = 0; i < BuyZones.Length; i++)
         {
             if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
             {
-                if (tempCounter < target)
+                if (IsUnlockRoom)
                 {
-                    if (IsUnlockRoom)
+                    if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
+                        UnlockNextLevelZone();
+
+                    if (tempCounter < target)
+                    {
                         AnimationScale(BuyZones[i].transform);
+                    }
 
                     tempCounter++;
                 }
-                else
-                {
-                    Counter = 0;
-                }
-
-                if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
-                    UnlockNextLevelZone();
             }
         }
+
+        if (Counter == target)
+            Counter = 0;
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
@@ -49,10 +57,7 @@ public class Level1 : UnlockableMapZone
             {
                 if (tempCounter < target)
                 {
-                    AnimationScale(Room.transform);
-                    RoomZoneOpened?.Invoke();
                     AnimationScale(_trashZone.transform);
-                    AnimationOutlineRoomZone();
                     AnimationScale(NextZones[i].transform);
                     tempCounter++;
                 }
@@ -60,3 +65,25 @@ public class Level1 : UnlockableMapZone
         }
     }
 }
+
+
+//for (int i = 0; i < BuyZones.Length; i++)
+//{
+//    if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
+//    {
+//        if (tempCounter < target)
+//        {
+//            if (IsUnlockRoom)
+//                AnimationScale(BuyZones[i].transform);
+
+//            tempCounter++;
+//        }
+//        else
+//        {
+//            Counter = 0;
+//        }
+
+//        if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
+//            UnlockNextLevelZone();
+//    }
+//}
