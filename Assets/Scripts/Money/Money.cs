@@ -60,7 +60,6 @@ public class Money : MonoBehaviour
     {
         gameObject.SetActive(false);
         transform.parent = _moneyConteiner.transform;
-        transform.localScale = _defaultScale;
         _collider.enabled = true;
         _rigidbody.isKinematic = false;
     }

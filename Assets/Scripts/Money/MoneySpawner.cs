@@ -14,6 +14,7 @@ public class MoneySpawner : MonoBehaviour
     private int _counter = 0;
     private const float Delay = 0.2f;
     private float _delayForStopMoney = 2f;
+    private Vector3 _defaultScale;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class MoneySpawner : MonoBehaviour
         {
             _moneys[i] = Instantiate(_moneyTemplate, _points[_counter].position, transform.rotation, _moneyConteiner);
             _moneys[i].SetConteiner(_moneyConteiner);
+            _defaultScale = _moneys[i].transform.localScale;
             _moneys[i].gameObject.SetActive(false);
         }
     }
@@ -62,6 +64,7 @@ public class MoneySpawner : MonoBehaviour
                 if (money != null)
                 {
                     money.transform.position = _points[_counter].transform.position;
+                    money.transform.localScale = _defaultScale;
                     money.transform.rotation = Quaternion.Euler(0, 90f, 0);
                     money.gameObject.SetActive(true);
                     money.SetMoneySpawner(this);

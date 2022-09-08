@@ -665,7 +665,11 @@ MonoBehaviour:
   _firstPoint: {fileID: 364880984}
   _startPoolSize: 7
   _offsetPos: {x: 0, y: 0, z: 0}
-  _queues: []
+  _queues:
+  - {fileID: 812000742}
+  - {fileID: 1615976162}
+  - {fileID: 1789150568}
+  - {fileID: 974294164}
   _shop: {fileID: 0}
   _isSuitQueue: 0
   _exit: {fileID: 469540570}
@@ -1167,7 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prisonerPrefab: {fileID: 966140974247819660, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
   _finishTrigger: {fileID: 469540573}
-  _countPrisoners: 4
+  _countPrisoners: 60
 --- !u!114 &585639691 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1718436679391955849, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
