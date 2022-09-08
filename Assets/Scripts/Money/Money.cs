@@ -7,10 +7,13 @@ using UnityEngine;
 public class Money : MonoBehaviour
 {
     [SerializeField] private int _reward;
-    
+
+    private Transform _moneyConteiner;
     private MoneySpawner _moneySpawner;
     private Collider _collider;
     private Rigidbody _rigidbody;
+
+    private Vector3 _defaultScale;
 
     private const float MinDelay = 0.3f;
     private const float MaxDelay = 0.55f;
@@ -19,20 +22,19 @@ public class Money : MonoBehaviour
     private Coroutine _coroutineInJob;
 
     public int Reward => _reward;
+
     private void OnEnable()
     {
         _collider = GetComponent<Collider>();
         _rigidbody = GetComponent<Rigidbody>();
+        _defaultScale = transform.localScale;
     }
 
-    public void OnCollected(Transform target)
+    private IEnumerator Disable(float delay)
     {
-        MoveToTarget(target);
-    }
+        yield return new WaitForSeconds(delay);
 
-    public void SetMoneySpawner(MoneySpawner moneySpawner)
-    {
-        _moneySpawner = moneySpawner;
+        _rigidbody.isKinematic = true;
     }
 
     private void MoveToTarget(Transform target)
@@ -51,19 +53,36 @@ public class Money : MonoBehaviour
         if(_moneySpawner!=null)
          _moneySpawner.ReduceCount();
         
-        transform.DOLocalMove(Vector3.zero, randomTime).OnComplete(() => Destroy(gameObject));
+        transform.DOLocalMove(Vector3.zero, randomTime).OnComplete(ResetState);
     }
 
+    private void ResetState()
+    {
+        gameObject.SetActive(false);
+        transform.parent = _moneyConteiner.transform;
+        transform.localScale = _defaultScale;
+        _collider.enabled = true;
+        _rigidbody.isKinematic = false;
+    }
+        
     public void DisableRigidbody(float delay)
     {
         StartCoroutine(Disable(delay));
     }
 
-    private IEnumerator Disable(float delay)
+    public void OnCollected(Transform target)
     {
-        yield return new WaitForSeconds(delay);
+        MoveToTarget(target);
+    }
 
-        _rigidbody.isKinematic = true;
+    public void SetMoneySpawner(MoneySpawner moneySpawner)
+    {
+        _moneySpawner = moneySpawner;
+    }
+
+    public void SetConteiner(Transform target)
+    {
+        _moneyConteiner = target;
     }
 }
 
