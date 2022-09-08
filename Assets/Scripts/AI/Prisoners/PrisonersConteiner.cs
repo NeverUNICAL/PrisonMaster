@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PrisonersConteiner : MonoBehaviour
 {
+    [SerializeField] private PrisonMover _prisonerPrefab;
     [SerializeField] private FinishTrigger _finishTrigger;
+    [SerializeField] private int _countPrisoners;
 
     private PrisonMover[] _prisoners;
 
     private void Awake()
     {
-        _prisoners = new PrisonMover[transform.childCount];
+        _prisoners = new PrisonMover[_countPrisoners];
         for (int i = 0; i < _prisoners.Length; i++)
-            _prisoners[i] = transform.GetChild(i).GetComponent<PrisonMover>();
+        {
+            _prisoners[i] = Instantiate(_prisonerPrefab, transform);
+            _prisoners[i].gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable()

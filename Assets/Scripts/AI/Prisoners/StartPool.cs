@@ -41,9 +41,12 @@ public class StartPool : QueueHandler
             {
                 PrisonMover prison = _prisonersConteiner.GetPrisoner();
                 //_prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
+                if (prison != null)
+                {
                 _prisonerList.Add(prison);
                 ListSort();
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
+                }
             }
         }
     }
