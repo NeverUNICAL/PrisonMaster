@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-public class PrisonMover : MonoBehaviour
+public class PrisonerMover : MonoBehaviour
 {
     [SerializeField] private GameObject[] _suits;
     [SerializeField] private ParticleSystem _angryEffect;

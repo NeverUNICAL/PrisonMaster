@@ -6,12 +6,12 @@ using System.Linq;
 
 public class StartPool : QueueHandler
 {
-    [SerializeField]private PrisonMover _prisoner;
+    [SerializeField]private PrisonerMover _prisoner;
     [SerializeField] private PrisonersConteiner _prisonersConteiner;
     [SerializeField]private Transform _spawnPoint;
     [SerializeField]private Transform _parentPrisoners;
 
-    private PrisonMover[] _prisoners;
+    private PrisonerMover[] _prisoners;
    
     private void Start()
     {
@@ -23,9 +23,9 @@ public class StartPool : QueueHandler
     private void ListUpdate()
     {
         _prisonerList.Clear();
-        _prisoners = FindObjectsOfType<PrisonMover>();
+        _prisoners = FindObjectsOfType<PrisonerMover>();
 
-        foreach (PrisonMover prisoner in _prisoners)
+        foreach (PrisonerMover prisoner in _prisoners)
         {
             _prisonerList.Add(prisoner);
         }
@@ -39,11 +39,11 @@ public class StartPool : QueueHandler
             
             if(_prisonerList.Count<_startPoolSize)
             {
-                PrisonMover prison = _prisonersConteiner.GetPrisoner();
+                PrisonerMover prisoner = _prisonersConteiner.GetPrisoner();
                 //_prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
-                if (prison != null)
+                if (prisoner != null)
                 {
-                _prisonerList.Add(prison);
+                 _prisonerList.Add(prisoner);
                 ListSort();
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
                 }

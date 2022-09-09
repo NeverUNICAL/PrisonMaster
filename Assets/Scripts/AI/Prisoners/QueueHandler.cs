@@ -10,18 +10,19 @@ public abstract class QueueHandler : MonoBehaviour
 {
     [SerializeField]private float _spawnTimeOut =1f;
     [SerializeField]private float _sendTimeOut =1f;
-    
     [SerializeField]protected GameObject _firstPoint;
     [SerializeField]protected int _startPoolSize = 5;
     [SerializeField]protected Vector3 _offsetPos;
+    [SerializeField] protected bool _isSuitQueue;
     
     [Header("Pools Settings")]
-    [SerializeField]protected List<QueueContainer> _queues;
+    [SerializeField]protected List<QueueHandler> _queues;
     
     [Header("Queue Container Settings")]
     [SerializeField] protected Shop _shop;
 
-    [SerializeField] protected bool _isSuitQueue;
+    [Header("Shower Settings")]
+    [SerializeField] protected Shower _shower;
     
     [Header("Distributor Settings")]
     [SerializeField] protected GameObject _exit;
@@ -30,21 +31,23 @@ public abstract class QueueHandler : MonoBehaviour
     protected WaitForSeconds _waitToTrySendToExit;
     protected WaitForSeconds _waitForSpawnTimeOut;
     protected WaitForSeconds _waitForSendTimeOut;
-    protected List<PrisonMover> _prisonerList;
-    protected List<QueueContainer> _sortedList;
+    protected List<PrisonerMover> _prisonerList;
+    protected List<QueueHandler> _sortedList;
     
     private bool _isShopNotNull;
+    private bool _isShowerNotNull;
 
     public int PoolSize => _startPoolSize;
-    public List<PrisonMover> PrisonerQueueList => _prisonerList;
+    public List<PrisonerMover> PrisonerQueueList => _prisonerList;
 
     private void Awake()
     {
         _waitToTrySendToExit = new WaitForSeconds(_tryToSendToExitCooldown);
-        _isShopNotNull = _shop != null;
         _waitForSpawnTimeOut = new WaitForSeconds(_spawnTimeOut);
         _waitForSendTimeOut = new WaitForSeconds(_sendTimeOut);
-        _prisonerList = new List<PrisonMover>();
+        _prisonerList = new List<PrisonerMover>();
+        _isShopNotNull = _shop != null;
+        _isShowerNotNull = _shower != null;
     }
 
     public void ListSort()
@@ -71,6 +74,14 @@ public abstract class QueueHandler : MonoBehaviour
         }
     }
     
+    public bool CheckForShopBuyed()
+    {
+        if ((_isShopNotNull && _shop.gameObject.activeInHierarchy) || (_isShowerNotNull && _shower.gameObject.activeInHierarchy))
+            return true;
+
+        return false;
+    }
+    
     protected  void DestroyFirst()
     {
         Destroy(_prisonerList[0]);
@@ -93,10 +104,10 @@ public abstract class QueueHandler : MonoBehaviour
 
     protected void GenerateList()
     {
-        _prisonerList= new List<PrisonMover>();
+        _prisonerList= new List<PrisonerMover>();
     }
 
-    protected IEnumerator SendToQueue(List<QueueContainer> queues)
+    protected IEnumerator SendToQueue(List<QueueHandler> queues)
     {
         while (true)
         {

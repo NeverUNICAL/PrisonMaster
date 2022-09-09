@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class FinishTrigger : MonoBehaviour
 {
-    public event UnityAction<PrisonMover> Reached;
+    public event UnityAction<PrisonerMover> Reached;
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out PrisonMover prisonMover))
+        if (other.TryGetComponent(out PrisonerMover prisonMover))
         {
             Reached?.Invoke(prisonMover);
         }

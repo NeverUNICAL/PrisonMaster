@@ -1,27 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Agava.IdleGame;
+using Agava.IdleGame.Model;
 using UnityEngine;
 
 public class QueueContainer : QueueHandler
 {
     [SerializeField] private Distributor _distributor;
-
+    
     private bool _isAngryPrisoner;
+    
     private void Start()
     {
         GenerateList();
         StartCoroutine(TryToSendPrisoner());
     }
-
-    public bool CheckForShopBuyed()
-    {
-        if (_shop.gameObject.activeInHierarchy)
-            return true;
-
-        return false;
-    }
-
+    
     private IEnumerator TryToSendPrisoner()
     {
         while (true)
@@ -30,7 +26,7 @@ public class QueueContainer : QueueHandler
             {
                 if (_shop.Count >= _shop.CountForSale)
                 {
-                    if (SendToPool(_distributor))
+                    if (SendToPool(_distributor)) 
                         _shop.Sale();
 
                     ChangeAnimationPrisoners(false);
@@ -40,7 +36,7 @@ public class QueueContainer : QueueHandler
                     ChangeAnimationPrisoners(true);
                 }
             }
-
+            
             yield return _waitForSendTimeOut;
         }
     }
