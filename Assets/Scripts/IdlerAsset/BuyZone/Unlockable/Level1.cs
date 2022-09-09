@@ -7,8 +7,29 @@ using UnityEngine.Events;
 public class Level1 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
+    [SerializeField] private UpgradesShop _upgradesShop;
 
+    private bool _isUpgraded = false;
     public event UnityAction RoomZoneOpened;
+
+    private void OnEnable()
+    {
+        base.OnEnable();
+        _upgradesShop.SpeedUpgraded += OnUpgraded;
+    }
+
+    private void OnDisable()
+    {
+        base.OnDisable();
+        _upgradesShop.SpeedUpgraded -= OnUpgraded;
+    }
+
+    private void OnUpgraded(int value1, float value2, int value3)
+    {
+        Counter++;
+        _isUpgraded = true;
+        Unlock(null);
+    }
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
@@ -27,7 +48,7 @@ public class Level1 : UnlockableMapZone
         {
             if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
             {
-                if (IsUnlockRoom)
+                if (_isUpgraded)
                 {
                     if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
                         UnlockNextLevelZone();
