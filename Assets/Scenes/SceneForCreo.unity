@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338747, g: 0.21673937, b: 0.29880846, a: 1}
+  m_IndirectSpecularColor: {r: 0.1733872, g: 0.21673907, b: 0.29880777, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -535,9 +535,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 167760871}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 1
   _queues: []
   _shop: {fileID: 2111858430}
-  _isSuitQueue: 1
+  _shower: {fileID: 0}
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -573,6 +574,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8798402948edb147950bf17e7693028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &274427648
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: _shower
+      value: 
+      objectReference: {fileID: 1030862289}
+    - target: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: _distributor
+      value: 
+      objectReference: {fileID: 364880986}
+    - target: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: _triggerForPrisoners
+      value: 
+      objectReference: {fileID: 1774915988}
+    - target: {fileID: 2771833842533820589, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: _shower
+      value: 
+      objectReference: {fileID: 1030862289}
+    - target: {fileID: 2771833843726254592, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: _showerQueueContainer
+      value: 
+      objectReference: {fileID: 1200386215}
+    - target: {fileID: 3611094599088180456, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_Name
+      value: ShowerStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 32.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611094599088180459, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
 --- !u!114 &275247893 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5527461743306667572, guid: 208934de0b1f51e4289449ef9ebf795f, type: 3}
@@ -632,9 +710,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 284609114}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 1
   _queues: []
   _shop: {fileID: 1724005077}
-  _isSuitQueue: 1
+  _shower: {fileID: 0}
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -686,13 +765,14 @@ MonoBehaviour:
   _firstPoint: {fileID: 364880984}
   _startPoolSize: 7
   _offsetPos: {x: 0, y: 0, z: 0}
-  _queues:
-  - {fileID: 812000742}
-  - {fileID: 1615976162}
-  - {fileID: 1789150568}
-  - {fileID: 974294164}
-  _shop: {fileID: 0}
   _isSuitQueue: 0
+  _queues:
+  - {fileID: 1120001473}
+  - {fileID: 1608014185}
+  - {fileID: 1572516891}
+  - {fileID: 1799200037}
+  _shop: {fileID: 0}
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!1001 &374271323
@@ -1520,9 +1600,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 685340012}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 1
   _queues: []
   _shop: {fileID: 1843134453}
-  _isSuitQueue: 1
+  _shower: {fileID: 0}
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -1617,7 +1698,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 80, y: -130, z: 0}
 --- !u!114 &722057364 stripped
 MonoBehaviour:
@@ -1907,9 +1988,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 812000740}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 2045130348}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -1968,9 +2050,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 931808065}
   _startPoolSize: 7
   _offsetPos: {x: 0, y: 0, z: 0}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 0}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!4 &931808067
@@ -2150,7 +2233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -2214,9 +2297,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 974294162}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 722057364}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -2445,6 +2529,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fa426007fc6fc724fbc0e550acae7b58, type: 3}
   m_PrefabInstance: {fileID: 1030424410}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1030862289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3611094599088180461, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+  m_PrefabInstance: {fileID: 274427648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3915d3329428e954096fc4d100fc051e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1033482720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2590,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1033482723
 MonoBehaviour:
@@ -2739,9 +2834,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1120001471}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 1552171471}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -2817,8 +2913,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200386215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+  m_PrefabInstance: {fileID: 274427648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ec62d4268d2f244be2f78ba3c6552c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1206623268 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1718436679100000498, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
@@ -3287,7 +3394,7 @@ PrefabInstance:
       objectReference: {fileID: 1861532183}
     - target: {fileID: 1494436826946103431, guid: 0efdd9a768e1f9d4bb0384aa38a59d46, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1494436826946103431, guid: 0efdd9a768e1f9d4bb0384aa38a59d46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3521,7 +3628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6670639832970917268, guid: 4beb51cdb5095ca499ad0a2bf3235ff0, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6670639832970917268, guid: 4beb51cdb5095ca499ad0a2bf3235ff0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3649,13 +3756,14 @@ MonoBehaviour:
   _firstPoint: {fileID: 1442995391}
   _startPoolSize: 7
   _offsetPos: {x: 0, y: 0, z: 0}
+  _isSuitQueue: 0
   _queues:
   - {fileID: 1120001473}
   - {fileID: 1608014185}
   - {fileID: 1572516891}
   - {fileID: 1799200037}
   _shop: {fileID: 0}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!114 &1448508073 stripped
@@ -3924,7 +4032,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1469709865
 PrefabInstance:
@@ -4185,9 +4293,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1572516889}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 1934078712}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -4239,9 +4348,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1608014183}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 135893737}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -4293,9 +4403,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1615976160}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 1909061621}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -4686,7 +4797,7 @@ RectTransform:
   m_Children:
   - {fileID: 72360721}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4739,7 +4850,7 @@ Transform:
   - {fileID: 1126115776}
   - {fileID: 1891657616}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1758341079
 PrefabInstance:
@@ -4818,7 +4929,7 @@ PrefabInstance:
       objectReference: {fileID: 1131484534194217502, guid: 8b741e3c523a32a42a8b1f7388237492, type: 3}
     - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
       propertyPath: _queues.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
       propertyPath: _prisonersConteiner
@@ -4827,7 +4938,7 @@ PrefabInstance:
     - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
       propertyPath: _queues.Array.data[0]
       value: 
-      objectReference: {fileID: 812000742}
+      objectReference: {fileID: 1916240304}
     - target: {fileID: 4362247150069504167, guid: a8ce2918bbd51df4d9924e62220855b5, type: 3}
       propertyPath: _queues.Array.data[1]
       value: 
@@ -4940,6 +5051,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fa426007fc6fc724fbc0e550acae7b58, type: 3}
   m_PrefabInstance: {fileID: 1769507922}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1774915988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 467378649, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+  m_PrefabInstance: {fileID: 274427648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9700dbe5b6f70240a22274d1a72b88b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1789150566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,9 +5110,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1789150566}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 1318431311}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -5042,9 +5165,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1799200035}
   _startPoolSize: 3
   _offsetPos: {x: 0, y: 0, z: 0}
+  _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 2048849448}
-  _isSuitQueue: 0
+  _shower: {fileID: 0}
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -5081,7 +5205,7 @@ Transform:
   - {fileID: 2025263726}
   - {fileID: 1535797045}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1843134453 stripped
 MonoBehaviour:
@@ -5142,7 +5266,7 @@ Transform:
   - {fileID: 531198642}
   - {fileID: 469540572}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1863663208
 PrefabInstance:
@@ -5285,7 +5409,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1890308773 stripped
 MeshRenderer:
@@ -5414,6 +5538,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdb08ee885872d648af58950fbe2db9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1916240304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2771833842533820589, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
+  m_PrefabInstance: {fileID: 274427648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d5cbb75dd13a5498b6923cfdbdc275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1934078712 stripped
@@ -5545,9 +5680,10 @@ MonoBehaviour:
   _firstPoint: {fileID: 1986544810}
   _startPoolSize: 3
   _offsetPos: {x: -0.25, y: 0, z: 0.6}
+  _isSuitQueue: 1
   _queues: []
   _shop: {fileID: 827604807}
-  _isSuitQueue: 1
+  _shower: {fileID: 0}
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -5701,7 +5837,7 @@ Transform:
   - {fileID: 1448508089}
   - {fileID: 272458446}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2045130348 stripped
 MonoBehaviour:
@@ -5968,7 +6104,7 @@ PrefabInstance:
       objectReference: {fileID: 1713695036}
     - target: {fileID: 4574266190011947079, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4574266190011947079, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6118,7 +6254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8262307762876253535, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8262307762876253535, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
       propertyPath: m_AnchorMax.x

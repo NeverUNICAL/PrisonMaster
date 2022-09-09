@@ -5,6 +5,8 @@ using System.Linq;
 using Agava.IdleGame;
 using Agava.IdleGame.Model;
 using UnityEngine;
+using UnityEngine.Events;
+
 public class ShowerQueueContainer : QueueHandler
 {
    [SerializeField] private Distributor _distributor;
@@ -19,8 +21,12 @@ public class ShowerQueueContainer : QueueHandler
     
     private bool _onShowerTriggerStayed;
     private bool _isShowerBusy;
+    private bool _isShowerWorking;
     private PrisonerMover _prisonerForWash;
     private Timer _timer = new Timer();
+    
+    public event UnityAction PrisonerIsIn;
+    public event UnityAction PrisonerWashEnded;
 
     private void Start()
     {
@@ -35,7 +41,6 @@ public class ShowerQueueContainer : QueueHandler
         _showerTrigger.Exit += OnExit;
         _timer.Completed += OnTimeOver;
         _triggerForPrisoners.Enter += OnPrisonerEnter;
-        _triggerForPrisoners.Exit += OnPrisonerExit;
     }
 
     private void OnDisable()
@@ -44,7 +49,6 @@ public class ShowerQueueContainer : QueueHandler
         _showerTrigger.Exit -= OnExit;
         _timer.Completed -= OnTimeOver;
         _triggerForPrisoners.Enter -= OnPrisonerEnter;
-        _triggerForPrisoners.Exit -= OnPrisonerExit;
     }
     
     private void Update()
@@ -61,9 +65,10 @@ public class ShowerQueueContainer : QueueHandler
         {
             if (_prisonerList.Count > 0 && _shower.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
             {
-                if (_onShowerTriggerStayed && _isShowerBusy == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
+                if (_onShowerTriggerStayed && _isShowerBusy && _isShowerWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
                 {
-                        _timer.Start(_timeForWashing);
+                    _isShowerWorking = true;
+                    _timer.Start(_timeForWashing);
                 }
             }
             
@@ -76,7 +81,7 @@ public class ShowerQueueContainer : QueueHandler
         _onShowerTriggerStayed = true;
         _showerParticleSystem.gameObject.SetActive(true);
         
-        if(_isShowerBusy)
+        if(_isShowerBusy && _isShowerWorking)
          _timer.Start(_timeForWashing);
         
         _button.localPosition = Vector3.zero;
@@ -95,17 +100,15 @@ public class ShowerQueueContainer : QueueHandler
     {
         if (SendToPool(_distributor))
             _shower.Sale();
-        
+
+        _isShowerWorking = false;
+        PrisonerWashEnded?.Invoke();
         _isShowerBusy = false;
     }
 
     private void OnPrisonerEnter()
     {
         _isShowerBusy = true;
-    }
-
-    private void OnPrisonerExit()
-    {
-        
+        PrisonerIsIn?.Invoke();
     }
 }
