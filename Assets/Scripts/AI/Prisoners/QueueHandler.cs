@@ -23,6 +23,7 @@ public abstract class QueueHandler : MonoBehaviour
 
     [Header("Shower Settings")]
     [SerializeField] protected Shower _shower;
+    [SerializeField] protected bool _isInShowerQueue;
     
     [Header("Distributor Settings")]
     [SerializeField] protected GameObject _exit;
@@ -69,8 +70,6 @@ public abstract class QueueHandler : MonoBehaviour
             {
                 _prisonerList[i+1].SetTarget(_prisonerList[i].gameObject,_offsetPos);
             }
-            
-            // _prisonerList[i].GetComponentInChildren<DebugViewer>().SetID(i+1);
         }
     }
     
@@ -139,9 +138,11 @@ public abstract class QueueHandler : MonoBehaviour
         {
             if (_prisonerList.Count > 0 && targetQueue._queues.Count > 0)
             {
-                if(_isSuitQueue)
+                if (_isSuitQueue)
                     _prisonerList[0].EnableSuit();
-                        
+                else if(_isInShowerQueue)
+                    _prisonerList[0].EnableWashedSuit();
+                
                 targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
                 _prisonerList[0].ChangeAngryAnimation(false);
                 targetQueue.ListSort();
@@ -157,7 +158,7 @@ public abstract class QueueHandler : MonoBehaviour
 
         return false;
     }
-    
+
     protected void SendToExit()
     {
         _prisonerList[0].SetTarget(_exit,Vector3.zero);

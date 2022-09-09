@@ -383,7 +383,8 @@ MonoBehaviour:
   _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 0}
-  _shower: {fileID: 0}
+  _shower: {fileID: 3611094599088180461}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 0}
@@ -392,7 +393,7 @@ MonoBehaviour:
   _timerView: {fileID: 3611094599541991410}
   _timeForWashing: 1
   _button: {fileID: 9040886780799636214}
-  _triggerForPrisoners: {fileID: 0}
+  _triggerForPrisoners: {fileID: 467378649}
 --- !u!1 &2771833842533820590
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +445,8 @@ MonoBehaviour:
   _isSuitQueue: 0
   _queues: []
   _shop: {fileID: 0}
-  _shower: {fileID: 0}
+  _shower: {fileID: 3611094599088180461}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _listForShower:
@@ -1546,7 +1548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inCoverAnimator: {fileID: 7517872768569253828}
   _outCoverAnimator: {fileID: 4124818808147876485}
-  _showerQueueContainer: {fileID: 0}
+  _showerQueueContainer: {fileID: 2771833842291130644}
 --- !u!1 &3890869334442680068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,7 +2074,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 89863171382925a4988cf1b33c6d55a0, type: 2}
   - {fileID: 2100000, guid: 89863171382925a4988cf1b33c6d55a0, type: 2}
-  - {fileID: 2100000, guid: 7a38a376267764d4a835af34d81b6575, type: 2}
+  - {fileID: 2100000, guid: 4e4c43ffa7fd5104db9ea0309036259e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36680,7 +36682,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 89863171382925a4988cf1b33c6d55a0, type: 2}
   - {fileID: 2100000, guid: 89863171382925a4988cf1b33c6d55a0, type: 2}
-  - {fileID: 2100000, guid: 7a38a376267764d4a835af34d81b6575, type: 2}
+  - {fileID: 2100000, guid: 4e4c43ffa7fd5104db9ea0309036259e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

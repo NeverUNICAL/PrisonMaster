@@ -539,6 +539,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2111858430}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -582,25 +583,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-      propertyPath: _shower
-      value: 
-      objectReference: {fileID: 1030862289}
-    - target: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
       propertyPath: _distributor
       value: 
       objectReference: {fileID: 364880986}
     - target: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-      propertyPath: _triggerForPrisoners
-      value: 
-      objectReference: {fileID: 1774915988}
-    - target: {fileID: 2771833842533820589, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-      propertyPath: _shower
-      value: 
-      objectReference: {fileID: 1030862289}
-    - target: {fileID: 2771833843726254592, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-      propertyPath: _showerQueueContainer
-      value: 
-      objectReference: {fileID: 1200386215}
+      propertyPath: _isInShowerQueue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3611094599088180456, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
       propertyPath: m_Name
       value: ShowerStation
@@ -714,6 +703,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1724005077}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -767,12 +757,13 @@ MonoBehaviour:
   _offsetPos: {x: 0, y: 0, z: 0}
   _isSuitQueue: 0
   _queues:
-  - {fileID: 1120001473}
-  - {fileID: 1608014185}
-  - {fileID: 1572516891}
-  - {fileID: 1799200037}
+  - {fileID: 685340014}
+  - {fileID: 1986544812}
+  - {fileID: 284609116}
+  - {fileID: 167760873}
   _shop: {fileID: 0}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!1001 &374271323
@@ -1604,6 +1595,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1843134453}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -1992,6 +1984,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2045130348}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -2054,6 +2047,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!4 &931808067
@@ -2301,6 +2295,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 722057364}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -2529,17 +2524,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fa426007fc6fc724fbc0e550acae7b58, type: 3}
   m_PrefabInstance: {fileID: 1030424410}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1030862289 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3611094599088180461, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-  m_PrefabInstance: {fileID: 274427648}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3915d3329428e954096fc4d100fc051e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1033482720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,6 +2822,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1552171471}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -2915,17 +2900,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1200386215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2771833842291130644, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-  m_PrefabInstance: {fileID: 274427648}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ec62d4268d2f244be2f78ba3c6552c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1206623268 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1718436679100000498, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
@@ -3764,6 +3738,7 @@ MonoBehaviour:
   - {fileID: 1799200037}
   _shop: {fileID: 0}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!114 &1448508073 stripped
@@ -4297,6 +4272,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1934078712}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -4352,6 +4328,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 135893737}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -4407,6 +4384,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1909061621}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -5051,17 +5029,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fa426007fc6fc724fbc0e550acae7b58, type: 3}
   m_PrefabInstance: {fileID: 1769507922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1774915988 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 467378649, guid: 107bc5cac602a6a4d9d43b980fecf73c, type: 3}
-  m_PrefabInstance: {fileID: 274427648}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9700dbe5b6f70240a22274d1a72b88b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1789150566
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,6 +5081,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1318431311}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -5169,6 +5137,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2048849448}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -5684,6 +5653,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 827604807}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}

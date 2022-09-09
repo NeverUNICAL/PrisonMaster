@@ -919,6 +919,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2111858430}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -1210,6 +1211,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1724005077}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -1412,6 +1414,7 @@ MonoBehaviour:
   - {fileID: 167760873}
   _shop: {fileID: 0}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!1001 &374271323
@@ -2822,6 +2825,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1843134453}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
@@ -3292,6 +3296,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2045130348}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -3943,6 +3948,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!4 &931808067
@@ -4322,6 +4328,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 722057364}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -5013,6 +5020,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1552171471}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -6087,6 +6095,7 @@ MonoBehaviour:
   - {fileID: 1799200037}
   _shop: {fileID: 0}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
 --- !u!1001 &1443233179
@@ -6834,6 +6843,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1934078712}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -6955,6 +6965,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 135893737}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -7010,6 +7021,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1909061621}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -8370,6 +8382,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1318431311}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
@@ -8425,6 +8438,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2048849448}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 931808066}
@@ -9441,6 +9455,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 827604807}
   _shower: {fileID: 0}
+  _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}

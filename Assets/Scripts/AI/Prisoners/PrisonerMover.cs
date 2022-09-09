@@ -53,6 +53,12 @@ public class PrisonerMover : MonoBehaviour
         _suits[1].SetActive(true);
     }
 
+    public void EnableWashedSuit()
+    {
+        _suits[2].SetActive(false);
+        _suits[0].SetActive(true);
+    }
+
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
     {
         _nextPoint = target;
