@@ -2,6 +2,7 @@ using Agava.IdleGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class Level1 : UnlockableMapZone
@@ -22,6 +23,12 @@ public class Level1 : UnlockableMapZone
     {
         base.OnDisable();
         _upgradesShop.SpeedUpgraded -= OnUpgraded;
+    }
+
+    public void Load()
+    {
+        _isUpgraded = true;
+        Unlock(null);
     }
 
     private void OnUpgraded(int value1, float value2, int value3)

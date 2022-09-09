@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: de896d5c2e1ad0046b0fa7b97b92d71a, type: 2}
+--- !u!114 &16419055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5907360803836734464, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
+  m_PrefabInstance: {fileID: 647126410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9012d3cfaed86e349a488ab91b36c524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &24163423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8606752763071017903, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
@@ -530,6 +541,11 @@ MonoBehaviour:
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 1442995393}
+--- !u!23 &184625502 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6216130199479547049, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
+  m_PrefabInstance: {fileID: 1024178300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &243774121 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3554290486341010725, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
@@ -1278,6 +1294,14 @@ PrefabInstance:
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 1425985859}
+    - target: {fileID: 4461971467045052799, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
+      propertyPath: _objectToTurnOff
+      value: 
+      objectReference: {fileID: 1020677250}
+    - target: {fileID: 4461971467045052799, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
+      propertyPath: _meshRendererUnlockables.Array.data[0]
+      value: 
+      objectReference: {fileID: 184625502}
     - target: {fileID: 5907360803266687862, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1291,9 +1315,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 448777784}
     - target: {fileID: 5907360803836734464, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
+      propertyPath: _playerSaves
+      value: 
+      objectReference: {fileID: 1232819261}
+    - target: {fileID: 5907360803836734464, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
       propertyPath: _upgradesShop
       value: 
       objectReference: {fileID: 783380335}
+    - target: {fileID: 5907360803836734464, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
+      propertyPath: _savePresenter
+      value: 
+      objectReference: {fileID: 1033482721}
     - target: {fileID: 5907360803836734464, guid: 2dde4037577d14c4ba5655803782ce40, type: 3}
       propertyPath: NextZones.Array.data[0]
       value: 
@@ -1434,6 +1466,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b4e9f682129695847971a92bd29e83a1, type: 3}
   m_PrefabInstance: {fileID: 658346701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &678012161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2367870845658641267, guid: 208934de0b1f51e4289449ef9ebf795f, type: 3}
+  m_PrefabInstance: {fileID: 2120323375}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &685340012
 GameObject:
@@ -1892,6 +1929,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8262307761101418814, guid: b2e3f62df58eda14fa878579af73ef10, type: 3}
   m_PrefabInstance: {fileID: 3652467227713598000}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &836678436 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 948079595336423285, guid: 208934de0b1f51e4289449ef9ebf795f, type: 3}
+  m_PrefabInstance: {fileID: 2120323375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &931808065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,6 +2220,11 @@ MonoBehaviour:
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 364880986}
+--- !u!1 &1020677250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8912691661755029458, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
+  m_PrefabInstance: {fileID: 1024178300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1024178300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2189,6 +2236,18 @@ PrefabInstance:
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 1989515452}
+    - target: {fileID: 718572583014440551, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
+      propertyPath: _objectToTurnOff
+      value: 
+      objectReference: {fileID: 678012161}
+    - target: {fileID: 718572583014440551, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
+      propertyPath: _meshRendererUnlockables.Array.data[0]
+      value: 
+      objectReference: {fileID: 836678436}
+    - target: {fileID: 718572583014440551, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
+      propertyPath: _meshRendererUnlockables.Array.data[1]
+      value: 
+      objectReference: {fileID: 1890308773}
     - target: {fileID: 1718436679100000493, guid: c302a3f93ded2024a8ba934c1c3f225e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2423,6 +2482,7 @@ MonoBehaviour:
   _secondLevelBuyZone: {fileID: 802491263}
   _thirdLevelBuyZone: {fileID: 2072906875}
   _softCurrencyHolder: {fileID: 2142675168}
+  _level1: {fileID: 16419055}
 --- !u!4 &1033482722
 Transform:
   m_ObjectHideFlags: 0
@@ -5227,6 +5287,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1890308773 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8730332166404384716, guid: 208934de0b1f51e4289449ef9ebf795f, type: 3}
+  m_PrefabInstance: {fileID: 2120323375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1891657615
 GameObject:
   m_ObjectHideFlags: 0
