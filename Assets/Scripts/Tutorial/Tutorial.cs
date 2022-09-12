@@ -8,10 +8,8 @@ using DG.Tweening;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private PlayerStackPresenter _player;
     [SerializeField] private RoomBuyZone _openObject;
-    [SerializeField] private NormalBuyZonePresenter _producerZone;
-    [SerializeField] private NormalBuyZonePresenter _consumerZone;
+    [SerializeField] private NormalBuyZonePresenter _showerZone;
     [SerializeField] private TrashZone _trashZone;
     [SerializeField] private Transform _prisonersManager;
     [SerializeField] private Transform[] _arrows;
@@ -28,18 +26,14 @@ public class Tutorial : MonoBehaviour
     private void OnEnable()
     {
         _playerSavePresenter.Loaded += OnSavesLoaded;
-        _player.AddedForTutorial += OnAdded;
-        _player.Removed += OnRemoved;
-        _producerZone.Unlocked += OnUnlock;
-        _consumerZone.Unlocked += DoFade;
+        _showerZone.Unlocked += OnUnlock;
         _tutorialMoney.MoneyPullEmpty += OnMoneyPullEmpty;
     }
 
     private void OnDisable()
     {
-        _producerZone.Unlocked -= OnUnlock;
+        _showerZone.Unlocked -= OnUnlock;
         _playerSavePresenter.Loaded -= OnSavesLoaded;
-        _consumerZone.Unlocked -= DoFade;
         _tutorialMoney.MoneyPullEmpty -= OnMoneyPullEmpty;
     }
 
@@ -59,43 +53,31 @@ public class Tutorial : MonoBehaviour
     {
         if (_playerSavePresenter.IsTutorialCompleted == false)
         {
-            AnimationScale(_consumerZone.transform);
+            Debug.Log("Unlock");
             AnimationOutline(_outlines[1]);
-            ChangeActiveArrow();
+            OnStartGame();
         }
     }
 
     private void OnStartGame()
     {
+        _background.DOFade(0, _duration);
+
         _prisonersManager.gameObject.SetActive(true);
+        AnimationScale(_openObject.transform);
         AnimationScale(_trashZone.transform);
 
-        //for (int i = 0; i < _openObjects.Length; i++)
-        //{
-        //    AnimationScale(_openObjects[i].transform);
-        //    _openObjects[i].gameObject.SetActive(true);
-        //}
+        Debug.Log(_openObject.gameObject.activeInHierarchy);
 
-            AnimationScale(_openObject.transform);
-            _openObject.gameObject.SetActive(true);
-
-        _playerSavePresenter.SetTutorialComplete();
         gameObject.SetActive(false);
-    }
-
-    private void DoFade(BuyZonePresenter buyZonePresenter)
-    {
-        if(_playerSavePresenter.IsTutorialCompleted == false)
-        {
-            ChangeActiveArrow();
-            _isProducerLock = false;
-        }
+        _playerSavePresenter.SetTutorialComplete();
     }
 
     private void AnimationScale(Transform buyZone)
     {
         if (_playerSavePresenter.IsTutorialCompleted == false)
         {
+            Debug.Log("AnimetionScale    " + buyZone.name);
             Sequence sequence = DOTween.Sequence();
             buyZone.gameObject.SetActive(true);
             buyZone.transform.localScale = new Vector3(0, 0, 0);
@@ -109,29 +91,9 @@ public class Tutorial : MonoBehaviour
         _prisonersManager.gameObject.SetActive(true);
         _trashZone.gameObject.SetActive(true);
         _openObject.gameObject.SetActive(true);
-        //for (int i = 0; i < _openObject.Length; i++)
-        //{
-        //    _openObject[i].gameObject.SetActive(true);
-        //}
-        
+
+        Debug.Log(_openObject.gameObject.activeInHierarchy);
         gameObject.SetActive(false);
-    }
-
-    private void OnAdded()
-    {
-        if (_isProducerLock == false)
-        {
-         ChangeActiveArrow();
-        _player.AddedForTutorial -= OnAdded;
-        }
-    }
-
-    private void OnRemoved(StackableObject stackable)
-    {
-        _arrows[0].gameObject.SetActive(false);
-        _background.DOFade(0, _duration);
-        Invoke(nameof(OnStartGame), _duration);
-        _player.Removed -= OnRemoved;
     }
 
     private void AnimationOutline(Transform outline)
@@ -141,7 +103,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnMoneyPullEmpty()
     {
-        AnimationScale(_producerZone.transform);
+        AnimationScale(_showerZone.transform);
         ChangeActiveArrow();
     }
 
