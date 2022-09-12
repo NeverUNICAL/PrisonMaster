@@ -8,7 +8,6 @@ using Agava.IdleGame;
 public class AssistantStateMachine : MonoBehaviour
 {
     [SerializeField] private AssistantState _firstState;
-
    
     private AssistantState _currentState;
     private Assistant _assistant;
