@@ -9,7 +9,7 @@ namespace Agava.IdleGame
         [SerializeField] protected NormalBuyZonePresenter[] BuyZones;
 
         [SerializeField] protected RoomBuyZone Room;
-        [SerializeField] protected Transform RoomEnvirnoment;
+        [SerializeField] protected RoomEnvironment RoomEnvirnoment;
         [SerializeField] protected LevelBuyZone NextLevel;
 
         private float _durationAnimation = 0.5f;
@@ -75,7 +75,7 @@ namespace Agava.IdleGame
             IsUnlockRoom = true;
             Counter = 1;
             Unlock(buyZone);
-            AnimationScale(RoomEnvirnoment);
+            RoomEnvirnoment.EnableEnvironment();
         }
 
         protected void UnlockNextLevelZone()

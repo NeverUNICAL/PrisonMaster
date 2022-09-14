@@ -44,6 +44,11 @@ public class Level1 : UnlockableMapZone
         int target = 2;
         Counter++;
 
+        if (_isUpgraded)
+            RoomEnvirnoment.ChahgeActiveArrow(false);
+        else
+            RoomEnvirnoment.ChahgeActiveArrow(true);
+
         if (IsUnlockRoom == false)
         {
             AnimationScale(Room.transform);
@@ -76,42 +81,9 @@ public class Level1 : UnlockableMapZone
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
-        int tempCounter = 0;
-        int target = 2;
-
         for (int i = 0; i < NextZones.Length; i++)
-        {
-            if (NextZones[i].gameObject.activeInHierarchy == false)
-            {
-                if (tempCounter < target)
-                {
-                    AnimationScale(_trashZone.transform);
-                    AnimationScale(NextZones[i].transform);
-                    tempCounter++;
-                }
-            }
-        }
+            NextZones[i].Unlock();
+
+        AnimationScale(_trashZone.transform);
     }
 }
-
-
-//for (int i = 0; i < BuyZones.Length; i++)
-//{
-//    if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
-//    {
-//        if (tempCounter < target)
-//        {
-//            if (IsUnlockRoom)
-//                AnimationScale(BuyZones[i].transform);
-
-//            tempCounter++;
-//        }
-//        else
-//        {
-//            Counter = 0;
-//        }
-
-//        if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
-//            UnlockNextLevelZone();
-//    }
-//}

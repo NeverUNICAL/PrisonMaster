@@ -39,6 +39,12 @@ public class Tutorial : MonoBehaviour
 
     private void OnSavesLoaded()
     {
+        if (_playerSavePresenter.Money > 0)
+        {
+            _tutorialMoney.gameObject.SetActive(false);
+            OnMoneyPullEmpty();
+        }
+
         if (_playerSavePresenter.IsTutorialCompleted)
         {
             OnTutorialCompletedOnStart();
@@ -51,12 +57,12 @@ public class Tutorial : MonoBehaviour
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
     {
-        if (_playerSavePresenter.IsTutorialCompleted == false)
-        {
-            Debug.Log("Unlock");
-            AnimationOutline(_outlines[1]);
-            OnStartGame();
-        }
+        StartCoroutine(Delay());
+        //if (_playerSavePresenter.IsTutorialCompleted == false)
+        //{
+        //    AnimationOutline(_outlines[1]);
+        //    OnStartGame();
+        //}
     }
 
     private void OnStartGame()
@@ -67,8 +73,6 @@ public class Tutorial : MonoBehaviour
         AnimationScale(_openObject.transform);
         AnimationScale(_trashZone.transform);
 
-        Debug.Log(_openObject.gameObject.activeInHierarchy);
-
         gameObject.SetActive(false);
         _playerSavePresenter.SetTutorialComplete();
     }
@@ -77,7 +81,6 @@ public class Tutorial : MonoBehaviour
     {
         if (_playerSavePresenter.IsTutorialCompleted == false)
         {
-            Debug.Log("AnimetionScale    " + buyZone.name);
             Sequence sequence = DOTween.Sequence();
             buyZone.gameObject.SetActive(true);
             buyZone.transform.localScale = new Vector3(0, 0, 0);
@@ -92,7 +95,6 @@ public class Tutorial : MonoBehaviour
         _trashZone.gameObject.SetActive(true);
         _openObject.gameObject.SetActive(true);
 
-        Debug.Log(_openObject.gameObject.activeInHierarchy);
         gameObject.SetActive(false);
     }
 
@@ -115,6 +117,16 @@ public class Tutorial : MonoBehaviour
                 _arrows[i].gameObject.SetActive(true);
             else
                 _arrows[i].gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitWhile(() => _playerSavePresenter.IsTutorialCompleted);
+        if (_playerSavePresenter.IsTutorialCompleted == false)
+        {
+            AnimationOutline(_outlines[1]);
+            OnStartGame();
         }
     }
 }

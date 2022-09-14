@@ -116,6 +116,16 @@ namespace Agava.IdleGame
                 _image.fillAmount = _buyZone.CurrentPercent;
         }
 
+        public void Unlock()
+        {
+            _view.Hide();
+            _unlockable.Unlock(transform, true, GUID);
+            OnBuyedAction();
+
+            _trigger.gameObject.SetActive(false);
+            Unlocked?.Invoke(this);
+        }
+
         protected virtual void OnBuyZoneLoaded(BuyZone buyZone) { }
         protected virtual void OnEnabled() { }
         protected virtual void OnDisabled() { }

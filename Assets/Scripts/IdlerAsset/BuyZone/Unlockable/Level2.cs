@@ -8,13 +8,47 @@ public class Level2 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
     [SerializeField] private int _counterForNextLevel = 0;
+    [SerializeField] private AssistantsShop _assistantsShop;
 
+    private bool _isUpgraded = false;
     private bool _isNextLevelUnlock = false;
 
     public event UnityAction RoomZoneOpened;
 
+    private void OnEnable()
+    {
+        base.OnEnable();
+        _assistantsShop.CountUpgraded += OnUpgraded;
+    }
+
+    private void OnDisable()
+    {
+        base.OnDisable();
+        _assistantsShop.CountUpgraded -= OnUpgraded;
+    }
+
+    public void Load()
+    {
+        Debug.Log("Load");
+        _isUpgraded = true;
+    }
+
+    private void OnUpgraded(int value1, int value2)
+    {
+        Debug.Log("OnUpgrade");
+        _isUpgraded = true;
+    }
+
     public override void Unlock(BuyZonePresenter buyZone)
     {
+        if (IsUnlockRoom)
+        {
+            if (_isUpgraded)
+                RoomEnvirnoment.ChahgeActiveArrow(false);
+            else
+                RoomEnvirnoment.ChahgeActiveArrow(true);
+        }
+
         if (buyZone.TryGetComponent(out RoomBuyZone roomBuyZone) == false)
         {
             int tempCounter = 0;
@@ -63,26 +97,29 @@ public class Level2 : UnlockableMapZone
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
-        int tempCounter = 0;
-        int target = 2;
+        //int tempCounter = 0;
+        //int target = 2;
 
+        //for (int i = 0; i < NextZones.Length; i++)
+        //{
+        //    if (NextZones[i].gameObject.activeInHierarchy == false)
+        //    {
+        //        if (tempCounter < target)
+        //        {
+        //            AnimationScale(NextZones[i].transform);
+        //            tempCounter++;
+        //            _isNextLevelUnlock = true;
+
+        //            if (_counterForNextLevel >= 4)
+        //            {
+        //                Unlock(buyZone);
+        //            }
+        //        }
+        //    }
+        //}
         for (int i = 0; i < NextZones.Length; i++)
-        {
-            if (NextZones[i].gameObject.activeInHierarchy == false)
-            {
-                if (tempCounter < target)
-                {
-                    AnimationScale(_trashZone.transform);
-                    AnimationScale(NextZones[i].transform);
-                    tempCounter++;
-                    _isNextLevelUnlock = true;
+            NextZones[i].Unlock();
 
-                    if (_counterForNextLevel >= 4)
-                    {
-                        Unlock(buyZone);
-                    }
-                }
-            }
-        }
+        AnimationScale(_trashZone.transform);
     }
 }
