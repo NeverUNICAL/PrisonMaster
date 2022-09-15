@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1488785760}
   - component: {fileID: 2063899887}
   - component: {fileID: 717448223038092231}
-  - component: {fileID: 717448223038092230}
+  - component: {fileID: 8801759967563388213}
   - component: {fileID: 717448223038092234}
   - component: {fileID: 717448223038092235}
   - component: {fileID: 717448223038092232}
@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 717448223038092240}
   - component: {fileID: 717448223038092241}
   m_Layer: 0
-  m_Name: Assistant
+  m_Name: StackingAssistant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   _capacity: 2
   _stackableTypes:
     _value: -1
---- !u!114 &717448223038092230
+--- !u!114 &8801759967563388213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,12 +157,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 717448223038092227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8798402948edb147950bf17e7693028, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bb4e1edbb8cfb84ea84a1ca9b8ea01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 2
   producersContainer: {fileID: 0}
   consumersContainer: {fileID: 0}
-  _speed: 2
 --- !u!114 &717448223038092234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   _transitions:
   - {fileID: 717448223038092232}
   _delay: 1
+  _offset: {x: 0, y: 0, z: 0}
 --- !u!114 &717448223038092232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +252,7 @@ MonoBehaviour:
   _transitions:
   - {fileID: 717448223038092238}
   _delay: 1
+  _offset: {x: 0, y: 0, z: 0}
 --- !u!114 &717448223038092238
 MonoBehaviour:
   m_ObjectHideFlags: 0

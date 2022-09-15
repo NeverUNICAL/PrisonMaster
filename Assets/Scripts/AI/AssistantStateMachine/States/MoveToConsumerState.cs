@@ -15,7 +15,6 @@ public class MoveToConsumerState : AssistantState
 
     private void OnEnable()
     {
-        //_offset = new Vector3(Random.Range(0.5f, 1.3f), 0, Random.Range(-1.3f, 1.3f));
         _coroutineInJob = StartCoroutine(FindMinStack());
     }
 

@@ -8,9 +8,9 @@ public abstract class AssistantState : MonoBehaviour
     [SerializeField] private List<AssistantTransition> _transitions;
 
     protected int Capacity { get; set; }
-    protected Assistant Assistant { get; set; }
+    protected StackingAssistent Assistant { get; set; }
 
-    public void Enter(Assistant assistant)
+    public void Enter(StackingAssistent assistant)
     {
         if (enabled == false)
         {

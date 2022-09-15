@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Agava.IdleGame;
 
-[RequireComponent(typeof(Assistant))]
 public class AssistantStateMachine : MonoBehaviour
 {
     [SerializeField] private AssistantState _firstState;
 
    
     private AssistantState _currentState;
-    private Assistant _assistant;
+    private StackingAssistent _assistant;
 
     public AssistantState CurrentState => _currentState;
 
     private void Awake()
     {
-        _assistant = GetComponent<Assistant>();
+        _assistant = GetComponent<StackingAssistent>();
     }
 
     private void Start()
