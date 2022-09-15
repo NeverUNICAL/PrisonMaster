@@ -63,7 +63,7 @@ public class ShowerQueueContainer : QueueHandler
     {
         while (true)
         {
-            if (_prisonerList.Count > 0 && _shower.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
+            if (_prisonerList.Count > 0 && _store.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
             {
                 if (_onShowerTriggerStayed && _isShowerBusy && _isShowerWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
                 {
@@ -99,8 +99,10 @@ public class ShowerQueueContainer : QueueHandler
     private void OnTimeOver()
     {
         if (SendToPool(_distributor))
-            _shower.Sale();
-
+        {
+            _store.Sale();
+        }
+        
         _isShowerWorking = false;
         PrisonerWashEnded?.Invoke();
         _isShowerBusy = false;

@@ -20,9 +20,9 @@ public abstract class QueueHandler : MonoBehaviour
     
     [Header("Queue Container Settings")]
     [SerializeField] protected Shop _shop;
+    [SerializeField] protected Store _store;
 
     [Header("Shower Settings")]
-    [SerializeField] protected Shower _shower;
     [SerializeField] protected bool _isInShowerQueue;
     
     [Header("Distributor Settings")]
@@ -36,7 +36,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected List<QueueHandler> _sortedList;
     
     private bool _isShopNotNull;
-    private bool _isShowerNotNull;
+    private bool _isStoreNotNull;
 
     public int PoolSize => _startPoolSize;
     public List<PrisonerMover> PrisonerQueueList => _prisonerList;
@@ -48,7 +48,7 @@ public abstract class QueueHandler : MonoBehaviour
         _waitForSendTimeOut = new WaitForSeconds(_sendTimeOut);
         _prisonerList = new List<PrisonerMover>();
         _isShopNotNull = _shop != null;
-        _isShowerNotNull = _shower != null;
+        _isStoreNotNull = _store != null;
     }
 
     public void ListSort()
@@ -75,7 +75,7 @@ public abstract class QueueHandler : MonoBehaviour
     
     public bool CheckForShopBuyed()
     {
-        if ((_isShopNotNull && _shop.gameObject.activeInHierarchy) || (_isShowerNotNull && _shower.gameObject.activeInHierarchy))
+        if ((_isShopNotNull && _shop.gameObject.activeInHierarchy) || (_isStoreNotNull && _store.gameObject.activeInHierarchy))
             return true;
 
         return false;
@@ -96,6 +96,8 @@ public abstract class QueueHandler : MonoBehaviour
         {
             if(_isShopNotNull)
                 _prisonerList[0].SetTarget(_firstPoint,Vector3.zero,_shop.gameObject.transform);
+            else if (_isStoreNotNull)
+                _prisonerList[0].SetTarget(_firstPoint, Vector3.zero, _store.gameObject.transform);
             else
                 _prisonerList[0].SetTarget(_firstPoint,Vector3.zero);
         }
@@ -117,7 +119,7 @@ public abstract class QueueHandler : MonoBehaviour
                 _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
                 _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false)
                     .ToList();
-
+                
                 if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize &&
                     _sortedList[0].CheckForShopBuyed())
                 {
@@ -167,5 +169,7 @@ public abstract class QueueHandler : MonoBehaviour
         
         if(_shop != null)
          _shop.Sale();
+        else if(_store != null) 
+            _store.Sale();
     }
 }

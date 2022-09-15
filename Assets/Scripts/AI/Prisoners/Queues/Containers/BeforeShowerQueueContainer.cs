@@ -20,7 +20,7 @@ public class BeforeShowerQueueContainer : QueueHandler
     {
         while (true)
         {
-            if (_prisonerList.Count > 0 && _shower.gameObject.activeInHierarchy)
+            if (_prisonerList.Count > 0 && _store.gameObject.activeInHierarchy)
             {
                 SendToShower();
             }
