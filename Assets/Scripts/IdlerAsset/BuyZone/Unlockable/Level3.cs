@@ -5,8 +5,31 @@ using UnityEngine;
 
 public class Level3 : UnlockableMapZone
 {
+    [SerializeField] private LevelBuyZone _fourthLevel;
+
+    private bool _isFourthLevelOpened = false;
+    private bool _isFirst = true;
+
+    private void OnEnable()
+    {
+        base.OnEnable();
+        _fourthLevel.Unlocked += OnUnlockFourthZone;
+    }
+
+    private void OnDisable()
+    {
+        base.OnDisable();
+        _fourthLevel.Unlocked -= OnUnlockFourthZone;
+    }
+
     public override void Unlock(BuyZonePresenter buyZone)
     {
+        if (_isFirst)
+        {
+            UnlockNextLevelZone();
+            _isFirst = false;
+        }
+
         int tempCounter = 0;
         int target = 2;
         Counter++;
@@ -30,5 +53,12 @@ public class Level3 : UnlockableMapZone
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {   
+    }
+
+    private void OnUnlockFourthZone(BuyZonePresenter buyZone)
+    {
+        _isFourthLevelOpened = true;
+        Counter++;
+        Unlock(null);
     }
 }
