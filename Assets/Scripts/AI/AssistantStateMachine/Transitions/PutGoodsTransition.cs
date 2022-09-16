@@ -18,7 +18,6 @@ public class PutGoodsTransition : AssistantTransition
 
     private void OnEmpty()
     {
-        Debug.Log("OnEmpty");
         NeedTransit = true;
     }
 }
