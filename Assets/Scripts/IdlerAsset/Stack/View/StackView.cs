@@ -23,6 +23,7 @@ namespace Agava.IdleGame
 
         public IReadOnlyList<StackableObject> Stackables => _stackablesDelayed;
 
+        public event Action Added;
         public event Action Fill;
         public event Action Empty;
 
@@ -47,9 +48,7 @@ namespace Agava.IdleGame
             }
             else
             {
-             //   stackable.View.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.05f);
                 stackable.View.localScale = _scaleForPlayerObjects;
-                
             }
 
             stackable.View.DOLocalRotate(endRotation, _animationDuration).OnComplete(() => AddToDelayedList(stackable));
@@ -58,8 +57,10 @@ namespace Agava.IdleGame
                 stackable.View.DOPunchScale(defaultScale * _scalePunch.Value, _animationDuration);
 
             _stackables.Add(stackable);
+            _stackablesDelayed.Add(stackable);
+            Added?.Invoke();
 
-            if(_stackables.Count == 1)
+            if (_stackables.Count == 1)
                 Fill?.Invoke();
         }
 

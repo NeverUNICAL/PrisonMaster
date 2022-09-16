@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class AcceptGoodsTransition : AssistantTransition
 {
-    [SerializeField] private float _delay;
+    [SerializeField] private AcceptGoodsState _state;
 
-    private Coroutine _coroutineInJob;
-
-    private void Update()
+    private void OnEnable()
     {
-        int capacityTarget = Assistant.AssistantStack.GetComponentsInChildren<Transform>().Length - 1;
-        
-        if (capacityTarget == Assistant.Capacity)
-        {
-            _coroutineInJob = StartCoroutine(Transit(_delay));
-        }
+        _state.CapacityFulled += OnFulled;
     }
 
-    private IEnumerator Transit(float delay)
+    private void OnDisable()
     {
-        yield return new WaitForSeconds(delay);
+        _state.CapacityFulled -= OnFulled;
+    }
 
+    private void OnFulled()
+    {
         NeedTransit = true;
-
-        StopCoroutine(_coroutineInJob);
     }
 }

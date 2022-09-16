@@ -7,6 +7,7 @@ public class StackingAssistent : Assistant
 {
     [SerializeField] private ProdusersContainer producersContainer;
     [SerializeField] private ConsumersContainer consumersContainer;
+    [SerializeField] private float _delay;
 
     private StackView[] _producers;
     private StackView[] _consumers;
@@ -38,6 +39,13 @@ public class StackingAssistent : Assistant
             _consumersItemCreators.Add(consumersContainer.transform.GetChild(i).GetComponent<StackPresenter>());
         }
 
-        Invoke(nameof(StartStateMachine), 3f);
+        StartCoroutine(Delay(_delay));
+    }
+
+    private IEnumerator Delay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        StartStateMachine();
     }
 }

@@ -9,9 +9,12 @@ public class MoveToConsumerState : AssistantState
 {
     [SerializeField] private float _delay = 1f;
     [SerializeField] private Vector3 _offset;
+
     private Transform _target;
     private Coroutine _coroutineInJob;
     private List<StackPresenter> _stackPresenters = new List<StackPresenter>();
+
+    public Vector3 TargetPosition => _target.position + _offset;
 
     private void OnEnable()
     {
@@ -29,7 +32,7 @@ public class MoveToConsumerState : AssistantState
             }
 
             _stackPresenters = _stackPresenters.OrderBy(consumer => consumer.Count).ToList();
-            _target = _stackPresenters[0].GetComponentInChildren<StackPresenterTrigger>().transform;
+            _target = _stackPresenters[0].transform;
             Assistant.ChangeTargetTransform(_target);
             Assistant.Move(_target.transform.position + _offset);
 

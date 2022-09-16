@@ -11,7 +11,7 @@ public class DistanceConsumerTransition : AssistantTransition
     {
         if (Assistant.TargetTransform != null)
         {
-            if (Vector3.Distance(transform.position, Assistant.TargetTransform.position) < _transitionRange)
+            if (Vector3.Distance(transform.position, _currentState.TargetPosition) < _transitionRange)
             {
                 _currentState.StopCoroutine();
                 NeedTransit = true;
