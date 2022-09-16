@@ -144,7 +144,7 @@ public abstract class QueueHandler : MonoBehaviour
                     _prisonerList[0].EnableSuit();
                 else if(_isInShowerQueue)
                     _prisonerList[0].EnableWashedSuit();
-                
+
                 targetQueue.PrisonerQueueList.Add(_prisonerList[0]);
                 _prisonerList[0].ChangeAngryAnimation(false);
                 targetQueue.ListSort();
@@ -165,6 +165,7 @@ public abstract class QueueHandler : MonoBehaviour
     {
         _prisonerList[0].SetTarget(_exit,Vector3.zero);
         _prisonerList[0].ChangeAngryAnimation(false);
+        _prisonerList[0].EnableWashedSuit();
         ExtractFirst();
         
         if(_shop != null)

@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 518757531651584505}
   - component: {fileID: 518757531651584390}
   m_Layer: 0
-  m_Name: Queue 02 In
+  m_Name: CellQueue
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   _spawnTimeOut: 1
   _sendTimeOut: 1.3
   _firstPoint: {fileID: 518757531651584391}
-  _startPoolSize: 2
+  _startPoolSize: 1
   _offsetPos: {x: 0, y: 0, z: 0}
   _isSuitQueue: 0
   _queues: []
@@ -147,11 +147,9 @@ MonoBehaviour:
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
   _distributor: {fileID: 0}
-  _showerTrigger: {fileID: 0}
-  _showerParticleSystem: {fileID: 0}
+  _trigger: {fileID: 0}
   _timerView: {fileID: 1393961320793364252}
   _timeForWashing: 4
-  _button: {fileID: 0}
   _triggerForPrisoners: {fileID: 2397453255024464183}
 --- !u!1 &1393961320632275197
 GameObject:
