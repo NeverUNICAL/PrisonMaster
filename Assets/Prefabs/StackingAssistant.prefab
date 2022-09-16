@@ -163,6 +163,7 @@ MonoBehaviour:
   _speed: 2
   producersContainer: {fileID: 0}
   consumersContainer: {fileID: 0}
+  _delay: 3
 --- !u!114 &717448223038092234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717448223038092227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78cf635b97a969345b7069db69734036, type: 3}
   m_Name: 
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092239}
   _targetAlternativeState: {fileID: 0}
-  _delay: 1
+  _state: {fileID: 717448223038092233}
 --- !u!114 &717448223038092239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092240}
   _targetAlternativeState: {fileID: 0}
-  _transitionRange: 2
+  _transitionRange: 1.5
   _currentState: {fileID: 717448223038092239}
 --- !u!114 &717448223038092240
 MonoBehaviour:
@@ -297,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 717448223038092235}
   _targetAlternativeState: {fileID: 717448223038092239}
-  _delay: 1
+  _state: {fileID: 717448223038092240}
 --- !u!1 &717448223498082281
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,41 +9,41 @@ public class Level1 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
     [SerializeField] private UpgradesShop _upgradesShop;
+    [SerializeField] private LevelBuyZone _fourthLevel;
 
+    private bool _isFourthLevelOpened = false;
     private bool _isUpgraded = false;
     public event UnityAction RoomZoneOpened;
 
     private void OnEnable()
     {
         base.OnEnable();
+        _fourthLevel.Unlocked += OnUnlockFourthZone;
         _upgradesShop.SpeedUpgraded += OnUpgraded;
     }
 
     private void OnDisable()
     {
         base.OnDisable();
+        _fourthLevel.Unlocked -= OnUnlockFourthZone;
         _upgradesShop.SpeedUpgraded -= OnUpgraded;
     }
 
     public void Load()
     {
         _isUpgraded = true;
-        Unlock(null);
+        UnlockNextLevelZone();
     }
 
     private void OnUpgraded(int value1, float value2, int value3)
     {
         Counter++;
         _isUpgraded = true;
-        Unlock(null);
+        UnlockNextLevelZone();
     }
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        int tempCounter = 0;
-        int target = 2;
-        Counter++;
-
         if (_isUpgraded)
             RoomEnvirnoment.ChahgeActiveArrow(false);
         else
@@ -56,27 +56,8 @@ public class Level1 : UnlockableMapZone
             RoomZoneOpened?.Invoke();
         }
 
-        for (int i = 0; i < BuyZones.Length; i++)
-        {
-            if (BuyZones[i].gameObject.activeInHierarchy == false && Counter == target)
-            {
-                if (_isUpgraded)
-                {
-                    if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
-                        UnlockNextLevelZone();
-
-                    if (tempCounter < target)
-                    {
-                        AnimationScale(BuyZones[i].transform);
-                    }
-
-                    tempCounter++;
-                }
-            }
-        }
-
-        if (Counter == target)
-            Counter = 0;
+        if (_isFourthLevelOpened)
+            UnlockBuyZone();
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
@@ -85,5 +66,23 @@ public class Level1 : UnlockableMapZone
             NextZones[i].Unlock();
 
         AnimationScale(_trashZone.transform);
+    }
+
+    private void OnUnlockFourthZone(BuyZonePresenter buyZone)
+    {
+        _isFourthLevelOpened = true;
+        UnlockBuyZone();
+    }
+
+    private void UnlockBuyZone()
+    {
+        for (int i = 0; i < BuyZones.Length; i++)
+        {
+            if (BuyZones[i].gameObject.activeInHierarchy == false)
+            {
+                AnimationScale(BuyZones[i].transform);
+                return;
+            }
+        }
     }
 }

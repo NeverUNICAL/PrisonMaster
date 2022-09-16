@@ -16,6 +16,7 @@ public abstract class Assistant : MonoBehaviour
     private AssistantStateMachine _stateMachine;
     private Transform _targetTransform;
 
+    public PlayerStackPresenter StackPresenter => _stackPresenter;
     public float Speed => _speed;
     public int Capacity => _stackPresenter.Capacity;
     public Transform TargetTransform => _targetTransform;

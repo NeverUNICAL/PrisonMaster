@@ -1,24 +1,30 @@
+using Agava.IdleGame.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator))]
 public class AcceptGoodsState : AssistantState
 {
-    private Animator _animator;
+    private Coroutine _coroutineInJob;
 
-    private void Awake()
+    public event UnityAction CapacityFulled;
+
+    private void OnEnable()
     {
-        _animator = GetComponent<Animator>();
+        _coroutineInJob = StartCoroutine(CheckStack());
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        AcceptGoods();
+        if (_coroutineInJob != null)
+            StopCoroutine(_coroutineInJob);
     }
 
-    private void AcceptGoods()
+    private IEnumerator CheckStack()
     {
-        _animator.Play("AcceptGoods");
+        yield return new WaitWhile(() => Assistant.Capacity != Assistant.AssistantStack.Stackables.Count);
+
+        CapacityFulled?.Invoke();
     }
 }
