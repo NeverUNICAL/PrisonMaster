@@ -57,6 +57,7 @@ public class PrisonerMover : MonoBehaviour
     {
         _suits[2].SetActive(false);
         _suits[0].SetActive(true);
+        _suits[1].SetActive(false);
     }
 
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)

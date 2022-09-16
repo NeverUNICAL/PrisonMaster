@@ -6,18 +6,27 @@ using Agava.IdleGame;
 using Agava.IdleGame.Model;
 using UnityEngine;
 using UnityEngine.Events;
-public class CellQueueContainer : QueueHandler
+public class ExitClothQueueContainer : QueueHandler
 {
     [SerializeField] private Distributor _distributor;
-    [SerializeField] private Trigger _trigger;
+    
+    [Header("ShowerSettings")]
+    [SerializeField] private Trigger _showerTrigger;
+    [SerializeField] private ParticleSystem _showerParticleSystem;
     [SerializeField] private TimerView _timerView;
     [SerializeField] private float _timeForWashing;
+    [SerializeField] private Transform _button;
     [SerializeField] private TriggerForPrisoners _triggerForPrisoners;
     
-    private bool _isCellBusy;
-    private bool _isCellWorking;
+    private bool _onShowerTriggerStayed;
+    private bool _isShowerBusy;
+    private bool _isShowerWorking;
+    private PrisonerMover _prisonerForWash;
     private Timer _timer = new Timer();
     
+    public event UnityAction PrisonerIsIn;
+    public event UnityAction PrisonerWashEnded;
+
     private void Start()
     {
         GenerateList();
@@ -30,7 +39,6 @@ public class CellQueueContainer : QueueHandler
        // _showerTrigger.Enter += OnEnter;
        // _showerTrigger.Exit += OnExit;
         _timer.Completed += OnTimeOver;
-        _triggerForPrisoners.Enter += OnPrisonerEnter;
     }
 
     private void OnDisable()
@@ -38,12 +46,11 @@ public class CellQueueContainer : QueueHandler
        // _showerTrigger.Enter -= OnEnter;
       //  _showerTrigger.Exit -= OnExit;
         _timer.Completed -= OnTimeOver;
-        _triggerForPrisoners.Enter -= OnPrisonerEnter;
     }
     
     private void Update()
     {
-        if (_isCellBusy)
+        if (_isShowerWorking)
         {
             _timer.Tick(Time.deltaTime);
         }
@@ -55,9 +62,9 @@ public class CellQueueContainer : QueueHandler
         {
             if (_prisonerList.Count > 0 && _store.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
             {
-                if (_isCellBusy && _isCellWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
+                if (_isShowerWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
                 {
-                    _isCellWorking = true;
+                    _isShowerWorking = true;
                     _timer.Start(_timeForWashing);
                 }
             }
@@ -92,15 +99,11 @@ public class CellQueueContainer : QueueHandler
     {
         if (SendToPool(_distributor))
         {
-          //  _store.Sale();
+            _store.Sale();
         }
         
-        _isCellWorking = false;
-        _isCellBusy = false;
-    }
-
-    private void OnPrisonerEnter()
-    {
-        _isCellBusy = true;
+        _isShowerWorking = false;
+        PrisonerWashEnded?.Invoke();
+        _isShowerBusy = false;
     }
 }
