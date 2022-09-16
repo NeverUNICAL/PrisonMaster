@@ -22,6 +22,7 @@ namespace Agava.IdleGame
         protected List<StackableObject> _stackablesDelayed = new List<StackableObject>();
 
         public IReadOnlyList<StackableObject> Stackables => _stackablesDelayed;
+        public List<StackableObject> StackablesView => _stackables;
 
         public event Action Added;
         public event Action Fill;
@@ -57,8 +58,6 @@ namespace Agava.IdleGame
                 stackable.View.DOPunchScale(defaultScale * _scalePunch.Value, _animationDuration);
 
             _stackables.Add(stackable);
-            _stackablesDelayed.Add(stackable);
-            Added?.Invoke();
 
             if (_stackables.Count == 1)
                 Fill?.Invoke();

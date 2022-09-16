@@ -23,7 +23,7 @@ public class AcceptGoodsState : AssistantState
 
     private IEnumerator CheckStack()
     {
-        yield return new WaitWhile(() => Assistant.Capacity != Assistant.AssistantStack.Stackables.Count);
+        yield return new WaitWhile(() => Assistant.Capacity != Assistant.AssistantStack.StackablesView.Count);
 
         CapacityFulled?.Invoke();
     }

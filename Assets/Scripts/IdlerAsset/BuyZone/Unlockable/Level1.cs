@@ -26,20 +26,16 @@ public class Level1 : UnlockableMapZone
     {
         base.OnDisable();
         _fourthLevel.Unlocked -= OnUnlockFourthZone;
-        _upgradesShop.SpeedUpgraded -= OnUpgraded;
     }
 
     public void Load()
     {
-        _isUpgraded = true;
-        UnlockNextLevelZone();
+        ChangeUpgradeShopState();
     }
 
     private void OnUpgraded(int value1, float value2, int value3)
     {
-        Counter++;
-        _isUpgraded = true;
-        UnlockNextLevelZone();
+        ChangeUpgradeShopState();
     }
 
     public override void Unlock(BuyZonePresenter buyZone)
@@ -84,5 +80,12 @@ public class Level1 : UnlockableMapZone
                 return;
             }
         }
+    }
+
+    private void ChangeUpgradeShopState()
+    {
+        _isUpgraded = true;
+        _upgradesShop.SpeedUpgraded -= OnUpgraded;
+        UnlockNextLevelZone();
     }
 }

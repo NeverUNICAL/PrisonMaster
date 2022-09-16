@@ -6,8 +6,11 @@ namespace ForCreo
 {
     public class CellsConteiner : MonoBehaviour
     {
+        [SerializeField] private DoorButton _doorButton;
+
         private Cell[] _cells;
 
+        public DoorButton DoorButton => _doorButton;
         public Cell[] Cells => _cells;
 
         private void Awake()

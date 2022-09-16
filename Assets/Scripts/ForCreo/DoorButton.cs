@@ -1,3 +1,4 @@
+using Agava.IdleGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace ForCreo
         [SerializeField] private Transform _button;
         [SerializeField] private bool _cellsButton = false;
 
+        private PlayerCollision _playerCollision;
         private BoxCollider _boxCollider;
 
         public event UnityAction Reached;
@@ -25,8 +27,9 @@ namespace ForCreo
         private void OnTriggerEnter(Collider other)
         {
             _button.localPosition = Vector3.zero;
-            if (other.TryGetComponent(out PlayerMovement player))
+            if (other.TryGetComponent(out PlayerCollision player) && _playerCollision == null)
             {
+                _playerCollision = player;
                 Reached?.Invoke();
             }
         }
@@ -34,9 +37,13 @@ namespace ForCreo
         private void OnTriggerExit(Collider other)
         {
             _button.localPosition += new Vector3(0, 0.1f, 0);
-            if (other.TryGetComponent(out PlayerMovement player) && _cellsButton)
+            if (other.TryGetComponent(out PlayerCollision player))
             {
-                Exit?.Invoke();
+                if (_playerCollision == player)
+                {
+                    _playerCollision = null;
+                    Exit?.Invoke();
+                }
             }
         }
     }

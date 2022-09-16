@@ -4,12 +4,13 @@ using UnityEngine.Events;
 namespace Agava.IdleGame
 {
     [RequireComponent(typeof(Collider))]
-    public class Trigger : MonoBehaviour 
+    public class Trigger : MonoBehaviour
     {
         public event UnityAction Enter;
         public event UnityAction Stay;
         public event UnityAction Exit;
 
+        private PlayerCollision _playerCollision;
         private Collider _collider;
 
         private void Awake()
@@ -17,11 +18,12 @@ namespace Agava.IdleGame
             _collider = GetComponent<Collider>();
             _collider.isTrigger = true;
         }
-        
+
         private void OnTriggerEnter(Collider collider)
         {
-            if (collider.TryGetComponent(out PlayerCollision playerCollision))
+            if (collider.TryGetComponent(out PlayerCollision playerCollision) && _playerCollision == null)
             {
+                _playerCollision = playerCollision;
                 Enter?.Invoke();
             }
         }
@@ -30,7 +32,8 @@ namespace Agava.IdleGame
         {
             if (collider.TryGetComponent(out PlayerCollision playerCollision))
             {
-                Stay?.Invoke();
+                if (_playerCollision == playerCollision)
+                    Stay?.Invoke();
             }
         }
 
@@ -38,7 +41,11 @@ namespace Agava.IdleGame
         {
             if (collider.TryGetComponent(out PlayerCollision playerCollision))
             {
-                Exit?.Invoke();
+                if (_playerCollision == playerCollision)
+                {
+                    _playerCollision = null;
+                    Exit?.Invoke();
+                }
             }
         }
     }

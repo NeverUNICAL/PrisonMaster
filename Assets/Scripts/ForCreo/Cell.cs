@@ -9,7 +9,7 @@ namespace ForCreo
     {
         [SerializeField] private Transform _prisonersConteiner;
 
-        private Door _door;
+        private CellDoor _door;
         private Prisoner[] _prisoners;
 
         public Prisoner[] Prisoners => _prisoners;
@@ -18,7 +18,7 @@ namespace ForCreo
 
         private void Awake()
         {
-            _door = GetComponentInChildren<Door>();
+            _door = GetComponentInChildren<CellDoor>();
 
             if (_prisonersConteiner.childCount <= 0)
                 return;

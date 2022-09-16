@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 namespace ForCreo
 {
-    public class Door : MonoBehaviour
+    public class CellDoor : MonoBehaviour
     {
-        [SerializeField] private DoorButton[] _doorButtons;
         [SerializeField] private float _duration;
-        [SerializeField] private Vector3 _targetRotation;
-        [SerializeField] private Vector3 _defaultRotation;
+        [SerializeField] private Vector3 _targetPosition;
+        [SerializeField] private Vector3 _defaultPosition;
 
+        private CellsConteiner _cellsConteiner;
         private bool _isOpened = false;
 
         public bool IsOpened => _isOpened;
@@ -20,22 +20,21 @@ namespace ForCreo
         public event UnityAction Opened;
         public event UnityAction Closed;
 
+        private void Awake()
+        {
+            _cellsConteiner = GetComponentInParent<CellsConteiner>();
+        }
+
         private void OnEnable()
         {
-            for (int i = 0; i < _doorButtons.Length; i++)
-            {
-                _doorButtons[i].Reached += OnReached;
-                _doorButtons[i].Exit += OnExit;
-            }
+            _cellsConteiner.DoorButton.Reached += OnReached;
+            _cellsConteiner.DoorButton.Exit += OnExit;
         }
 
         private void OnDisable()
         {
-            for (int i = 0; i < _doorButtons.Length; i++)
-            {
-                _doorButtons[i].Reached -= OnReached;
-                _doorButtons[i].Exit -= OnExit;
-            }
+            _cellsConteiner.DoorButton.Reached -= OnReached;
+            _cellsConteiner.DoorButton.Exit -= OnExit;
         }
 
         private void OnReached()
@@ -53,19 +52,19 @@ namespace ForCreo
 
         private void Open()
         {
-            Rotate(_targetRotation, _duration, Opened);
+            Move(_targetPosition, _duration, Opened);
             _isOpened = true;
         }
 
         private void Close()
         {
-            Rotate(_defaultRotation, _duration, Closed);
+            Move(_defaultPosition, _duration, Closed);
             _isOpened = false;
         }
 
-        private void Rotate(Vector3 target, float duration, UnityAction action)
+        private void Move(Vector3 target, float duration, UnityAction action)
         {
-            transform.DORotate(target, duration).OnComplete(() => action?.Invoke());
+            transform.DOLocalMove(target, duration).OnComplete(() => action?.Invoke());
         }
     }
 }
