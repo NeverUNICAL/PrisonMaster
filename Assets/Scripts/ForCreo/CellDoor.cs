@@ -50,7 +50,7 @@ namespace ForCreo
             Close();
         }
 
-        private void Open()
+        public void Open()
         {
             Move(_targetPosition, _duration, Opened);
             _isOpened = true;

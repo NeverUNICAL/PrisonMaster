@@ -1,4 +1,5 @@
 using Agava.IdleGame;
+using ForCreo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Level1 : UnlockableMapZone
     [SerializeField] private TrashZone _trashZone;
     [SerializeField] private UpgradesShop _upgradesShop;
     [SerializeField] private LevelBuyZone _fourthLevel;
+    [SerializeField] private CellDoor _cellDoor;
 
     private bool _isFourthLevelOpened = false;
     private bool _isUpgraded = false;
@@ -80,6 +82,8 @@ public class Level1 : UnlockableMapZone
                 return;
             }
         }
+
+        _cellDoor.Open();
     }
 
     private void ChangeUpgradeShopState()

@@ -13,6 +13,7 @@ public class CellQueueContainer : QueueHandler
     [SerializeField] private TimerView _timerView;
     [SerializeField] private float _timeForWashing;
     [SerializeField] private TriggerForPrisoners _triggerForPrisoners;
+    [SerializeField] private Cell _cell;
     
     private bool _isCellBusy;
     private bool _isCellWorking;
@@ -90,17 +91,24 @@ public class CellQueueContainer : QueueHandler
 
     private void OnTimeOver()
     {
-        if (SendToPool(_distributor))
-        {
-          //  _store.Sale();
-        }
-        
-        _isCellWorking = false;
-        _isCellBusy = false;
+        StartCoroutine(CheckCellDoor());
     }
 
     private void OnPrisonerEnter()
     {
         _isCellBusy = true;
+    }
+
+    private IEnumerator CheckCellDoor()
+    {
+        yield return new WaitWhile(() => _cell.CellDoor.IsOpened == false);
+
+        if (SendToPool(_distributor))
+        {
+            //  _store.Sale();
+        }
+
+        _isCellWorking = false;
+        _isCellBusy = false;
     }
 }
