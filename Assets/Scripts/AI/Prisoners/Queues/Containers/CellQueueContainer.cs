@@ -109,10 +109,12 @@ public class CellQueueContainer : QueueHandler
 
     private IEnumerator CheckCellDoor()
     {
+        WaitWhile waitWhile = new WaitWhile(() => _cell.CellDoor.IsOpened == false);
+
         if (_cell.CheckDoorButton())
             _cell.OnReached();
 
-        yield return new WaitWhile(() => _cell.CellDoor.IsOpened == false);
+        yield return waitWhile;
 
         if (SendToPool(_distributor))
         {
