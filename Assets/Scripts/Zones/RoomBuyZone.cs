@@ -7,7 +7,7 @@ namespace Agava.IdleGame
 {
     public class RoomBuyZone : BuyZonePresenter
     {
-        [SerializeField] private Door _door;
+        [SerializeField] private OfficeDoor _door;
         [SerializeField] private GameObject[] _locks;
         
         private int _reduceValue = 1;

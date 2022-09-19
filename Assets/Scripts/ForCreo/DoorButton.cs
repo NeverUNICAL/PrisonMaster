@@ -12,8 +12,11 @@ namespace ForCreo
         [SerializeField] private Transform _button;
         [SerializeField] private bool _cellsButton = false;
 
+        private bool _isReached = false;
         private PlayerCollision _playerCollision;
         private BoxCollider _boxCollider;
+
+        public bool IsReached => _isReached;
 
         public event UnityAction Reached;
         public event UnityAction Exit;
@@ -29,6 +32,7 @@ namespace ForCreo
             _button.localPosition = Vector3.zero;
             if (other.TryGetComponent(out PlayerCollision player) && _playerCollision == null)
             {
+                _isReached = true;
                 _playerCollision = player;
                 Reached?.Invoke();
             }
@@ -41,6 +45,7 @@ namespace ForCreo
             {
                 if (_playerCollision == player)
                 {
+                    _isReached = false;
                     _playerCollision = null;
                     Exit?.Invoke();
                 }

@@ -70,9 +70,9 @@ GameObject:
   - component: {fileID: 8578851039367995665}
   - component: {fileID: 9149855161522553788}
   - component: {fileID: 8578851039367995674}
+  - component: {fileID: 6585704495629775570}
   - component: {fileID: 9149855162102844979}
   - component: {fileID: 8578851039367995675}
-  - component: {fileID: 8578851039367995668}
   m_Layer: 0
   m_Name: ControlAssistant
   m_TagString: Untagged
@@ -182,6 +182,18 @@ MonoBehaviour:
   _speed: 2
   _target: {fileID: 0}
   _delay: 3
+--- !u!114 &6585704495629775570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578851039367995679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d5b90f8fa113846bb84b24d4756ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9149855162102844979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,18 +223,6 @@ MonoBehaviour:
   _capacity: 1
   _stackableTypes:
     _value: 0
---- !u!114 &8578851039367995668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578851039367995679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc39b9fa0667ad49a7f652a39889699, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8578851039832704309
 GameObject:
   m_ObjectHideFlags: 0

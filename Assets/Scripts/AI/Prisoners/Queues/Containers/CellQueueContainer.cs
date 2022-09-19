@@ -6,6 +6,7 @@ using Agava.IdleGame;
 using Agava.IdleGame.Model;
 using UnityEngine;
 using UnityEngine.Events;
+
 public class CellQueueContainer : QueueHandler
 {
     [SerializeField] private Distributor _distributor;
@@ -58,6 +59,11 @@ public class CellQueueContainer : QueueHandler
             {
                 if (_isCellBusy && _isCellWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
                 {
+                    if (_cell.CellDoor.IsOpened)
+                        _cell.OnReached();
+
+                    _cell.AddPrisoner(_prisonerList[0]);
+                    _prisonerList[0].ChangeStateSitting(true);
                     _isCellWorking = true;
                     _timer.Start(_timeForWashing);
                 }
@@ -91,6 +97,8 @@ public class CellQueueContainer : QueueHandler
 
     private void OnTimeOver()
     {
+        _prisonerList[0].ChangeStateSitting(false);
+        _cell.TryRemovePrisoner(_prisonerList[0]);
         StartCoroutine(CheckCellDoor());
     }
 
@@ -101,6 +109,9 @@ public class CellQueueContainer : QueueHandler
 
     private IEnumerator CheckCellDoor()
     {
+        if (_cell.CheckDoorButton())
+            _cell.OnReached();
+
         yield return new WaitWhile(() => _cell.CellDoor.IsOpened == false);
 
         if (SendToPool(_distributor))

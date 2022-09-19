@@ -15,7 +15,9 @@ public class PrisonerMover : MonoBehaviour
     private bool _pathEnded;
     private Transform _lookTarget;
     private const string _isAngryAnimation = "IsAngry";
+    private bool _isSittingInCell = false;
 
+    public bool IsSittingInCell => _isSittingInCell;
     public GameObject NextPoint => _nextPoint;
 
     private void Awake()
@@ -80,5 +82,10 @@ public class PrisonerMover : MonoBehaviour
     {
         _animator.SetBool(_isAngryAnimation, value);
         _angryEffect.gameObject.SetActive(value);
+    }
+
+    public void ChangeStateSitting(bool value)
+    {
+        _isSittingInCell = value;
     }
 }

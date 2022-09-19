@@ -6,7 +6,7 @@ using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class OfficeDoor : MonoBehaviour
 {
     [SerializeField] private float _inYMaxRotation = -270;
     [SerializeField] private float _outYMaxRotation = -90;

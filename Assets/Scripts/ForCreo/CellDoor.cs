@@ -4,67 +4,79 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 
-namespace ForCreo
+public class CellDoor : MonoBehaviour
 {
-    public class CellDoor : MonoBehaviour
+    [SerializeField] private float _duration;
+    [SerializeField] private Vector3 _targetPosition;
+    [SerializeField] private Vector3 _defaultPosition;
+
+    private Cell _cell;
+    private bool _isOpened = false;
+
+    public bool IsOpened => _isOpened;
+
+    public event UnityAction Opened;
+    public event UnityAction Closed;
+
+    private void Awake()
     {
-        [SerializeField] private float _duration;
-        [SerializeField] private Vector3 _targetPosition;
-        [SerializeField] private Vector3 _defaultPosition;
+        _cell = GetComponentInParent<Cell>();
+    }
 
-        private CellsConteiner _cellsConteiner;
-        private bool _isOpened = false;
+    private void OnEnable()
+    {
+        _cell.DoorButtonReached += OnReached;
+        _cell.DoorButtonExit += OnExit;
+    }
 
-        public bool IsOpened => _isOpened;
+    private void OnDisable()
+    {
+        _cell.DoorButtonReached -= OnReached;
+        _cell.DoorButtonExit -= OnExit;
+    }
 
-        public event UnityAction Opened;
-        public event UnityAction Closed;
-
-        private void Awake()
-        {
-            _cellsConteiner = GetComponentInParent<CellsConteiner>();
-        }
-
-        private void OnEnable()
-        {
-            _cellsConteiner.DoorButton.Reached += OnReached;
-            _cellsConteiner.DoorButton.Exit += OnExit;
-        }
-
-        private void OnDisable()
-        {
-            _cellsConteiner.DoorButton.Reached -= OnReached;
-            _cellsConteiner.DoorButton.Exit -= OnExit;
-        }
-
-        private void OnReached()
-        {
-            if (_isOpened == false)
-                Open();
-            else
-                Close();
-        }
-
-        private void OnExit()
-        {
+    private void OnReached()
+    {
+        if (_isOpened == false)
+            TryOpen();
+        else
             Close();
-        }
+    }
 
-        public void Open()
-        {
-            Move(_targetPosition, _duration, Opened);
-            _isOpened = true;
-        }
+    private void OnExit()
+    {
+        Close();
+    }
 
-        private void Close()
-        {
-            Move(_defaultPosition, _duration, Closed);
-            _isOpened = false;
-        }
+    public void TryOpen()
+    {
+        if (_cell.Prisoners.Count < 1)
+            Open();
+        else
+            StartCoroutine(CheckPrisonerState(_cell.Prisoners[0]));
+    }
 
-        private void Move(Vector3 target, float duration, UnityAction action)
-        {
-            transform.DOLocalMove(target, duration).OnComplete(() => action?.Invoke());
-        }
+    private void Open()
+    {
+        Move(_targetPosition, _duration, Opened);
+        _isOpened = true;
+    }
+
+    private void Close()
+    {
+        Move(_defaultPosition, _duration, Closed);
+        _isOpened = false;
+    }
+
+    private void Move(Vector3 target, float duration, UnityAction action)
+    {
+        transform.DOLocalMove(target, duration).OnComplete(() => action?.Invoke());
+    }
+
+    private IEnumerator CheckPrisonerState(PrisonerMover prisonerMover)
+    {
+        yield return new WaitWhile(() => prisonerMover.IsSittingInCell);
+
+        Open();
     }
 }
