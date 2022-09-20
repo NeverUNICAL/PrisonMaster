@@ -173,7 +173,6 @@ MonoBehaviour:
   _timeForWashing: 4
   _triggerForPrisoners: {fileID: 2397453255024464183}
   _cell: {fileID: 1393961321262119937}
-  _checkDoorCooldown: 1
 --- !u!1 &789612378188049652
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,8 +897,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4d656db71555e48984749e0243bec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cellQueue: {fileID: 518757531651584390}
   _count: 4
   _door: {fileID: 3782884878256292637}
+  _delay: 3
 --- !u!1 &1393961321302740013
 GameObject:
   m_ObjectHideFlags: 0

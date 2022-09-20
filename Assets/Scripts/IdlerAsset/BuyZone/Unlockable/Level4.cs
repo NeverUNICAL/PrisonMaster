@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Level4 : UnlockableMapZone
 {
+    [SerializeField] private ObjectCreator _producer;
     [SerializeField] private Transform _prisonersManager;
 
     private bool _isFirst = true;
@@ -23,6 +24,7 @@ public class Level4 : UnlockableMapZone
             NextZones[i].Unlock();
 
         _prisonersManager.gameObject.SetActive(true);
+        _producer.gameObject.SetActive(true);
     }
 
     private void UnlockBuyZone()

@@ -19,7 +19,9 @@ public class CellQueueContainer : QueueHandler
     private bool _isCellBusy;
     private bool _isCellWorking;
     private Timer _timer = new Timer();
-    
+
+    public UnityAction PrisonerSendToPool;
+
     private void Start()
     {
         GenerateList();
@@ -62,7 +64,6 @@ public class CellQueueContainer : QueueHandler
                     if (_cell.CellDoor.IsOpened)
                         _cell.OnReached();
 
-                    _cell.AddPrisoner(_prisonerList[0]);
                     _prisonerList[0].ChangeStateSitting(true);
                     _isCellWorking = true;
                     _timer.Start(_timeForWashing);
@@ -98,7 +99,6 @@ public class CellQueueContainer : QueueHandler
     private void OnTimeOver()
     {
         _prisonerList[0].ChangeStateSitting(false);
-        _cell.TryRemovePrisoner(_prisonerList[0]);
         StartCoroutine(CheckCellDoor());
     }
 
@@ -118,6 +118,7 @@ public class CellQueueContainer : QueueHandler
 
         if (SendToPool(_distributor))
         {
+            PrisonerSendToPool?.Invoke();
             //  _store.Sale();
         }
 

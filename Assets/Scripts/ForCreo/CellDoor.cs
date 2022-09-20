@@ -12,6 +12,7 @@ public class CellDoor : MonoBehaviour
 
     private Cell _cell;
     private bool _isOpened = false;
+    private Coroutine _checkPrisonerSittingStateInJob;
 
     public bool IsOpened => _isOpened;
 
@@ -25,12 +26,14 @@ public class CellDoor : MonoBehaviour
 
     private void OnEnable()
     {
+        _cell.PrisonerSendToPool += Close;
         _cell.DoorButtonReached += OnReached;
         _cell.DoorButtonExit += OnExit;
     }
 
     private void OnDisable()
     {
+        _cell.PrisonerSendToPool -= Close;
         _cell.DoorButtonReached -= OnReached;
         _cell.DoorButtonExit -= OnExit;
     }
@@ -40,26 +43,38 @@ public class CellDoor : MonoBehaviour
         if (_isOpened == false)
             TryOpen();
         else
-            Close();
+            TryClose();
     }
 
     private void OnExit()
     {
-        Close();
+        if (_checkPrisonerSittingStateInJob != null)
+            StopCoroutine(_checkPrisonerSittingStateInJob);
+
+        if (_cell.IsPrisonerInCell == false)
+            TryClose();
     }
 
-    public void TryOpen()
+    private void TryOpen()
     {
         if (_cell.Prisoners.Count < 1)
             Open();
         else
-            StartCoroutine(CheckPrisonerState(_cell.Prisoners[0]));
+            _checkPrisonerSittingStateInJob = StartCoroutine(CheckPrisonerSittingState(_cell.Prisoners[0]));
     }
 
     private void Open()
     {
         Move(_targetPosition, _duration, Opened);
         _isOpened = true;
+    }
+
+    private void TryClose()
+    {
+        if (_cell.Prisoners.Count < 1)
+            Close();
+        else
+            StartCoroutine(CheckPrisonerMoveState(_cell.Prisoners[0]));
     }
 
     private void Close()
@@ -73,10 +88,17 @@ public class CellDoor : MonoBehaviour
         transform.DOLocalMove(target, duration).OnComplete(() => action?.Invoke());
     }
 
-    private IEnumerator CheckPrisonerState(PrisonerMover prisonerMover)
+    private IEnumerator CheckPrisonerSittingState(PrisonerMover prisonerMover)
     {
         yield return new WaitWhile(() => prisonerMover.IsSittingInCell);
 
         Open();
+    }
+
+    private IEnumerator CheckPrisonerMoveState(PrisonerMover prisonerMover)
+    {
+        yield return new WaitWhile(() => prisonerMover.PathEnded() == false);
+
+        Close();
     }
 }

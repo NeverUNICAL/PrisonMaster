@@ -6,15 +6,18 @@ using UnityEngine.Events;
 
 public class Cell : Store
 {
+    [SerializeField] private CellQueueContainer _cellQueue;
     [SerializeField] private int _count;
     [SerializeField] private CellDoor _door;
+    [SerializeField] private float _delay = 3f;
 
     private CellsConteiner _cellsConteiner;
-    private List<PrisonerMover> _prisoners = new List<PrisonerMover>();
 
-    public List<PrisonerMover> Prisoners => _prisoners;
+    public List<PrisonerMover> Prisoners => _cellQueue.PrisonerQueueList;
     public CellDoor CellDoor => _door;
+    public bool IsPrisonerInCell { get; private set; } = false;
 
+    public event UnityAction PrisonerSendToPool;
     public event UnityAction DoorButtonReached;
     public event UnityAction DoorButtonExit;
 
@@ -25,18 +28,21 @@ public class Cell : Store
 
     private void OnEnable()
     {
+        _cellQueue.PrisonerSendToPool += OnPrisonerSendToPool;
         _cellsConteiner.DoorButton.Reached += OnReached;
         _cellsConteiner.DoorButton.Exit += OnExit;
     }
 
     private void OnDisable()
     {
+        _cellQueue.PrisonerSendToPool -= OnPrisonerSendToPool;
         _cellsConteiner.DoorButton.Reached -= OnReached;
         _cellsConteiner.DoorButton.Exit -= OnExit;
     }
 
     public void OnReached()
     {
+        IsPrisonerInCell = true;
         DoorButtonReached?.Invoke();
     }
 
@@ -50,14 +56,9 @@ public class Cell : Store
         OnSold(_count);
     }
 
-    public void AddPrisoner(PrisonerMover prisonerMover)
+    private void OnPrisonerSendToPool()
     {
-        _prisoners.Add(prisonerMover);
-    }
-
-    public void TryRemovePrisoner(PrisonerMover prisonerMover)
-    {
-        StartCoroutine(CheckCellDoor(prisonerMover));
+        StartCoroutine(Delay(_delay));
     }
 
     public bool CheckDoorButton()
@@ -65,10 +66,11 @@ public class Cell : Store
         return _cellsConteiner.DoorButton.IsReached;
     }
 
-    private IEnumerator CheckCellDoor(PrisonerMover prisonerMover)
+    private IEnumerator Delay(float delay)
     {
-        yield return new WaitWhile(() => _door.IsOpened == false);
+        yield return new WaitForSeconds(delay);
 
-        _prisoners.Remove(prisonerMover);
+        IsPrisonerInCell = false;
+        PrisonerSendToPool?.Invoke();
     }
 }
