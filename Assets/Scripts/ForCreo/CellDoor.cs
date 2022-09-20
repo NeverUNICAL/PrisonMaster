@@ -26,14 +26,14 @@ public class CellDoor : MonoBehaviour
 
     private void OnEnable()
     {
-        _cell.PrisonerSendToPool += Close;
+        _cell.PrisonerSendToPool += TryClose;
         _cell.DoorButtonReached += OnReached;
         _cell.DoorButtonExit += OnExit;
     }
 
     private void OnDisable()
     {
-        _cell.PrisonerSendToPool -= Close;
+        _cell.PrisonerSendToPool -= TryClose;
         _cell.DoorButtonReached -= OnReached;
         _cell.DoorButtonExit -= OnExit;
     }
@@ -71,6 +71,7 @@ public class CellDoor : MonoBehaviour
 
     private void TryClose()
     {
+        Debug.Log(_cell.Prisoners.Count);
         if (_cell.Prisoners.Count < 1)
             Close();
         else
