@@ -71,7 +71,6 @@ public class CellDoor : MonoBehaviour
 
     private void TryClose()
     {
-        Debug.Log(_cell.Prisoners.Count);
         if (_cell.Prisoners.Count < 1)
             Close();
         else

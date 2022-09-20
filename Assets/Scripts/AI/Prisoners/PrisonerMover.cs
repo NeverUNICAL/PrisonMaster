@@ -1,49 +1,39 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-public class PrisonerMover : MonoBehaviour
+
+public class PrisonerMover : Prisoner
 {
     [SerializeField] private GameObject[] _suits;
     [SerializeField] private ParticleSystem _angryEffect;
 
     private GameObject _nextPoint;
-    private NavMeshAgent _agent;
-    private Animator _animator;
     private Vector3 _targetPoint;
-    private static readonly int Speed = Animator.StringToHash("Speed");
-    private NavMeshPath _agentPath;
     private bool _pathEnded;
     private Transform _lookTarget;
-    private const string _isAngryAnimation = "IsAngry";
     private bool _isSittingInCell = false;
 
     public bool IsSittingInCell => _isSittingInCell;
     public GameObject NextPoint => _nextPoint;
 
-    private void Awake()
+    private new void FixedUpdate()
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (_agentPath != _agent.path)
+        if (AgentPath != NavMeshAgent.path)
         {
-            _agent.destination = _nextPoint.transform.position + _targetPoint;
-            _agentPath = _agent.path;
+            NavMeshAgent.destination = _nextPoint.transform.position + _targetPoint;
+            AgentPath = NavMeshAgent.path;
         }
 
         transform.LookAt(_lookTarget);
 
-        _animator.SetFloat(Speed, _agent.velocity.magnitude / _agent.speed);
+        base.FixedUpdate();
     }
 
     public bool PathEnded()
     {
         _pathEnded = false;
 
-        if (_agent.remainingDistance <= _agent.stoppingDistance)
+        if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
             _pathEnded = true;
 
         return _pathEnded;
@@ -75,12 +65,12 @@ public class PrisonerMover : MonoBehaviour
 
     public void ChangePriority(int value)
     {
-        _agent.avoidancePriority = value;
+        NavMeshAgent.avoidancePriority = value;
     }
 
     public void ChangeAngryAnimation(bool value)
     {
-        _animator.SetBool(_isAngryAnimation, value);
+        Animator.SetBool(IsAngryAnimation, value);
         _angryEffect.gameObject.SetActive(value);
     }
 

@@ -49,6 +49,12 @@ namespace Agava.IdleGame
             _timer.Tick(Time.deltaTime);
         }
 
+        protected void DropPresenters(StackPresenter enteredStack)
+        {
+            Array.Clear(_enteredStackList, 0, _enteredStackList.Length);
+            _enteredStackList = null;
+        }
+
         public void OnExit(StackPresenter otherStack = null)
         {
             if (_enteredStackList != null && _enteredStackList.Contains(otherStack))

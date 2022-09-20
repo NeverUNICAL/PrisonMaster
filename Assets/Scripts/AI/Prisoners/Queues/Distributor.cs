@@ -33,7 +33,6 @@ public class Distributor : QueueHandler
             _trigger.Enter += OnEnter;
             _trigger.Exit += OnExit;
         }
-       
     }
 
     private void OnDisable()

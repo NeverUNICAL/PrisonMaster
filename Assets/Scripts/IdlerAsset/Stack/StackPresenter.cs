@@ -69,6 +69,15 @@ namespace Agava.IdleGame
             AddedForTutorial?.Invoke();
         }
 
+        public void AddToStackWithoutView(StackableObject stackable)
+        {
+            if (CanAddToStack(stackable.Layer) == false)
+                throw new InvalidOperationException();
+
+            _stack.Add(stackable);
+            Added?.Invoke(stackable);
+        }
+
         public StackableObject RemoveAt(int index)
         {
             var stackable = _stack.RemoveAt(index);

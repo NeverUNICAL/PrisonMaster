@@ -42,7 +42,9 @@ public class Cell : Store
 
     public void OnReached()
     {
-        IsPrisonerInCell = true;
+        if (_cellQueue.PrisonerQueueList.Count > 0)
+            IsPrisonerInCell = true;
+
         DoorButtonReached?.Invoke();
     }
 

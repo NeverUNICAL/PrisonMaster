@@ -4,19 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Prisoner : MonoBehaviour
+public abstract class Prisoner : MonoBehaviour
 {
+    protected NavMeshPath AgentPath;
     private NavMeshAgent _navMeshAgent;
+    protected Animator Animator;
+
+    protected const string IsAngryAnimation = "IsAngry";
+    protected static readonly int Speed = Animator.StringToHash("Speed");
 
     public NavMeshAgent NavMeshAgent => _navMeshAgent;
 
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        Animator = GetComponent<Animator>();
     }
 
-    public void Rotate(Transform target, float duration = 1f)
+    protected void FixedUpdate()
     {
-        transform.DORotateQuaternion(target.rotation, duration);
+        Animator.SetFloat(Speed, NavMeshAgent.velocity.magnitude / NavMeshAgent.speed);
     }
 }
