@@ -11,11 +11,10 @@ namespace Agava.IdleGame
         [SerializeField] private MeshRenderer[] _meshRendererUnlockables;
         [SerializeField] private Material _unlockedMaterial;
         [SerializeField] private GameObject _objectToTurnOff;
+        [SerializeField] private PlayerSavePresenter _playerSavePresenter;
 
         private int _reduceValue = 1;
         
-        public event UnityAction<int,int> LevelUnlocked;
-
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
         {
             if (moneyHolder.HasMoney == false)
@@ -37,7 +36,7 @@ namespace Agava.IdleGame
 
         protected override void OnBuyedAction()
         {
-            LevelUnlocked?.Invoke(_navMeshMaskId,_buyZoneLevelLocated);
+            _playerSavePresenter.OnLevelUnlocked(_navMeshMaskId,_buyZoneLevelLocated);
             
             foreach (MeshRenderer meshRenderer in _meshRendererUnlockables)
             {

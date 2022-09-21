@@ -37,16 +37,12 @@ namespace Agava.IdleGame
         {
             _upgradesShop.SpeedUpgraded += OnSpeedChanged;
             _upgradesShop.CapacityUpgraded += OnCapacityChanged;
-            _secondLevelBuyZone.LevelUnlocked += OnLevelUnlocked;
-            _thirdLevelBuyZone.LevelUnlocked += OnLevelUnlocked;
         }
 
         private void OnDisable()
         {
             _upgradesShop.SpeedUpgraded -= OnSpeedChanged;
             _upgradesShop.CapacityUpgraded -= OnCapacityChanged;
-            _secondLevelBuyZone.LevelUnlocked -= OnLevelUnlocked;
-            _thirdLevelBuyZone.LevelUnlocked -= OnLevelUnlocked;
         }
 
         private void Start()
@@ -66,7 +62,7 @@ namespace Agava.IdleGame
             _playerSaves.SetAreaMask(value);
             _playerSaves.Save();
         }
-
+        
         private void OnSpeedChanged(int level,float value,int price)
         {
             _playerSaves.SetSpeedLevel(level);
@@ -85,7 +81,7 @@ namespace Agava.IdleGame
             _playerSaves.Save();
         }
 
-        private void OnLevelUnlocked(int maskId,int levelNumber)
+        public void OnLevelUnlocked(int maskId,int levelNumber)
         {
             if (_playerSaves.CurrentLevel == levelNumber)
             {
