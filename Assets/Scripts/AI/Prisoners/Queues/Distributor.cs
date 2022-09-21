@@ -18,7 +18,7 @@ public class Distributor : QueueHandler
     {
         if (_queues.Count > 0)
         {
-            StartCoroutine(TrySendToExit());
+           // StartCoroutine(TrySendToExit());
             if (_isCellsDistributor)
                 StartCoroutine(SendToCellQueue(_queues));
             else
