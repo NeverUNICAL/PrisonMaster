@@ -14,11 +14,13 @@ namespace ForCreo
 
         private bool _isReached = false;
         private PlayerCollision _playerCollision;
+        private AssistantCollision _assistantCollision;
         private BoxCollider _boxCollider;
 
         public bool IsReached => _isReached;
 
         public event UnityAction Reached;
+        public event UnityAction Stay;
         public event UnityAction Exit;
 
         private void Awake()
@@ -29,27 +31,57 @@ namespace ForCreo
 
         private void OnTriggerEnter(Collider other)
         {
-            _button.localPosition = Vector3.zero;
-            if (other.TryGetComponent(out PlayerCollision player) && _playerCollision == null)
+            if (other.TryGetComponent(out PlayerCollision player) && _playerCollision == null && _assistantCollision == null)
             {
-                _isReached = true;
+                ChangeButtonState(true, Vector3.zero);
                 _playerCollision = player;
                 Reached?.Invoke();
+            }
+
+            if (other.TryGetComponent(out AssistantCollision assistantCollision) && _playerCollision == null && _assistantCollision == null)
+            {
+                ChangeButtonState(true, Vector3.zero);
+                _assistantCollision = assistantCollision;
+                Reached?.Invoke();
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent(out PlayerCollision player) && _playerCollision != null && _assistantCollision == null)
+            {
+                ChangeButtonState(true, Vector3.zero);
+                Stay?.Invoke();
+            }
+
+            if (other.TryGetComponent(out AssistantCollision assistantCollision) && _playerCollision == null && _assistantCollision != null)
+            {
+                ChangeButtonState(true, Vector3.zero);
+                Stay?.Invoke();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            _button.localPosition += new Vector3(0, 0.1f, 0);
-            if (other.TryGetComponent(out PlayerCollision player))
+            if (other.TryGetComponent(out PlayerCollision player) && _playerCollision != null && _assistantCollision == null)
             {
-                if (_playerCollision == player)
-                {
-                    _isReached = false;
-                    _playerCollision = null;
-                    Exit?.Invoke();
-                }
+                ChangeButtonState(false, new Vector3(0, 0.1f, 0));
+                _playerCollision = null;
+                Exit?.Invoke();
             }
+
+            if (other.TryGetComponent(out AssistantCollision assistant) && _playerCollision == null && _assistantCollision != null)
+            {
+                ChangeButtonState(false, new Vector3(0, 0.1f, 0));
+                _playerCollision = null;
+                Exit?.Invoke();
+            }
+        }
+
+        private void ChangeButtonState(bool value, Vector3 position)
+        {
+            _button.localPosition = position;
+            _isReached = value;
         }
     }
 }

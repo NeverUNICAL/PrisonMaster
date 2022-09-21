@@ -11,6 +11,7 @@ public class CellDoor : MonoBehaviour
     [SerializeField] private Vector3 _defaultPosition;
 
     private Cell _cell;
+    private bool _isStayed = false;
     private bool _isOpened = false;
     private Coroutine _checkPrisonerSittingStateInJob;
 
@@ -26,15 +27,17 @@ public class CellDoor : MonoBehaviour
 
     private void OnEnable()
     {
-        _cell.PrisonerSendToPool += TryClose;
+        _cell.PrisonerSendToPool += OnSendToPool;
         _cell.DoorButtonReached += OnReached;
+        _cell.DoorButtonStay += OnStay;
         _cell.DoorButtonExit += OnExit;
     }
 
     private void OnDisable()
     {
-        _cell.PrisonerSendToPool -= TryClose;
+        _cell.PrisonerSendToPool -= OnSendToPool;
         _cell.DoorButtonReached -= OnReached;
+        _cell.DoorButtonStay -= OnStay;
         _cell.DoorButtonExit -= OnExit;
     }
 
@@ -46,12 +49,25 @@ public class CellDoor : MonoBehaviour
             TryClose();
     }
 
+    private void OnStay()
+    {
+        _isStayed = true;   
+    }
+
     private void OnExit()
     {
+        _isStayed = false;
+
         if (_checkPrisonerSittingStateInJob != null)
             StopCoroutine(_checkPrisonerSittingStateInJob);
 
         if (_cell.IsPrisonerInCell == false)
+            TryClose();
+    }
+
+    private void OnSendToPool()
+    {
+        if (_isStayed == false)
             TryClose();
     }
 

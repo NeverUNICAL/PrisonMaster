@@ -19,6 +19,7 @@ public class Cell : Store
 
     public event UnityAction PrisonerSendToPool;
     public event UnityAction DoorButtonReached;
+    public event UnityAction DoorButtonStay;
     public event UnityAction DoorButtonExit;
 
     private void Awake()
@@ -30,6 +31,7 @@ public class Cell : Store
     {
         _cellQueue.PrisonerSendToPool += OnPrisonerSendToPool;
         _cellsConteiner.DoorButton.Reached += OnReached;
+        _cellsConteiner.DoorButton.Stay += OnStay;
         _cellsConteiner.DoorButton.Exit += OnExit;
     }
 
@@ -37,6 +39,7 @@ public class Cell : Store
     {
         _cellQueue.PrisonerSendToPool -= OnPrisonerSendToPool;
         _cellsConteiner.DoorButton.Reached -= OnReached;
+        _cellsConteiner.DoorButton.Stay -= OnStay;
         _cellsConteiner.DoorButton.Exit -= OnExit;
     }
 
@@ -46,6 +49,11 @@ public class Cell : Store
             IsPrisonerInCell = true;
 
         DoorButtonReached?.Invoke();
+    }
+
+    private void OnStay()
+    {
+        DoorButtonStay?.Invoke();
     }
 
     private void OnExit()
