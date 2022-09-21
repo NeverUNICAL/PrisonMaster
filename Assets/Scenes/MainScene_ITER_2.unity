@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17628051, g: 0.22062822, b: 0.3029491, a: 1}
+  m_IndirectSpecularColor: {r: 0.1762808, g: 0.22062853, b: 0.30294988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1409,6 +1409,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 927937377}
+  - {fileID: 742764966}
   m_Father: {fileID: 359318756}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3848,12 +3849,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _totalCost
-      value: 1500
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 1496343418}
+    - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
+      propertyPath: _navMeshMaskId
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _objectToTurnOff
       value: 
@@ -5646,6 +5651,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 545789250}
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
+      propertyPath: _totalCost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 1360711169}
@@ -6935,19 +6944,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _totalCost
-      value: 1500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 577542376}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
+      propertyPath: _navMeshMaskId
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _objectToTurnOff
       value: 
       objectReference: {fileID: 562666362}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _meshRendererUnlockables.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _meshRendererUnlockables.Array.data[0]
@@ -6956,7 +6969,7 @@ PrefabInstance:
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _meshRendererUnlockables.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 455329585}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _meshRendererUnlockables.Array.data[2]
       value: 
@@ -6992,7 +7005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364880984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.16, y: 0, z: 27.6}
+  m_LocalPosition: {x: -1.1599998, y: 0, z: 7.6000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 53228056}
@@ -7014,7 +7027,7 @@ MonoBehaviour:
   _sendTimeOut: 1
   _firstPoint: {fileID: 364880984}
   _startPoolSize: 10
-  _offsetPos: {x: -1, y: 0, z: 0}
+  _offsetPos: {x: 0.5, y: 0, z: 0.5}
   _isSuitQueue: 0
   _queues:
   - {fileID: 685340014}
@@ -8007,6 +8020,11 @@ MeshFilter:
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6139931267927391401, guid: bb9229342a890394db6129ee837e63ba, type: 3}
   m_PrefabInstance: {fileID: 592639815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &455329585 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7521884045869827248, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
+  m_PrefabInstance: {fileID: 742764965}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &457093366
 GameObject:
@@ -12785,11 +12803,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 911446063}
+    m_TransformParent: {fileID: 62050753}
     m_Modifications:
     - target: {fileID: 2308274598510048190, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2308274598510048190, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
       propertyPath: m_LocalScale.x
@@ -12817,7 +12835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308274598510048190, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2308274598510048190, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
       propertyPath: m_LocalRotation.y
@@ -12825,7 +12843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308274598510048190, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2308274598510048190, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14473,7 +14491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964897122084053480, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
       propertyPath: _totalCost
-      value: 100
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 6964897122084053480, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
       propertyPath: _unlockable
@@ -15268,7 +15286,6 @@ Transform:
   - {fileID: 2140747760}
   - {fileID: 950992823}
   - {fileID: 1465590062}
-  - {fileID: 742764966}
   m_Father: {fileID: 487922480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15849,12 +15866,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _totalCost
-      value: 1500
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _unlockable
       value: 
       objectReference: {fileID: 259069445}
+    - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
+      propertyPath: _navMeshMaskId
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 9118019018386713582, guid: 838be6486851ee94aabec71216d80377, type: 3}
       propertyPath: _objectToTurnOff
       value: 
@@ -25157,6 +25178,10 @@ PrefabInstance:
       propertyPath: _store
       value: 
       objectReference: {fileID: 1300054640}
+    - target: {fileID: 8889224548931005793, guid: 2196989d4cc0a6c44863e232dd5bbe43, type: 3}
+      propertyPath: _distributor
+      value: 
+      objectReference: {fileID: 364880986}
     - target: {fileID: 8889224548931005795, guid: 2196989d4cc0a6c44863e232dd5bbe43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.1500025
@@ -25656,7 +25681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964897122084053480, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
       propertyPath: _totalCost
-      value: 100
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 6964897122084053480, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
       propertyPath: _unlockable
@@ -30836,7 +30861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1861532183
 Transform:
   m_ObjectHideFlags: 0
@@ -34375,7 +34400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964897122084053480, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
       propertyPath: _totalCost
-      value: 100
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6964897122084053480, guid: 3c0104680d8e68a4f8a8403186388e2c, type: 3}
       propertyPath: _unlockable
@@ -36016,7 +36041,7 @@ PrefabInstance:
       objectReference: {fileID: 1479193059}
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _totalCost
-      value: 250
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2235946528730487081, guid: 4b3762d390b5259478b29e25dfc0939f, type: 3}
       propertyPath: _unlockable
@@ -36260,6 +36285,10 @@ PrefabInstance:
     - target: {fileID: 4574266190011947073, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: m_Speed
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574266190011947073, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+      propertyPath: m_WalkableMask
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4574266190011947074, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
       propertyPath: _capacity
@@ -38253,6 +38282,10 @@ PrefabInstance:
       propertyPath: _store
       value: 
       objectReference: {fileID: 3611094599520084190}
+    - target: {fileID: 8889224548931005793, guid: 2196989d4cc0a6c44863e232dd5bbe43, type: 3}
+      propertyPath: _distributor
+      value: 
+      objectReference: {fileID: 364880986}
     - target: {fileID: 8889224548931005795, guid: 2196989d4cc0a6c44863e232dd5bbe43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.1500025
