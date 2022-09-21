@@ -63,7 +63,6 @@ public class ShowerQueueContainer : QueueHandler
     {
         while (true)
         {
-            Debug.Log(_distributor.PrisonerQueueList.Count + "Count" + _distributor.PoolSize + "PoolSize");
             if (_prisonerList.Count > 0 && _store.gameObject.activeInHierarchy && _prisonerList[0].PathEnded() && _distributor.PrisonerQueueList.Count < _distributor.PoolSize)
             {
                 if (_onShowerTriggerStayed && _isShowerBusy && _isShowerWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())

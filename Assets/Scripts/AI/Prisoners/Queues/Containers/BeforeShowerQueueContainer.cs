@@ -10,6 +10,8 @@ public class BeforeShowerQueueContainer : QueueHandler
     [Header("BeforeShowerSettings")]
     [SerializeField] private List<ShowerQueueContainer> _listForShower;
 
+    [SerializeField] private Distributor _distributor;
+
     private void Start()
     {
         GenerateList();
@@ -31,7 +33,7 @@ public class BeforeShowerQueueContainer : QueueHandler
 
     private void SendToShower()
     {
-        if (_listForShower[0].PrisonerQueueList.Count < _listForShower[0].PoolSize)
+        if (_listForShower[0].PrisonerQueueList.Count < _listForShower[0].PoolSize && _distributor.PrisonerQueueList.Count < _distributor.PoolSize)
         {
             if (_prisonerList.Count > 0)
             {
