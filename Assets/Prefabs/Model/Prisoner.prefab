@@ -253,7 +253,6 @@ GameObject:
   - component: {fileID: 6404187550073914159}
   - component: {fileID: 5367494862746830253}
   - component: {fileID: 966140974247819660}
-  - component: {fileID: -6615418248176065681}
   m_Layer: 0
   m_Name: Prisoner
   m_TagString: Prisoner
@@ -366,18 +365,6 @@ MonoBehaviour:
   - {fileID: 9164083506492653921}
   - {fileID: 2520318222671228553}
   _angryEffect: {fileID: 2619593478286834349}
---- !u!114 &-6615418248176065681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131484534194217502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c65b03022a59445a641f5ce2ab1b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1232076150610530016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,14 +1826,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84cef768c0b0c574f81bc7741895a51a, type: 3}
---- !u!198 &2619593478286834349 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7635045363861182438, guid: 84cef768c0b0c574f81bc7741895a51a, type: 3}
-  m_PrefabInstance: {fileID: 5597845890686987595}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2619593478268436031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7635045363876467572, guid: 84cef768c0b0c574f81bc7741895a51a, type: 3}
+  m_PrefabInstance: {fileID: 5597845890686987595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2619593478286834349 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7635045363861182438, guid: 84cef768c0b0c574f81bc7741895a51a, type: 3}
   m_PrefabInstance: {fileID: 5597845890686987595}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7651809996974596301

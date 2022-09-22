@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,14 @@ using System.Linq;
 
 public class StartPool : QueueHandler
 {
-    [SerializeField]private PrisonerMover _prisoner;
+   // [SerializeField]private PrisonerMover _prisoner;
     [SerializeField] private PrisonersConteiner _prisonersConteiner;
-    [SerializeField]private Transform _spawnPoint;
-    [SerializeField]private Transform _parentPrisoners;
+    // [SerializeField]private Transform _spawnPoint;
+   // [SerializeField]private Transform _parentPrisoners;
 
     private PrisonerMover[] _prisoners;
-   
+    private bool _isWorking;
+
     private void Start()
     {
         GenerateList();
@@ -31,21 +33,29 @@ public class StartPool : QueueHandler
         }
     }
 
+    public void SetWorking(bool value)
+    {
+        _isWorking = value;
+    }
+
     private IEnumerator Spawn()
     {
         while (true)
         {
             yield return _waitForSpawnTimeOut;
             
-            if(_prisonerList.Count<_startPoolSize)
+            if (_isWorking)
             {
-                PrisonerMover prisoner = _prisonersConteiner.GetPrisoner();
-                //_prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
-                if (prisoner != null)
+                if (_prisonerList.Count < _startPoolSize)
                 {
-                 _prisonerList.Add(prisoner);
-                ListSort();
-                _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
+                    PrisonerMover prisoner = _prisonersConteiner.GetPrisoner();
+                    //_prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
+                    if (prisoner != null)
+                    {
+                        _prisonerList.Add(prisoner);
+                        ListSort();
+                        _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
+                    }
                 }
             }
         }

@@ -10,7 +10,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Bus : MonoBehaviour
 {
-    [SerializeField] private Trigger _trigger;
     [SerializeField] private Transform _travelPoint;
     [SerializeField] private Transform _outPoint;
     [SerializeField] private float _timeToCloseDoor = 3f;
@@ -28,27 +27,19 @@ public class Bus : MonoBehaviour
     private float _startSpeed;
     //private bool _isFirst = true;
 
-    private void OnEnable()
-    {
-        _trigger.Enter += OnEnter;
-    }
-
-    private void OnDisable()
-    {
-        _trigger.Enter -= OnEnter;
-    }
-
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _agent = GetComponent<NavMeshAgent>();
         _startPosition = transform.position;
         _startSpeed = _agent.speed;
+
+        _agent.SetDestination(_travelPoint.position);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Trigger trigger))
+        if (other.TryGetComponent(out TriggerForBus trigger))
             OnBrake();
     }
 
@@ -63,19 +54,14 @@ public class Bus : MonoBehaviour
         if (_brakePressed && _agent.speed > 1)
             _agent.speed -= _breakPower * Time.deltaTime;
     }
-
-
-    private void OnEnter()
-    {
-        _trigger.Enter -= OnEnter;
-        _agent.SetDestination(_travelPoint.position);
-    }
-
+    
     private void OpenDoor()
     {
         //if (_isFirst)
         //{
-     
+        if(_startPool != null)
+         _startPool.SetWorking(true);
+        
         _brakePressed = false;
         Invoke(nameof(CloseDoor), _timeToCloseDoor);
         //}
@@ -84,6 +70,9 @@ public class Bus : MonoBehaviour
     private void CloseDoor()
     {
         //_isFirst = false;
+        if(_startPool != null)
+         _startPool.SetWorking(false);
+        
         _doorOpened = false;
         ChangeSmokeActive(false);
         _agent.speed = _startSpeed;
