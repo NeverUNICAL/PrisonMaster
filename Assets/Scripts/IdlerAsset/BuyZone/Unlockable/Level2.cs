@@ -7,13 +7,13 @@ using UnityEngine.Events;
 public class Level2 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
-    [SerializeField] private int _counterForNextLevel = 0;
-    [SerializeField] private AssistantsShop _assistantsShop;
-    [SerializeField] private LevelBuyZone _fourthLevel;
+    //[SerializeField] private int _counterForNextLevel = 0;
+    //[SerializeField] private AssistantsShop _assistantsShop;
+    [SerializeField] private MoneySpawner _moneySpawner;
 
-    private bool _isNextLevelZoneUnlock = false;
+    //private bool _isNextLevelZoneUnlock = false;
     private bool _isFourthLevelOpened = false;
-    private bool _isUpgraded = false;
+    //private bool _isUpgraded = false;
     private bool _isFirst = true;
 
     public event UnityAction RoomZoneOpened;
@@ -21,26 +21,26 @@ public class Level2 : UnlockableMapZone
     private void OnEnable()
     {
         base.OnEnable();
-        _fourthLevel.Unlocked += OnUnlockFourthZone;
-        _assistantsShop.CountUpgraded += OnUpgraded;
+        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
+        //_assistantsShop.CountUpgraded += OnUpgraded;
     }
 
     private void OnDisable()
     {
         base.OnDisable();
-        _fourthLevel.Unlocked -= OnUnlockFourthZone;
-        _assistantsShop.CountUpgraded -= OnUpgraded;
+        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
+        //_assistantsShop.CountUpgraded -= OnUpgraded;
     }
 
-    public void Load()
-    {
-        _isUpgraded = true;
-    }
+    //public void Load()
+    //{
+    //    _isUpgraded = true;
+    //}
 
-    private void OnUpgraded(int value1, int value2)
-    {
-        _isUpgraded = true;
-    }
+    //private void OnUpgraded(int value1, int value2)
+    //{
+    //    _isUpgraded = true;
+    //}
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
@@ -70,14 +70,14 @@ public class Level2 : UnlockableMapZone
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
-        _isNextLevelZoneUnlock = true;
+        //_isNextLevelZoneUnlock = true;
         for (int i = 0; i < NextZones.Length; i++)
             NextZones[i].Unlock();
 
         AnimationScale(_trashZone.transform);
     }
 
-    private void OnUnlockFourthZone(BuyZonePresenter buyZone)
+    private void OnUnlockFourthZone()
     {
         _isFourthLevelOpened = true;
 

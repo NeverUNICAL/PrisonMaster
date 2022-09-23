@@ -5,21 +5,18 @@ using UnityEngine;
 
 public class Level3 : UnlockableMapZone
 {
-    [SerializeField] private LevelBuyZone _fourthLevel;
-
-    private bool _isFourthLevelOpened = false;
-    private bool _isFirst = true;
+    [SerializeField] private MoneySpawner _moneySpawner;
 
     private void OnEnable()
     {
         base.OnEnable();
-        _fourthLevel.Unlocked += OnUnlockFourthZone;
+        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
     }
 
     private void OnDisable()
     {
         base.OnDisable();
-        _fourthLevel.Unlocked -= OnUnlockFourthZone;
+        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
     }
 
     public override void Unlock(BuyZonePresenter buyZone)
@@ -57,9 +54,8 @@ public class Level3 : UnlockableMapZone
             NextZones[i].Unlock();
     }
 
-    private void OnUnlockFourthZone(BuyZonePresenter buyZone)
+    private void OnUnlockFourthZone()
     {
-        _isFourthLevelOpened = true;
         Counter++;
         Unlock(null);
     }

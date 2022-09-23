@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class GlobalTutorial : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private Transform[] _arrows;
     [SerializeField] private PlayerStackPresenter _playerStackPresenter;
     [SerializeField] private RoomBuyZone _hrBuyZone;
+    [SerializeField] private AssistantsShop _assistantsShop;
     [SerializeField] private RoomBuyZone _upBuyZone;
     [SerializeField] private Cell _cell;
     [SerializeField] private CellQueueContainer _cellQueueContainer;
@@ -33,13 +35,17 @@ public class GlobalTutorial : MonoBehaviour
     private int _currentArrow = 0;
     private int _currentLevelBuyZone = 0;
     private int _currentPool = 0;
-    private bool _isWashersZone = true;
-    private bool _isHrRoomUnlocked = true;
+    private bool _isAssistantsUpgraded = true;
     private bool _isPlayerStayedButton = false;
+    private bool _isPoolAddedFirst = true;
+
+    public event UnityAction<Transform> PointerShown;
+    public event UnityAction PointerHidden;
 
     private void OnEnable()
     {
-        _suitCabinetMoneySpawner.MoneySpawned += OnSuitMuneySpawned;
+        _assistantsShop.CountUpgraded += OnAssistantsUpgrade;
+        _suitCabinetMoneySpawner.MoneySpawned += OnSuitMoneySpawned;
         _cell.DoorButtonReached += OnReachedButton;
         _cell.DoorButtonExit += OnButtonExit;
         _cellQueueContainer.PrisonerSendToPool += OnTimerOver;
@@ -70,31 +76,35 @@ public class GlobalTutorial : MonoBehaviour
     private void OnCompleted()
     {
         ChangeStateDoor(true, false);
-        ChangeArrow(true);
+        ChangeActiveArrow(true);
     }
 
     private void OnShowerMoneySpawned()
     {
         ChangeStateDoor(false, true);
-        ChangeArrow(false);
+        ChangeActiveArrow(false);
         _currentArrow++;
         _showerMoneySpawner.MoneySpawned -= OnShowerMoneySpawned;
     }
 
     private void OnPoolPrisonerAdded()
     {
-        if (_isHrRoomUnlocked == false)
+        if (_currentPool == 1 && _isPoolAddedFirst)
         {
-            StartCoroutine(CheckWasherZoneHrRoomUnlock());
+            AnimationScale(_hrBuyZone.transform);
+            AnimationOutline(_hrBuyZone.Outline);
+            _isAssistantsUpgraded = false;
+            _isPoolAddedFirst = false;
         }
-        else
+
+        if (_isAssistantsUpgraded)
         {
             AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
             AnimationOutline(_levelBuyZones[_currentLevelBuyZone].Outline);
             _currentLevelBuyZone++;
             _tutorialSavePresenter.SetTutorialLevel();
 
-            ChangeArrow(true);
+            ChangeActiveArrow(true);
 
             _targetPools[_currentPool].PoolPrisonerAdded -= OnPoolPrisonerAdded;
             _currentPool++;
@@ -105,13 +115,11 @@ public class GlobalTutorial : MonoBehaviour
     {
         if (_hrBuyZone == buyZone)
         {
-            _isHrRoomUnlocked = true;
+            ChangeActiveArrow(true);
         }
         else
         {
-            ChangeArrow(false);
-            _currentArrow++;
-            ChangeArrow(true);
+            ChangeArrows();
 
             if (_levelBuyZones[1] == buyZone)
             {
@@ -123,24 +131,14 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnAdded()
     {
-        ChangeArrow(false);
-        _currentArrow++;
-        ChangeArrow(true);
+        ChangeArrows();
 
         _playerStackPresenter.AddedForTutorial -= OnAdded;
     }
 
     private void OnRemoved(StackableObject stackable)
     {
-        if (_isWashersZone)
-        {
-            AnimationScale(_hrBuyZone.transform);
-            AnimationOutline(_hrBuyZone.Outline);
-            _isWashersZone = false;
-            _isHrRoomUnlocked = false;
-        }
-
-        ChangeArrow(false);
+        ChangeActiveArrow(false);
         _currentArrow++;
 
         _playerStackPresenter.Removed -= OnRemoved;
@@ -166,14 +164,24 @@ public class GlobalTutorial : MonoBehaviour
             _isPlayerStayedButton = false;
     }
 
-    private void OnSuitMuneySpawned()
+    private void OnSuitMoneySpawned()
     {
         AnimationScale(_upBuyZone.transform);
         AnimationOutline(_upBuyZone.Outline);
 
         AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
 
-        _suitCabinetMoneySpawner.MoneySpawned -= OnSuitMuneySpawned;
+        _suitCabinetMoneySpawner.MoneySpawned -= OnSuitMoneySpawned;
+    }
+
+    private void OnAssistantsUpgrade(int value1, int value2)
+    {
+        _isAssistantsUpgraded = true;
+
+        ChangeArrows();
+        OnPoolPrisonerAdded();
+
+        _assistantsShop.CountUpgraded -= OnAssistantsUpgrade;
     }
 
     private void ChangeStateDoor(bool doorObstacleValue, bool triggerValue)
@@ -182,9 +190,21 @@ public class GlobalTutorial : MonoBehaviour
         _door.Trigger.gameObject.SetActive(triggerValue);
     }
 
-    private void ChangeArrow(bool value)
+    private void ChangeActiveArrow(bool value)
     {
         _arrows[_currentArrow].gameObject.SetActive(value);
+
+        if (value)
+            PointerShown?.Invoke(_arrows[_currentArrow]);
+        else
+            PointerHidden?.Invoke();
+    }
+
+    private void ChangeArrows()
+    {
+        ChangeActiveArrow(false);
+        _currentArrow++;
+        ChangeActiveArrow(true);
     }
 
     private void AnimationScale(Transform buyZone)
@@ -201,15 +221,6 @@ public class GlobalTutorial : MonoBehaviour
         outline.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
     }
 
-    private IEnumerator CheckWasherZoneHrRoomUnlock()
-    {
-        WaitWhile wait = new WaitWhile(() => _isHrRoomUnlocked == false);
-
-        yield return wait;
-
-        OnPoolPrisonerAdded();
-    }
-
     private IEnumerator CheckStayedPlayerButton()
     {
         WaitWhile wait = new WaitWhile(() => _isPlayerStayedButton == false);
@@ -224,7 +235,7 @@ public class GlobalTutorial : MonoBehaviour
         _cell.DoorButtonReached -= OnReachedButton;
         _cell.DoorButtonExit -= OnButtonExit;
 
-        ChangeArrow(false);
+        ChangeActiveArrow(false);
     }
 
     private void OnLoaded()

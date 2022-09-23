@@ -8,7 +8,8 @@ public class GUIRotator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _arrow.LookAt(_targetFinish);
+        if (_targetFinish != null)
+            _arrow.LookAt(_targetFinish);
     }
 
     public void ChangeTarget(Transform target)

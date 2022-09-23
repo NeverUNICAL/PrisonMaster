@@ -8,15 +8,36 @@ public class Level4 : UnlockableMapZone
     [SerializeField] private Transform[] _deposits;
     [SerializeField] private ObjectCreator _producer;
     [SerializeField] private Transform _prisonersManager;
+    [SerializeField] private MoneySpawner _moneySpawner;
 
     private bool _isFirst = true;
+    private bool _isFourthLevelOpened = false;
+
+    private void OnEnable()
+    {
+        base.OnEnable();
+        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
+    }
+
+    private void OnDisable()
+    {
+        base.OnDisable();
+        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
+    }
+
+    private void OnUnlockFourthZone()
+    {
+        _isFourthLevelOpened = true;
+        UnlockBuyZone();
+    }
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
         //if (_isFirst)
         //    UnlockNextLevelZone();
 
-        UnlockBuyZone();
+        if (_isFourthLevelOpened)
+            UnlockBuyZone();
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)

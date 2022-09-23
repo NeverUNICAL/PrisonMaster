@@ -13,7 +13,7 @@ namespace Agava.IdleGame
         [Space(10)]
         [SerializeField] private AssistantsShop _shop;
         [SerializeField] private SoftCurrencyHolder _softCurrencyHolder;
-        [SerializeField] private Level2 _level2;
+        //[SerializeField] private Level2 _level2;
         
         private AssistantsSaves _saves;
         
@@ -77,8 +77,8 @@ namespace Agava.IdleGame
         private void OnLoad()
         {
             {
-                if (_saves.Count != 0)
-                    _level2.Load();
+                //if (_saves.Count != 0)
+                //    _level2.Load();
 
                 Loaded?.Invoke();
             }

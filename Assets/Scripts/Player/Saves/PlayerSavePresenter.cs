@@ -17,7 +17,7 @@ namespace Agava.IdleGame
         [SerializeField] private LevelBuyZone _secondLevelBuyZone;
         [SerializeField] private LevelBuyZone _thirdLevelBuyZone;
         [SerializeField] private SoftCurrencyHolder _softCurrencyHolder;
-        [SerializeField] private Level1 _level1;
+        //[SerializeField] private Level1 _level1;
 
         private PlayerSaves _playerSaves;
 
@@ -109,8 +109,8 @@ namespace Agava.IdleGame
                 else
                     _playerSaves.SetSpeed(_navMeshAgent.speed);
 
-                if (_playerSaves.SpeedLevel != 0)
-                    _level1.Load();
+                //if (_playerSaves.SpeedLevel != 0)
+                //    _level1.Load();
 
                 if (_playerSaves.CurrentLevel == 0)
                     _playerSaves.SetCurrentLevel(1);
