@@ -8921,27 +8921,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6800068167401185683, guid: 8c2bca2b8bc5ef342b74bae6e43bfc0d, type: 3}
   m_PrefabInstance: {fileID: 479307615}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &479441965 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4055782469977831238, guid: bd610a0edc6e3c147a322f193ae590f3, type: 3}
-  m_PrefabInstance: {fileID: 1192447010}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &479441968
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479441965}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 2, y: 2.25, z: 0.36400002}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 3.01, y: 2.25, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &482099786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19445,6 +19424,7 @@ MonoBehaviour:
   _upBuyZone: {fileID: 1686658732}
   _cell: {fileID: 379185560}
   _cellQueueContainer: {fileID: 1118153810}
+  _tutorialSavePresenter: {fileID: 1033482724}
   _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
   _durationForOutlines: 0.5
   _targetPools:

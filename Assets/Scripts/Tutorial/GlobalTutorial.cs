@@ -18,6 +18,7 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private RoomBuyZone _upBuyZone;
     [SerializeField] private Cell _cell;
     [SerializeField] private CellQueueContainer _cellQueueContainer;
+    [SerializeField] private TutorialSavePresenter _tutorialSavePresenter;
 
     [Header("ZoneSetting")]
     [SerializeField] private Vector3 _scaleTarget;
@@ -47,6 +48,7 @@ public class GlobalTutorial : MonoBehaviour
         _playerStackPresenter.Removed += OnRemoved;
         _tutorial.Completed += OnCompleted;
         _showerMoneySpawner.MoneySpawned += OnShowerMoneySpawned;
+        _tutorialSavePresenter.Loaded += OnLoaded;
 
         for (int i = 0; i < _targetPools.Length; i++)
             _targetPools[i].PoolPrisonerAdded += OnPoolPrisonerAdded;
@@ -59,6 +61,7 @@ public class GlobalTutorial : MonoBehaviour
     {
         _hrBuyZone.Unlocked -= OnUnlocked;
         _tutorial.Completed -= OnCompleted;
+        _tutorialSavePresenter.Loaded -= OnLoaded;
 
         for (int i = 0; i < _levelBuyZones.Length; i++)
             _levelBuyZones[i].Unlocked -= OnUnlocked;
@@ -89,6 +92,7 @@ public class GlobalTutorial : MonoBehaviour
             AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
             AnimationOutline(_levelBuyZones[_currentLevelBuyZone].Outline);
             _currentLevelBuyZone++;
+            _tutorialSavePresenter.SetTutorialLevel();
 
             ChangeArrow(true);
 
@@ -221,5 +225,10 @@ public class GlobalTutorial : MonoBehaviour
         _cell.DoorButtonExit -= OnButtonExit;
 
         ChangeArrow(false);
+    }
+
+    private void OnLoaded()
+    {
+        _currentLevelBuyZone = _tutorialSavePresenter.TutorialLevel;
     }
 }
