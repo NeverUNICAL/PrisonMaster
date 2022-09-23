@@ -37,7 +37,7 @@ public abstract class QueueHandler : MonoBehaviour
     protected List<PrisonerMover> _prisonerList;
     protected List<QueueHandler> _sortedList;
 
-    private int _counter = 0;
+    private int _counter;
 
     private bool _isShopNotNull;
     private bool _isStoreNotNull;
@@ -122,7 +122,6 @@ public abstract class QueueHandler : MonoBehaviour
 
             if (_queues[0].CheckForShopBuyed())
             {
-                ChangeCounter();
                 _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
                 _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false)
                     .ToList();
@@ -147,6 +146,8 @@ public abstract class QueueHandler : MonoBehaviour
         {
             if (_prisonerList.Count > 0 && targetQueue._queues.Count > 0)
             {
+                targetQueue.ChangeCounter();
+                
                 if (_isSuitQueue)
                     _prisonerList[0].EnableSuit();
                 else if (_isInShowerQueue)
@@ -184,7 +185,7 @@ public abstract class QueueHandler : MonoBehaviour
     private void ChangeCounter()
     {
         _counter++;
-
+        
         if (_counter >= _countForTutor)
         {
             PoolPrisonerAdded?.Invoke();

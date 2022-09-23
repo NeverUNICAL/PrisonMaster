@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Agava.IdleGame
 {
-    public class TutorialProgressPresenter : GUIDMonoBehaviour
+    public class TutorialSavePresenter : GUIDMonoBehaviour
     {
         [Space(10)]
         
