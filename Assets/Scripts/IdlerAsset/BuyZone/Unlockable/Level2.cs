@@ -44,25 +44,25 @@ public class Level2 : UnlockableMapZone
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        if (IsUnlockRoom)
-        {
-            if (_isUpgraded)
-                RoomEnvirnoment.ChahgeActiveArrow(false);
-            else
-                RoomEnvirnoment.ChahgeActiveArrow(true);
-        }
-        else if (IsUnlockRoom == false && Room.gameObject.activeInHierarchy == false)
-        {
-            AnimationScale(Room.transform);
-            RoomZoneOpened?.Invoke();
-            AnimationOutlineRoomZone();
-        }
+        //if (IsUnlockRoom)
+        //{
+        //    if (_isUpgraded)
+        //        RoomEnvirnoment.ChahgeActiveArrow(false);
+        //    else
+        //        RoomEnvirnoment.ChahgeActiveArrow(true);
+        //}
+        //else if (IsUnlockRoom == false && Room.gameObject.activeInHierarchy == false)
+        //{
+        //    AnimationScale(Room.transform);
+        //    RoomZoneOpened?.Invoke();
+        //    AnimationOutlineRoomZone();
+        //}
 
-        if (_isNextLevelZoneUnlock == false)
-        {
-            UnlockNextLevelZone();
-            _isNextLevelZoneUnlock = true;
-        }
+        //if (_isNextLevelZoneUnlock == false)
+        //{
+        //    UnlockNextLevelZone();
+        //    _isNextLevelZoneUnlock = true;
+        //}
 
         if (_isFourthLevelOpened)
             UnlockBuyZone();
@@ -70,6 +70,7 @@ public class Level2 : UnlockableMapZone
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
+        _isNextLevelZoneUnlock = true;
         for (int i = 0; i < NextZones.Length; i++)
             NextZones[i].Unlock();
 

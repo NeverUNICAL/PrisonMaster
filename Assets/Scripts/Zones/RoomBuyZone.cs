@@ -9,9 +9,12 @@ namespace Agava.IdleGame
     {
         [SerializeField] private OfficeDoor _door;
         [SerializeField] private GameObject[] _locks;
-        
+        [SerializeField] private Transform _outline;
+
         private int _reduceValue = 1;
-        
+
+        public Transform Outline => _outline;
+            
         public event UnityAction<int,int> LevelUnlocked;
 
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)

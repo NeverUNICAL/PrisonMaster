@@ -13,6 +13,10 @@ namespace Agava.IdleGame
         [SerializeField] private GameObject _objectToTurnOff;
         [SerializeField] private PlayerSavePresenter _playerSavePresenter;
 
+        [SerializeField] private Transform _outline;
+
+        public Transform Outline => _outline;
+
         private int _reduceValue = 1;
         
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
