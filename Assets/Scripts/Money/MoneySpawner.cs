@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MoneySpawner : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MoneySpawner : MonoBehaviour
     private const float Delay = 0.2f;
     private float _delayForStopMoney = 2f;
     private Vector3 _defaultScale;
+
+    public event UnityAction MoneySpawned;
 
     private void Awake()
     {
@@ -72,6 +75,8 @@ public class MoneySpawner : MonoBehaviour
                     _counter++;
                     money.DisableRigidbody(_delayForStopMoney);
                 }
+
+                MoneySpawned?.Invoke();
             }
         }
     }

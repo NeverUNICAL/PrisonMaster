@@ -5,6 +5,7 @@ using Agava.IdleGame;
 using Agava.IdleGame.Model;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class Tutorial : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private TutorialMoney _tutorialMoney;
 
     private bool _isProducerLock = true;
+
+    public event UnityAction Completed;
 
     private void OnEnable()
     {
@@ -57,6 +60,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
     {
+        ChangeActiveArrow(1, 2);
         StartCoroutine(Delay());
         //if (_playerSavePresenter.IsTutorialCompleted == false)
         //{
@@ -70,7 +74,7 @@ public class Tutorial : MonoBehaviour
         _background.DOFade(0, _duration);
 
         _prisonersManager.gameObject.SetActive(true);
-        AnimationScale(_openObject.transform);
+        //AnimationScale(_openObject.transform);
         AnimationScale(_trashZone.transform);
 
         gameObject.SetActive(false);
@@ -106,18 +110,13 @@ public class Tutorial : MonoBehaviour
     private void OnMoneyPullEmpty()
     {
         AnimationScale(_showerZone.transform);
-        ChangeActiveArrow();
+        ChangeActiveArrow(0, 1);
     }
 
-    private void ChangeActiveArrow()
+    private void ChangeActiveArrow(int lockItem, int unlockItem)
     {
-        for (int i = 0; i < _arrows.Length; i++)
-        {
-            if (_arrows[i].gameObject.activeInHierarchy == false)
-                _arrows[i].gameObject.SetActive(true);
-            else
-                _arrows[i].gameObject.SetActive(false);
-        }
+        _arrows[lockItem].gameObject.SetActive(false);
+        _arrows[unlockItem].gameObject.SetActive(true);
     }
 
     private IEnumerator Delay()
@@ -125,7 +124,8 @@ public class Tutorial : MonoBehaviour
         yield return new WaitWhile(() => _playerSavePresenter.IsTutorialCompleted);
         if (_playerSavePresenter.IsTutorialCompleted == false)
         {
-            AnimationOutline(_outlines[1]);
+            Completed?.Invoke();
+            //AnimationOutline(_outlines[1]);
             OnStartGame();
         }
     }
