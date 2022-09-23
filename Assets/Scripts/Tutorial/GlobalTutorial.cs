@@ -11,9 +11,13 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private Tutorial _tutorial;
     [SerializeField] private Door _door;
     [SerializeField] private MoneySpawner _showerMoneySpawner;
+    [SerializeField] private MoneySpawner _suitCabinetMoneySpawner;
     [SerializeField] private Transform[] _arrows;
     [SerializeField] private PlayerStackPresenter _playerStackPresenter;
     [SerializeField] private RoomBuyZone _hrBuyZone;
+    [SerializeField] private RoomBuyZone _upBuyZone;
+    [SerializeField] private Cell _cell;
+    [SerializeField] private CellQueueContainer _cellQueueContainer;
 
     [Header("ZoneSetting")]
     [SerializeField] private Vector3 _scaleTarget;
@@ -29,9 +33,15 @@ public class GlobalTutorial : MonoBehaviour
     private int _currentLevelBuyZone = 0;
     private int _currentPool = 0;
     private bool _isWashersZone = true;
+    private bool _isHrRoomUnlocked = true;
+    private bool _isPlayerStayedButton = false;
 
     private void OnEnable()
     {
+        _suitCabinetMoneySpawner.MoneySpawned += OnSuitMuneySpawned;
+        _cell.DoorButtonReached += OnReachedButton;
+        _cell.DoorButtonExit += OnButtonExit;
+        _cellQueueContainer.PrisonerSendToPool += OnTimerOver;
         _hrBuyZone.Unlocked += OnUnlocked;
         _playerStackPresenter.AddedForTutorial += OnAdded;
         _playerStackPresenter.Removed += OnRemoved;
@@ -70,21 +80,41 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnPoolPrisonerAdded()
     {
-        AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
-        AnimationOutline(_levelBuyZones[_currentLevelBuyZone].Outline);
-        _currentLevelBuyZone++;
+        if (_isHrRoomUnlocked == false)
+        {
+            StartCoroutine(CheckWasherZoneHrRoomUnlock());
+        }
+        else
+        {
+            AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
+            AnimationOutline(_levelBuyZones[_currentLevelBuyZone].Outline);
+            _currentLevelBuyZone++;
 
-        ChangeArrow(true);
+            ChangeArrow(true);
 
-        _targetPools[_currentPool].PoolPrisonerAdded -= OnPoolPrisonerAdded;
-        _currentPool++;
+            _targetPools[_currentPool].PoolPrisonerAdded -= OnPoolPrisonerAdded;
+            _currentPool++;
+        }
     }
 
     private void OnUnlocked(BuyZonePresenter buyZone)
     {
-        ChangeArrow(false);
-        _currentArrow++;
-        ChangeArrow(true);
+        if (_hrBuyZone == buyZone)
+        {
+            _isHrRoomUnlocked = true;
+        }
+        else
+        {
+            ChangeArrow(false);
+            _currentArrow++;
+            ChangeArrow(true);
+
+            if (_levelBuyZones[1] == buyZone)
+            {
+                _playerStackPresenter.AddedForTutorial += OnAdded;
+                _playerStackPresenter.Removed += OnRemoved;
+            }
+        }
     }
 
     private void OnAdded()
@@ -103,12 +133,43 @@ public class GlobalTutorial : MonoBehaviour
             AnimationScale(_hrBuyZone.transform);
             AnimationOutline(_hrBuyZone.Outline);
             _isWashersZone = false;
+            _isHrRoomUnlocked = false;
         }
 
         ChangeArrow(false);
         _currentArrow++;
 
         _playerStackPresenter.Removed -= OnRemoved;
+    }
+
+    private void OnTimerOver()
+    {
+        if (_isPlayerStayedButton)
+            ActivateCameraFollowPrisoner();
+        else
+            StartCoroutine(CheckStayedPlayerButton());
+    }
+
+    private void OnReachedButton()
+    {
+        if (_isPlayerStayedButton == false)
+            _isPlayerStayedButton = true;
+    }
+
+    private void OnButtonExit()
+    {
+        if (_isPlayerStayedButton == true)
+            _isPlayerStayedButton = false;
+    }
+
+    private void OnSuitMuneySpawned()
+    {
+        AnimationScale(_upBuyZone.transform);
+        AnimationOutline(_upBuyZone.Outline);
+
+        AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
+
+        _suitCabinetMoneySpawner.MoneySpawned -= OnSuitMuneySpawned;
     }
 
     private void ChangeStateDoor(bool doorObstacleValue, bool triggerValue)
@@ -134,5 +195,31 @@ public class GlobalTutorial : MonoBehaviour
     private void AnimationOutline(Transform outline)
     {
         outline.DOScale(_scaleTarget, _durationForOutlines).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private IEnumerator CheckWasherZoneHrRoomUnlock()
+    {
+        WaitWhile wait = new WaitWhile(() => _isHrRoomUnlocked == false);
+
+        yield return wait;
+
+        OnPoolPrisonerAdded();
+    }
+
+    private IEnumerator CheckStayedPlayerButton()
+    {
+        WaitWhile wait = new WaitWhile(() => _isPlayerStayedButton == false);
+
+        yield return wait;
+
+        ActivateCameraFollowPrisoner();
+    }
+
+    private void ActivateCameraFollowPrisoner()
+    {
+        _cell.DoorButtonReached -= OnReachedButton;
+        _cell.DoorButtonExit -= OnButtonExit;
+
+        ChangeArrow(false);
     }
 }

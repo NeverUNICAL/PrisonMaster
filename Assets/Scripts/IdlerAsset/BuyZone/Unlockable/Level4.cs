@@ -13,8 +13,8 @@ public class Level4 : UnlockableMapZone
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        if (_isFirst)
-            UnlockNextLevelZone();
+        //if (_isFirst)
+        //    UnlockNextLevelZone();
 
         UnlockBuyZone();
     }

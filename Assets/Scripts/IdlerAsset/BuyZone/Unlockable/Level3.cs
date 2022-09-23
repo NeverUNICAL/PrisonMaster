@@ -24,11 +24,11 @@ public class Level3 : UnlockableMapZone
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        if (_isFirst)
-        {
-            UnlockNextLevelZone();
-            _isFirst = false;
-        }
+        //if (_isFirst)
+        //{
+        //    UnlockNextLevelZone();
+        //    _isFirst = false;
+        //}
 
         int tempCounter = 0;
         int target = 2;
