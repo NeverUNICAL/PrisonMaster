@@ -76,13 +76,13 @@ public class GlobalTutorial : MonoBehaviour
     private void OnCompleted()
     {
         ChangeStateDoor(true, false);
-        ChangeActiveArrow(true);
+        ChangeActiveArrow(true, false);
     }
 
     private void OnShowerMoneySpawned()
     {
         ChangeStateDoor(false, true);
-        ChangeActiveArrow(false);
+        ChangeActiveArrow(false, false);
         _currentArrow++;
         _showerMoneySpawner.MoneySpawned -= OnShowerMoneySpawned;
     }
@@ -93,6 +93,7 @@ public class GlobalTutorial : MonoBehaviour
         {
             AnimationScale(_hrBuyZone.transform);
             AnimationOutline(_hrBuyZone.Outline);
+            PointerShown?.Invoke(_hrBuyZone.transform);
             _isAssistantsUpgraded = false;
             _isPoolAddedFirst = false;
         }
@@ -104,7 +105,7 @@ public class GlobalTutorial : MonoBehaviour
             _currentLevelBuyZone++;
             _tutorialSavePresenter.SetTutorialLevel();
 
-            ChangeActiveArrow(true);
+            ChangeActiveArrow(true, false);
 
             _targetPools[_currentPool].PoolPrisonerAdded -= OnPoolPrisonerAdded;
             _currentPool++;
@@ -115,7 +116,7 @@ public class GlobalTutorial : MonoBehaviour
     {
         if (_hrBuyZone == buyZone)
         {
-            ChangeActiveArrow(true);
+            ChangeActiveArrow(true, false);
         }
         else
         {
@@ -138,7 +139,7 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnRemoved(StackableObject stackable)
     {
-        ChangeActiveArrow(false);
+        ChangeActiveArrow(false, false);
         _currentArrow++;
 
         _playerStackPresenter.Removed -= OnRemoved;
@@ -190,21 +191,26 @@ public class GlobalTutorial : MonoBehaviour
         _door.Trigger.gameObject.SetActive(triggerValue);
     }
 
-    private void ChangeActiveArrow(bool value)
+    private void ChangeActiveArrow(bool value, bool isChangeArrowsMethod)
     {
         _arrows[_currentArrow].gameObject.SetActive(value);
 
-        if (value)
-            PointerShown?.Invoke(_arrows[_currentArrow]);
-        else
-            PointerHidden?.Invoke();
+        if (isChangeArrowsMethod == false)
+        {
+            if (value)
+                PointerShown?.Invoke(_arrows[_currentArrow]);
+            else
+                PointerHidden?.Invoke();
+        }
     }
 
     private void ChangeArrows()
     {
-        ChangeActiveArrow(false);
+        ChangeActiveArrow(false, true);
         _currentArrow++;
-        ChangeActiveArrow(true);
+        ChangeActiveArrow(true, true);
+
+        PointerShown?.Invoke(_arrows[_currentArrow]);
     }
 
     private void AnimationScale(Transform buyZone)
@@ -235,7 +241,7 @@ public class GlobalTutorial : MonoBehaviour
         _cell.DoorButtonReached -= OnReachedButton;
         _cell.DoorButtonExit -= OnButtonExit;
 
-        ChangeActiveArrow(false);
+        ChangeActiveArrow(false, false);
     }
 
     private void OnLoaded()

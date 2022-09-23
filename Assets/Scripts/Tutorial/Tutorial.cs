@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Image _background;
     [SerializeField] private PlayerSavePresenter _playerSavePresenter;
     [SerializeField] private TutorialMoney _tutorialMoney;
+    [SerializeField] private Bus _bus;
 
     private bool _isProducerLock = true;
 
@@ -73,6 +74,7 @@ public class Tutorial : MonoBehaviour
     {
         _background.DOFade(0, _duration);
 
+        _bus.gameObject.SetActive(true);
         _prisonersManager.gameObject.SetActive(true);
         //AnimationScale(_openObject.transform);
         AnimationScale(_trashZone.transform);
@@ -95,6 +97,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnTutorialCompletedOnStart()
     {
+        _bus.gameObject.SetActive(true);
         _prisonersManager.gameObject.SetActive(true);
         _trashZone.gameObject.SetActive(true);
         _openObject.gameObject.SetActive(true);

@@ -43,8 +43,8 @@ public class StartPool : QueueHandler
         while (true)
         {
             yield return _waitForSpawnTimeOut;
-            
-            if (true)
+
+            if (_isWorking)
             {
                 if (_prisonerList.Count < _startPoolSize)
                 {
