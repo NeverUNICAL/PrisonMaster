@@ -83,6 +83,7 @@ public class Bus : MonoBehaviour
     private void RefreshWay()
     {
         transform.position = _startPosition;
+        _agent.speed = _startSpeed;
         _agent.SetDestination(_travelPoint.position);
     }
 

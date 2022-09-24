@@ -21,6 +21,7 @@ public class CellQueueContainer : QueueHandler
     private Timer _timer = new Timer();
 
     public UnityAction PrisonerSendToPool;
+    public event UnityAction<PrisonerMover> PrisonerEmptyed; 
 
     private void Start()
     {
@@ -98,6 +99,7 @@ public class CellQueueContainer : QueueHandler
 
     private void OnTimeOver()
     {
+        PrisonerEmptyed?.Invoke(_prisonerList[0]);
         _prisonerList[0].ChangeStateSitting(false);
         StartCoroutine(CheckCellDoor());
     }
