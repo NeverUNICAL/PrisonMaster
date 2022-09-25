@@ -6,12 +6,17 @@ public class PrisonerMover : Prisoner
 {
     [SerializeField] private GameObject[] _suits;
     [SerializeField] private ParticleSystem _angryEffect;
+    [SerializeField] private ParticleSystem _poofEffect;
 
     private GameObject _nextPoint;
     private Vector3 _targetPoint;
     private bool _pathEnded;
     private Transform _lookTarget;
     private bool _isSittingInCell = false;
+
+    private int _dirtySuit = 0;
+    private int _cleanSuit = 1;
+    private int _prisonUniform = 2;
 
     public bool IsSittingInCell => _isSittingInCell;
     public GameObject NextPoint => _nextPoint;
@@ -41,15 +46,17 @@ public class PrisonerMover : Prisoner
 
     public void EnableSuit()
     {
-        _suits[0].SetActive(false);
-        _suits[1].SetActive(true);
+        _suits[_cleanSuit].SetActive(false);
+        _suits[_prisonUniform].SetActive(true);
+        _poofEffect.Play();
     }
 
     public void EnableWashedSuit()
     {
-        _suits[2].SetActive(false);
-        _suits[0].SetActive(true);
-        _suits[1].SetActive(false);
+        _suits[_prisonUniform].SetActive(false);
+        _suits[_dirtySuit].SetActive(false);
+        _suits[_cleanSuit].SetActive(true);
+        _poofEffect.Play();
     }
 
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
