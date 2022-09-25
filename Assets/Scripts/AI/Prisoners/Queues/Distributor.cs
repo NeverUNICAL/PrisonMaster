@@ -10,7 +10,7 @@ public class Distributor : QueueHandler
 {
     [Header("Cells Distributor Settings")]
     [SerializeField] private bool _isCellsDistributor;
-    [SerializeField] private Trigger _trigger;
+    [SerializeField] private Trigger[] _triggers;
 
     private bool _inTrigger;
     
@@ -30,8 +30,11 @@ public class Distributor : QueueHandler
     {
         if (_isCellsDistributor)
         {
-            _trigger.Enter += OnEnter;
-            _trigger.Exit += OnExit;
+            for (int i = 0; i < _triggers.Length; i++)
+            {
+            _triggers[i].Enter += OnEnter;
+            _triggers[i].Exit += OnExit;
+            }
         }
     }
 
@@ -39,10 +42,12 @@ public class Distributor : QueueHandler
     {
         if (_isCellsDistributor)
         {
-            _trigger.Enter -= OnEnter;
-            _trigger.Exit -= OnExit;
+            for (int i = 0; i < _triggers.Length; i++)
+            {
+                _triggers[i].Enter -= OnEnter;
+                _triggers[i].Exit -= OnExit;
+            }
         }
-
     }
 
     private IEnumerator TrySendToExit()
