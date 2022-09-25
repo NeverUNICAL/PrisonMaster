@@ -22,13 +22,14 @@ public class Level4 : UnlockableMapZone
     private void OnDisable()
     {
         base.OnDisable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
     }
 
     private void OnUnlockFourthZone()
     {
         _isFourthLevelOpened = true;
         UnlockBuyZone();
+
+        _moneySpawner.MoneySpawned -= OnUnlockFourthZone;
     }
 
     public override void Unlock(BuyZonePresenter buyZone)

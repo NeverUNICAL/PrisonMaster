@@ -18,7 +18,7 @@ namespace Agava.IdleGame
 
         public event UnityAction<StackableObject> Added;
         public event UnityAction<StackableObject> Removed;
-        public event UnityAction AddedForTutorial;
+        public event UnityAction<StackableObject> AddedForTutorial;
 
         public int Count => _stack.Count;
         public int Capacity => _capacity;
@@ -66,7 +66,7 @@ namespace Agava.IdleGame
             _stack.Add(stackable);
             _view.Add(stackable, () => Added?.Invoke(stackable));
             CurrentItemsCount++;
-            AddedForTutorial?.Invoke();
+            AddedForTutorial?.Invoke(stackable);
         }
 
         public void AddToStackWithoutView(StackableObject stackable)

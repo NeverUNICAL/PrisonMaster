@@ -6553,7 +6553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab3bfddd736d6b428a6113ab7479a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _door: {fileID: 117998711}
+  _door: {fileID: 117998712}
   _trigger: {fileID: 2021500726}
   _targetPosition: {x: 2.2, y: 0, z: 0}
   _defaultPosition: {x: 0.2, y: 0, z: 0}
@@ -17148,7 +17148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 24.77, y: 20, z: 27.66}
+  m_LocalPosition: {x: 14.559999, y: 20, z: 17.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 138101411}
@@ -19760,7 +19760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tutorial: {fileID: 1442514652}
-  _door: {fileID: 3364057959632648083}
+  _doors:
+  - {fileID: 3364057959632648083}
+  - {fileID: 344401902}
   _showerMoneySpawner: {fileID: 16365426}
   _suitCabinetMoneySpawner: {fileID: 772974923}
   _arrows:
@@ -27544,7 +27546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572516889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.71, y: 0, z: -1.17}
+  m_LocalPosition: {x: -10.66, y: 0, z: -5.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 161342607}
@@ -28155,7 +28157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608014183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.66, y: 0, z: -5.39}
+  m_LocalPosition: {x: -10.66, y: 0, z: -1.1399999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 161342607}
@@ -31287,11 +31289,12 @@ MonoBehaviour:
   _globalTutorial: {fileID: 1150041985}
   _delayChangeCamera: 2
   _delayAssistantMovingFollow: 6
-  _delayPrisonerMovingFollow: 10
+  _delayPrisonerMovingFollow: 9
   _joystick: {fileID: 1713695036}
   _assistantsShopPanel: {fileID: 833479269}
   _assistantsShop: {fileID: 2007783055}
   _queueContainer: {fileID: 1118153810}
+  _cell: {fileID: 379185560}
 --- !u!1 &1787044504
 GameObject:
   m_ObjectHideFlags: 0
@@ -32108,7 +32111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1861532183
 Transform:
   m_ObjectHideFlags: 0
@@ -37044,6 +37047,10 @@ PrefabInstance:
       propertyPath: _distributor
       value: 
       objectReference: {fileID: 318205152}
+    - target: {fileID: 962626667304126864, guid: bdc26e83ac6e0f74fbad63018d3f3076, type: 3}
+      propertyPath: _timeForWashing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5064971236433888364, guid: bdc26e83ac6e0f74fbad63018d3f3076, type: 3}
       propertyPath: m_RootOrder
       value: 3

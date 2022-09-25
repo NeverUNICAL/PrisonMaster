@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class GlobalTutorial : MonoBehaviour
 {
     [SerializeField] private Tutorial _tutorial;
-    [SerializeField] private Door _door;
+    [SerializeField] private Door[] _doors;
     [SerializeField] private MoneySpawner _showerMoneySpawner;
     [SerializeField] private MoneySpawner _suitCabinetMoneySpawner;
     [SerializeField] private Transform[] _arrows;
@@ -35,6 +35,7 @@ public class GlobalTutorial : MonoBehaviour
     private int _currentArrow = 0;
     private int _currentLevelBuyZone = 0;
     private int _currentPool = 0;
+    private int _targetStackableLayer = 4;
     private bool _isAssistantsUpgraded = true;
     private bool _isPlayerStayedButton = false;
     private bool _isPoolAddedFirst = true;
@@ -75,13 +76,14 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnCompleted()
     {
-        ChangeStateDoor(true, false);
+        ChangeStateDoor(true, false, 0);
+        ChangeStateDoor(true, false, 1);
         ChangeActiveArrow(true, false);
     }
 
     private void OnShowerMoneySpawned()
     {
-        ChangeStateDoor(false, true);
+        ChangeStateDoor(false, true, 0);
         ChangeActiveArrow(false, false);
         _currentArrow++;
         _showerMoneySpawner.MoneySpawned -= OnShowerMoneySpawned;
@@ -128,21 +130,30 @@ public class GlobalTutorial : MonoBehaviour
                 _playerStackPresenter.Removed += OnRemoved;
             }
         }
+
+        if (_levelBuyZones[2] == buyZone)
+            ChangeStateDoor(false, true, 1);
     }
 
-    private void OnAdded()
+    private void OnAdded(StackableObject stackable)
     {
-        ChangeArrows();
-
-        _playerStackPresenter.AddedForTutorial -= OnAdded;
+        if (stackable.Layer == _targetStackableLayer)
+        {
+            ChangeArrows();
+            
+            _playerStackPresenter.AddedForTutorial -= OnAdded;
+        }
     }
 
     private void OnRemoved(StackableObject stackable)
     {
-        ChangeActiveArrow(false, false);
-        _currentArrow++;
-
-        _playerStackPresenter.Removed -= OnRemoved;
+        if (stackable.Layer == _targetStackableLayer)
+        {
+            ChangeActiveArrow(false, false);
+            _currentArrow++;
+            _targetStackableLayer++;
+            _playerStackPresenter.Removed -= OnRemoved;
+        }
     }
 
     private void OnTimerOver()
@@ -185,10 +196,12 @@ public class GlobalTutorial : MonoBehaviour
         _assistantsShop.CountUpgraded -= OnAssistantsUpgrade;
     }
 
-    private void ChangeStateDoor(bool doorObstacleValue, bool triggerValue)
+    private void ChangeStateDoor(bool doorObstacleValue, bool triggerValue, int index)
     {
-        _door.DoorObstacle.enabled = doorObstacleValue;
-        _door.Trigger.gameObject.SetActive(triggerValue);
+        if (index == 0)
+            _doors[index].DoorObstacle.enabled = doorObstacleValue;
+
+        _doors[index].Trigger.gameObject.SetActive(triggerValue);
     }
 
     private void ChangeActiveArrow(bool value, bool isChangeArrowsMethod)

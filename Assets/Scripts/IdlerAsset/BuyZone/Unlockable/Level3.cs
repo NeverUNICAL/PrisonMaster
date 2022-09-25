@@ -16,7 +16,6 @@ public class Level3 : UnlockableMapZone
     private void OnDisable()
     {
         base.OnDisable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
     }
 
     public override void Unlock(BuyZonePresenter buyZone)
@@ -58,5 +57,7 @@ public class Level3 : UnlockableMapZone
     {
         Counter++;
         Unlock(null);
+
+        _moneySpawner.MoneySpawned -= OnUnlockFourthZone;
     }
 }

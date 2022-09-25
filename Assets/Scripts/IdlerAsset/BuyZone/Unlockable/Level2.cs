@@ -15,6 +15,7 @@ public class Level2 : UnlockableMapZone
     private bool _isFourthLevelOpened = false;
     //private bool _isUpgraded = false;
     private bool _isFirst = true;
+    private int _counter = 0;
 
     public event UnityAction RoomZoneOpened;
 
@@ -28,7 +29,6 @@ public class Level2 : UnlockableMapZone
     private void OnDisable()
     {
         base.OnDisable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
         //_assistantsShop.CountUpgraded -= OnUpgraded;
     }
 
@@ -95,6 +95,8 @@ public class Level2 : UnlockableMapZone
                 }
             }
         }
+
+        _moneySpawner.MoneySpawned -= OnUnlockFourthZone;
     }
 
     private void UnlockBuyZone()
@@ -109,6 +111,7 @@ public class Level2 : UnlockableMapZone
             {
                 if (BuyZones[i].gameObject.activeInHierarchy == false)
                 {
+                    Debug.Log(BuyZones[i].name);
                     AnimationScale(BuyZones[i].transform);
                     return;
                 }
