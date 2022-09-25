@@ -13,12 +13,13 @@ public class Bus : MonoBehaviour
     [SerializeField] private Transform _travelPoint;
     [SerializeField] private Transform _outPoint;
     [SerializeField] private float _timeToCloseDoor = 3f;
-    [SerializeField] private float _breakPower = 0.05f;
+    [SerializeField] private float _breakPower = 0.001f;
     [SerializeField] private float _timeToRefreshWay = 5f;
     [SerializeField] private StartPool _startPool;
     [SerializeField] private ParticleSystem _leftSmoke;
     [SerializeField] private ParticleSystem _rightSmoke;
 
+    private float _defaultBreakPower;
     private NavMeshAgent _agent;
     private MeshRenderer _meshRenderer;
     private Vector3 _startPosition;
@@ -33,6 +34,7 @@ public class Bus : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _startPosition = transform.position;
         _startSpeed = _agent.speed;
+        _defaultBreakPower = _breakPower;
 
         _agent.SetDestination(_travelPoint.position);
     }
@@ -52,7 +54,7 @@ public class Bus : MonoBehaviour
         }
 
         if (_brakePressed && _agent.speed > 1)
-            _agent.speed -= _breakPower * Time.deltaTime;
+            _agent.speed -= _breakPower;
     }
     
     private void OpenDoor()
@@ -62,7 +64,6 @@ public class Bus : MonoBehaviour
         if(_startPool != null)
          _startPool.SetWorking(true);
         
-        _brakePressed = false;
         Invoke(nameof(CloseDoor), _timeToCloseDoor);
         //}
     }
@@ -74,6 +75,7 @@ public class Bus : MonoBehaviour
          _startPool.SetWorking(false);
         
         _doorOpened = false;
+        _brakePressed = false;
         ChangeSmokeActive(false);
         _agent.speed = _startSpeed;
         _agent.SetDestination(_outPoint.position);

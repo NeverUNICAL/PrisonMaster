@@ -35847,7 +35847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8013726688850276448}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 1.95, z: 2.82}
+  m_LocalPosition: {x: 6.34, y: 1.95, z: 2.8200016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8013726688728941749}
@@ -36625,6 +36625,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8889224547736765707}
+  - component: {fileID: 7581569460832699113}
+  - component: {fileID: 2029351071248198503}
   m_Layer: 0
   m_Name: MoneyContainer
   m_TagString: Untagged
@@ -36640,12 +36642,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889224547736765706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5000004, y: -2.06, z: -3.4671917}
+  m_LocalPosition: {x: 0.08999929, y: 1, z: -0.17999962}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8013726688850276451}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7581569460832699113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889224547736765706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92405a70a8976bd48828e23267847419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldawn: 1
+--- !u!65 &2029351071248198503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889224547736765706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8889224548931005794
 GameObject:
   m_ObjectHideFlags: 0
@@ -36695,6 +36723,7 @@ MonoBehaviour:
   _startPoolSize: 5
   _offsetPos: {x: 0, y: 0, z: -1}
   _isSuitQueue: 0
+  _countForTutor: 0
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 8013726689453345057}
@@ -36785,6 +36814,7 @@ MonoBehaviour:
   _startPoolSize: 1
   _offsetPos: {x: 0.25, y: 0, z: 0.6}
   _isSuitQueue: 0
+  _countForTutor: 0
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 8013726689453345057}

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5782776309992854110}
   - component: {fileID: 166924017090398981}
   - component: {fileID: 274858491677357457}
-  - component: {fileID: 8661128421348412235}
   m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
@@ -128,17 +127,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reward: 10
---- !u!136 &8661128421348412235
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7934577519548912715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1.3
-  m_Height: 30
-  m_Direction: 1
-  m_Center: {x: 0, y: -5.7, z: 0}

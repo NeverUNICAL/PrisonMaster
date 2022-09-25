@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Level4 : UnlockableMapZone
 {
-    [SerializeField] private Transform[] _deposits;
-    [SerializeField] private ObjectCreator _producer;
-    [SerializeField] private Transform _prisonersManager;
+    //[SerializeField] private Transform[] _deposits;
+    //[SerializeField] private ObjectCreator _producer;
+    //[SerializeField] private Transform _prisonersManager;
     [SerializeField] private MoneySpawner _moneySpawner;
 
     private bool _isFirst = true;
@@ -43,14 +43,14 @@ public class Level4 : UnlockableMapZone
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
-        for (int i = 0; i < NextZones.Length; i++)
-            NextZones[i].Unlock();
+        //for (int i = 0; i < NextZones.Length; i++)
+        //    NextZones[i].Unlock();
 
-        for (int i = 0; i < _deposits.Length; i++)
-            _deposits[i].gameObject.SetActive(true);
+        //for (int i = 0; i < _deposits.Length; i++)
+        //    _deposits[i].gameObject.SetActive(true);
 
-        _prisonersManager.gameObject.SetActive(true);
-        _producer.gameObject.SetActive(true);
+        //_prisonersManager.gameObject.SetActive(true);
+        //_producer.gameObject.SetActive(true);
     }
 
     private void UnlockBuyZone()
