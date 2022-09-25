@@ -6,6 +6,8 @@ namespace Agava.IdleGame
     [RequireComponent(typeof(Collider))]
     public class Trigger : MonoBehaviour
     {
+        private bool _isTrigger = false;
+
         public event UnityAction Enter;
         public event UnityAction Stay;
         public event UnityAction Exit;
@@ -14,6 +16,7 @@ namespace Agava.IdleGame
         private AssistantCollision _assistantCollision;
         private Collider _collider;
 
+        public bool IsTrigger => _isTrigger;
         private void Awake()
         {
             _collider = GetComponent<Collider>();
@@ -25,12 +28,14 @@ namespace Agava.IdleGame
             if (collider.TryGetComponent(out PlayerCollision playerCollision) && _playerCollision == null && _assistantCollision == null)
             {
                 _playerCollision = playerCollision;
+                _isTrigger = true;
                 Enter?.Invoke();
             }
 
             if (collider.TryGetComponent(out AssistantCollision assistantCollision) && _playerCollision == null && _assistantCollision == null)
             {
                 _assistantCollision = assistantCollision;
+                _isTrigger = true;
                 Enter?.Invoke();
             }
         }
@@ -39,7 +44,7 @@ namespace Agava.IdleGame
         {
             if (collider.TryGetComponent(out PlayerCollision playerCollision) && _assistantCollision == null)
             {
-                if (_playerCollision == playerCollision)
+                if (_playerCollision == playerCollision)    
                     Stay?.Invoke();
             }
 
@@ -57,6 +62,7 @@ namespace Agava.IdleGame
                 if (_playerCollision == playerCollision)
                 {
                     _playerCollision = null;
+                    _isTrigger = false;
                     Exit?.Invoke();
                 }
             }
@@ -66,6 +72,7 @@ namespace Agava.IdleGame
                 if (_assistantCollision == assistantCollision)
                 {
                     _assistantCollision = null;
+                    _isTrigger = false;
                     Exit?.Invoke();
                 }
             }

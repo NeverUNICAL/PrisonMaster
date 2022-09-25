@@ -13,12 +13,12 @@ public class Distributor : QueueHandler
     [SerializeField] private Trigger[] _triggers;
 
     private bool _inTrigger;
-    
+
     private void Start()
     {
         if (_queues.Count > 0)
         {
-           // StartCoroutine(TrySendToExit());
+            // StartCoroutine(TrySendToExit());
             if (_isCellsDistributor)
                 StartCoroutine(SendToCellQueue(_queues));
             else
@@ -26,29 +26,29 @@ public class Distributor : QueueHandler
         }
     }
 
-    private void OnEnable()
-    {
-        if (_isCellsDistributor)
-        {
-            for (int i = 0; i < _triggers.Length; i++)
-            {
-            _triggers[i].Enter += OnEnter;
-            _triggers[i].Exit += OnExit;
-            }
-        }
-    }
+    //private void OnEnable()
+    //{
+    //    if (_isCellsDistributor)
+    //    {
+    //        for (int i = 0; i < _triggers.Length; i++)
+    //        {
+    //            _triggers[i].Enter += OnEnter;
+    //            _triggers[i].Exit += OnExit;
+    //        }
+    //    }
+    //}
 
-    private void OnDisable()
-    {
-        if (_isCellsDistributor)
-        {
-            for (int i = 0; i < _triggers.Length; i++)
-            {
-                _triggers[i].Enter -= OnEnter;
-                _triggers[i].Exit -= OnExit;
-            }
-        }
-    }
+    //private void OnDisable()
+    //{
+    //    if (_isCellsDistributor)
+    //    {
+    //        for (int i = 0; i < _triggers.Length; i++)
+    //        {
+    //            _triggers[i].Enter -= OnEnter;
+    //            _triggers[i].Exit -= OnExit;
+    //        }
+    //    }
+    //}
 
     private IEnumerator TrySendToExit()
     {
@@ -62,40 +62,36 @@ public class Distributor : QueueHandler
             yield return _waitToTrySendToExit;
         }
     }
-    
+
     protected IEnumerator SendToCellQueue(List<QueueHandler> queues)
     {
         while (true)
         {
             yield return _waitForSendTimeOut;
 
-            if (_queues[0].CheckForShopBuyed() && _inTrigger)
+            for (int i = 0; i < _triggers.Length; i++)
             {
-                _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
-                _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false)
-                    .ToList();
-                
-                if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize &&
-                    _sortedList[0].CheckForShopBuyed())
+                if (_triggers[i].IsTrigger)
                 {
-                    if (_prisonerList.Count > 0)
+                    if (_queues[0].CheckForShopBuyed())
                     {
-                        _sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
-                        _sortedList[0].ListSort();
-                        ExtractFirst();
+                        _sortedList = queues.OrderBy(queue => queue.PrisonerQueueList.Count).ToList();
+                        _sortedList = _sortedList.SkipWhile(queue => queue.PoolSize < 1 || queue.CheckForShopBuyed() == false)
+                            .ToList();
+
+                        if (_sortedList[0].PrisonerQueueList.Count < _sortedList[0].PoolSize &&
+                            _sortedList[0].CheckForShopBuyed())
+                        {
+                            if (_prisonerList.Count > 0)
+                            {
+                                _sortedList[0].PrisonerQueueList.Add(_prisonerList[0]);
+                                _sortedList[0].ListSort();
+                                ExtractFirst();
+                            }
+                        }
                     }
                 }
             }
         }
-    }
-
-    private void OnEnter()
-    {
-        _inTrigger = true;
-    }
-
-    private void OnExit()
-    {
-        _inTrigger = false;
     }
 }

@@ -12,6 +12,7 @@ public class Cell : Store
     [SerializeField] private CellDoor _door;
     [SerializeField] private float _delay = 3f;
 
+    public DoorButton DoorButton => _doorButton;
     public List<PrisonerMover> Prisoners => _cellQueue.PrisonerQueueList;
     public CellDoor CellDoor => _door;
     public bool IsPrisonerInCell { get; private set; } = false;

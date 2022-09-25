@@ -23,6 +23,7 @@ public abstract class QueueHandler : MonoBehaviour
     [Header("Queue Container Settings")]
     [SerializeField] protected Shop _shop;
     [SerializeField] protected Store _store;
+    [SerializeField] protected Cell _cellDoor;
 
     [Header("Shower Settings")]
     [SerializeField] protected bool _isInShowerQueue;
@@ -41,6 +42,7 @@ public abstract class QueueHandler : MonoBehaviour
 
     private bool _isShopNotNull;
     private bool _isStoreNotNull;
+    private bool _isCellNotNull;
 
     public int PoolSize => _startPoolSize;
     public List<PrisonerMover> PrisonerQueueList => _prisonerList;
@@ -55,6 +57,7 @@ public abstract class QueueHandler : MonoBehaviour
         _prisonerList = new List<PrisonerMover>();
         _isShopNotNull = _shop != null;
         _isStoreNotNull = _store != null;
+        _isCellNotNull = _cellDoor != null;
     }
 
     public void ListSort()
@@ -63,9 +66,10 @@ public abstract class QueueHandler : MonoBehaviour
         {
             if (_isShopNotNull)
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero, _shop.gameObject.transform);
+            else if (_isCellNotNull)
+                StartCoroutine(CheckCellDoorOpened());
             else
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
-
         }
 
         for (int i = 0; i < _prisonerList.Count; i++)
@@ -81,7 +85,7 @@ public abstract class QueueHandler : MonoBehaviour
 
     public bool CheckForShopBuyed()
     {
-        if ((_isShopNotNull && _shop.gameObject.activeInHierarchy) || (_isStoreNotNull && _store.gameObject.activeInHierarchy))
+        if ((_isShopNotNull && _shop.gameObject.activeInHierarchy) || (_isStoreNotNull && _store.gameObject.activeInHierarchy) || (_isCellNotNull && _cellDoor.gameObject.activeInHierarchy))
             return true;
 
         return false;
@@ -104,6 +108,8 @@ public abstract class QueueHandler : MonoBehaviour
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero, _shop.gameObject.transform);
             else if (_isStoreNotNull)
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero, _store.gameObject.transform);
+            else if (_isCellNotNull)
+                StartCoroutine(CheckCellDoorOpened());
             else
                 _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
         }
@@ -190,5 +196,12 @@ public abstract class QueueHandler : MonoBehaviour
         {
             PoolPrisonerAdded?.Invoke();
         }
+    }
+
+    private IEnumerator CheckCellDoorOpened()
+    {
+        yield return new WaitWhile(() => _cellDoor.CellDoor.IsOpened == false);
+
+        _prisonerList[0].SetTarget(_firstPoint, Vector3.zero, _cellDoor.gameObject.transform);
     }
 }

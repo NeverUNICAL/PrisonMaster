@@ -1917,6 +1917,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1087835456}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 0
@@ -5677,6 +5678,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 8722527156824512177}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
@@ -7307,6 +7309,7 @@ MonoBehaviour:
   - {fileID: 1986544812}
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 1
@@ -8394,6 +8397,7 @@ MonoBehaviour:
   - {fileID: 912612681}
   _shop: {fileID: 0}
   _store: {fileID: 8722527156824512177}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
@@ -11519,6 +11523,7 @@ MonoBehaviour:
   - {fileID: 623815879}
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 3
@@ -12813,6 +12818,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 344035966}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -13306,6 +13312,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -13568,6 +13575,72 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 700154959}
+--- !u!1 &723501063
+GameObject:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 723501064}
+  - component: {fileID: 723501066}
+  - component: {fileID: 723501065}
+  m_Layer: 0
+  m_Name: cm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &723501064
+Transform:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723501063}
+  m_LocalRotation: {x: 0.32693225, y: 0.36173522, z: -0.13713385, w: -0.8622397}
+  m_LocalPosition: {x: 5.491209, y: -21.050423, z: -2.5238533}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1440785454}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723501065
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723501063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BindingMode: 4
+  m_FollowOffset: {x: -10, y: 20, z: -10}
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
+  m_AngularDampingMode: 1
+  m_PitchDamping: 0
+  m_YawDamping: 0
+  m_RollDamping: 0
+  m_AngularDamping: 20
+--- !u!114 &723501066
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723501063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &727410135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1494436827125448546, guid: 0efdd9a768e1f9d4bb0384aa38a59d46, type: 3}
@@ -14383,7 +14456,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8578851039367995674, guid: 355ab9b32fc696941a1e6c6122874a1d, type: 3}
   m_PrefabInstance: {fileID: 795051199}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1054072952}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 179322494c046464da07da7aab1a7159, type: 3}
@@ -15355,6 +15428,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1180378060}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 0
@@ -16573,6 +16647,7 @@ MonoBehaviour:
   - {fileID: 1606393704}
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
@@ -17538,6 +17613,7 @@ Transform:
   - {fileID: 276913859}
   - {fileID: 1056739970}
   - {fileID: 687331396}
+  - {fileID: 1440785454}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17932,6 +18008,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 8024119058096705842}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 0
@@ -18709,6 +18786,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 422866, guid: 15a724708f1f6004bb2d0d2cf7102b14, type: 3}
   m_PrefabInstance: {fileID: 1046332921}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1054072952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8578851039367995679, guid: 355ab9b32fc696941a1e6c6122874a1d, type: 3}
+  m_PrefabInstance: {fileID: 795051199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1054072953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054072952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa85201ffd20ce4e9e111bdcbb9d1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cellsQueue:
+  - {fileID: 1118153810}
+  - {fileID: 1610484002}
+  - {fileID: 251999705}
+  - {fileID: 1606393704}
+  _cooldawn: 5
 --- !u!1 &1056739969
 GameObject:
   m_ObjectHideFlags: 0
@@ -19605,6 +19705,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1180378060}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
@@ -19878,6 +19979,7 @@ MonoBehaviour:
   - {fileID: 623815879}
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 3
@@ -24753,6 +24855,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2a007e3d8711d4b8f6342e63884a57, type: 3}
+--- !u!1 &1440785453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440785454}
+  - component: {fileID: 1440785455}
+  m_Layer: 0
+  m_Name: BusCamFollow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1440785454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440785453}
+  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: 47.51, y: 20, z: -14.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 723501064}
+  m_Father: {fileID: 971648372}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!114 &1440785455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440785453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 0
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 1746522682}
+  m_Lens:
+    FieldOfView: 10
+    OrthographicSize: 14
+    NearClipPlane: 0.001
+    FarClipPlane: 1000
+    Dutch: 0
+    LensShift: {x: 0, y: 0}
+  m_Transitions:
+    m_BlendHint: 0
+    m_InheritPosition: 0
+    m_OnCameraLive:
+      m_PersistentCalls:
+        m_Calls: []
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 723501064}
 --- !u!114 &1442514652 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1494436826946103430, guid: 0efdd9a768e1f9d4bb0384aa38a59d46, type: 3}
@@ -24821,6 +24990,7 @@ MonoBehaviour:
   - {fileID: 1799200037}
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 3
@@ -27582,6 +27752,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 3
@@ -27682,6 +27853,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -27770,6 +27942,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1149279059}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
@@ -28381,6 +28554,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1555987321}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
@@ -29526,6 +29700,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1555987321}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 0
@@ -30896,6 +31071,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 326905880229642176, guid: 59806d7130ce1c840b652d77e48177bc, type: 3}
   m_PrefabInstance: {fileID: 1743290312}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1746522682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6577838962443702501, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
+  m_PrefabInstance: {fileID: 164522062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1746934762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6369184849382986095, guid: 12761092982038945bc16325eb58334b, type: 3}
@@ -31533,11 +31713,13 @@ MonoBehaviour:
   - {fileID: 276913860}
   - {fileID: 1056739971}
   - {fileID: 687331397}
+  - {fileID: 1440785455}
   _globalTutorial: {fileID: 1150041985}
   _delayChangeCamera: 2
   _delayAssistantMovingFollow: 6
   _delayPrisonerMovingFollow: 9
   _delayAllViewMovingFollow: 4.5
+  _delayBusMovingFollow: 6
   _joystick: {fileID: 1713695036}
   _assistantsShopPanel: {fileID: 833479269}
   _assistantsShop: {fileID: 2007783055}
@@ -31690,6 +31872,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1087835456}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 469540570}
   _tryToSendToExitCooldown: 0
@@ -32571,6 +32754,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 344035966}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -33808,6 +33992,7 @@ MonoBehaviour:
   - {fileID: 711036638}
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 3
@@ -34383,6 +34568,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2035109683}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -35706,6 +35892,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 2035109683}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -35873,6 +36060,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 1149279059}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 816015977}
   _tryToSendToExitCooldown: 0
@@ -36263,6 +36451,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 0}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -37397,6 +37586,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1488117907}
     m_Modifications:
+    - target: {fileID: 5806572629841525219, guid: 7ffe6cd18d1642f47bf84b534bc9f807, type: 3}
+      propertyPath: CreatingItemCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806572629841525219, guid: 7ffe6cd18d1642f47bf84b534bc9f807, type: 3}
+      propertyPath: _timeBetweenSpawnItem
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5806572629841525228, guid: 7ffe6cd18d1642f47bf84b534bc9f807, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -40907,6 +41104,14 @@ PrefabInstance:
     - target: {fileID: 3876018081031921315, guid: b399fe0ed87146143bf45933fd2af4ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876018081031921324, guid: b399fe0ed87146143bf45933fd2af4ce, type: 3}
+      propertyPath: CreatingItemCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876018081031921324, guid: b399fe0ed87146143bf45933fd2af4ce, type: 3}
+      propertyPath: _timeBetweenSpawnItem
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b399fe0ed87146143bf45933fd2af4ce, type: 3}

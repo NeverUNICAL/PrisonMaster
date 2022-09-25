@@ -9,6 +9,5 @@ public class ClothOnExit : Store
     public override void Sale()
     {
         OnSold(_count);
-        Debug.Log("SaleOnStore");
     }
 }

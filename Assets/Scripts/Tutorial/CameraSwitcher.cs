@@ -11,6 +11,7 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private float _delayAssistantMovingFollow = 6f;
     [SerializeField] private float _delayPrisonerMovingFollow = 14f;
     [SerializeField] private float _delayAllViewMovingFollow = 4f;
+    [SerializeField] private float _delayBusMovingFollow = 5f;
     [SerializeField] private FloatingJoystick _joystick;
     [SerializeField] private Transform _assistantsShopPanel;
     [SerializeField] private AssistantsShop _assistantsShop;
@@ -22,6 +23,7 @@ public class CameraSwitcher : MonoBehaviour
     private int _assistantCamNumber = 2;
     private int _prisonerCamNumber = 3;
     private int _allViewCamFollow = 4;
+    private int _busCamFollow = 5;
     
     private int _counter = 0;
 
@@ -53,6 +55,7 @@ public class CameraSwitcher : MonoBehaviour
         if (_isFirst)
         {
             _isFirst = false;
+            StartCoroutine(FollowBus(_busCamFollow, _delayBusMovingFollow));
         }
         else if (_counter > 5 && _counter < 8)
         {
@@ -76,7 +79,7 @@ public class CameraSwitcher : MonoBehaviour
         _assistantsShop.CountUpgraded -= OnUpgraded;
     }
 
-    private void OnPrisonerEmptyed(PrisonerMover prisoner)
+    private void OnPrisonerEmptyed(PrisonerMover prisoner, CellQueueContainer cellQueueContainer)
     {
         _cinemachines[_prisonerCamNumber].m_Follow = prisoner.transform;
         _queueContainer.PrisonerEmptyed -= OnPrisonerEmptyed;
@@ -138,6 +141,15 @@ public class CameraSwitcher : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         StartCoroutine(DelayChangeCamera(_playerCamNumber, 0));
+    }
+
+    private IEnumerator FollowBus(int targetCamera, float delay)
+    {
+        ChangeCamera(targetCamera);
+
+        yield return new WaitForSeconds(delay);
+
+        ChangeCamera(_playerCamNumber);
     }
 
     private void ChangeStateJoystick(bool value)

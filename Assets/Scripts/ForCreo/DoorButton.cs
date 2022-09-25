@@ -73,7 +73,7 @@ namespace ForCreo
             if (other.TryGetComponent(out AssistantCollision assistant) && _playerCollision == null && _assistantCollision != null)
             {
                 ChangeButtonState(false, new Vector3(0, 0.1f, 0));
-                _playerCollision = null;
+                _assistantCollision = null;
                 Exit?.Invoke();
             }
         }

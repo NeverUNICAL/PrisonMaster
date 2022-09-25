@@ -20,8 +20,10 @@ public class CellQueueContainer : QueueHandler
     private bool _isCellWorking;
     private Timer _timer = new Timer();
 
+    public Cell Cell => _cell;
+
     public UnityAction PrisonerSendToPool;
-    public event UnityAction<PrisonerMover> PrisonerEmptyed; 
+    public event UnityAction<PrisonerMover, CellQueueContainer> PrisonerEmptyed; 
 
     private void Start()
     {
@@ -58,7 +60,7 @@ public class CellQueueContainer : QueueHandler
     {
         while (true)
         {
-            if (_prisonerList.Count > 0 && _store.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
+            if (_prisonerList.Count > 0 && _cellDoor.gameObject.activeInHierarchy && _prisonerList[0].PathEnded())
             {
                 if (_isCellBusy && _isCellWorking == false && _prisonerList.Count > 0 && _prisonerList[0].PathEnded())
                 {
@@ -99,7 +101,7 @@ public class CellQueueContainer : QueueHandler
 
     private void OnTimeOver()
     {
-        PrisonerEmptyed?.Invoke(_prisonerList[0]);
+        PrisonerEmptyed?.Invoke(_prisonerList[0], this);
         _prisonerList[0].ChangeStateSitting(false);
         StartCoroutine(CheckCellDoor());
     }
