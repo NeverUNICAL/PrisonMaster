@@ -99,7 +99,7 @@ public class ExitClothQueueContainer : QueueHandler
     {
         if (SendToPool(_distributor))
         {
-            _store.Sale();
+            //_store.Sale();
         }
         
         _isShowerWorking = false;

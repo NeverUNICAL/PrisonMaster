@@ -186,6 +186,8 @@ public abstract class QueueHandler : MonoBehaviour
             _shop.Sale();
         else if (_store != null)
             _store.Sale();
+        else if (_cellDoor != null)
+            _cellDoor.Sale();
     }
 
     private void ChangeCounter()
