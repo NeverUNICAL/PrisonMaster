@@ -24,6 +24,9 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Bus _bus;
 
     private bool _isProducerLock = true;
+    private bool _isTutorialCompleted = false;
+
+    public bool IsTutorialCompleted => _isTutorialCompleted;
 
     public event UnityAction Completed;
 
@@ -61,7 +64,6 @@ public class Tutorial : MonoBehaviour
 
     private void OnUnlock(BuyZonePresenter normalBuyZonePresenter)
     {
-        ChangeActiveArrow(1, 2);
         StartCoroutine(Delay());
         //if (_playerSavePresenter.IsTutorialCompleted == false)
         //{
@@ -74,6 +76,7 @@ public class Tutorial : MonoBehaviour
     {
         _background.DOFade(0, _duration);
 
+        _isTutorialCompleted = true;
         _bus.gameObject.SetActive(true);
         _prisonersManager.gameObject.SetActive(true);
         //AnimationScale(_openObject.transform);
@@ -97,6 +100,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnTutorialCompletedOnStart()
     {
+        _isTutorialCompleted = true;
         _bus.gameObject.SetActive(true);
         _prisonersManager.gameObject.SetActive(true);
         _trashZone.gameObject.SetActive(true);

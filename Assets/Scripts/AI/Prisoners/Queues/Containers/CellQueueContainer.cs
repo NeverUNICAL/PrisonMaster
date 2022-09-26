@@ -123,7 +123,7 @@ public class CellQueueContainer : QueueHandler
         if (SendToPool(_distributor))
         {
             PrisonerSendToPool?.Invoke();
-            //  _store.Sale();
+            _cellDoor.Sale();
         }
 
         _isCellWorking = false;
