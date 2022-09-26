@@ -352,6 +352,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 8383252684931023464}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -3672,7 +3673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f12e586faf945642baa7333d83ff65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: 4
+  _count: 10
 --- !u!1 &8383252685281415167
 GameObject:
   m_ObjectHideFlags: 0
