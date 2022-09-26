@@ -15,6 +15,8 @@ namespace Agava.IdleGame
         private TutorialProgress _tutorialProgress;
         
         public int TutorialLevel => _tutorialProgress.TutorialLevel;
+        public int PoolLevel => _tutorialProgress.PoolLevel;
+        public int ArrowLevel => _tutorialProgress.ArrowLevel;
         public int PassedPrisonersCount => _tutorialProgress.PassedPrisonersCount;
         public bool IsHrBuyed => _tutorialProgress.IsHrBuyed;
         public bool IsTutorialCompleted => _tutorialProgress.IsTutorialCompleted;
@@ -35,6 +37,18 @@ namespace Agava.IdleGame
         public void SetTutorialLevel()
         {
             _tutorialProgress.SetTutorialLevel(_tutorialProgress.TutorialLevel+1);
+            _tutorialProgress.Save();
+        }
+        
+        public void SetPoollevel(int value)
+        {
+            _tutorialProgress.SetPoollevel(value);
+            _tutorialProgress.Save();
+        }
+        
+        public void SetArrowLevel(int value)
+        {
+            _tutorialProgress.SetArrowLevel(value);
             _tutorialProgress.Save();
         }
 
