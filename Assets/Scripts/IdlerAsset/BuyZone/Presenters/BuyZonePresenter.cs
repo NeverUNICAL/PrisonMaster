@@ -17,6 +17,8 @@ namespace Agava.IdleGame
 
         private BuyZone _buyZone;
         private Coroutine _tryBuy;
+        private WaitForSeconds _delayForTryBuy = new WaitForSeconds(0.3f);
+        private bool _onZone;
 
         public event UnityAction<BuyZonePresenter> FirstTimeUnlocked;
         public event UnityAction<BuyZonePresenter> Unlocked;
@@ -71,15 +73,16 @@ namespace Agava.IdleGame
 
         private void OnPlayerTriggerEnter(SoftCurrencyHolder moneyHolder)
         {
-            if (_tryBuy != null)
-                StopCoroutine(_tryBuy);
+            _onZone = true;
             
-            _tryBuy = StartCoroutine(TryBuy(moneyHolder));
-            OnEnter();
+            _tryBuy = StartCoroutine(DelayBeforeTryBuy(moneyHolder));
+           
         }
 
         private void OnPlayerTriggerExit(SoftCurrencyHolder moneyHolder)
         {
+            _onZone = false;
+            
             StopCoroutine(_tryBuy);
             _buyZone.Save();
             OnExit();
@@ -94,6 +97,20 @@ namespace Agava.IdleGame
             OnBuyedAction();
 
             Unlocked?.Invoke(this);
+        }
+        
+        private IEnumerator DelayBeforeTryBuy(SoftCurrencyHolder moneyHolder)
+        {
+            yield return new WaitForSeconds(1f);
+            
+            if (_tryBuy != null)
+                StopCoroutine(_tryBuy);
+
+            if (_onZone)
+            {
+                _tryBuy = StartCoroutine(TryBuy(moneyHolder));
+                OnEnter();
+            }
         }
 
         private IEnumerator TryBuy(SoftCurrencyHolder moneyHolder)
