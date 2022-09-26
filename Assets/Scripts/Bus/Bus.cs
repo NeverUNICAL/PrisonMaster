@@ -54,7 +54,7 @@ public class Bus : MonoBehaviour
         }
 
         if (_brakePressed && _agent.speed > 1)
-            _agent.speed -= _breakPower;
+            _agent.speed -= _breakPower * Time.deltaTime;
     }
     
     private void OpenDoor()
