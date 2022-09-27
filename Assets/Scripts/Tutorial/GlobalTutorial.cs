@@ -224,7 +224,6 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnSuitMoneySpawned()
     {
-        Debug.Log("OnSuitMoneySpawned");
         _isLoaded = false;
         AnimationScale(_upBuyZone.transform);
         AnimationOutline(_upBuyZone.Outline);

@@ -9,7 +9,6 @@ using UnityEngine.Events;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private RoomBuyZone _openObject;
     [SerializeField] private NormalBuyZonePresenter _showerZone;
     [SerializeField] private TrashZone _trashZone;
     [SerializeField] private Transform _prisonersManager;
@@ -104,7 +103,6 @@ public class Tutorial : MonoBehaviour
         _bus.gameObject.SetActive(true);
         _prisonersManager.gameObject.SetActive(true);
         _trashZone.gameObject.SetActive(true);
-        _openObject.gameObject.SetActive(true);
 
         gameObject.SetActive(false);
     }

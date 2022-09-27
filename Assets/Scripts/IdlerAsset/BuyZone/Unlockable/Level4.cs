@@ -9,6 +9,7 @@ public class Level4 : UnlockableMapZone
 
     private bool _isFirst = true;
     private bool _isFourthLevelOpened = false;
+    private int _counter = 0;
 
     private void OnEnable()
     {
@@ -24,6 +25,7 @@ public class Level4 : UnlockableMapZone
     private void OnGlobalTutorialComplete()
     {
         _isFourthLevelOpened = true;
+        Unlock(null);
 
         _globalTutorial.GloalTutorialCompleted -= OnGlobalTutorialComplete;
     }
@@ -36,13 +38,14 @@ public class Level4 : UnlockableMapZone
 
     private void UnlockBuyZone()
     {
+        _counter++;
+
         for (int i = 0; i < BuyZones.Length; i++)
         {
             if (BuyZones[i].gameObject.activeInHierarchy == false)
             {
                 if (_isFirst)
                 {
-                    AnimationScale(BuyZones[i].transform);
                     _isFirst = false;
                 }
                 else

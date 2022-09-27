@@ -45,7 +45,7 @@ public class Level2 : UnlockableMapZone
         _isFourthLevelOpened = true;
 
         int tempCounter = 0;
-        int target = 2;
+        int target = 4;
 
         for (int i = 0; i < BuyZones.Length; i++)
         {
@@ -65,7 +65,7 @@ public class Level2 : UnlockableMapZone
     private void UnlockBuyZone()
     {
         _counter++;
-        if (_counter > 2)
+        if (_counter > 3)
         {
             for (int i = 0; i < BuyZones.Length; i++)
             {
