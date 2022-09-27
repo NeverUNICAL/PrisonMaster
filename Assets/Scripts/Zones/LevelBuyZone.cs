@@ -15,10 +15,10 @@ namespace Agava.IdleGame
 
         [SerializeField] private Transform _outline;
 
+        private int _reduceValue = 1;
+
         public Transform Outline => _outline;
 
-        private int _reduceValue = 1;
-        
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
         {
             if (moneyHolder.HasMoney == false)

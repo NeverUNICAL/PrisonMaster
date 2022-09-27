@@ -50,7 +50,7 @@ public class PlayersGUI : MonoBehaviour
         }
     }
 
-    private void OnPointerShown(Transform transform)
+    private void OnPointerShown(Transform transform, bool isHRRoom)
     {
         _target = transform;
         _gUIRotator.ChangeTarget(_target);

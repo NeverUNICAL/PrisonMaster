@@ -1,3 +1,4 @@
+using Agava.IdleGame;
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private float _delayBusMovingFollow = 5f;
     [SerializeField] private FloatingJoystick _joystick;
     [SerializeField] private Transform _assistantsShopPanel;
-    [SerializeField] private AssistantsShop _assistantsShop;
     [SerializeField] private CellQueueContainer _queueContainer;
     [SerializeField] private Cell _cell;
+    [SerializeField] private AssistantBuyZone _assistantBuyZone;
 
     private int _playerCamNumber = 0;
     private int _targetCamNumber = 1;
@@ -24,7 +25,7 @@ public class CameraSwitcher : MonoBehaviour
     private int _prisonerCamNumber = 3;
     private int _allViewCamFollow = 4;
     private int _busCamFollow = 5;
-    
+
     private int _counter = 0;
 
     private bool _isFirst = true;
@@ -34,14 +35,15 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnEnable()
     {
+        _assistantBuyZone.Unlocked += OnAssistantUnlock;
         _globalTutorial.PointerShown += OnPointerShown;
-        _assistantsShop.CountUpgraded += OnUpgraded;
         _queueContainer.PrisonerEmptyed += OnPrisonerEmptyed;
         _cell.PrisonerSendToPool += OnPoolPrisonerAdded;
     }
 
     private void OnDisable()
     {
+        _assistantBuyZone.Unlocked -= OnAssistantUnlock;
         _globalTutorial.PointerShown -= OnPointerShown;
     }
 
@@ -50,33 +52,30 @@ public class CameraSwitcher : MonoBehaviour
         ChangeCamera(_playerCamNumber);
     }
 
-    private void OnPointerShown(Transform transform)
+    private void OnPointerShown(Transform transform, bool isHRZone)
     {
         if (_isFirst)
         {
             _isFirst = false;
+            ChangeStateJoystick(false);
             StartCoroutine(FollowBus(_busCamFollow, _delayBusMovingFollow));
-        }
-        else if (_counter > 5 && _counter < 8)
-        {
-            _cinemachines[_targetCamNumber].m_Follow = transform;
         }
         else
         {
-            _cinemachines[_targetCamNumber].m_Follow = transform;
-            ChangeStateJoystick(false);
-            ChangeCamera(_targetCamNumber);
-            StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
+            if (isHRZone == false)
+            {
+                _cinemachines[_targetCamNumber].m_Follow = transform;
+                ChangeStateJoystick(false);
+                ChangeCamera(_targetCamNumber);
+                StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
+            }
         }
-
-        _counter++;
     }
 
-    private void OnUpgraded(int value1, int value2)
+    private void OnAssistantUnlock(BuyZonePresenter buyZone)
     {
         ChangeStateJoystick(false);
         StartCoroutine(FollowAssistant(_assistantCamNumber, _delayAssistantMovingFollow));
-        _assistantsShop.CountUpgraded -= OnUpgraded;
     }
 
     private void OnPrisonerEmptyed(PrisonerMover prisoner, CellQueueContainer cellQueueContainer)
@@ -106,9 +105,6 @@ public class CameraSwitcher : MonoBehaviour
     private IEnumerator DelayChangeCamera(int targetCamera, float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        if (_counter == 7)
-            _assistantsShopPanel.gameObject.SetActive(true);
 
         ChangeStateJoystick(true);
         ChangeCamera(targetCamera);
@@ -149,6 +145,7 @@ public class CameraSwitcher : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
+        ChangeStateJoystick(true);
         ChangeCamera(_playerCamNumber);
     }
 

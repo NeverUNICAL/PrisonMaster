@@ -8,6 +8,7 @@ public class StackingAssistent : Assistant
     [SerializeField] private ProdusersContainer producersContainer;
     [SerializeField] private ConsumersContainer consumersContainer;
     [SerializeField] private float _delay;
+    [SerializeField] private AssistantBuyZone _buyZone;
 
     private StackView[] _producers;
     private StackView[] _consumers;
@@ -20,6 +21,16 @@ public class StackingAssistent : Assistant
     public StackView AssistantStack => _assistantStack;
     public List<StackPresenter> ProducerItemCreators => _producerItemCreators;
     public List<StackPresenter> ConsumersItemCreators => _consumersItemCreators;
+
+    private void OnEnable()
+    {
+        _buyZone.Unlocked += OnUnlocked;
+    }
+
+    private void OnDisable()
+    {
+        _buyZone.Unlocked -= OnUnlocked;
+    }
 
     private void Start()
     {
@@ -38,11 +49,14 @@ public class StackingAssistent : Assistant
             _consumers[i] = consumersContainer.transform.GetChild(i).GetComponentInChildren<StackView>();
             _consumersItemCreators.Add(consumersContainer.transform.GetChild(i).GetComponent<StackPresenter>());
         }
-
-        StartCoroutine(Delay(_delay));
     }
 
-    private IEnumerator Delay(float delay)
+    private void OnUnlocked(BuyZonePresenter buyZone)
+    {
+        StartCoroutine(DelayStartStateMachine(_delay));
+    }
+
+    private IEnumerator DelayStartStateMachine(float delay)
     {
         yield return new WaitForSeconds(delay);
 

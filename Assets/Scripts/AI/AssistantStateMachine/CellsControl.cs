@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Agava.IdleGame;
 
 public class CellsControl : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class CellsControl : MonoBehaviour
 
     private Cell[] _cells;
     private bool _isMovingTargetCell = false;
-    private Assistant _assistant;
+    private ControlAssistant _assistant;
     private int _counter;
 
     private void Awake()
     {
-        _assistant = GetComponent<Assistant>();
+        _assistant = GetComponent<ControlAssistant>();
 
         _cells = new Cell[_cellsQueue.Length];
 
@@ -27,15 +28,13 @@ public class CellsControl : MonoBehaviour
 
     private void OnEnable()
     {
-        for (int i = 0; i < _cellsQueue.Length; i++)
-        {
-            _cellsQueue[i].PrisonerEmptyed += OnPrisonerEmptyed;
-            _cellsQueue[i].Cell.PrisonerSendToPool += OnPrisonerSendToPool;
-        }
+        _assistant.BuyZone.Unlocked += OnUnlocked;
     }
 
     private void OnDisable()
     {
+        _assistant.BuyZone.Unlocked -= OnUnlocked;
+
         for (int i = 0; i < _cellsQueue.Length; i++)
         {
             _cellsQueue[i].PrisonerEmptyed -= OnPrisonerEmptyed;
@@ -43,8 +42,14 @@ public class CellsControl : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnUnlocked(BuyZonePresenter buyZone)
     {
+        for (int i = 0; i < _cellsQueue.Length; i++)
+        {
+            _cellsQueue[i].PrisonerEmptyed += OnPrisonerEmptyed;
+            _cellsQueue[i].Cell.PrisonerSendToPool += OnPrisonerSendToPool;
+        }
+
         _isMovingTargetCell = true;
         StartCoroutine(CheckIdle());
     }

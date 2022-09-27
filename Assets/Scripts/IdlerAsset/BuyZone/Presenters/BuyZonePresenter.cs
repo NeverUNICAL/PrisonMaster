@@ -136,7 +136,7 @@ namespace Agava.IdleGame
         public void Unlock()
         {
             _view.Hide();
-            _unlockable.Unlock(transform, true, GUID);
+            _unlockable.Unlock(transform, false, GUID);
             OnBuyedAction();
 
             _trigger.gameObject.SetActive(false);

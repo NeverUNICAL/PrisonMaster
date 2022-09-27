@@ -33,6 +33,11 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private LevelBuyZone[] _levelBuyZones;
     [SerializeField] private NormalBuyZonePresenter _cellBuyZone;
 
+    [Header("Assistants")]
+    [SerializeField] private Assistant[] _assistants;
+    [SerializeField] private AssistantBuyZone[] _assistantBuyZones;
+
+    private int _currentAssistant = 0;
     private int _currentArrow = 0;
     private int _currentLevelBuyZone = 0;
     private int _currentPool = 0;
@@ -42,17 +47,19 @@ public class GlobalTutorial : MonoBehaviour
     private bool _isPoolAddedFirst = true;
     private bool _isLoaded = false;
 
-    public event UnityAction<Transform> PointerShown;
+    public event UnityAction<Transform, bool> PointerShown;
     public event UnityAction PointerHidden;
     public event UnityAction GloalTutorialCompleted;
 
     private void OnEnable()
     {
-        _hrBuyZone.Unlocked += OnUnlocked;
+        _assistantBuyZones[0].Unlocked += OnUnlockAssistant;
+        _hrBuyZone.Unlocked += OnUnlockHRRoom;
         _tutorial.Completed += OnCompleted;
         _tutorialSavePresenter.Loaded += OnLoaded;
-        _assistantsShop.CountUpgraded += OnAssistantsUpgrade;
-        _exitClothQueue.PrisonerWashEnded += OnSuitMoneySpawned;
+        _assistantsShop.CapacityUpgraded += OnCapacityUpgrade;
+        _assistantsShop.SpeedUpgraded += OnSpeedUpgrade;
+        _exitClothQueue.PrisonerWashEnded += OnPrisonerMovingExit;
         _cell.DoorButtonReached += OnReachedButton;
         _cell.DoorButtonExit += OnButtonExit;
         _cellQueueContainer.PrisonerSendToPool += OnTimerOver;
@@ -69,11 +76,13 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnDisable()
     {
-        _hrBuyZone.Unlocked -= OnUnlocked;
+        _assistantBuyZones[0].Unlocked -= OnUnlockAssistant;
+        _hrBuyZone.Unlocked -= OnUnlockHRRoom;
         _tutorial.Completed -= OnCompleted;
         _tutorialSavePresenter.Loaded -= OnLoaded;
-        _assistantsShop.CountUpgraded -= OnAssistantsUpgrade;
-        _exitClothQueue.PrisonerWashEnded -= OnSuitMoneySpawned;
+        _assistantsShop.CapacityUpgraded -= OnCapacityUpgrade;
+        _assistantsShop.SpeedUpgraded -= OnSpeedUpgrade;
+        _exitClothQueue.PrisonerWashEnded -= OnPrisonerMovingExit;
         _cell.DoorButtonReached -= OnReachedButton;
         _cell.DoorButtonExit -= OnButtonExit;
         _cellQueueContainer.PrisonerSendToPool -= OnTimerOver;
@@ -108,19 +117,20 @@ public class GlobalTutorial : MonoBehaviour
     {
         if (_currentPool == 1 && _isPoolAddedFirst)
         {
-            Debug.Log("OnPoolPrisonerAdded");
-            AnimationScale(_hrBuyZone.transform);
-            AnimationOutline(_hrBuyZone.Outline);
-            PointerShown?.Invoke(_hrBuyZone.transform);
+            AnimationScale(_assistantBuyZones[0].transform);
+            AnimationOutline(_assistantBuyZones[0].Outline);
+            AnimationScale(_assistants[0].transform);
+
             _isAssistantsUpgraded = false;
             _isPoolAddedFirst = false;
+
+            PointerShown?.Invoke(_assistantBuyZones[0].transform, false);
             _tutorialSavePresenter.SetPoollevel(_currentPool);
         }
 
         if (_isAssistantsUpgraded)
         {
-            AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
-            AnimationOutline(_levelBuyZones[_currentLevelBuyZone].Outline);
+            _levelBuyZones[_currentLevelBuyZone].Unlock();
             _currentLevelBuyZone++;
             _tutorialSavePresenter.SetTutorialLevel();
 
@@ -134,40 +144,30 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnUnlocked(BuyZonePresenter buyZone)
     {
-        if (_hrBuyZone == buyZone)
+        if (_isLoaded == false)
+            ChangeArrows();
+
+        if (_levelBuyZones[0] == buyZone)
         {
-            if (_currentArrow != 5)
-                ChangeActiveArrow(true, false);
+            _currentArrow = 2;
+            SaveNextArrow();
         }
-        else
+
+        if (_levelBuyZones[1] == buyZone)
         {
-            if (_isLoaded == false)
-                ChangeArrows();
+            _assistantsShop.CapacityUpgraded -= OnCapacityUpgrade;
+            _assistantsShop.SpeedUpgraded -= OnSpeedUpgrade;
 
-            if (_levelBuyZones[0] == buyZone)
-            {
-                _currentArrow = 2;
-                SaveNextArrow();
-            }
+            AnimationScale(_assistants[0].transform);
+            AnimationScale(_assistantBuyZones[0].transform);
 
-            if (_levelBuyZones[1] == buyZone)
-            {
-                _assistantsShop.CountUpgraded -= OnAssistantsUpgrade;
+            _targetStackableLayer = 5;
+            _isAssistantsUpgraded = true;
 
-                if (_levelBuyZones[2].gameObject.activeInHierarchy == false)
-                {
-                    if (_isLoaded == false)
-                    {
-                        _playerStackPresenter.AddedForTutorial += OnAdded;
-                        _playerStackPresenter.Removed += OnRemoved;
-                    }
-
-                    _isAssistantsUpgraded = true;
-                    _currentArrow = 6;
-                    SaveNextArrow();
-                    ChangeActiveArrow(true, true);
-                }
-            }
+            DisableArrows();
+            _currentArrow = 6;
+            SaveNextArrow();
+            ChangeActiveArrow(true, true);
         }
 
         if (_levelBuyZones[2] == buyZone)
@@ -179,10 +179,23 @@ public class GlobalTutorial : MonoBehaviour
             if (_arrows[8].gameObject.activeInHierarchy)
                 _arrows[8].gameObject.SetActive(false);
 
+            DisableArrows();
             _currentArrow = 9;
             SaveNextArrow();
             ChangeActiveArrow(true, true);
         }
+    }
+
+    private void OnUnlockAssistant(BuyZonePresenter buyZone)
+    {
+        AnimationScale(_hrBuyZone.transform);
+        AnimationOutline(_hrBuyZone.Outline);
+        PointerShown?.Invoke(_hrBuyZone.transform, true);
+    }
+
+    private void OnUnlockHRRoom(BuyZonePresenter buyZone)
+    {
+        ChangeActiveArrow(true, false);
     }
 
     private void OnAdded(StackableObject stackable)
@@ -205,7 +218,8 @@ public class GlobalTutorial : MonoBehaviour
             _currentArrow++;
             SaveNextArrow();
             _targetStackableLayer++;
-            _playerStackPresenter.Removed -= OnRemoved;
+
+            _playerStackPresenter.AddedForTutorial += OnAdded;
         }
     }
 
@@ -229,27 +243,40 @@ public class GlobalTutorial : MonoBehaviour
             _isPlayerStayedButton = false;
     }
 
-    private void OnSuitMoneySpawned()
+    private void OnPrisonerMovingExit()
     {
         _isLoaded = false;
         AnimationScale(_upBuyZone.transform);
         AnimationOutline(_upBuyZone.Outline);
 
         AnimationScale(_levelBuyZones[_currentLevelBuyZone].transform);
+        ActivateAssistants(false);
 
         GloalTutorialCompleted?.Invoke();
-        _exitClothQueue.PrisonerWashEnded -= OnSuitMoneySpawned;
+        _exitClothQueue.PrisonerWashEnded -= OnPrisonerMovingExit;
     }
 
-    private void OnAssistantsUpgrade(int value1, int value2)
+    private void OnCapacityUpgrade(int value1, int value2, int value3)
+    {
+        OnAssistantsUpgrade();
+    }
+
+    private void OnSpeedUpgrade(int value1, float value2, int value3)
+    {
+        OnAssistantsUpgrade();
+    }
+
+    private void OnAssistantsUpgrade()
     {
         _isLoaded = false;
         _isAssistantsUpgraded = true;
 
         ChangeArrows();
+        PointerShown?.Invoke(_arrows[_currentArrow].transform, false);
         OnPoolPrisonerAdded();
 
-        _assistantsShop.CountUpgraded -= OnAssistantsUpgrade;
+        _assistantsShop.CapacityUpgraded -= OnCapacityUpgrade;
+        _assistantsShop.SpeedUpgraded -= OnSpeedUpgrade;
     }
 
     private void ChangeStateDoor(bool doorObstacleValue, bool triggerValue, int index)
@@ -267,7 +294,7 @@ public class GlobalTutorial : MonoBehaviour
         if (isChangeArrowsMethod == false)
         {
             if (value)
-                PointerShown?.Invoke(_arrows[_currentArrow]);
+                PointerShown?.Invoke(_arrows[_currentArrow], false);
             else
                 PointerHidden?.Invoke();
         }
@@ -281,7 +308,7 @@ public class GlobalTutorial : MonoBehaviour
         SaveNextArrow();
         ChangeActiveArrow(true, true);
 
-        PointerShown?.Invoke(_arrows[_currentArrow]);
+        PointerShown?.Invoke(_arrows[_currentArrow], false);
     }
 
     private void AnimationScale(Transform buyZone)
@@ -315,6 +342,7 @@ public class GlobalTutorial : MonoBehaviour
 
         if (_arrows[_currentArrow].gameObject.activeInHierarchy)
             ChangeActiveArrow(false, false);
+
         _currentArrow++;
         SaveNextArrow();
     }
@@ -334,6 +362,7 @@ public class GlobalTutorial : MonoBehaviour
             {
                 _cellBuyZone.gameObject.SetActive(false);
                 LoadLevelsBuyZones();
+                ActivateAssistants(true);
                 _hrBuyZone.gameObject.SetActive(true);
                 _upBuyZone.gameObject.SetActive(true);
                 GloalTutorialCompleted?.Invoke();
@@ -341,7 +370,7 @@ public class GlobalTutorial : MonoBehaviour
             }
             else
             {
-                PointerShown?.Invoke(_arrows[_currentArrow]);
+                PointerShown?.Invoke(_arrows[_currentArrow], false);
 
                 LoadLevelsBuyZones();
                 ChangeActiveArrow(true, true);
@@ -356,7 +385,6 @@ public class GlobalTutorial : MonoBehaviour
 
                     if (_currentPool == 2 && i == 2)
                     {
-                        Debug.Log("OnLoaded");
                         AnimationScale(_hrBuyZone.transform);
                         AnimationOutline(_hrBuyZone.Outline);
 
@@ -379,8 +407,38 @@ public class GlobalTutorial : MonoBehaviour
         {
             if (i < _currentLevelBuyZone)
             {
-                AnimationScale(_levelBuyZones[i].transform);
-                AnimationOutline(_levelBuyZones[i].Outline);
+                _levelBuyZones[i].Unlock();
+            }
+        }
+    }
+
+    private void DisableArrows()
+    {
+        for (int i = 0; i < _arrows.Length; i++)
+        {
+            if (_arrows[i].gameObject.activeInHierarchy)
+                _arrows[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void ActivateAssistants(bool onLoad)
+    {
+        int counter = 1;
+
+        for (int i = 0; i < _assistantBuyZones.Length; i++)
+        {
+            if (onLoad)
+            {
+                AnimationScale(_assistantBuyZones[i].transform);
+                AnimationScale(_assistants[i].transform);
+            }
+            else
+            {
+                if (i >= counter)
+                {
+                    AnimationScale(_assistantBuyZones[i].transform);
+                    AnimationScale(_assistants[i].transform);
+                }
             }
         }
     }

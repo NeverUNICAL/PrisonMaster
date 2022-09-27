@@ -148,10 +148,10 @@ public class AssistantsShop : MonoBehaviour
     public void ChangeStateTutorial(bool interactableValue, bool value)
     {
         if (_saves.Count == 0)
-        { 
-            _exitButton.interactable = interactableValue; 
-            _capacityButton.interactable = interactableValue; 
-            _speedButton.interactable = interactableValue; 
+        {
+            _exitButton.interactable = interactableValue;
+            //_capacityButton.interactable = interactableValue;
+            //_speedButton.interactable = interactableValue;
             _background.gameObject.SetActive(value);
         }
     }

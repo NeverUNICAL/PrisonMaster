@@ -1,3 +1,4 @@
+using Agava.IdleGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,26 @@ public class ControlAssistant : Assistant
 {
     [SerializeField] private Transform _target;
     [SerializeField] private float _delay = 3f;
+    [SerializeField] private AssistantBuyZone _buyZone;
 
-    private void Start()
+    public AssistantBuyZone BuyZone => _buyZone;
+
+    private void OnEnable()
     {
-        StartCoroutine(Delay(_delay));
+        _buyZone.Unlocked += OnUnlocked;
     }
 
-    private IEnumerator Delay(float delay)
+    private void OnDisable()
+    {
+        _buyZone.Unlocked -= OnUnlocked;
+    }
+        
+    private void OnUnlocked(BuyZonePresenter buyZone)
+    {
+        StartCoroutine(DelayMove(_delay));
+    }
+
+    private IEnumerator DelayMove(float delay)
     {
         yield return new WaitForSeconds(delay);
 

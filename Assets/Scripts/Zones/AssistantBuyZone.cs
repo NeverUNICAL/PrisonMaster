@@ -6,7 +6,11 @@ namespace Agava.IdleGame
 {
     public class AssistantBuyZone : BuyZonePresenter
     {
+        [SerializeField] private Transform _outline;
+
         private int _reduceValue = 1;
+
+        public Transform Outline => _outline;
         
         protected override void BuyFrame(BuyZone buyZone, SoftCurrencyHolder moneyHolder)
         {
