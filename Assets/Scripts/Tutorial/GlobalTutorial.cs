@@ -16,8 +16,8 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private Transform[] _arrows;
     [SerializeField] private PlayerStackPresenter _playerStackPresenter;
     [SerializeField] private RoomBuyZone _hrBuyZone;
-    [SerializeField] private AssistantsShop _assistantsShop;
     [SerializeField] private RoomBuyZone _upBuyZone;
+    [SerializeField] private AssistantsShop _assistantsShop;
     [SerializeField] private Cell _cell;
     [SerializeField] private CellQueueContainer _cellQueueContainer;
     [SerializeField] private TutorialSavePresenter _tutorialSavePresenter;
@@ -107,6 +107,7 @@ public class GlobalTutorial : MonoBehaviour
     {
         if (_currentPool == 1 && _isPoolAddedFirst)
         {
+            Debug.Log("OnPoolPrisonerAdded");
             AnimationScale(_hrBuyZone.transform);
             AnimationOutline(_hrBuyZone.Outline);
             PointerShown?.Invoke(_hrBuyZone.transform);
@@ -223,6 +224,7 @@ public class GlobalTutorial : MonoBehaviour
 
     private void OnSuitMoneySpawned()
     {
+        Debug.Log("OnSuitMoneySpawned");
         _isLoaded = false;
         AnimationScale(_upBuyZone.transform);
         AnimationOutline(_upBuyZone.Outline);
@@ -324,6 +326,7 @@ public class GlobalTutorial : MonoBehaviour
 
             if (_currentArrow > 9)
             {
+                Debug.Log("_currentArrow > 9");
                 LoadLevelsBuyZones();
                 _hrBuyZone.gameObject.SetActive(true);
                 _upBuyZone.gameObject.SetActive(true);
@@ -343,8 +346,9 @@ public class GlobalTutorial : MonoBehaviour
                     if (i == 0)
                         _showerMoneySpawner.MoneySpawned -= OnShowerMoneySpawned;
 
-                    if (i == 2)
+                    if (_currentPool == 2 && i == 2)
                     {
+                        Debug.Log("OnLoaded");
                         AnimationScale(_hrBuyZone.transform);
                         AnimationOutline(_hrBuyZone.Outline);
 
