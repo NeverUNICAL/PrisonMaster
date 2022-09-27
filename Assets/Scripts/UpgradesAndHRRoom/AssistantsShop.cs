@@ -11,12 +11,6 @@ using UnityEngine.UI;
 
 public class AssistantsShop : MonoBehaviour
 {
-    [Header("Count Settings")] 
-    [SerializeField] private Button _countButton;
-    [SerializeField] private RectTransform _fillCountImage;
-    [SerializeField] private TextMeshProUGUI _countPriceText;
-    [SerializeField] private List<Upgrade> _countUpgrades;
-    
     [Header("Capacity Settings")]
     [SerializeField] private Button _capacityButton;
     [SerializeField] private RectTransform _fillCapacityImage;
@@ -34,7 +28,6 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private Button _exitButton;
     [SerializeField] private List<Assistant> _assistants;
     [SerializeField] private AssistantsSavePresenter _saves;
-    [SerializeField] private PlayerSavePresenter _playerSaves;
     [SerializeField] private float _imageFillWidthStep;
     [SerializeField] private int _upgradesMaxLevel = 4;
 
@@ -45,7 +38,6 @@ public class AssistantsShop : MonoBehaviour
     private void OnEnable()
     {
         _capacityButton.onClick.AddListener(OnCapacityButtonClick);
-        _countButton.onClick.AddListener(OnCountButtonClick);
         _speedButton.onClick.AddListener(OnSpeedButtonClick);
         _saves.Loaded += OnLoaded;
     }
@@ -53,7 +45,6 @@ public class AssistantsShop : MonoBehaviour
     private void OnDisable()
     { 
         _capacityButton.onClick.RemoveListener(OnCapacityButtonClick);
-        _countButton.onClick.RemoveListener(OnCountButtonClick); 
         _speedButton.onClick.RemoveListener(OnSpeedButtonClick);
         _saves.Loaded -= OnLoaded;
     }
@@ -94,26 +85,7 @@ public class AssistantsShop : MonoBehaviour
             }
         }
     }
-
-    private void OnCountButtonClick()
-    {
-        if (_saves.Count < _upgradesMaxLevel)
-        {
-            foreach (Upgrade upgrade in _countUpgrades)
-            {
-                if (upgrade.Level == _saves.Count + 1 && upgrade.Price <= _saves.Money)
-                {
-                    ChangeStateTutorial(true, false);
-                    CountUpgraded?.Invoke(upgrade.Level,upgrade.Price);
-                    ResetAssistants();
-                    _fillCountImage.sizeDelta = new Vector2(_fillCountImage.rect.width + _imageFillWidthStep, _fillCountImage.rect.height);
-                    ResetPriceView(_countUpgrades,_saves.Count,_countPriceText);
-                    return;
-                }
-            }
-        }
-    }
-
+    
     private void ResetPriceView(List<Upgrade> upgrades, int playerLevel,TextMeshProUGUI text)
     {
         if (playerLevel == _upgradesMaxLevel)
@@ -169,20 +141,18 @@ public class AssistantsShop : MonoBehaviour
         ResetAssistants();
         ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText);
         ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText);
-        ResetPriceView(_countUpgrades,_saves.Count,_countPriceText);
         _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep*_saves.CapacityLevel), _fillCapacityImage.rect.height);
         _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep*_saves.SpeedLevel), _fillSpeedImage.rect.height);
-        _fillCountImage.sizeDelta = new Vector2(_fillCountImage.rect.width + (_imageFillWidthStep*_saves.Count), _fillCountImage.rect.height);
     }
 
     public void ChangeStateTutorial(bool interactableValue, bool value)
     {
         if (_saves.Count == 0)
-        {
-        _exitButton.interactable = interactableValue;
-        _capacityButton.interactable = interactableValue;
-        _speedButton.interactable = interactableValue;
-        _background.gameObject.SetActive(value);
+        { 
+            _exitButton.interactable = interactableValue; 
+            _capacityButton.interactable = interactableValue; 
+            _speedButton.interactable = interactableValue; 
+            _background.gameObject.SetActive(value);
         }
     }
 }
