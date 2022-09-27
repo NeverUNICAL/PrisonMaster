@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Level3 : UnlockableMapZone
 {
-    [SerializeField] private MoneySpawner _moneySpawner;
+    [SerializeField] private GlobalTutorial _globalTutorial;
 
     private void OnEnable()
     {
         base.OnEnable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
+        _globalTutorial.GloalTutorialCompleted += OnGlobalTutorialComplete;
     }
 
     private void OnDisable()
@@ -20,12 +20,6 @@ public class Level3 : UnlockableMapZone
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        //if (_isFirst)
-        //{
-        //    UnlockNextLevelZone();
-        //    _isFirst = false;
-        //}
-
         int tempCounter = 0;
         int target = 2;
         Counter++;
@@ -53,11 +47,11 @@ public class Level3 : UnlockableMapZone
             NextZones[i].Unlock();
     }
 
-    private void OnUnlockFourthZone()
+    private void OnGlobalTutorialComplete()
     {
         Counter++;
         Unlock(null);
 
-        _moneySpawner.MoneySpawned -= OnUnlockFourthZone;
+        _globalTutorial.GloalTutorialCompleted -= OnGlobalTutorialComplete;
     }
 }

@@ -7,13 +7,9 @@ using UnityEngine.Events;
 public class Level2 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
-    //[SerializeField] private int _counterForNextLevel = 0;
-    //[SerializeField] private AssistantsShop _assistantsShop;
-    [SerializeField] private MoneySpawner _moneySpawner;
+    [SerializeField] private GlobalTutorial _globalTutorial;
 
-    //private bool _isNextLevelZoneUnlock = false;
     private bool _isFourthLevelOpened = false;
-    //private bool _isUpgraded = false;
     private bool _isFirst = true;
     private int _counter = 0;
 
@@ -22,67 +18,34 @@ public class Level2 : UnlockableMapZone
     private void OnEnable()
     {
         base.OnEnable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
-        //_assistantsShop.CountUpgraded += OnUpgraded;
+        _globalTutorial.GloalTutorialCompleted += OnGlobalTutorialComplete;
     }
 
     private void OnDisable()
     {
         base.OnDisable();
-        //_assistantsShop.CountUpgraded -= OnUpgraded;
     }
-
-    //public void Load()
-    //{
-    //    _isUpgraded = true;
-    //}
-
-    //private void OnUpgraded(int value1, int value2)
-    //{
-    //    _isUpgraded = true;
-    //}
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        //if (IsUnlockRoom)
-        //{
-        //    if (_isUpgraded)
-        //        RoomEnvirnoment.ChahgeActiveArrow(false);
-        //    else
-        //        RoomEnvirnoment.ChahgeActiveArrow(true);
-        //}
-        //else if (IsUnlockRoom == false && Room.gameObject.activeInHierarchy == false)
-        //{
-        //    AnimationScale(Room.transform);
-        //    RoomZoneOpened?.Invoke();
-        //    AnimationOutlineRoomZone();
-        //}
-
-        //if (_isNextLevelZoneUnlock == false)
-        //{
-        //    UnlockNextLevelZone();
-        //    _isNextLevelZoneUnlock = true;
-        //}
-
         if (_isFourthLevelOpened)
             UnlockBuyZone();
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
-        //_isNextLevelZoneUnlock = true;
         for (int i = 0; i < NextZones.Length; i++)
             NextZones[i].Unlock();
 
         AnimationScale(_trashZone.transform);
     }
 
-    private void OnUnlockFourthZone()
+    private void OnGlobalTutorialComplete()
     {
         _isFourthLevelOpened = true;
 
         int tempCounter = 0;
-        int target = 4;
+        int target = 2;
 
         for (int i = 0; i < BuyZones.Length; i++)
         {
@@ -96,22 +59,18 @@ public class Level2 : UnlockableMapZone
             }
         }
 
-        _moneySpawner.MoneySpawned -= OnUnlockFourthZone;
+        _globalTutorial.GloalTutorialCompleted -= OnGlobalTutorialComplete;
     }
 
     private void UnlockBuyZone()
     {
-        if (_isFirst)
-        {
-            _isFirst = false;
-        }
-        else
+        _counter++;
+        if (_counter > 2)
         {
             for (int i = 0; i < BuyZones.Length; i++)
             {
                 if (BuyZones[i].gameObject.activeInHierarchy == false)
                 {
-                    Debug.Log(BuyZones[i].name);
                     AnimationScale(BuyZones[i].transform);
                     return;
                 }

@@ -10,7 +10,7 @@ public class Level1 : UnlockableMapZone
 {
     [SerializeField] private TrashZone _trashZone;
     //[SerializeField] private UpgradesShop _upgradesShop;
-    [SerializeField] private MoneySpawner _moneySpawner;
+    [SerializeField] private GlobalTutorial _globalTutorial;
 
     private bool _isFourthLevelOpened = false;
     //private bool _isUpgraded = false;
@@ -19,14 +19,13 @@ public class Level1 : UnlockableMapZone
     private void OnEnable()
     {
         base.OnEnable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
+        _globalTutorial.GloalTutorialCompleted += OnGlobalTutorialComplete;
         //_upgradesShop.SpeedUpgraded += OnUpgraded;
     }
 
     private void OnDisable()
     {
         base.OnDisable();
-        _moneySpawner.MoneySpawned += OnUnlockFourthZone;
     }
 
     //public void Load()
@@ -65,10 +64,12 @@ public class Level1 : UnlockableMapZone
         AnimationScale(_trashZone.transform);
     }
 
-    private void OnUnlockFourthZone()
+    private void OnGlobalTutorialComplete()
     {
         _isFourthLevelOpened = true;
         UnlockBuyZone();
+
+        _globalTutorial.GloalTutorialCompleted -= OnGlobalTutorialComplete;
     }
 
     private void UnlockBuyZone()
