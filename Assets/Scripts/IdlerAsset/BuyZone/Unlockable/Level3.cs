@@ -44,7 +44,10 @@ public class Level3 : UnlockableMapZone
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
     {
         for (int i = 0; i < NextZones.Length; i++)
+        {
             NextZones[i].Unlock();
+            
+        }
     }
 
     private void OnGlobalTutorialComplete()

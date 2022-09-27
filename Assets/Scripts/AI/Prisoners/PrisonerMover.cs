@@ -59,6 +59,13 @@ public class PrisonerMover : Prisoner
         _poofEffect.Play();
     }
 
+    public void EnableDirtySuit()
+    {
+        _suits[_dirtySuit].SetActive(true);
+        _suits[_cleanSuit].SetActive(false);
+        _suits[_prisonUniform].SetActive(false);
+    }
+
     public void SetTarget(GameObject target, Vector3 offset, Transform lookTarget = null)
     {
         _nextPoint = target;

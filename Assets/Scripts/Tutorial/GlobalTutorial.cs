@@ -31,6 +31,7 @@ public class GlobalTutorial : MonoBehaviour
 
     [Header("BuyZones")]
     [SerializeField] private LevelBuyZone[] _levelBuyZones;
+    [SerializeField] private NormalBuyZonePresenter _cellBuyZone;
 
     private int _currentArrow = 0;
     private int _currentLevelBuyZone = 0;
@@ -142,6 +143,12 @@ public class GlobalTutorial : MonoBehaviour
         {
             if (_isLoaded == false)
                 ChangeArrows();
+
+            if (_levelBuyZones[0] == buyZone)
+            {
+                _currentArrow = 2;
+                SaveNextArrow();
+            }
 
             if (_levelBuyZones[1] == buyZone)
             {
@@ -325,7 +332,7 @@ public class GlobalTutorial : MonoBehaviour
 
             if (_currentArrow > 9)
             {
-                Debug.Log("_currentArrow > 9");
+                _cellBuyZone.gameObject.SetActive(false);
                 LoadLevelsBuyZones();
                 _hrBuyZone.gameObject.SetActive(true);
                 _upBuyZone.gameObject.SetActive(true);
@@ -334,6 +341,8 @@ public class GlobalTutorial : MonoBehaviour
             }
             else
             {
+                PointerShown?.Invoke(_arrows[_currentArrow]);
+
                 LoadLevelsBuyZones();
                 ChangeActiveArrow(true, true);
 
