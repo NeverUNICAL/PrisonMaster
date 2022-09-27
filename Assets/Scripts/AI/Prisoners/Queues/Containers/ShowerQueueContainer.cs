@@ -98,14 +98,18 @@ public class ShowerQueueContainer : QueueHandler
 
     private void OnTimeOver()
     {
-        if (SendToPool(_distributor))
+        if (_distributor.PrisonerQueueList.Count < _distributor.PoolSize)
         {
-            _store.Sale();
+            if (SendToPool(_distributor))
+            {
+                _store.Sale();
+            }
+            
+            PrisonerWashEnded?.Invoke();
+            _isShowerBusy = false;
         }
         
         _isShowerWorking = false;
-        PrisonerWashEnded?.Invoke();
-        _isShowerBusy = false;
     }
 
     private void OnPrisonerEnter()
