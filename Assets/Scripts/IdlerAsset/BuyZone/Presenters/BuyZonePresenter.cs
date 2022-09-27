@@ -17,7 +17,7 @@ namespace Agava.IdleGame
 
         private BuyZone _buyZone;
         private Coroutine _tryBuy;
-        private WaitForSeconds _delayForTryBuy = new WaitForSeconds(0.3f);
+        private WaitForSeconds _delayForTryBuy = new WaitForSeconds(0.45f);
         private bool _onZone;
 
         public event UnityAction<BuyZonePresenter> FirstTimeUnlocked;
@@ -101,7 +101,7 @@ namespace Agava.IdleGame
         
         private IEnumerator DelayBeforeTryBuy(SoftCurrencyHolder moneyHolder)
         {
-            yield return new WaitForSeconds(1f);
+            yield return _delayForTryBuy;
             
             if (_tryBuy != null)
                 StopCoroutine(_tryBuy);
