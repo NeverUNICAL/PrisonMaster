@@ -8,7 +8,6 @@ public class StackingAssistent : Assistant
     [SerializeField] private ProdusersContainer producersContainer;
     [SerializeField] private ConsumersContainer consumersContainer;
     [SerializeField] private float _delay;
-    [SerializeField] private AssistantBuyZone _buyZone;
 
     private StackView[] _producers;
     private StackView[] _consumers;
@@ -24,12 +23,12 @@ public class StackingAssistent : Assistant
 
     private void OnEnable()
     {
-        _buyZone.Unlocked += OnUnlocked;
+        BuyZone.Unlocked += OnUnlocked;
     }
 
     private void OnDisable()
     {
-        _buyZone.Unlocked -= OnUnlocked;
+        BuyZone.Unlocked -= OnUnlocked;
     }
 
     private void Start()

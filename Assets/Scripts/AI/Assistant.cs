@@ -11,11 +11,16 @@ public abstract class Assistant : MonoBehaviour
     [Header("OptionsForUpgrade")]
     [SerializeField] private float _speed;
 
+    [SerializeField] private AssistantBuyZone _buyZone;
+    [SerializeField] private PlayerMovement _player;
+
     protected NavMeshAgent NavMeshAgent;
     private PlayerStackPresenter _stackPresenter;
     private AssistantStateMachine _stateMachine;
     private Transform _targetTransform;
 
+    public PlayerMovement Player => _player;
+    public AssistantBuyZone BuyZone => _buyZone;
     public PlayerStackPresenter StackPresenter => _stackPresenter;
     public float Speed => _speed;
     public int Capacity => _stackPresenter.Capacity;

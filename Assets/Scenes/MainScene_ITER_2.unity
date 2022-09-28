@@ -4439,6 +4439,17 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7521884045869827248, guid: c5661b0351ecf544a9ac8282b12450c3, type: 3}
   m_PrefabInstance: {fileID: 537492143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &248345321 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4574266190011947072, guid: a105f896e9596394ca0b0b5b15945fe1, type: 3}
+  m_PrefabInstance: {fileID: 1736005404112085849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9521053056d561340858a5744990b52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &251137493
 GameObject:
   m_ObjectHideFlags: 0
@@ -14426,6 +14437,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8578851039367995674, guid: 355ab9b32fc696941a1e6c6122874a1d, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 248345321}
+    - target: {fileID: 8578851039367995674, guid: 355ab9b32fc696941a1e6c6122874a1d, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 4192796971924311290}
@@ -19331,6 +19346,10 @@ PrefabInstance:
       propertyPath: _delay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8801759967563388213, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 248345321}
     - target: {fileID: 8801759967563388213, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
       propertyPath: _buyZone
       value: 
@@ -32046,6 +32065,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801759967563388213, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 248345321}
+    - target: {fileID: 8801759967563388213, guid: 6415b25dd2ec91e4d818f237e6435e62, type: 3}
       propertyPath: _buyZone
       value: 
       objectReference: {fileID: 1700952186}
@@ -34287,6 +34310,10 @@ PrefabInstance:
       propertyPath: _delay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8578851039367995674, guid: 355ab9b32fc696941a1e6c6122874a1d, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 248345321}
     - target: {fileID: 8578851039367995674, guid: 355ab9b32fc696941a1e6c6122874a1d, type: 3}
       propertyPath: _target
       value: 

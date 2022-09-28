@@ -7,18 +7,15 @@ public class ControlAssistant : Assistant
 {
     [SerializeField] private Transform _target;
     [SerializeField] private float _delay = 3f;
-    [SerializeField] private AssistantBuyZone _buyZone;
-
-    public AssistantBuyZone BuyZone => _buyZone;
 
     private void OnEnable()
     {
-        _buyZone.Unlocked += OnUnlocked;
+        BuyZone.Unlocked += OnUnlocked;
     }
 
     private void OnDisable()
     {
-        _buyZone.Unlocked -= OnUnlocked;
+        BuyZone.Unlocked -= OnUnlocked;
     }
         
     private void OnUnlocked(BuyZonePresenter buyZone)
