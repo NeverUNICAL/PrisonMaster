@@ -14,7 +14,7 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private float _delayAllViewMovingFollow = 4f;
     [SerializeField] private float _delayBusMovingFollow = 5f;
     [SerializeField] private FloatingJoystick _joystick;
-    [SerializeField] private Transform _assistantsShopPanel;
+    [SerializeField] private AssistantsShop _assistantsShopPanel;
     [SerializeField] private CellQueueContainer _queueContainer;
     [SerializeField] private Cell _cell;
     [SerializeField] private AssistantBuyZone _assistantBuyZone;
@@ -26,8 +26,6 @@ public class CameraSwitcher : MonoBehaviour
     private int _allViewCamFollow = 4;
     private int _busCamFollow = 5;
 
-    private int _counter = 0;
-
     private bool _isFirst = true;
 
     private const int PriorityValue = 1;
@@ -35,6 +33,8 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnEnable()
     {
+        _assistantsShopPanel.CapacityUpgraded += OnCapacityUpGrade;
+        _assistantsShopPanel.SpeedUpgraded += OnSpeedUpgraded;
         _assistantBuyZone.Unlocked += OnAssistantUnlock;
         _globalTutorial.PointerShown += OnPointerShown;
         _queueContainer.PrisonerEmptyed += OnPrisonerEmptyed;
@@ -91,6 +91,27 @@ public class CameraSwitcher : MonoBehaviour
         _cell.PrisonerSendToPool -= OnPoolPrisonerAdded;
     }
 
+    private void OnCapacityUpGrade(int value1, int value2, int value3)
+    {
+        OnShopUpgraded();
+    }
+
+    private void OnSpeedUpgraded(int value1, float value2, int value3)
+    {
+        OnShopUpgraded();
+    }
+
+    private void OnShopUpgraded()
+    {
+        _assistantsShopPanel.gameObject.SetActive(false);
+
+        ChangeCamera(_targetCamNumber);
+        StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
+
+        _assistantsShopPanel.CapacityUpgraded -= OnCapacityUpGrade;
+        _assistantsShopPanel.SpeedUpgraded -= OnSpeedUpgraded;
+    }
+
     private void ChangeCamera(int targetCamera)
     {
         for (int i = 0; i < _cinemachines.Length; i++)
@@ -113,11 +134,9 @@ public class CameraSwitcher : MonoBehaviour
     private IEnumerator FollowAssistant(int targetCamera, float delay)
     {
         ChangeCamera(targetCamera);
-        _assistantsShopPanel.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(delay);
 
-        ChangeCamera(_targetCamNumber);
         StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
     }
 
@@ -145,8 +164,7 @@ public class CameraSwitcher : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        ChangeStateJoystick(true);
-        ChangeCamera(_playerCamNumber);
+        StartCoroutine(DelayChangeCamera(_playerCamNumber, 0));
     }
 
     private void ChangeStateJoystick(bool value)

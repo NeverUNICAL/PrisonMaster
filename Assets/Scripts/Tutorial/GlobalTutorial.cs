@@ -37,11 +37,11 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private Assistant[] _assistants;
     [SerializeField] private AssistantBuyZone[] _assistantBuyZones;
 
-    private int _currentAssistant = 0;
     private int _currentArrow = 0;
     private int _currentLevelBuyZone = 0;
     private int _currentPool = 0;
     private int _targetStackableLayer = 4;
+
     private bool _isAssistantsUpgraded = true;
     private bool _isPlayerStayedButton = false;
     private bool _isPoolAddedFirst = true;

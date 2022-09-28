@@ -7,6 +7,7 @@ public class ControlAssistant : Assistant
 {
     [SerializeField] private Transform _target;
     [SerializeField] private float _delay = 3f;
+    [SerializeField] private Transform _arrow;
 
     private void OnEnable()
     {
@@ -20,6 +21,9 @@ public class ControlAssistant : Assistant
         
     private void OnUnlocked(BuyZonePresenter buyZone)
     {
+        if (_arrow != null)
+            Destroy(_arrow.gameObject);
+
         StartCoroutine(DelayMove(_delay));
     }
 

@@ -7,20 +7,20 @@ public class AllView : MonoBehaviour
 {
     [SerializeField] private Transform _followMover;
     [SerializeField] private Transform _targetPosition;
-    [SerializeField] private MoneySpawner _suitCabinetMoneySpawner;
+    [SerializeField] private ExitClothQueueContainer _exitClothQueue;
     [SerializeField] private float _duration;
     [SerializeField] private float _delay;
 
     private void OnEnable()
     {
-        _suitCabinetMoneySpawner.MoneySpawned += OnMoneySpawned;
+        _exitClothQueue.PrisonerWashEnded += OnPrisonerWashEnded;
     }
 
-    private void OnMoneySpawned()
+    private void OnPrisonerWashEnded()
     {
         StartCoroutine(Delay(_delay));
 
-        _suitCabinetMoneySpawner.MoneySpawned -= OnMoneySpawned;
+        _exitClothQueue.PrisonerWashEnded -= OnPrisonerWashEnded;
     }
 
     private IEnumerator Delay(float delay)
