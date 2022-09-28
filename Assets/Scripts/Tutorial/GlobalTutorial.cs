@@ -366,7 +366,7 @@ public class GlobalTutorial : MonoBehaviour
             ChangeStateDoor(false, true, 0);
             _isLoaded = true;
 
-            if (_currentArrow > 9)
+            if (_currentArrow >= 9)
             {
                 _cameraSwitcher.gameObject.SetActive(false);
                 _cellBuyZone.Unlock();
