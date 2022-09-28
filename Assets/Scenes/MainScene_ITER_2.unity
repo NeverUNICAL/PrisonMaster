@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.1762808, g: 0.22062853, b: 0.30294988, a: 1}
+  m_IndirectSpecularColor: {r: 0.17628051, g: 0.22062822, b: 0.3029491, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6024,6 +6024,11 @@ Transform:
 --- !u!1 &325386386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3368577528465414215, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+  m_PrefabInstance: {fileID: 3824315004999085787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &325386387 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2373335832492821127, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
   m_PrefabInstance: {fileID: 3824315004999085787}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &328097094
@@ -20224,6 +20229,7 @@ MonoBehaviour:
   _cell: {fileID: 379185560}
   _cellQueueContainer: {fileID: 1118153810}
   _tutorialSavePresenter: {fileID: 1033482724}
+  _cameraSwitcher: {fileID: 0}
   _scaleTarget: {x: 1.2, y: 1.2, z: 1.2}
   _durationForOutlines: 0.5
   _targetPools:
@@ -32176,6 +32182,7 @@ MonoBehaviour:
   _delayBusMovingFollow: 6
   _joystick: {fileID: 1713695036}
   _assistantsShopPanel: {fileID: 3652467229535216802}
+  _hrPanel: {fileID: 325386387}
   _queueContainer: {fileID: 1118153810}
   _cell: {fileID: 379185560}
   _assistantBuyZone: {fileID: 1651142661}
