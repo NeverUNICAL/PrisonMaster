@@ -50,6 +50,15 @@ namespace Agava.IdleGame
             _saves.Load();
             OnLoad();
         }
+
+        public void ChangeCount(int value)
+        {
+            if (value > Count)
+            {
+                _saves.SetCount(value);
+                _saves.Save();
+            }
+        }
         
         private void OnSpeedChanged(int level,float value,int price)
         {

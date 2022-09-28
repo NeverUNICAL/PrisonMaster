@@ -7,6 +7,8 @@ namespace Agava.IdleGame
     public class AssistantBuyZone : BuyZonePresenter
     {
         [SerializeField] private Transform _outline;
+        [SerializeField] private int _number;
+        [SerializeField] private AssistantsSavePresenter _assistantsSavePresenter;
 
         private int _reduceValue = 1;
 
@@ -33,6 +35,7 @@ namespace Agava.IdleGame
 
         protected override void OnBuyedAction()
         {
+            _assistantsSavePresenter.ChangeCount(_number);
             transform.gameObject.SetActive(false);
         }
     }
