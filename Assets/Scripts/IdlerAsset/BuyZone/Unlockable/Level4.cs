@@ -37,8 +37,8 @@ public class Level4 : UnlockableMapZone
 
     private void UnlockBuyZone()
     {
-        Debug.Log(Counter + "   enter");
-        Counter++;
+        //Debug.Log(Counter + "   enter");
+        //Counter++;
 
         for (int i = 0; i < BuyZones.Length; i++)
         {
@@ -46,10 +46,9 @@ public class Level4 : UnlockableMapZone
             {
                 AnimationScale(BuyZones[i].transform);
 
-                Debug.Log(Counter);
-
-                if (Counter > 0)
+                if (_isFirst == false)
                     return;
+                _isFirst = false;
             }
         }
     }

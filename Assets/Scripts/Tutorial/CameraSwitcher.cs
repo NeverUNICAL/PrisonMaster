@@ -15,6 +15,7 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private float _delayBusMovingFollow = 5f;
     [SerializeField] private FloatingJoystick _joystick;
     [SerializeField] private AssistantsShop _assistantsShopPanel;
+    [SerializeField] private Transform _hrPanel;
     [SerializeField] private CellQueueContainer _queueContainer;
     [SerializeField] private Cell _cell;
     [SerializeField] private AssistantBuyZone _assistantBuyZone;
@@ -33,10 +34,10 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnEnable()
     {
-        _assistantsShopPanel.CapacityUpgraded += OnCapacityUpGrade;
-        _assistantsShopPanel.SpeedUpgraded += OnSpeedUpgraded;
         _assistantBuyZone.Unlocked += OnAssistantUnlock;
         _globalTutorial.PointerShown += OnPointerShown;
+        _assistantsShopPanel.CapacityUpgraded += OnCapacityUpGrade;
+        _assistantsShopPanel.SpeedUpgraded += OnSpeedUpgraded;
         _queueContainer.PrisonerEmptyed += OnPrisonerEmptyed;
         _cell.PrisonerSendToPool += OnPoolPrisonerAdded;
     }
@@ -45,6 +46,10 @@ public class CameraSwitcher : MonoBehaviour
     {
         _assistantBuyZone.Unlocked -= OnAssistantUnlock;
         _globalTutorial.PointerShown -= OnPointerShown;
+        _assistantsShopPanel.CapacityUpgraded -= OnCapacityUpGrade;
+        _assistantsShopPanel.SpeedUpgraded -= OnSpeedUpgraded;
+        _queueContainer.PrisonerEmptyed -= OnPrisonerEmptyed;
+        _cell.PrisonerSendToPool -= OnPoolPrisonerAdded;
     }
 
     private void Start()
@@ -103,7 +108,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnShopUpgraded()
     {
-        _assistantsShopPanel.gameObject.SetActive(false);
+        _hrPanel.gameObject.SetActive(false);
 
         ChangeCamera(_targetCamNumber);
         StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));

@@ -21,6 +21,7 @@ public class GlobalTutorial : MonoBehaviour
     [SerializeField] private Cell _cell;
     [SerializeField] private CellQueueContainer _cellQueueContainer;
     [SerializeField] private TutorialSavePresenter _tutorialSavePresenter;
+    [SerializeField] private CameraSwitcher _cameraSwitcher;
 
     [Header("ZoneSetting")]
     [SerializeField] private Vector3 _scaleTarget;
@@ -180,8 +181,15 @@ public class GlobalTutorial : MonoBehaviour
                 _arrows[8].gameObject.SetActive(false);
 
             DisableArrows();
-            _currentArrow = 9;
-            SaveNextArrow();
+            if (_currentArrow < 10)
+            {
+                if (_cellBuyZone.gameObject.activeInHierarchy == false)
+                    _cellBuyZone.gameObject.SetActive(true);
+
+                _currentArrow = 9;
+                SaveNextArrow();
+            }
+
             ChangeActiveArrow(true, true);
         }
     }
@@ -360,7 +368,10 @@ public class GlobalTutorial : MonoBehaviour
 
             if (_currentArrow > 9)
             {
-                _cellBuyZone.gameObject.SetActive(false);
+                _cameraSwitcher.gameObject.SetActive(false);
+                _cellBuyZone.Unlock();
+                _currentArrow = 10;
+                SaveNextArrow();
                 LoadLevelsBuyZones();
                 ActivateAssistants(true);
                 _hrBuyZone.gameObject.SetActive(true);
