@@ -25,6 +25,9 @@ public class AssistantsShop : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private Image _background;
+    [SerializeField] private RectTransform _arrowUI;
+    [SerializeField] private Animator _iconAnimatorTutorial;
+
     [SerializeField] private Button _exitButton;
     [SerializeField] private List<Assistant> _assistants;
     [SerializeField] private AssistantsSavePresenter _saves;
@@ -43,7 +46,7 @@ public class AssistantsShop : MonoBehaviour
     }
 
     private void OnDisable()
-    { 
+    {
         _capacityButton.onClick.RemoveListener(OnCapacityButtonClick);
         _speedButton.onClick.RemoveListener(OnSpeedButtonClick);
         _saves.Loaded -= OnLoaded;
@@ -63,7 +66,6 @@ public class AssistantsShop : MonoBehaviour
                     ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText);
                     return;
                 }
-
             }
         }
     }
@@ -80,6 +82,7 @@ public class AssistantsShop : MonoBehaviour
                     ResetAssistants();
                     _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + _imageFillWidthStep, _fillSpeedImage.rect.height);
                     ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText);
+                    ChangeState(true, false);
                     return;
                 }
             }
@@ -145,14 +148,18 @@ public class AssistantsShop : MonoBehaviour
         _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep*_saves.SpeedLevel), _fillSpeedImage.rect.height);
     }
 
-    public void ChangeStateTutorial(bool interactableValue, bool value)
+    public void TryChangeState(bool interactableValue, bool value)
     {
-        if (_saves.Count == 0)
-        {
+        if (_saves.Speed == 0)
+            ChangeState(interactableValue, value);
+    }
+
+    public void ChangeState(bool interactableValue, bool value)
+    {
             _exitButton.interactable = interactableValue;
-            //_capacityButton.interactable = interactableValue;
-            //_speedButton.interactable = interactableValue;
+            _capacityButton.interactable = interactableValue;
+            _iconAnimatorTutorial.enabled = value;
             _background.gameObject.SetActive(value);
-        }
+            _arrowUI.gameObject.SetActive(value);
     }
 }

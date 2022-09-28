@@ -14,10 +14,12 @@ public class RoomsMenu : MonoBehaviour
     [SerializeField] private Trigger _upgradesTrigger;
 
     private AssistantsShop _assistantsShop;
+    private UpgradesShop _upgradesShop;
 
     private void Awake()
     {
         _assistantsShop = GetComponent<AssistantsShop>();
+        _upgradesShop = _upgradesPanel.GetComponent<UpgradesShop>();
     }
 
     private void OnEnable()
@@ -39,12 +41,13 @@ public class RoomsMenu : MonoBehaviour
     private void OnHREnter()
     {
         _hrPanel.SetActive(true);
-        _assistantsShop.ChangeStateTutorial(false, true);
+        _assistantsShop.TryChangeState(false, true);
     }
     
     private void OnUpgradesEnter()
     {
         _upgradesPanel.SetActive(true);
+        _upgradesShop.TryChangeState(false, true);
     }
     
     private void OnHRExit()

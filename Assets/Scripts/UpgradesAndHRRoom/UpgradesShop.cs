@@ -26,8 +26,11 @@ public class UpgradesShop : MonoBehaviour
     [SerializeField] private List<Upgrade> _speedUpgrades;
 
     [Header("Settings")]
-    [SerializeField] private Button _exitButton;
+    [SerializeField] private RectTransform _arrowUI;
+    [SerializeField] private Animator _iconAnimatorTutorial;
     [SerializeField] private Image _background;
+
+    [SerializeField] private Button _exitButton;
     [SerializeField] private PlayerSavePresenter _playerSavePresenter;
     [SerializeField] private float _imageFillWidthStep;
     [SerializeField] private int _upgradesMaxLevel = 4;
@@ -55,7 +58,7 @@ public class UpgradesShop : MonoBehaviour
         OnLoaded();
 
         if (_playerSavePresenter.SpeedLevel == 0)
-            ChangeStateTutorial(false, true);
+            ChangeState(false, true);
     }
 
     private void OnCapacityButtonClick()
@@ -85,7 +88,7 @@ public class UpgradesShop : MonoBehaviour
                 SpeedUpgraded?.Invoke(upgrade.Level, upgrade.Value, upgrade.Price);
                 _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + _imageFillWidthStep, _fillSpeedImage.rect.height);
                 ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText);
-                ChangeStateTutorial(true, false);
+                ChangeState(true, false);
                 return;
             }
         }
@@ -131,10 +134,18 @@ public class UpgradesShop : MonoBehaviour
         _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep * _playerSavePresenter.SpeedLevel), _fillSpeedImage.rect.height);
     }
 
-    private void ChangeStateTutorial(bool interactableValue, bool value)
+    public void TryChangeState(bool interactableValue, bool value)
+    {
+        if (_playerSavePresenter.SpeedLevel == 0)
+            ChangeState(interactableValue, value);
+    }
+
+    private void ChangeState(bool interactableValue, bool value)
     {
         _exitButton.interactable = interactableValue;
         _capacityButton.interactable = interactableValue;
+        _iconAnimatorTutorial.enabled = value;
         _background.gameObject.SetActive(value);
+        _arrowUI.gameObject.SetActive(value);
     }
 }
