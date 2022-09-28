@@ -9,16 +9,20 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera[] _cinemachines;
     [SerializeField] private GlobalTutorial _globalTutorial;
     [SerializeField] private float _delayChangeCamera;
-    [SerializeField] private float _delayAssistantMovingFollow = 6f;
-    [SerializeField] private float _delayPrisonerMovingFollow = 14f;
-    [SerializeField] private float _delayAllViewMovingFollow = 4f;
-    [SerializeField] private float _delayBusMovingFollow = 5f;
     [SerializeField] private FloatingJoystick _joystick;
-    [SerializeField] private AssistantsShop _assistantsShopPanel;
+    [SerializeField] private UpgradesShop _upgradesShop;
+    [SerializeField] private Transform _upPanel;
+    [SerializeField] private RoomBuyZone _hrBuyZone;
     [SerializeField] private Transform _hrPanel;
     [SerializeField] private CellQueueContainer _queueContainer;
     [SerializeField] private Cell _cell;
     [SerializeField] private AssistantBuyZone _assistantBuyZone;
+
+    [Header("Delayes")]
+    [SerializeField] private float _delayAssistantMovingFollow = 6f;
+    [SerializeField] private float _delayPrisonerMovingFollow = 14f;
+    [SerializeField] private float _delayAllViewMovingFollow = 4f;
+    [SerializeField] private float _delayBusMovingFollow = 5f;
 
     private int _playerCamNumber = 0;
     private int _targetCamNumber = 1;
@@ -35,9 +39,9 @@ public class CameraSwitcher : MonoBehaviour
     private void OnEnable()
     {
         _assistantBuyZone.Unlocked += OnAssistantUnlock;
+        _globalTutorial.GloalTutorialCompleted += OnTutorialCompleted;
         _globalTutorial.PointerShown += OnPointerShown;
-        _assistantsShopPanel.CapacityUpgraded += OnCapacityUpGrade;
-        _assistantsShopPanel.SpeedUpgraded += OnSpeedUpgraded;
+        _upgradesShop.SpeedUpgraded += OnSpeedUpgraded;
         _queueContainer.PrisonerEmptyed += OnPrisonerEmptyed;
         _cell.PrisonerSendToPool += OnPoolPrisonerAdded;
     }
@@ -45,9 +49,9 @@ public class CameraSwitcher : MonoBehaviour
     private void OnDisable()
     {
         _assistantBuyZone.Unlocked -= OnAssistantUnlock;
+        _globalTutorial.GloalTutorialCompleted -= OnTutorialCompleted;
         _globalTutorial.PointerShown -= OnPointerShown;
-        _assistantsShopPanel.CapacityUpgraded -= OnCapacityUpGrade;
-        _assistantsShopPanel.SpeedUpgraded -= OnSpeedUpgraded;
+        _upgradesShop.SpeedUpgraded -= OnSpeedUpgraded;
         _queueContainer.PrisonerEmptyed -= OnPrisonerEmptyed;
         _cell.PrisonerSendToPool -= OnPoolPrisonerAdded;
     }
@@ -63,7 +67,7 @@ public class CameraSwitcher : MonoBehaviour
         {
             _isFirst = false;
             ChangeStateJoystick(false);
-            StartCoroutine(FollowBus(_busCamFollow, _delayBusMovingFollow));
+            StartCoroutine(FollowTarget(_busCamFollow, _delayBusMovingFollow, 0));
         }
         else
         {
@@ -80,7 +84,7 @@ public class CameraSwitcher : MonoBehaviour
     private void OnAssistantUnlock(BuyZonePresenter buyZone)
     {
         ChangeStateJoystick(false);
-        StartCoroutine(FollowAssistant(_assistantCamNumber, _delayAssistantMovingFollow));
+        StartCoroutine(FollowTarget(_assistantCamNumber, _delayAssistantMovingFollow, 0));
     }
 
     private void OnPrisonerEmptyed(PrisonerMover prisoner, CellQueueContainer cellQueueContainer)
@@ -92,13 +96,9 @@ public class CameraSwitcher : MonoBehaviour
     private void OnPoolPrisonerAdded()
     {
         ChangeStateJoystick(false);
+        _cinemachines[_targetCamNumber].m_Follow = _hrBuyZone.transform;
         StartCoroutine(FollowPrisoner(_prisonerCamNumber, _delayPrisonerMovingFollow));
         _cell.PrisonerSendToPool -= OnPoolPrisonerAdded;
-    }
-
-    private void OnCapacityUpGrade(int value1, int value2, int value3)
-    {
-        OnShopUpgraded();
     }
 
     private void OnSpeedUpgraded(int value1, float value2, int value3)
@@ -108,13 +108,18 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnShopUpgraded()
     {
-        _hrPanel.gameObject.SetActive(false);
+        _upPanel.gameObject.SetActive(false);
 
         ChangeCamera(_targetCamNumber);
         StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
 
-        _assistantsShopPanel.CapacityUpgraded -= OnCapacityUpGrade;
-        _assistantsShopPanel.SpeedUpgraded -= OnSpeedUpgraded;
+        _upgradesShop.SpeedUpgraded -= OnSpeedUpgraded;
+    }
+
+    private void OnTutorialCompleted()
+    {
+        _hrPanel.gameObject.SetActive(false);
+        StartCoroutine(FollowTarget(_allViewCamFollow, _delayAllViewMovingFollow, 0));
     }
 
     private void ChangeCamera(int targetCamera)
@@ -136,14 +141,14 @@ public class CameraSwitcher : MonoBehaviour
         ChangeCamera(targetCamera);
     }
 
-    private IEnumerator FollowAssistant(int targetCamera, float delay)
-    {
-        ChangeCamera(targetCamera);
+    //private IEnumerator FollowAssistant(int targetCamera, float delay)
+    //{
+    //    ChangeCamera(targetCamera);
 
-        yield return new WaitForSeconds(delay);
+    //    yield return new WaitForSeconds(delay);
 
-        StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
-    }
+    //    StartCoroutine(DelayChangeCamera(_playerCamNumber, _delayChangeCamera));
+    //}
 
     private IEnumerator FollowPrisoner(int targetCamera, float delay)
     {
@@ -151,26 +156,26 @@ public class CameraSwitcher : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        StartCoroutine(FollowAllView(_allViewCamFollow, _delayAllViewMovingFollow));
+        StartCoroutine(FollowTarget(_targetCamNumber, _delayChangeCamera, _delayChangeCamera));
     }
 
-    private IEnumerator FollowAllView(int targetCamera, float delay)
+    private IEnumerator FollowTarget(int targetCamera, float delay, float delayBackCam)
     {
         ChangeCamera(targetCamera);
 
         yield return new WaitForSeconds(delay);
 
-        StartCoroutine(DelayChangeCamera(_playerCamNumber, 0));
+        StartCoroutine(DelayChangeCamera(_playerCamNumber, delayBackCam));
     }
 
-    private IEnumerator FollowBus(int targetCamera, float delay)
-    {
-        ChangeCamera(targetCamera);
+    //private IEnumerator FollowBus(int targetCamera, float delay)
+    //{
+    //    ChangeCamera(targetCamera);
 
-        yield return new WaitForSeconds(delay);
+    //    yield return new WaitForSeconds(delay);
 
-        StartCoroutine(DelayChangeCamera(_playerCamNumber, 0));
-    }
+    //    StartCoroutine(DelayChangeCamera(_playerCamNumber, 0));
+    //}
 
     private void ChangeStateJoystick(bool value)
     {

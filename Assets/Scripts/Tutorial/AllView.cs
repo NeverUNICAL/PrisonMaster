@@ -7,20 +7,20 @@ public class AllView : MonoBehaviour
 {
     [SerializeField] private Transform _followMover;
     [SerializeField] private Transform _targetPosition;
-    [SerializeField] private ExitClothQueueContainer _exitClothQueue;
+    [SerializeField] private GlobalTutorial _globalTutorial;
     [SerializeField] private float _duration;
     [SerializeField] private float _delay;
 
     private void OnEnable()
     {
-        _exitClothQueue.PrisonerWashEnded += OnPrisonerWashEnded;
+        _globalTutorial.GloalTutorialCompleted += OnGloalTutorialCompleted;
     }
 
-    private void OnPrisonerWashEnded()
+    private void OnGloalTutorialCompleted()
     {
         StartCoroutine(Delay(_delay));
 
-        _exitClothQueue.PrisonerWashEnded -= OnPrisonerWashEnded;
+        _globalTutorial.GloalTutorialCompleted -= OnGloalTutorialCompleted;
     }
 
     private IEnumerator Delay(float delay)

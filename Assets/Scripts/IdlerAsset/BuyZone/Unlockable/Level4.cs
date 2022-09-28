@@ -23,6 +23,7 @@ public class Level4 : UnlockableMapZone
 
     private void OnGlobalTutorialComplete()
     {
+        NextLevel.gameObject.SetActive(true);
         _isFourthLevelOpened = true;
         Unlock(null);
 
