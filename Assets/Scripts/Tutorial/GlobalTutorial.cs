@@ -268,6 +268,7 @@ public class GlobalTutorial : MonoBehaviour
         _tutorialSavePresenter.SetTutorialLevel();
 
         _assistantsShop.SpeedUpgraded -= OnSpeedUpgrade;
+        gameObject.SetActive(false);
     }
 
     private void OnPlayerSpeedUpgrades(int value1, float value2, int value3)
