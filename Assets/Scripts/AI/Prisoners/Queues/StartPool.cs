@@ -49,10 +49,10 @@ public class StartPool : QueueHandler
                 if (_prisonerList.Count < _startPoolSize)
                 {
                     PrisonerMover prisoner = _prisonersConteiner.GetPrisoner();
-                    prisoner.EnableDirtySuit();
                     //_prisonerList.Add(Instantiate(_prisoner, _spawnPoint.position, _spawnPoint.rotation, _parentPrisoners));
                     if (prisoner != null)
                     {
+                        prisoner.EnableDirtySuit();
                         _prisonerList.Add(prisoner);
                         ListSort();
                         _prisonerList[0].SetTarget(_firstPoint, Vector3.zero);
