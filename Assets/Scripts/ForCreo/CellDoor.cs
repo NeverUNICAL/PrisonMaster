@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Agava.IdleGame;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(NavMeshObstacle))]
 public class CellDoor : MonoBehaviour
 {
     [SerializeField] private float _duration;
     [SerializeField] private Vector3 _targetPosition;
     [SerializeField] private Vector3 _defaultPosition;
-
+    [SerializeField] private Trigger _trigger;
+    
+    private NavMeshObstacle _navMeshObstacle;
     private Cell _cell;
     private bool _isStayed = false;
     private bool _isOpened = false;
@@ -23,11 +28,14 @@ public class CellDoor : MonoBehaviour
     private void Awake()
     {
         _cell = GetComponentInParent<Cell>();
+        _navMeshObstacle = GetComponent<NavMeshObstacle>();
     }
 
     private void OnEnable()
     {
         _cell.PrisonerSendToPool += OnSendToPool;
+        _trigger.Enter += OnPlayerEnterInCell;
+        _trigger.Exit += OnPlayerExitOutCell;
         _cell.DoorButtonReached += OnReached;
         _cell.DoorButtonStay += OnStay;
         _cell.DoorButtonExit += OnExit;
@@ -36,6 +44,8 @@ public class CellDoor : MonoBehaviour
     private void OnDisable()
     {
         _cell.PrisonerSendToPool -= OnSendToPool;
+        _trigger.Enter -= OnPlayerEnterInCell;
+        _trigger.Exit -= OnPlayerExitOutCell;
         _cell.DoorButtonReached -= OnReached;
         _cell.DoorButtonStay -= OnStay;
         _cell.DoorButtonExit -= OnExit;
@@ -52,6 +62,16 @@ public class CellDoor : MonoBehaviour
     private void OnStay()
     {
         _isStayed = true;   
+    }
+
+    private void OnPlayerEnterInCell()
+    {
+        _navMeshObstacle.enabled = false;
+    }
+
+    private void OnPlayerExitOutCell()
+    {
+        _navMeshObstacle.enabled = true;
     }
 
     private void OnExit()
@@ -88,7 +108,9 @@ public class CellDoor : MonoBehaviour
     private void TryClose()
     {
         if (_cell.Prisoners.Count < 1)
+        {
             Close();
+        }
         else
             StartCoroutine(CheckPrisonerMoveState(_cell.Prisoners[0]));
     }
