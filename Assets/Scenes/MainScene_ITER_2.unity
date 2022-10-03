@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17628051, g: 0.22062822, b: 0.3029491, a: 1}
+  m_IndirectSpecularColor: {r: 0.1762808, g: 0.22062853, b: 0.30294988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3040,7 +3040,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 292601264}
+    m_TransformParent: {fileID: 1836886423}
     m_Modifications:
     - target: {fileID: 5765448666082839135, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
       propertyPath: m_IsActive
@@ -3054,6 +3054,10 @@ PrefabInstance:
       propertyPath: _breakPower
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6684349901688747824, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
+      propertyPath: _globalTutorial
+      value: 
+      objectReference: {fileID: 1150041985}
     - target: {fileID: 6684349901688747824, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
       propertyPath: _timeToCloseDoor
       value: 5
@@ -3080,7 +3084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6684349903216557523, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6684349903216557523, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4642,7 +4646,7 @@ Transform:
   - {fileID: 1898661557}
   - {fileID: 1787044505}
   m_Father: {fileID: 1836886423}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &259069445
 MonoBehaviour:
@@ -5225,7 +5229,6 @@ Transform:
   - {fileID: 319870331}
   - {fileID: 1333306928}
   - {fileID: 421690836}
-  - {fileID: 1957967233}
   m_Father: {fileID: 1767458745}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8360,7 +8363,7 @@ Transform:
   - {fileID: 1926004144}
   - {fileID: 1749261753}
   m_Father: {fileID: 1836886423}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &441767800
 MonoBehaviour:
@@ -11127,7 +11130,7 @@ Transform:
   - {fileID: 1305790948}
   - {fileID: 1168977844}
   m_Father: {fileID: 1836886423}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &577542376
 MonoBehaviour:
@@ -23626,7 +23629,7 @@ Transform:
   - {fileID: 472778668}
   - {fileID: 1513164842}
   m_Father: {fileID: 1836886423}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1360711169
 MonoBehaviour:
@@ -31842,7 +31845,7 @@ Transform:
   - {fileID: 292601264}
   - {fileID: 541562830}
   m_Father: {fileID: 1836886423}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1767458746
 MonoBehaviour:
@@ -32803,6 +32806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2025263726}
+  - {fileID: 1957967233}
   - {fileID: 1767458745}
   - {fileID: 1360711168}
   - {fileID: 259069444}
@@ -33061,7 +33065,7 @@ Transform:
   - {fileID: 1758341080}
   - {fileID: 469540572}
   m_Father: {fileID: 1836886423}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1863663208
 PrefabInstance:
@@ -39283,6 +39287,18 @@ PrefabInstance:
       propertyPath: _assistants.Array.data[3]
       value: 
       objectReference: {fileID: 795051200}
+    - target: {fileID: 868121825358297609, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481337487180831112, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481337487180831112, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2101882374292607185, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
       propertyPath: m_Color.b
       value: 0.121568605
@@ -39330,6 +39346,10 @@ PrefabInstance:
     - target: {fileID: 6291979515069552980, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433839716317087526, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8433839717203859888, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
       propertyPath: m_Name

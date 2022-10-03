@@ -18,6 +18,7 @@ public class Bus : MonoBehaviour
     [SerializeField] private StartPool _startPool;
     [SerializeField] private ParticleSystem _leftSmoke;
     [SerializeField] private ParticleSystem _rightSmoke;
+    [SerializeField] private GlobalTutorial _globalTutorial;
 
     private float _defaultBreakPower;
     private NavMeshAgent _agent;
@@ -26,7 +27,18 @@ public class Bus : MonoBehaviour
     private bool _brakePressed;
     private bool _doorOpened;
     private float _startSpeed;
-    //private bool _isFirst = true;
+    private bool _isFirst = true;
+    private bool _isTutorialCompleted = false;
+
+    private void OnEnable()
+    {
+        _globalTutorial.GloalTutorialCompleted += OnTutorialCompleted;
+    }
+
+    private void OnDisable()
+    {
+        _globalTutorial.GloalTutorialCompleted -= OnTutorialCompleted;
+    }
 
     private void Start()
     {
@@ -56,24 +68,29 @@ public class Bus : MonoBehaviour
         if (_brakePressed && _agent.speed > 1)
             _agent.speed -= _breakPower * Time.deltaTime;
     }
-    
+
+    private void OnTutorialCompleted()
+    {
+        _isTutorialCompleted = true;
+    }
+
     private void OpenDoor()
     {
-        //if (_isFirst)
-        //{
-        if(_startPool != null)
-         _startPool.SetWorking(true);
-        
-        Invoke(nameof(CloseDoor), _timeToCloseDoor);
-        //}
+        if (_isFirst || _isTutorialCompleted)
+        {
+            if (_startPool != null)
+                _startPool.SetWorking(true);
+
+            Invoke(nameof(CloseDoor), _timeToCloseDoor);
+        }
     }
 
     private void CloseDoor()
     {
-        //_isFirst = false;
-        if(_startPool != null)
-         _startPool.SetWorking(false);
-        
+        _isFirst = false;
+        if (_startPool != null)
+            _startPool.SetWorking(false);
+
         _doorOpened = false;
         _brakePressed = false;
         ChangeSmokeActive(false);
