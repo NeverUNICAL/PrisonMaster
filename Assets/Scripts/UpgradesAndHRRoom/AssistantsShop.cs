@@ -30,35 +30,32 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private Image _background;
     [SerializeField] private RectTransform _arrowUI;
     [SerializeField] private Animator _iconAnimatorTutorial;
-
+    [SerializeField] private SoftCurrencyHolder _currencyHolder;
+ 
     [SerializeField] private Button _exitButton;
     [SerializeField] private List<Assistant> _assistants;
     [SerializeField] private AssistantsSavePresenter _saves;
     [SerializeField] private float _imageFillWidthStep;
     [SerializeField] private int _upgradesMaxLevel = 4;
     [SerializeField] private float _speedForFirstAssistant;
-
-
+    
     public event UnityAction<int,float,int> SpeedUpgraded;
     public event UnityAction<int,int,int> CapacityUpgraded;
     public event UnityAction<int, int> CountUpgraded;
-
-    private void Awake()
-    {
-         
-    }
-
+    
     private void OnEnable()
     {
         _capacityButton.onClick.AddListener(OnCapacityButtonClick);
         _speedButton.onClick.AddListener(OnSpeedButtonClick);
         _saves.Loaded += OnLoaded;
+        _currencyHolder.BalanceChanged += OnBalanceChanged;
         ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText,_imageForBlockCapacity);
         ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText,_imageForBlockSpeed);
     }
 
     private void OnDisable()
     {
+        _currencyHolder.BalanceChanged -= OnBalanceChanged;
         _capacityButton.onClick.RemoveListener(OnCapacityButtonClick);
         _speedButton.onClick.RemoveListener(OnSpeedButtonClick);
         _saves.Loaded -= OnLoaded;
@@ -162,6 +159,12 @@ public class AssistantsShop : MonoBehaviour
 
             _assistants[0].ChangeSpeed(_speedForFirstAssistant);
         }
+    }
+
+    private void OnBalanceChanged(int money)
+    {
+        ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText,_imageForBlockCapacity);
+        ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText,_imageForBlockSpeed);
     }
 
     private void OnLoaded()
