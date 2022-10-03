@@ -73,7 +73,8 @@ public class Bus : MonoBehaviour
     {
         _timeToCloseDoor = 5;
         _isTutorialCompleted = true;
-        RefreshWay();
+        if (_isFirst == false)
+            OpenDoor();
     }
 
     private void OpenDoor()
