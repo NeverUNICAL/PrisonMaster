@@ -12,6 +12,7 @@ public class Money : MonoBehaviour
     private MoneySpawner _moneySpawner;
     private Collider _collider;
     private Rigidbody _rigidbody;
+    private bool _isCollected = false;
 
     private Vector3 _defaultScale;
 
@@ -21,6 +22,7 @@ public class Money : MonoBehaviour
 
     private Coroutine _coroutineInJob;
 
+    public bool IsCollected => _isCollected;
     public int Reward => _reward;
 
     private void OnEnable()
@@ -39,6 +41,7 @@ public class Money : MonoBehaviour
 
     private void MoveToTarget(Transform target)
     {
+        ChangeState(true);
         float randomTime = Random.Range(MinDelay, MaxDelay);
 
         if (_coroutineInJob != null)
@@ -82,6 +85,11 @@ public class Money : MonoBehaviour
     public void SetConteiner(Transform target)
     {
         _moneyConteiner = target;
+    }
+
+    public void ChangeState(bool value)
+    {
+        _isCollected = value;
     }
 }
 

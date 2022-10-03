@@ -33,14 +33,16 @@ public class MoneyConteiner : MonoBehaviour
 
     private IEnumerator TryGetMoney(SoftCurrencyHolder playerBalance)
     {
-        while(_isWorking)
+        while (_isWorking)
         {
             for (int i = 0; i < _moneys.Length; i++)
             {
                 if (_moneys[i].gameObject.activeInHierarchy)
                 {
+                    if (_moneys[i].IsCollected == false)
+                        playerBalance.Add(_moneys[i].Reward);
+
                     _moneys[i].OnCollected(playerBalance.transform);
-                    playerBalance.Add(_moneys[i].Reward);
                 }
             }
 

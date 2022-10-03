@@ -26,6 +26,7 @@ public class UpgradesShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speedPriceText;
     [SerializeField] private List<Upgrade> _speedUpgrades;
     [SerializeField] private Image _imageForBlockSpeed;
+    [SerializeField] private Vector2 _defaultSize;
 
     [Header("Settings")]
     [SerializeField] private RectTransform _arrowUI;
@@ -37,9 +38,9 @@ public class UpgradesShop : MonoBehaviour
     [SerializeField] private float _imageFillWidthStep;
     [SerializeField] private int _upgradesMaxLevel = 4;
 
+
     public event UnityAction<int, float, int> SpeedUpgraded;
     public event UnityAction<int, int, int> CapacityUpgraded;
-
 
     private void OnEnable()
     {
@@ -162,5 +163,8 @@ public class UpgradesShop : MonoBehaviour
         _iconAnimatorTutorial.enabled = value;
         _background.gameObject.SetActive(value);
         _arrowUI.gameObject.SetActive(value);
+
+        if (interactableValue)
+            _speedButton.image.rectTransform.sizeDelta = _defaultSize;
     }
 }

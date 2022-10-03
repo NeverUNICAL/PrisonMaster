@@ -66,6 +66,7 @@ public class MoneySpawner : MonoBehaviour
                 Money money = GetMoney();
                 if (money != null)
                 {
+                    money.ChangeState(false);
                     money.transform.position = _points[_counter].transform.position;
                     money.transform.localScale = _defaultScale;
                     money.transform.rotation = Quaternion.Euler(0, 90f, 0);

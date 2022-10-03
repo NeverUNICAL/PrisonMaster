@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17628051, g: 0.22062822, b: 0.3029491, a: 1}
+  m_IndirectSpecularColor: {r: 0.1762808, g: 0.22062853, b: 0.30294988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3071,7 +3071,7 @@ PrefabInstance:
       objectReference: {fileID: 1150041985}
     - target: {fileID: 6684349901688747824, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
       propertyPath: _timeToCloseDoor
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6684349902279280678, guid: 7f76d15fdff99d14d9710397820f35da, type: 3}
       propertyPath: m_Name
@@ -39700,6 +39700,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1981899229}
     - target: {fileID: 550171067903707769, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: _defaultSize.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 550171067903707769, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: _defaultSize.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 550171067903707769, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
       propertyPath: _capacityButton
       value: 
       objectReference: {fileID: 1371055519}
@@ -39787,6 +39795,14 @@ PrefabInstance:
       propertyPath: _navMeshAgent
       value: 
       objectReference: {fileID: 1232819261}
+    - target: {fileID: 3824315004503179700, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: _defaultSize.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824315004503179700, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
+      propertyPath: _defaultSize.y
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 3824315004503179700, guid: d05f14e3393fa454ebcaba5d4d72bc22, type: 3}
       propertyPath: _stackPresenter
       value: 

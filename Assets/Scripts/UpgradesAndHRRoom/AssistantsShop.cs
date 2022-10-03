@@ -24,7 +24,7 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speedPriceText;
     [SerializeField] private List<Upgrade> _speedUpgrades;
     [SerializeField] private Image _imageForBlockSpeed;
-
+    [SerializeField] private Vector2 _defaultSize;
 
     [Header("Settings")]
     [SerializeField] private Image _background;
@@ -38,9 +38,15 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private int _upgradesMaxLevel = 4;
     [SerializeField] private float _speedForFirstAssistant;
 
+
     public event UnityAction<int,float,int> SpeedUpgraded;
     public event UnityAction<int,int,int> CapacityUpgraded;
     public event UnityAction<int, int> CountUpgraded;
+
+    private void Awake()
+    {
+         
+    }
 
     private void OnEnable()
     {
@@ -113,12 +119,10 @@ public class AssistantsShop : MonoBehaviour
                     if (upgrade.Price > _saves.Money)
                     {
                         image.gameObject.SetActive(true);
-                        Debug.Log("true");
                     }
                     else
                     {
                         image.gameObject.SetActive(false);
-                        Debug.Log("false");
                     }
                     
                     if (upgrade.Price == 0)
@@ -182,5 +186,8 @@ public class AssistantsShop : MonoBehaviour
             _iconAnimatorTutorial.enabled = value;
             _background.gameObject.SetActive(value);
             _arrowUI.gameObject.SetActive(value);
+
+        if (interactableValue)
+            _speedButton.image.rectTransform.sizeDelta = _defaultSize;
     }
 }

@@ -36660,7 +36660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92405a70a8976bd48828e23267847419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldawn: 1
+  _cooldawn: 0.1
 --- !u!65 &2029351071248198503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36727,6 +36727,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 8013726689453345057}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 0
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
@@ -36818,6 +36819,7 @@ MonoBehaviour:
   _queues: []
   _shop: {fileID: 0}
   _store: {fileID: 8013726689453345057}
+  _cellDoor: {fileID: 0}
   _isInShowerQueue: 1
   _exit: {fileID: 0}
   _tryToSendToExitCooldown: 0
