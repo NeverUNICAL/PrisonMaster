@@ -17,13 +17,15 @@ public class UpgradesShop : MonoBehaviour
     [SerializeField] private RectTransform _fillCapacityImage;
     [SerializeField] private TextMeshProUGUI _capacityPriceText;
     [SerializeField] private List<Upgrade> _capacityUpgrades;
-
+    [SerializeField] private Image _imageForBlockCapacity;
+    
     [Header("Speed Settings")]
     [SerializeField] private Button _speedButton;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private RectTransform _fillSpeedImage;
     [SerializeField] private TextMeshProUGUI _speedPriceText;
     [SerializeField] private List<Upgrade> _speedUpgrades;
+    [SerializeField] private Image _imageForBlockSpeed;
 
     [Header("Settings")]
     [SerializeField] private RectTransform _arrowUI;
@@ -44,6 +46,8 @@ public class UpgradesShop : MonoBehaviour
         _capacityButton.onClick.AddListener(OnCapacityButtonClick);
         _speedButton.onClick.AddListener(OnSpeedButtonClick);
         _playerSavePresenter.Loaded += OnLoaded;
+        ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText,_imageForBlockCapacity);
+        ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText,_imageForBlockSpeed);
     }
 
     private void OnDisable()
@@ -71,7 +75,8 @@ public class UpgradesShop : MonoBehaviour
             {
                 CapacityUpgraded?.Invoke(upgrade.Level, (int)upgrade.Value, upgrade.Price);
                 _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + _imageFillWidthStep, _fillCapacityImage.rect.height);
-                ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText);
+                ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText,_imageForBlockCapacity);
+                ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText,_imageForBlockSpeed);
                 return;
             }
         }
@@ -87,14 +92,15 @@ public class UpgradesShop : MonoBehaviour
             {
                 SpeedUpgraded?.Invoke(upgrade.Level, upgrade.Value, upgrade.Price);
                 _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + _imageFillWidthStep, _fillSpeedImage.rect.height);
-                ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText);
+                ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText,_imageForBlockCapacity);
+                ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText,_imageForBlockSpeed);
                 ChangeState(true, false);
                 return;
             }
         }
     }
 
-    private void ResetPriceView(List<Upgrade> upgrades, int playerLevel, TextMeshProUGUI text)
+    private void ResetPriceView(List<Upgrade> upgrades, int playerLevel, TextMeshProUGUI text,Image image)
     {
         if (playerLevel == _upgradesMaxLevel)
         {
@@ -104,6 +110,15 @@ public class UpgradesShop : MonoBehaviour
         {
             foreach (Upgrade upgrade in upgrades)
             {
+                if (upgrade.Price > _playerSavePresenter.Money)
+                {
+                    image.gameObject.SetActive(true);
+                }
+                else
+                {
+                    image.gameObject.SetActive(false);
+                }
+                
                 if (upgrade.Level == playerLevel + 1)
                 {
                     if (upgrade.Price == 0)
@@ -128,8 +143,8 @@ public class UpgradesShop : MonoBehaviour
 
     private void OnLoaded()
     {
-        ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText);
-        ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText);
+        ResetPriceView(_capacityUpgrades, _playerSavePresenter.CapacityLevel, _capacityPriceText,_imageForBlockCapacity);
+        ResetPriceView(_speedUpgrades, _playerSavePresenter.SpeedLevel, _speedPriceText,_imageForBlockSpeed);
         _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep * _playerSavePresenter.CapacityLevel), _fillCapacityImage.rect.height);
         _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep * _playerSavePresenter.SpeedLevel), _fillSpeedImage.rect.height);
     }

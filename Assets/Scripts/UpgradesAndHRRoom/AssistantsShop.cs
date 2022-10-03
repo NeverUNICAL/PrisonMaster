@@ -16,12 +16,15 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private RectTransform _fillCapacityImage;
     [SerializeField] private TextMeshProUGUI _capacityPriceText;
     [SerializeField] private List<Upgrade> _capacityUpgrades;
+    [SerializeField] private Image _imageForBlockCapacity;
 
     [Header("Speed Settings")]
     [SerializeField] private Button _speedButton;
     [SerializeField] private RectTransform _fillSpeedImage;
     [SerializeField] private TextMeshProUGUI _speedPriceText;
     [SerializeField] private List<Upgrade> _speedUpgrades;
+    [SerializeField] private Image _imageForBlockSpeed;
+
 
     [Header("Settings")]
     [SerializeField] private Image _background;
@@ -33,6 +36,7 @@ public class AssistantsShop : MonoBehaviour
     [SerializeField] private AssistantsSavePresenter _saves;
     [SerializeField] private float _imageFillWidthStep;
     [SerializeField] private int _upgradesMaxLevel = 4;
+    [SerializeField] private float _speedForFirstAssistant;
 
     public event UnityAction<int,float,int> SpeedUpgraded;
     public event UnityAction<int,int,int> CapacityUpgraded;
@@ -43,6 +47,8 @@ public class AssistantsShop : MonoBehaviour
         _capacityButton.onClick.AddListener(OnCapacityButtonClick);
         _speedButton.onClick.AddListener(OnSpeedButtonClick);
         _saves.Loaded += OnLoaded;
+        ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText,_imageForBlockCapacity);
+        ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText,_imageForBlockSpeed);
     }
 
     private void OnDisable()
@@ -63,7 +69,8 @@ public class AssistantsShop : MonoBehaviour
                     CapacityUpgraded?.Invoke(upgrade.Level, (int)upgrade.Value, upgrade.Price);
                     ResetAssistants();
                     _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + _imageFillWidthStep, _fillCapacityImage.rect.height);
-                    ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText);
+                    ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText,_imageForBlockCapacity);
+                    ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText,_imageForBlockSpeed);
                     return;
                 }
             }
@@ -81,7 +88,8 @@ public class AssistantsShop : MonoBehaviour
                     SpeedUpgraded?.Invoke(upgrade.Level, upgrade.Value, upgrade.Price);
                     ResetAssistants();
                     _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + _imageFillWidthStep, _fillSpeedImage.rect.height);
-                    ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText);
+                    ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText,_imageForBlockCapacity);
+                    ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText,_imageForBlockSpeed);
                     ChangeState(true, false);
                     return;
                 }
@@ -89,7 +97,7 @@ public class AssistantsShop : MonoBehaviour
         }
     }
     
-    private void ResetPriceView(List<Upgrade> upgrades, int playerLevel,TextMeshProUGUI text)
+    private void ResetPriceView(List<Upgrade> upgrades, int playerLevel,TextMeshProUGUI text,Image image)
     {
         if (playerLevel == _upgradesMaxLevel)
         {
@@ -102,6 +110,17 @@ public class AssistantsShop : MonoBehaviour
             {
                 if (upgrade.Level == playerLevel + 1)
                 {
+                    if (upgrade.Price > _saves.Money)
+                    {
+                        image.gameObject.SetActive(true);
+                        Debug.Log("true");
+                    }
+                    else
+                    {
+                        image.gameObject.SetActive(false);
+                        Debug.Log("false");
+                    }
+                    
                     if (upgrade.Price == 0)
                     {
                         text.text = "FREE";
@@ -136,14 +155,16 @@ public class AssistantsShop : MonoBehaviour
                 if(_saves.Speed > 0)
                  _assistants[i].ChangeSpeed(_saves.Speed);
             }
+
+            _assistants[0].ChangeSpeed(_speedForFirstAssistant);
         }
     }
 
     private void OnLoaded()
     {
         ResetAssistants();
-        ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText);
-        ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText);
+        ResetPriceView(_capacityUpgrades,_saves.CapacityLevel,_capacityPriceText,_imageForBlockCapacity);
+        ResetPriceView(_speedUpgrades,_saves.SpeedLevel,_speedPriceText,_imageForBlockSpeed);
         _fillCapacityImage.sizeDelta = new Vector2(_fillCapacityImage.rect.width + (_imageFillWidthStep*_saves.CapacityLevel), _fillCapacityImage.rect.height);
         _fillSpeedImage.sizeDelta = new Vector2(_fillSpeedImage.rect.width + (_imageFillWidthStep*_saves.SpeedLevel), _fillSpeedImage.rect.height);
     }
