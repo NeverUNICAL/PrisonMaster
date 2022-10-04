@@ -96,7 +96,7 @@ public class CameraSwitcher : MonoBehaviour
     private void OnPoolPrisonerAdded()
     {
         ChangeStateJoystick(false);
-        _cinemachines[_targetCamNumber].m_Follow = _hrBuyZone.transform;
+        _cinemachines[_targetCamNumber].m_Follow = _assistantBuyZone.transform;
         StartCoroutine(FollowPrisoner(_prisonerCamNumber, _delayPrisonerMovingFollow));
         _cell.PrisonerSendToPool -= OnPoolPrisonerAdded;
     }
@@ -118,7 +118,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnTutorialCompleted()
     {
-        _hrPanel.gameObject.SetActive(false);
+        StopAllCoroutines();
         StartCoroutine(FollowTarget(_allViewCamFollow, _delayAllViewMovingFollow, 0));
     }
 
