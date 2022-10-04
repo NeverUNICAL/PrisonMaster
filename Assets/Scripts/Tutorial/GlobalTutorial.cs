@@ -348,7 +348,7 @@ public class GlobalTutorial : MonoBehaviour
         _cell.DoorButtonReached -= OnReachedButton;
         _cell.DoorButtonExit -= OnButtonExit;
 
-        ChangeArrows(true, false);
+        ChangeArrows(false, false);
         PointerShown?.Invoke(_upBuyZone.transform, true);
     }
 
@@ -439,6 +439,7 @@ public class GlobalTutorial : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        ActivateAssistants(false);
         _hrBuyZone.gameObject.SetActive(true);
         GloalTutorialCompleted?.Invoke();
         gameObject.SetActive(false);
