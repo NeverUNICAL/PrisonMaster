@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Agava.IdleGame.Model;
@@ -56,8 +57,16 @@ namespace Agava.IdleGame
 
         public void SetTutorialComplete()
         {
-            _playerSaves.SetTutorialComplete();
-            _playerSaves.Save();
+            if (_playerSaves.IsTutorialCompleted == false)
+            {
+                _playerSaves.SetTutorialComplete();
+                _playerSaves.Save();
+                AppMetrica.Instance.ReportEvent("level_complete", new Dictionary<string, object>()
+                {
+                    {"level", 1},
+                });
+                AppMetrica.Instance.SendEventsBuffer();
+            }
         }
         
         private void ChangeNavMeshAgent(int value)
@@ -91,6 +100,12 @@ namespace Agava.IdleGame
                 _navMeshAgent.areaMask = maskId; 
                 _playerSaves.SetCurrentLevel(levelNumber+1);
                 ChangeNavMeshAgent(_navMeshAgent.areaMask);
+                
+                AppMetrica.Instance.ReportEvent("level_complete", new Dictionary<string, object>()
+                {
+                    {"level", _playerSaves.CurrentLevel},
+                });
+                AppMetrica.Instance.SendEventsBuffer();
             }
         }
         

@@ -15,10 +15,13 @@
     <activity android:name="com.facebook.unity.FBUnityAppLinkActivity" android:exported="true" />
     <activity android:name="com.facebook.unity.FBUnityDeepLinkingActivity" android:exported="true" />
     <activity android:name="com.facebook.unity.FBUnityGameRequestActivity" />
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="fb327553282845475" />
-    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="0381388ccb7d7f060ea7f004e75da55a" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="fb882219539574621" />
+    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="720bad4ae7bdcd894f61def300f2a7fa" />
     <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="true" />
     <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value="true" />
-    <provider android:name="com.facebook.FacebookContentProvider" android:authorities="com.facebook.app.FacebookContentProvider327553282845475" android:exported="true" />
+    <provider android:name="com.facebook.FacebookContentProvider" android:authorities="com.facebook.app.FacebookContentProvider882219539574621" android:exported="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   </application>
 </manifest>
