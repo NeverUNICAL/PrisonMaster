@@ -20,6 +20,6 @@ public class Printer : Construction
     private void Update()
     {
         if (_meshRenderer != null && _itemCreator.IStackIsFull != true)
-            _meshRenderer.materials[3].mainTextureOffset += _vector2Speed;
+            _meshRenderer.materials[2].mainTextureOffset += _vector2Speed;
     }
 }
