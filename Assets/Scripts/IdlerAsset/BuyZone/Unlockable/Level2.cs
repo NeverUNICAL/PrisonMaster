@@ -15,8 +15,8 @@ public class Level2 : UnlockableMapZone
 
     public override void Unlock(BuyZonePresenter buyZone)
     {
-        if (buyZone.TryGetComponent(out RoomBuyZone roomBuyZone) == false)
-        {
+      //  if (buyZone.TryGetComponent(out RoomBuyZone roomBuyZone) == false)
+        //{
             int tempCounter = 0;
             int target = 2;
             Counter++;
@@ -54,11 +54,11 @@ public class Level2 : UnlockableMapZone
                     }
                 }
             }
-        }
-        else
-        {
-            Counter--;
-        }
+        // }
+       // else
+        //{
+           // Counter--;
+       //}
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
