@@ -26,6 +26,9 @@ public class Level3 : UnlockableMapZone
                 }
             }
         }
+        
+        if (NextLevel != null && NextLevel.gameObject.activeInHierarchy == false)
+            UnlockNextLevelZone();
     }
 
     public override void UnlockNextLevel(BuyZonePresenter buyZone)
