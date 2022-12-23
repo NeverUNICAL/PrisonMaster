@@ -25,7 +25,7 @@ namespace Agava.IdleGame
             }
             
             moneyHolder.SetVFXEnabled(true);
-            _reduceValue = Mathf.Clamp((int)(TotalCost * 1.5f * Time.deltaTime), 1, TotalCost);
+            _reduceValue = Mathf.Clamp((int)(TotalCost * 0.15f * Time.deltaTime), 1, TotalCost);
             if (buyZone.CurrentCost < _reduceValue)
                 _reduceValue = buyZone.CurrentCost;
             
